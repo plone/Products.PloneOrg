@@ -1,0 +1,2 @@
+GLOBALS	= globals()
+PROJECTNAME = "PloneOrg"
