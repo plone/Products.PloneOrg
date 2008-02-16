@@ -1,0 +1,79 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+<body>
+<div metal:define-macro="portlet"
+     tal:define="results python:request.get('news',
+                   here.portal_catalog.searchResults(portal_type='News Item',
+                                                     sort_on='Date',
+                                                     sort_order='reverse',
+                                                     review_state='published')[:5]);"
+     tal:condition="python:test(template.getId()!='news' and results, 1, 0)">
+
+    <dl class="portlet" id="portlet-news">
+
+        <dt class="portletHeader">
+            <a href="feed://plone.org/news/newslisting/RSS"
+               class="feedButton link-plain">
+                <img alt="RSS"
+                     title="RSS subscription feed for news items"
+                     tal:attributes="src string:${portal_url}/rss.gif" />
+            </a>
+
+            <a href="#"
+               tal:condition="python:'news' in portal.contentIds()"
+               tal:attributes="href string:${utool}/news"
+               i18n:translate="box_news">News</a>
+            <a href="#" 
+               tal:condition="python:'news' not in portal.contentIds()"
+               tal:attributes="href string:${utool}/news_listing"
+               i18n:translate="box_news">News</a>
+        </dt>
+
+        <tal:newsitems tal:repeat="obj results">
+        <dd tal:define="oddrow repeat/obj/odd"
+             tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+
+            <a href=""
+               tal:attributes="href obj/getURL;
+                               title obj/Description">
+                <tal:block replace="structure here/newsitem_icon.gif"/>
+                <span tal:replace="obj/pretty_title_or_id">
+                Plone 2.1 announced!
+                </span>
+                <span class="portletItemDetails"
+                      tal:content="python:here.toLocalizedTime(obj.Date)">May 5</span>
+            </a>
+        </dd>
+        </tal:newsitems>
+
+        <dd class="portletFooter">
+          
+            <a href="" 
+               title="Add News Item" 
+               style="float: left; margin-left: -0.5em"
+               tal:attributes="href string:${portal_url}/news/createObject?type_name=News%20Item">
+                <img src="" tal:replace="structure here/add_icon.gif"/>Add&hellip;
+            </a>
+
+            <a href=""
+               tal:condition="python:'news' in portal.contentIds()"
+               tal:attributes="href string:${utool}/news"
+               i18n:translate="box_more_news_link"
+               >
+              More news&hellip;
+            </a>
+
+            <a href=""
+               tal:condition="python:'news' not in portal.contentIds()"
+               tal:attributes="href string:${utool}/news_listing"
+               i18n:translate="box_more_news_link"
+               >
+              More news&hellip;
+            </a>
+        </dd>
+    </dl>
+
+</div>
+</body>
+</html>

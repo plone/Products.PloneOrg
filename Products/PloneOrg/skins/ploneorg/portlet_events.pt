@@ -1,0 +1,92 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+<body>
+<div metal:define-macro="portlet"
+     tal:define="results python:here.portal_catalog.searchResults(
+                                portal_type='Event',
+                                end={'query': here.ZopeTime(),
+                                     'range': 'min'},
+                                sort_on='start',
+                                review_state='published');
+                 results python:[brain for brain in results if 'Training' not in brain.Subject][:5];"
+     tal:condition="results">
+
+<dl class="portlet" id="portlet-events"
+    tal:define="eventsfolder python:'events' in portal.contentIds()">
+  
+    <dt class="portletHeader">
+        <a href="feed://plone.org/events/community/upcoming-events/RSS"
+           class="feedButton link-plain">
+            <img alt="RSS"
+                 title="RSS subscription feed for upcoming events"
+                 tal:attributes="src string:${portal_url}/rss.gif" />
+        </a>
+        <a href=""
+           tal:condition="eventsfolder"
+           tal:attributes="href string:${utool}/events/community"
+           i18n:translate="box_events">
+            Upcoming Events
+        </a>
+
+        <a href=""
+           tal:condition="not: eventsfolder"
+           tal:attributes="href string:${utool}/events_listing"
+           i18n:translate="box_events">
+            Upcoming Events
+        </a>
+    </dt>
+
+    <tal:events tal:repeat="obj results">
+    <dd class="portletItem"
+        tal:define="oddrow repeat/obj/odd"
+        tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+        <a href="#"
+           tal:attributes="href obj/getURL;
+                           title obj/Description">
+            <img src="#" alt="" tal:replace="structure here/event_icon.gif" />
+            <span tal:replace="obj/pretty_title_or_id">
+             Some Event 
+            </span>
+            <span class="portletItemDetails">
+                <tal:condition condition="obj/location">
+                    <tal:location content="obj/location">Location</tal:location>,
+                </tal:condition>
+                <tal:date content="python:here.toLocalizedTime(obj.start)">
+                May 5
+                </tal:date>
+            </span>
+        </a>
+    </dd>
+    </tal:events>
+  
+    <dd class="portletFooter">
+        <a href="" 
+           title="Add Event" 
+           style="float: left; margin-left: -0.5em"
+           tal:attributes="href string:${portal_url}/events/community/createObject?type_name=Event">
+            <img src="" tal:replace="structure here/add_icon.gif"/>Add&hellip;
+        </a>
+
+        <a href=""
+           tal:condition="eventsfolder"
+           tal:attributes="href string:${utool}/events/community"
+           i18n:translate="box_upcoming_events">
+                Upcoming events&hellip;
+        </a>
+
+        <a href=""
+           tal:condition="not: eventsfolder"
+           tal:attributes="href string:${utool}/events_listing"
+           i18n:translate="box_upcoming_events">
+                Upcoming events&hellip;
+        </a>
+
+    </dd>
+  
+</dl>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master">
+      
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+<body>
+<metal:main fill-slot="main">
+
+<h1>Donate to the Plone Foundation!</h1>
+
+<p class="documentDescription">
+Plone Foundation is a 501(c)(3) non-profit that protects and promotes Plone. 
+By donating to the Foundation, you help ensure that Plone Foundation has the
+means to continue its mission. The donations are tax-deductible in the US, 
+and you will receive a receipt from the Plone Foundation after the donation has
+been processed.
+</p>
+
+<p>
+Below, we have set up some standard donation amounts for your convenience.
+If none of these are right for you, there's also a button to donate an amount 
+of your choice.
+</p>
+
+<p>Thanks for your support!</p>
+
+<dl>
+    <dt>Individual donations</dt>
+    <dd>Suggested amount: $50</dd>
+    <dd>If you are an individual that uses Plone as a website, to 
+        run your sports club page or similarly make use of Plone, 
+        the suggested donation is $50 per year.</dd>
+    <dd>
+        <!-- Individual donation, $50 -->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick" />
+        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+        ">
+        <input class="standalone" type="submit" value="Click to donate $50" />
+        </form>
+    </dd>
+
+    <dt>Consultant donations</dt>
+    <dd>Suggested amount: $250</dd>
+    <dd>If you are a consultant that use Plone in your consulting business, 
+        the suggested donation is $250 per year.</dd>
+    <dd>
+        <!-- Consultant donation, $250 -->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+        ">
+        <input class="standalone" type="submit" value="Click to donate $250" />
+        </form>
+    </dd>
+    
+    <dt>Company donations</dt>
+    <dd>Suggested amount: $1000</dd>
+    <dd>If you use Plone to run central systems in your company (intranets, public web pages),
+        or if you are a consultant that derives most of your income from Plone consulting,
+        the suggested donation is $1000 per year.</dd>
+    <dd>
+        <!-- Company donation, $1000 -->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+        ">
+        <input class="standalone" type="submit" value="Click to donate $1000" />
+        </form>
+    </dd>
+    
+    <dt>Any other donations</dt>
+    <dd>We recognize that the above might not fit every budget, and we appreciate any donation amount &mdash; 
+        but please don't donate under $5, as the processing costs are not worth it.</dd>
+    <dd>
+        <!-- Any amount donation-->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+        ">
+        <input class="standalone" type="submit" value="Donate other amount" />
+        </form>
+    </dd>
+</dl>
+
+</metal:main>
+</body>
+</html>

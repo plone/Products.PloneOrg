@@ -1,0 +1,250 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1);
+                             groupid python:(len(request.traverse_subpath) > 0 and request.traverse_subpath[0]) or None;
+                             dummy2 python:request.set('groupid', groupid)"
+    />
+
+    <metal:column fill-slot="column_two_slot"></metal:column>
+
+    <metal:css fill-slot="css_slot">
+        <style type="text/css" media="all">
+ul.tabbernav
+{
+ margin:0;
+ padding: 1px 0;
+ border-bottom: 1px solid #74ae0b;
+ text-align: center;
+}
+
+ul.tabbernav li
+{
+ list-style: none;
+ margin: 0;
+ display: inline;
+}
+
+ul.tabbernav li a
+{
+ padding: 3px 0.5em;
+ margin-left: 0;
+ border: 1px solid #74ae0b;
+ border-style: solid none solid dotted;
+ text-decoration: none;
+ color: #5d8811;
+ position: relative;
+ top: 1em;
+ background-color: White;
+}
+
+ul.tabbernav li a:hover
+{
+ background-color: #cde2a7;
+ border-color: #74ae0b;
+}
+
+ul.tabbernav li a:active,
+ul.tabbernav li a:visited {
+ color: #5d8811;
+}
+
+
+ul.tabbernav li.selected a
+{
+ background-color: #cde2a7;
+ color: #5d8811;
+}
+
+ul.tabbernav li.selected a:hover
+{
+ background-color: #cde2a7;
+}
+
+#first { border-left: 1px solid #74ae0b;}
+#last { border-right: 1px solid #74ae0b;}
+
+
+.link-external {
+    background: none;
+    padding-left: 0;
+}
+        </style>
+    </metal:css>
+
+</head>
+
+<body>
+
+<div metal:fill-slot="portlets_one_slot"
+     tal:define="view context/@@group_listing;
+                 groups view/groups;"
+     tal:condition="groups">
+    <dl class="portlet" id="portlet-navigation-tree">
+        <dt class="portletHeader">
+            <span class="portletTopLeft"></span>
+            Plone Teams
+            <span class="portletTopRight"></span>
+        </dt>
+
+        <dd class="portletItem lastItem">
+            <ul class="portletNavigationTree navTreeLevel0">
+                <tal:groups repeat="group groups">
+                <li class="navTreeItem visualNoMarker"
+                    tal:define="groupid group/id;
+                                selected group/selected;">
+                    <div class="visualIcon">
+                        <a href="" 
+                           style="padding-left: 3px"
+                           tal:attributes="class python:selected and 'navTreeCurrentItem' or '';
+                                           href string:${here_url}/team/${groupid};">
+                           <img tal:replace="structure here/group.gif" /> 
+                           <span tal:replace="group/title">Group title</span></a>
+                    </div>
+                </li>
+                </tal:groups>
+            </ul>
+            <span class="portletBottomLeft"></span>
+            <span class="portletBottomRight"></span>
+        </dd>
+    </dl>
+</div>
+
+
+
+<div metal:fill-slot="main"
+     tal:define="view context/@@group_listing;
+                 title view/title;
+                 description view/description;
+                 public view/public;
+                 groups view/groups;
+                 language_name nocall:view/language_name">
+
+    <tal:noGroup condition="python: not public">
+        <div class="visualClear"><!-- --></div>
+        <div class="portalMessage" i18n:translate="text_no_group_or_hidden">
+            This group does not exists or you are not allowed to view it.
+        </div>
+    </tal:noGroup>
+
+    <tal:haveGroup condition="python: public">
+
+        <h1>Plone <span tal:replace="title"></span></h1>
+
+        <!-- Group description -->
+        <div class="documentDescription"
+             tal:content="description">
+            Group description
+        </div>
+
+        <!-- Group members -->
+        <tal:users define="users view/users;
+                           number_of_users python:len(users);
+                           username nocall:view/username">
+
+            <tal:noUsers condition="not: users">
+                <div class="visualClear"><!-- --></div>
+                <div class="portalMessage"
+                     i18n:translate="text_no_group_members">
+                    This group does not have any members.
+                </div>
+            </tal:noUsers>
+
+            <p class="discreet"
+               tal:condition="python:number_of_users>5"
+               i18n:translate="text_number_of_users">
+                There are
+                <span tal:replace="number_of_users"
+                      i18n:name="number">
+                    more than 5
+                </span>
+                members in this team.
+            </p>
+
+            <div tal:repeat="user users">
+
+                <a tal:define="id user/getId"
+                   tal:attributes="href string:${here_url}/author/${id}"
+                ><img src=""
+                      alt=""
+                      class="portraitPhoto"
+                      width="75"
+                      height="100"
+                      style="float: left; margin: 0.25em 1em 0.5em 0;"
+                      tal:attributes="src python: mtool.getPersonalPortrait(user.getId()).absolute_url()" /></a>
+
+                <h3>
+                    <a tal:content="python:username(user)"
+                       tal:define="id user/getId"
+                       tal:attributes="href string:${here_url}/author/${id}">
+                      User full name or id</a>
+                </h3>
+
+                <p tal:define="organization_title python: user.getProperty('organization_title');
+                               organization_link python: user.getProperty('organization_link')"
+                   tal:condition="organization_title">
+                    <a href="#" 
+                       tal:content="organization_title"
+                       tal:attributes="href organization_link"
+                       tal:omit-tag="not:organization_link">
+                       A Title, Some Company</a>
+                </p>
+                
+                <p class="discreet"
+                      tal:define="location python: user.getProperty('location');
+                                  langcode python: user.getProperty('language')">
+                    <tal:location condition="location"
+                                  i18n:translate="text_location">
+                        Location:
+                        <span tal:replace="location"
+                              i18n:name="location">
+                            User location
+                        </span>
+                    </tal:location>
+
+                    <tal:locandlang condition="python:location and langcode">
+                        &middot;
+                    </tal:locandlang>
+
+                    <tal:language condition="langcode">
+                        <span i18n:translate="label_main_language">
+                            Native language:
+                            <span tal:replace="python:language_name(langcode)"
+                                  i18n:name="languagename">
+                                Language name
+                            </span>
+                        </span>
+                    </tal:language>
+
+                    <tal:nickname tal:define="nickname python: user.getProperty('nickname');"
+                                  tal:condition="nickname">
+                    &middot;
+                    IRC nickname: &lt;<span tal:replace="nickname">limi</span>&gt;
+                    </tal:nickname>
+                    
+                    <tal:homepage define="homepage python: user.getProperty('home_page')"
+                                  condition="homepage">&middot;
+                        <a href="#"
+                           tal:attributes="href homepage">
+                            Personal home page</a>
+                    </tal:homepage>
+                </p>
+
+                <p tal:define="description python: user.getProperty('description')"
+                   tal:content="description | nothing">
+                    User description
+                </p>
+
+                <div class="visualClear"><!-- --></div>
+
+            </div>
+        </tal:users>
+    </tal:haveGroup>
+</div>
+
+</body>
+</html>

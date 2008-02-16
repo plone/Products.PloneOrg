@@ -1,0 +1,288 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plonehelpcenter">
+
+<head>
+    <metal:css fill-slot="css_slot">
+        <style type="text/css" media="all"
+               tal:content="string:@import url($portal_url/plonesoftwarecenter.css);"></style>
+
+<style type="text/css">
+.screenshot {
+    float: right;
+}
+.project {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid #8CACBB;
+}
+</style>
+
+    </metal:css>
+
+    <metal:block fill-slot="top_slot">
+      <tal:noborder condition="python:not user.has_permission('Modify portal content', context)">
+        <tal:noborderset tal:define="dummy python:request.set('disable_border', 1)" />
+      </tal:noborder>
+    </metal:block>
+</head>
+
+<body>
+
+  <div metal:fill-slot="main"
+       tal:define="global getInfoFor nocall:here/portal_workflow/getInfoFor;
+                   catalog nocall:here/portal_catalog;
+                   herePath python:'/'.join(here.getPhysicalPath());
+                   currentCategory request/getCategories | string:;
+                   currentVersion request/getCompatibility | string:current;
+                   currentVersion python:test(currentVersion=='current',['Plone 3.0','Plone 2.5'],currentVersion);
+                   currentVersion python:test(currentVersion=='any','',currentVersion);
+                   getCategoryName nocall:here/getCategoryName">
+                   
+
+
+    <div metal:use-macro="here/document_actions/macros/document_actions">
+        Document actions (print, sendto etc)
+    </div>
+
+    <h1 tal:content="here/title_or_id" class="documentFirstHeading">
+      Title or id
+    </h1>
+
+    <div class="feedButton" >
+       <a href="" tal:attributes="href string:$here_url/search_rss?portal_type=PSCRelease&amp;sort_on=Date&amp;sort_order=reverse&amp;review_state=alpha&amp;review_state=beta&amp;review_state=release-candidate&amp;review_state=final">
+              <img i18n:attributes="title title_rss_feed; alt label_rss_feed;"
+                   tal:attributes="src string:$portal_url/rss.gif"
+                   src="rss.gif"
+                   alt="RSS Feed"
+                   title="RSS feed of the latest releases" />
+         </a>
+    </div>
+
+    <p class="discreet" 
+       tal:define="projectsCount python:len(catalog(portal_type = 'PSCProject', path = herePath));
+                   releasesCount python:len(catalog(portal_type = 'PSCRelease', path = herePath))">
+      Currently listing <span tal:replace="projectsCount" /> projects with <span tal:replace="releasesCount" /> releases.
+    </p>
+
+
+    <p class="documentDescription"
+       tal:content="here/Description">
+      Description.
+    </p>
+    
+    <div class="visualClear"><!-- --></div>
+
+    <dl class="portlet" style="width: 23em; float: left">
+        <dt class="portletHeader">Get Plone for your platform</dt>
+        <dd class="portletItem" style="text-align: center">
+            <a href="/products/plone"><img height="40" width="40" alt="Windows" src="/platform_windows.gif" /><img height="40" width="40" alt="Mac" src="/platform_mac_os_x.gif" /><img height="40" width="40" alt="Linux" src="/platform_linux.gif" /></a>
+            <h3><a href="/products/plone" style="border-bottom: 1px solid #8CACBB">Download Plone</a></h3>
+            <span class="discreet">Latest release: Plone 2.5.3 (May 2007)</span>
+        </dd>
+    </dl>
+
+    <dl class="portlet" style="float:right; width: 23em;">
+        <dt class="portletHeader">Search for add-on products</dt>
+
+        <dd class="portletItem">
+            <form style="text-align: center;"
+                  name="searchform" id="searchform"
+                  action="/search" tal:attributes="action string:${portal_url}/search">
+           
+                    <label for="searchGadget"
+                           class="hiddenStructure">
+                        Search add-ons
+                    </label>
+                    <input type="hidden" name="path" value="/Plone/products" tal:attributes="value python:'/'.join(here.getPhysicalPath())" />
+                    <input type="hidden" name="portal_type" value="PSCProject" />
+                    <input name="SearchableText" type="text"
+                           size="12"
+                           style="font-size: 150%"
+                           title="Search add-ons"
+                           accesskey="accesskeys-search"
+                           tabindex="0" />
+    
+                    <input class="searchButton" name="Search"
+                           style="font-size: 150%; background-position: 3px 5px; padding-left: 25px; padding-right: 10px"
+                           type="submit" value="Search"
+                           accesskey="accesskeys-search" />
+            </form>
+        </dd>
+    </dl>
+
+    <dl class="portlet" style="float:right; clear: right; width: 23em">
+
+        <dt class="portletHeader">Want to list your add-on product?</dt>
+        <dd class="portletItem" style="text-align: center">
+            <form action="createObject" 
+                  tal:condition="python: user.has_permission('PloneSoftwareCenter: Add Project', context)">
+                <input name="type_name"
+                       type="hidden"
+                       value="PSCProject"
+                       />
+                <input class="standalone"
+                       type="submit"
+                       style="font-size: 110%; padding: 3px 5px 3px 26px; background-position: 10px 5px"
+                       value="Add new project"
+                       />
+            </form>
+
+            <form tal:condition="python: not user.has_permission('Add portal content', context) and mtool.isAnonymousUser()"
+                  tal:define="pss modules/Products/PythonScripts/standard"
+                  tal:attributes="action python:'%s/login_form?came_from=%s' %
+                                                (here.portal_url(),
+                                                pss.url_quote(request['URL']))">
+
+                <input class="standalone"
+                       type="submit"
+                       style="font-size: 110%; padding: 3px 5px 3px 26px; background-position: 10px 5px"
+                       value="Log in to add your project"
+                       i18n:attributes="value"
+                       />
+            </form>
+        </dd>
+    </dl>
+
+    <!-- <select style="float: left;"
+            onchange="window.location.href=this.options[this.selectedIndex].value">
+        <option value="">Go directly to project&hellip;</option>
+        <option  tal:repeat="project here/getActiveProjects" 
+                 tal:content="python:project.Title[:30]"
+                 tal:attributes="value project/getURL">
+        </option>
+    </select> -->
+
+    
+      
+    <div class="visualClear"><!----></div>
+
+    <h2 style="margin-top:1em">
+      Add-on Product Releases
+    </h2>
+
+    <form id="product_select" action="#" tal:attributes="action string:${here/absolute_url}/${template/getId}">
+        <label>Show</label>
+        <select name="getCategories">
+            <option value="">All categories</option>
+            <tal:block tal:repeat="cat here/availableCategories">
+                <option tal:define="csplit python:[s.strip() for s in cat.split('|')];
+                                    cid python:csplit[0]"
+                        tal:content="python:csplit[1]"
+                        tal:attributes="value cid;
+                                        selected python:test(cid==currentCategory,'selected',nothing)" />
+            </tal:block>
+        </select>
+        <label>for</label>
+        <select name="getCompatibility">
+            <option value="current" 
+                    tal:attributes="selected python:test(len(currentVersion)==2,'selected',nothing)">
+                Supported releases (3.0 or 2.5)
+            </option>
+            <tal:block tal:repeat="version python:('Plone 3.0','Plone 2.5','Plone 2.1', 'Plone 2.0')">
+                <option tal:content="version"
+                        tal:attributes="value version;
+                                        selected python:test(currentVersion==version,'selected',nothing)">
+                    Plone 3.0
+                </option>
+            </tal:block>
+            <option value="any" tal:attributes="selected python:test(currentVersion=='','selected',nothing)">
+                Any version
+            </option>
+            <tal:block condition="nothing" tal:repeat="version python:catalog.uniqueValuesFor('getCompatibility')">
+                <option tal:content="version"
+                        tal:attributes="value version;
+                                        selected python:test(currentVersion==version,'selected',nothing)">
+                    Plone 3.0
+                </option>
+            </tal:block>
+        </select>
+         
+        <input class="context" type="submit" name="product_search" value="Update" />
+    </form>
+
+    <div tal:define="results python:catalog(getCategories=currentCategory,
+                                            getCompatibility=currentVersion, 
+                                            portal_type='PSCRelease',
+                                            sort_on='effective',
+                                            sort_order='reverse');
+                     Batch python:modules['Products.CMFPlone'].Batch;
+                     b_size python:20;b_start python:0;b_start request/b_start | b_start;
+                     desc_length site_properties/search_results_description_length;
+                     desc_ellipsis site_properties/ellipsis;">
+    
+        <p tal:condition="not: results">
+            <strong i18n:translate="description_no_results_found">No results were found.</strong>
+        </p>
+    
+        <p class="discreet">
+            <span tal:replace="python:len(results)">234</span> releases matching your criteria, sorted with latest releases first.
+        </p>
+    
+        <div tal:condition="results"
+              tal:define="batch python:Batch(results, b_size, int(b_start), orphan=1);">
+    
+            <div class="project" tal:repeat="result batch">
+            <tal:entry define="obj result/getObject;
+                               project python:obj.aq_parent.aq_parent;
+                               project python:test(project.portal_type=='PSCProject',project,obj);
+                               url result/getURL;
+                               projectURL project/absolute_url;
+                               result_type result/portal_type;">
+
+                <div class="screenshot" tal:condition="project/logo|nothing">
+                    <a href="#" tal:attributes="href projectURL"><img tal:replace="structure project/logo" /></a>
+                </div>
+                
+                <div class="project_details">
+                    <h3 tal:define="item_wf_state result/review_state;
+                                    item_wf_state_class python:'state-' + normalizeString(item_wf_state);"
+                        tal:attributes="class item_wf_state_class"
+                     >
+                        <a href="#" style="border-bottom: 1px solid #8CACBB" tal:attributes="href projectURL;" tal:content="result/pretty_title_or_id" />
+                        <span class="discreet" tal:content="python:toLocalizedTime(result.ModificationDate, long_format=0)">
+                            Modification Date
+                        </span>
+
+                    </h3>
+                    
+                    <p class="discreet"
+                       tal:condition="not:currentCategory">
+                        in <span tal:replace="python:', '.join([getCategoryName(id) for id in result.getCategories])" />
+                    </p>
+                    
+                    <div class="description">
+                        <p tal:content="python:here.cropText(project.Description(), desc_length, desc_ellipsis)">
+                            Project Description
+                        </p>
+                        <p>
+                            <strong>New in this release:</strong> <br />
+                            <span tal:content="python:here.cropText(result.Description, desc_length, desc_ellipsis)">
+                                Release Description
+                            </span>
+                        </p>                        
+                    </div>
+                </div>
+            </tal:entry>
+            </div>
+             
+            <!-- Navigation -->
+            <div metal:use-macro="here/batch_macros/macros/navigation" />
+    
+        </div>
+    </div>
+
+
+    <div class="visualClear"><!----></div>
+    
+    <div class="poweredBy">
+    Powered by <a class="link-plain" href="http://plone.org/products/plonesoftwarecenter">Plone Software Center</a>
+    </div>
+
+  </div>
+
+</body>
+</html>
+

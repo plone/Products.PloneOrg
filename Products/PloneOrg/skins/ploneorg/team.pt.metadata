@@ -1,0 +1,6 @@
+[default]
+title=Team information
+cache=HTTPCache
+
+[security]
+View=0:Anonymous

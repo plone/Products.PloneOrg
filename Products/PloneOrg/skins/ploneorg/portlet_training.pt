@@ -1,0 +1,79 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+
+<body>
+
+<!-- The training box -->
+
+<div metal:define-macro="portlet"
+     tal:define="results python:here.portal_catalog.searchResults( portal_type_operator='or'
+                                                                 , portal_type=('Event', 'ATEvent')
+                                                                 , start={'query': here.ZopeTime()+1,
+                                                                        'range': 'min'}
+                                                                 , sort_on='start'
+                                                                 , Subject='Training'
+                                                                 , review_state='published')[:5];
+                ">
+
+<dl class="portlet" id="portlet-training">
+
+    <dt class="portletHeader">
+        <a href="feed://plone.org/events/community/training/training-announcements/RSS"
+             class="feedButton link-plain">
+            <img alt="RSS"
+                 title="RSS subscription feed for training"
+                 tal:attributes="src string:${portal_url}/rss.gif" />
+        </a>
+        <a href=""
+           tal:attributes="href string:${utool}/events/training">
+            Upcoming training
+        </a>
+    </dt>
+
+    <tal:events tal:repeat="obj results">
+    <dd class="portletItem"
+        tal:define="oddrow repeat/obj/odd"
+        tal:attributes="class python:test(oddrow, 'portletItem even', 'portletItem odd')">
+        <a href="#"
+           tal:attributes="href obj/getURL;
+                           title obj/Description">
+            <img src="#" alt="" tal:replace="structure here/event_icon.gif" />
+            <span tal:replace="obj/pretty_title_or_id">
+             Some Event 
+            </span>
+            <span class="portletItemDetails">
+                <tal:condition condition="obj/location">
+                    <tal:location content="obj/location">Location</tal:location>, <br />
+                </tal:condition>
+                <tal:date content="python:here.toLocalizedTime(obj.start)">
+                May 5
+                </tal:date>
+            </span>
+        </a>
+    </dd>
+    </tal:events>
+  
+    <dd class="portletFooter">
+        <a href="" 
+           title="Add Training" 
+           style="float: left; margin-left: -0.5em"
+           tal:attributes="href string:${portal_url}/events/training/createObject?type_name=Event">
+            <img src="" tal:replace="structure here/add_icon.gif"/>Add&hellip;
+        </a>
+
+        <a href=""
+           tal:attributes="href string:${utool}/events/training"
+           i18n:translate="box_upcoming_events">
+                Upcoming training&hellip;
+        </a>
+
+    </dd>
+  
+</dl>
+
+</div>
+
+</body>
+
+</html>
