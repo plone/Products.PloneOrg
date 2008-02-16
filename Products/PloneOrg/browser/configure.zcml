@@ -1,0 +1,12 @@
+<configure xmlns="http://namespaces.zope.org/zope"
+           xmlns:browser="http://namespaces.zope.org/browser">
+
+<browser:page
+      for="*"
+      name="group_listing"
+      class=".group.GroupListing"
+      permission="zope.Public"
+      allowed_interface=".interfaces.IGroupListing"
+      />
+
+</configure>
