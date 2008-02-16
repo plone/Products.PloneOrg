@@ -1,0 +1,288 @@
+Steps performed to migrate plone.org from 2.5.4 to 3.0.3:
+
+- Make sure the site runs in production mode, not debug mode (ie. no zopectl fg)
+
+- Log in as the "admin" user (for some reason, there are failures if you do it as other admin users like "rootlimi" - could it be because there is an admin user both outside and inside the site?)
+
+- Go to ZMI -> portal_migration
+
+- Force upgrade from Plone 2.5.4 (since plone.org is running an SVN version of the 2.5 branch)
+
+- Watch the uncannily quick migration ;)
+
+- Test that you can load the front page (it will be slow for now)
+
+- Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create a new, blank custom folder. The site will now be a bit faster.
+
+- Go to /Control_Panel/Products/manage_main and delete all the product entries, so they update when you restart (reinstalling will result in the blank version bug if you don't do this and the products have different paths. Why these are persistent is anybody's guess, probably because Zope needs to support ZClasses)
+
+- Restart the instance(s)
+
+- Go to Site Setup and reinstall all the add-on products that need it.
+
+- Go to /products on the site and set the plonesoftwarecenter_ploneorg view as default (doesn't work yet!)
+
+- Make sure the JS and CSS registries emit as few units as possible (ideally just one each, the front page will probably have two with the current setup). The tabber JS is included in Plone, so can be removed from the page, I assume.
+
+- Go to portal_skins and make sure there are no bogus entries. When starting up locally, I get references to at least the following non-existant entries:
+ 
+ irclogs refers to a non-existing path 
+ keyword_manager refers to a non-existing path
+ cache_prefs_plone20 refers to a non-existing path 
+ plone_tableless refers to a non-existing path
+ cache_setup_globals refers to a non-existing path
+
+- Make the front page 4x faster by removing the legacy portlets (really!):
+  Go to /@@manage-portlets in the site root, convert legacy portlets if it 
+  asks, then remove them from the listings. This reduces the front page 
+  rendering time from 24s to 6s on my laptop.
+  Additionally, if you remove everything but the navigation portlet (which is
+  really the only thing we use on plone.org on all levels), it goes down to
+  5s. For extra brownie points, remove the navigation portlet from the root,
+  and only add it to the subfolders. This further reduces the page load time
+  to 4.5s.
+
+KNOWN ISSUES:
+
+
+
+0. PloneSoftwareCenter takes forever to reinstall. Examine whether it's doing a total reindex, and whether this is actually necessary.
+
+0.1 PloneSoftwareCenter does not show the new release view as a selectable option after upgrading
+
+0.2 PloneSoftwareCenter is blank after upgrading (it doesn't list any releases, but they are still there, of course)
+
+0.3 TypesTool throws an AttributeError: IRCLogs, I assume we need to just delete the IRCLogs entry from portal_types
+
+0.4 CacheSetup adds a Cache Configuration Tool tab to the portal, WTF? :)
+
+
+[ ] 1. When reinstalling CacheSetup, I get the following error:
+
+    Traceback (innermost last):
+      Module ZPublisher.Publish, line 119, in publish
+      Module ZPublisher.mapply, line 88, in mapply
+      Module ZPublisher.Publish, line 42, in call_object
+      Module Products.CMFCore.FSPythonScript, line 140, in __call__
+      Module Shared.DC.Scripts.Bindings, line 313, in __call__
+      Module Shared.DC.Scripts.Bindings, line 350, in _bindAndExec
+      Module Products.CMFCore.FSPythonScript, line 196, in _exec
+      Module None, line 11, in prefs_reinstallProducts
+       - <FSPythonScript at /plone.org/prefs_reinstallProducts used for /plone.org/portal_quickinstaller>
+       - Line 11
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 624, in reinstallProducts
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 552, in installProducts
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 364, in installProduct
+       - __traceback_info__: ('CacheSetup',)
+      Module Products.ExternalMethod.ExternalMethod, line 231, in __call__
+       - __traceback_info__: ((<PloneSite at /plone.org>,), {'reinstall': True}, (False,))
+      Module /Users/limi/Projects/Plone/plone.org-3.0/products/CacheSetup/Extensions/Install.py, line 22, in install
+      Module Products.CacheSetup.Extensions.utils, line 82, in setupCacheTool
+      Module Products.CMFSquidTool.queue, line 140, in unindexObject
+      Module Products.CMFSquidTool.queue, line 120, in queue
+      Module Products.CMFSquidTool.SquidTool, line 147, in getUrlsToPurge
+      Module Products.CMFCore.Skinnable, line 123, in getSkinNameFromRequest
+    AttributeError: 'NoneType' object has no attribute 'get'
+
+
+[X] 2. When reinstalling FoundationMember, I get: (FIXED, 11/27/07, [aclark])
+
+    Traceback (innermost last):
+      Module ZPublisher.Publish, line 119, in publish
+      Module ZPublisher.mapply, line 88, in mapply
+      Module ZPublisher.Publish, line 42, in call_object
+      Module Products.CMFCore.FSPythonScript, line 140, in __call__
+      Module Shared.DC.Scripts.Bindings, line 313, in __call__
+      Module Shared.DC.Scripts.Bindings, line 350, in _bindAndExec
+      Module Products.CMFCore.FSPythonScript, line 196, in _exec
+      Module None, line 11, in prefs_reinstallProducts
+       - <FSPythonScript at /plone.org/prefs_reinstallProducts used for /plone.org/portal_quickinstaller>
+       - Line 11
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 624, in reinstallProducts
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 552, in installProducts
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 367, in installProduct
+       - __traceback_info__: ('FoundationMember',)
+      Module Products.ExternalMethod.ExternalMethod, line 231, in __call__
+       - __traceback_info__: ((<PloneSite at /plone.org>,), {}, None)
+      Module /Users/limi/Projects/Plone/plone.org-3.0/parts/development-products/FoundationMember/Extensions/Install.py, line 20, in install
+    NameError: global name 'wf_tool' is not defined
+
+
+[X] 3. When reinstalling PloneKeywordManager, I get: (FIXED, 11/27/07, [aclark])
+
+    Traceback (innermost last):
+      Module ZPublisher.Publish, line 119, in publish
+      Module ZPublisher.mapply, line 88, in mapply
+      Module ZPublisher.Publish, line 42, in call_object
+      Module Products.CMFCore.FSPythonScript, line 140, in __call__
+      Module Shared.DC.Scripts.Bindings, line 313, in __call__
+      Module Shared.DC.Scripts.Bindings, line 350, in _bindAndExec
+      Module Products.CMFCore.FSPythonScript, line 196, in _exec
+      Module None, line 11, in prefs_reinstallProducts
+       - <FSPythonScript at /plone.org/prefs_reinstallProducts used for /plone.org/portal_quickinstaller>
+       - Line 11
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 624, in reinstallProducts
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 552, in installProducts
+      Module Products.CMFQuickInstallerTool.QuickInstallerTool, line 367, in installProduct
+       - __traceback_info__: ('PloneKeywordManager',)
+      Module Products.ExternalMethod.ExternalMethod, line 231, in __call__
+       - __traceback_info__: ((<PloneSite at /plone.org>,), {}, None)
+      Module /Users/limi/Projects/Plone/plone.org-3.0/products/PloneKeywordManager/Extensions/Install.py, line 69, in install
+      Module Products.CMFCore.utils, line 612, in manage_addTool
+      Module OFS.ObjectManager, line 314, in _setObject
+      Module Products.CMFCore.Skinnable, line 223, in _checkId
+      Module OFS.ObjectManager, line 102, in checkValidId
+    BadRequest: The id "portal_keyword_manager" is invalid - it is already in use.
+
+[ ] 4. Clear and rebuild in the site gives the following error:
+
+    Traceback (innermost last):
+      Module ZPublisher.Publish, line 119, in publish
+      Module ZPublisher.mapply, line 88, in mapply
+      Module ZPublisher.Publish, line 42, in call_object
+      Module Products.CMFPlone.CatalogTool, line 453, in manage_catalogRebuild
+      Module Products.CMFPlone.CatalogTool, line 443, in clearFindAndRebuild
+      Module OFS.FindSupport, line 260, in ZopeFindAndApply
+      Module OFS.FindSupport, line 248, in ZopeFindAndApply
+      Module Products.CMFPlone.CatalogTool, line 436, in indexObject
+      Module Products.Archetypes.CatalogMultiplex, line 35, in indexObject
+      Module Products.CMFPlone.CatalogTool, line 386, in catalog_object
+      Module Products.CacheSetup.patch, line 100, in catalog_object
+      Module Products.CacheSetup.patch_utils, line 6, in call
+      Module Products.ZCatalog.ZCatalog, line 535, in catalog_object
+      Module Products.ZCatalog.Catalog, line 339, in catalogObject
+      Module Products.ZCatalog.Catalog, line 277, in updateMetadata
+      Module Products.ZCatalog.Catalog, line 417, in recordify
+      Module Products.Archetypes.ClassGen, line 56, in generatedAccessor
+      Module Products.Archetypes.Schema, line 233, in __getitem__
+    KeyError: 'selfCertifiedCriteria'
+
+
+[ ] 5. When clicking the Support tab, I get:
+
+  Traceback (innermost last):
+    Module ZPublisher.Publish, line 119, in publish
+    Module ZPublisher.mapply, line 88, in mapply
+    Module ZPublisher.Publish, line 42, in call_object
+    Module Shared.DC.Scripts.Bindings, line 313, in __call__
+    Module Shared.DC.Scripts.Bindings, line 350, in _bindAndExec
+    Module Products.CMFCore.FSPageTemplate, line 216, in _exec
+    Module Products.CacheSetup.patch_cmf, line 28, in FSPT_pt_render
+    Module Products.CacheSetup.patch_utils, line 9, in call_pattern
+    Module Products.CMFCore.FSPageTemplate, line 155, in pt_render
+    Module Products.PTProfiler.ProfilerPatch, line 79, in __patched_render__
+    Module Products.CacheSetup.patch_cmf, line 74, in PT_pt_render
+    Module Products.CacheSetup.patch_utils, line 9, in call_pattern
+    Module Products.PageTemplates.PageTemplate, line 89, in pt_render
+    Module zope.pagetemplate.pagetemplate, line 117, in pt_render
+    Module zope.tal.talinterpreter, line 271, in __call__
+    Module zope.tal.talinterpreter, line 346, in interpret
+    Module zope.tal.talinterpreter, line 891, in do_useMacro
+    Module zope.tal.talinterpreter, line 346, in interpret
+    Module zope.tal.talinterpreter, line 536, in do_optTag_tal
+    Module zope.tal.talinterpreter, line 521, in do_optTag
+    Module zope.tal.talinterpreter, line 516, in no_tag
+    Module zope.tal.talinterpreter, line 346, in interpret
+    Module zope.tal.talinterpreter, line 534, in do_optTag_tal
+    Module zope.tal.talinterpreter, line 516, in no_tag
+    Module zope.tal.talinterpreter, line 346, in interpret
+    Module zope.tal.talinterpreter, line 745, in do_insertStructure_tal
+    Module Products.PageTemplates.Expressions, line 221, in evaluateStructure
+    Module zope.tales.tales, line 696, in evaluate
+     - URL: file:/Users/limi/Projects/Plone/plone.org-3.0/parts/plone/CMFPlone/skins/plone_templates/main_template.pt
+     - Line 45, Column 4
+     - Expression: <StringExpr u'plone.htmlhead.links'>
+     - Names:
+        {'container': <PloneSite at /plone.org>,
+         'context': <ATDocument at /plone.org/support/index_html>,
+         'default': <object object at 0x46528>,
+         'here': <ATDocument at /plone.org/support/index_html>,
+         'loop': {},
+         'nothing': None,
+         'options': {'args': ()},
+         'repeat': <Products.PageTemplates.Expressions.SafeMapping object at 0x1ab64a80>,
+         'request': <HTTPRequest, URL=http://localhost:5011/plone.org/support/index_html/document_view>,
+         'root': <Application at >,
+         'template': <FSPageTemplate at /plone.org/document_view used for /plone.org/support/index_html>,
+         'traverse_subpath': [],
+         'user': <PropertiedUser 'rootlimi'>}
+    Module Products.Five.browser.providerexpression, line 37, in __call__
+    Module zope.viewlet.manager, line 112, in render
+    Module Shared.DC.Scripts.Bindings, line 313, in __call__
+    Module Shared.DC.Scripts.Bindings, line 350, in _bindAndExec
+    Module Products.PageTemplates.PageTemplateFile, line 129, in _exec
+    Module Products.PTProfiler.ProfilerPatch, line 79, in __patched_render__
+    Module Products.CacheSetup.patch_cmf, line 74, in PT_pt_render
+    Module Products.CacheSetup.patch_utils, line 9, in call_pattern
+    Module Products.PageTemplates.PageTemplate, line 89, in pt_render
+    Module zope.pagetemplate.pagetemplate, line 117, in pt_render
+    Module zope.tal.talinterpreter, line 271, in __call__
+    Module zope.tal.talinterpreter, line 346, in interpret
+    Module zope.tal.talinterpreter, line 586, in do_setLocal_tal
+    Module zope.tales.tales, line 696, in evaluate
+     - URL: links
+     - Line 1, Column 0
+     - Expression: <PathExpr standard:'view/enabled | nothing'>
+     - Names:
+        {'container': <ATDocument at /plone.org/support/index_html>,
+         'context': <ATDocument at /plone.org/support/index_html>,
+         'default': <object object at 0x46528>,
+         'here': <ATDocument at /plone.org/support/index_html>,
+         'loop': {},
+         'nothing': None,
+         'options': {'args': ()},
+         'repeat': <Products.PageTemplates.Expressions.SafeMapping object at 0x1ac03260>,
+         'request': <HTTPRequest, URL=http://localhost:5011/plone.org/support/index_html/document_view>,
+         'root': <Application at >,
+         'template': <ImplicitAcquirerWrapper object at 0x1abfcbd0>,
+         'traverse_subpath': [],
+         'user': <PropertiedUser 'rootlimi'>,
+         'view': <Products.Five.viewlet.metaconfigure.NextPreviousLinksViewlet object at 0x1abfce90>,
+         'views': <zope.app.pagetemplate.viewpagetemplatefile.ViewMapper object at 0x1abfcf50>}
+    Module Products.PTProfiler.ProfilerPatch, line 28, in __patched_call__
+    Module zope.tales.expressions, line 217, in __call__
+    Module Products.PageTemplates.Expressions, line 161, in _eval
+    Module Products.PageTemplates.Expressions, line 123, in render
+    Module plone.memoize.view, line 55, in memogetter
+    Module plone.app.layout.nextprevious.view, line 35, in enabled
+    Module Products.ATContentTypes.browser.nextprevious, line 36, in enabled
+    Module Products.Archetypes.ClassGen, line 56, in generatedAccessor
+    Module Products.Archetypes.Schema, line 233, in __getitem__
+  KeyError: 'nextPreviousEnabled'
+  
+ERROR MESSAGES
+
+These occur during normal operation of the site, we should look into fixing them:
+
+Interesting log messages:
+
+2007-11-24 18:06:56 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterTutorial" which has already been registered.  The new type Products.PloneHelpCenter.types.Tutorial.HelpCenterTutorial is going to override Products.PloneHelpCenter.content.Tutorial.HelpCenterTutorial
+
+2007-11-24 18:06:58 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterTutorialPage" which has already been registered.  The new type Products.PloneHelpCenter.types.TutorialPage.HelpCenterTutorialPage is going to override Products.PloneHelpCenter.content.TutorialPage.HelpCenterTutorialPage
+
+2007-11-24 18:07:31 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManual" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManual.HelpCenterReferenceManual is going to override Products.PloneHelpCenter.content.ReferenceManual.HelpCenterReferenceManual
+
+2007-11-24 18:07:31 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManualSection" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManualSection.HelpCenterReferenceManualSection is going to override Products.PloneHelpCenter.content.ReferenceManualSection.HelpCenterReferenceManualSection
+
+2007-11-24 18:07:32 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManualPage" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManualPage.HelpCenterReferenceManualPage is going to override Products.PloneHelpCenter.content.ReferenceManualPage.HelpCenterReferenceManualPage
+
+2007-11-24 18:07:57 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterErrorReference" which has already been registered.  The new type Products.PloneHelpCenter.types.ErrorReference.HelpCenterErrorReference is going to override Products.PloneHelpCenter.content.ErrorReference.HelpCenterErrorReference
+
+2007-11-24 18:08:00 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterLink" which has already been registered.  The new type Products.PloneHelpCenter.types.Link.HelpCenterLink is going to override Products.PloneHelpCenter.content.Link.HelpCenterLink
+
+2007-11-24 18:08:03 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterDefinition" which has already been registered.  The new type Products.PloneHelpCenter.types.Definition.HelpCenterDefinition is going to override Products.PloneHelpCenter.content.Definition.HelpCenterDefinition
+
+2007-11-24 18:08:11 WARNING OFS.Uninstalled Could not import class 'PersistentOutline' from module 'Products.ZWiki.OutlineSupport'
+
+
+
+WARNING ZODB Could not import class 'CMFWikiPage' from module 'Products.CMFWiki.CMFWikiPage'
+
+WARNING ZODB Could not import class 'CMFWikiFolder' from module 'Products.CMFWiki.CMFWikiPage'
+
+WARNING ZODB Could not import class 'CMFPhotoAlbum' from module 'Products.CMFPhotoAlbum'
+
+WARNING ZODB Could not import class 'PersistentOutline' from module 'Products.ZWiki.OutlineSupport'
+
+WARNING ZODB Could not import class 'AmazonItem' from module 'Products.ATAmazon.AmazonItem'
+
