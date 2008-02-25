@@ -83,7 +83,7 @@ class GroupListing(BrowserView):
     def language_name(self, langcode):
 
         #XXX: Not sure if this will work ...
-        portal_languages = getToolByName('portal_languages')
+        portal_languages = getToolByName(self.context, 'portal_languages')
         LANGUAGES = portal_languages.getAvailableLanguages()
 
         language = LANGUAGES.get(langcode, None)
