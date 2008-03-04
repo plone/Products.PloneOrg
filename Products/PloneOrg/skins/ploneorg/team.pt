@@ -210,6 +210,8 @@ ul.tabbernav li.selected a:hover
                         &middot;
                     </tal:locandlang>
 
+<tal:comment replace="nothing">
+    <!-- This is broken -->
                     <tal:language condition="langcode">
                         <span i18n:translate="label_main_language">
                             Native language:
@@ -219,6 +221,7 @@ ul.tabbernav li.selected a:hover
                             </span>
                         </span>
                     </tal:language>
+</tal:comment>
 
                     <tal:nickname tal:define="nickname python: user.getProperty('nickname');"
                                   tal:condition="nickname">
