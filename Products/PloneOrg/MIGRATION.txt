@@ -51,18 +51,16 @@ KNOWN ISSUES:
 
 0. PloneSoftwareCenter takes forever to reinstall. Examine whether it's doing a total reindex, and whether this is actually necessary.
 
-0.1 PloneSoftwareCenter does not show the new release view as a selectable
-option after upgrading. FIXED 3/27/08, aclark. 
+0.1 PloneSoftwareCenter does not show the new release view as a selectable option after upgrading. FIXED 3/27/08, aclark. 
 
 0.2 PloneSoftwareCenter is blank after upgrading (it doesn't list any
-releases, but they are still there, of course, run). Run a catalog update to
-fix this.
+releases, but they are still there, of course, run).  XXX: Run a catalog update to fix this.
 
 0.3 TypesTool throws an AttributeError: IRCLogs, I assume we need to just delete the IRCLogs entry from portal_types
 
 0.4 CacheSetup adds a Cache Configuration Tool tab to the portal, WTF? :)
 
-[ ] 1. When reinstalling CacheSetup, I get the following error:
+[X] 1. When reinstalling CacheSetup, I get the following error: (FIXED 3/27/08, aclark)
 
     Traceback (innermost last):
       Module ZPublisher.Publish, line 119, in publish
@@ -112,8 +110,7 @@ fix this.
     NameError: global name 'wf_tool' is not defined
 
 
-[X] 3. When reinstalling PloneKeywordManager, I get: (FIXED, 11/27/07,
-[aclark])
+[X] 3. When reinstalling PloneKeywordManager, I get: (FIXED, 11/27/07, [aclark])
 
     Traceback (innermost last):
       Module ZPublisher.Publish, line 119, in publish
@@ -139,7 +136,7 @@ fix this.
       Module OFS.ObjectManager, line 102, in checkValidId
     BadRequest: The id "portal_keyword_manager" is invalid - it is already in use.
 
-[ ] 4. Clear and rebuild in the site gives the following error:
+[X] 4. Clear and rebuild in the site gives the following error:
 
     Traceback (innermost last):
       Module ZPublisher.Publish, line 119, in publish
@@ -162,7 +159,7 @@ fix this.
       Module Products.Archetypes.Schema, line 233, in __getitem__
     KeyError: 'selfCertifiedCriteria'
 
-[ ] 5. When clicking the Support tab, I get:
+[X] 5. When clicking the Support tab, I get: (FIXED 3/27/08, aclark)
 
   Traceback (innermost last):
     Module ZPublisher.Publish, line 119, in publish
