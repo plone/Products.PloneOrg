@@ -1,7 +1,7 @@
 OVERVIEW
 ========
 
-Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1-beta1
+Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1
 --------------------------------------------------------------------------------
 
 o Make sure the site runs in production mode, not debug mode (ie. no zopectl
@@ -24,7 +24,7 @@ o Go to ZMI -> archetype_tool -> Update Schema
     - Select all the classes and the checkbox at the bottom to Remove schema
       attributes.
 
-    - Watch the uncannily long schema update ;)
+    - Watch the uncannily long schema update (This seriously takes ~1 hour ;)
 
 o Test that you can load the front page (it will be slow for now)
 
