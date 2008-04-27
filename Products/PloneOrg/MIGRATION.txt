@@ -4,8 +4,13 @@ OVERVIEW
 Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1
 --------------------------------------------------------------------------------
 
-o Make sure the site runs in production mode, not debug mode (ie. no zopectl
-  fg) XXX: Why? I'm running it in the fg...
+o Make sure the site runs in production mode, not debug mode (ie. no zopectl fg)
+
+o Disable CMFSquidTool by removing the plone.org url from
+    /plone.org/portal_squid -> Proxy URLs. I removed the URL expression as well.
+    This apparently will save hours of time when migrating, and I have
+    experienced that the archetype_tool (see below) migration takes a lot longer
+    on plone.org than it did locally (over an hour so far).
 
 o Log in as the "admin" user (for some reason, there are failures if you do it as 
     other admin users like "rootlimi" - could it be because there is an admin user both outside and inside the site?)
