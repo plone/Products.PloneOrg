@@ -288,7 +288,7 @@ Plone CMS, a user-friendly and powerful open source Content Management System
 
     <dl class="summaryColumn">
         <dt>Get Plone</dt>
-        <dd><span class="discreet">Latest release: Plone 3.0.3 (Nov 2007)</span></dd>
+        <dd><span class="discreet">Latest release: Plone 3.0.6 (Feb 2008)</span></dd>
         <dd><a href="/products/plone">Download Plone</a></dd>
         <dd><a href="/products/plone/features/3.0">What's New in 3.0?</a></dd>
         <dd><a href="/products/plone/roadmap">Roadmap</a></dd>
@@ -314,6 +314,23 @@ Plone CMS, a user-friendly and powerful open source Content Management System
     </dl>
 <div class="visualClear">&nbsp;</div>
 </div>
+
+<!--
+<div style="padding: 1em; margin-left: auto; margin-right: auto; width: 540px;">
+<a href="/events/regional/plone-symposium-2008/"><img src="http://plone.org/events/regional/plone-symposium-2008/horizontal.png" alt="Plone Symposium East 2008" title="Plone Symposium East 2008" height="196" width="536" /></a>
+</div>
+-->
+
+
+<div style="padding: 1em; margin-left: auto; margin-right: auto; width: 540px;">
+<a href="http://www.openplans.org/projects/plone-summer-of-code-2008/project-home">
+<p>Google Summer of Code has begun!</p>
+<p>We are now accepting submissions from students.</p>
+</a>
+</div>
+
+
+<div class="visualClear">&nbsp;</div>
 
 <div class="tabber">
 
@@ -645,3 +662,4 @@ Training
 </metal:main>
 </body>
 </html>
+
