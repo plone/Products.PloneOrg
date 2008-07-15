@@ -79,6 +79,8 @@ o Make the front page 4x faster by removing the legacy portlets (really!):
 
     XXX: I think the newer Plone 3 migrations must do this for you.
 
+o Delete broken transforms in portal_transforms, including: web_intelligent_plain_text_to_html
+  Force migrate from 3.0-rc1 to current version to get them back.
 
 KNOWN ISSUES:
 ============
