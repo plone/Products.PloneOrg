@@ -1,2 +1,0 @@
-GLOBALS	= globals()
-PROJECTNAME = "PloneOrg"
