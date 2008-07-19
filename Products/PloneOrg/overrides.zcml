@@ -1,0 +1,9 @@
+<configure
+        xmlns="http://namespaces.zope.org/zope">
+
+    <utility
+        component=".caching.choose_cache"
+        provides="plone.memoize.interfaces.ICacheChooser"
+        />
+
+</configure>
