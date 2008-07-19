@@ -1,5 +1,16 @@
 <configure xmlns="http://namespaces.zope.org/zope"
-           xmlns:browser="http://namespaces.zope.org/browser">
+           xmlns:cmf="http://namespaces.zope.org/cmf">
+
+  <cmf:registerDirectory name="skins" />
+
+  <cmf:registerProfile
+      name="default"
+      title="Plone.org site"
+      directory="profiles/default"
+      description="Site configuration for plone.org"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      />
 
   <include package=".browser" />
 
