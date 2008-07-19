@@ -34,6 +34,11 @@ setup(name='Products.PloneOrg',
           'collective.psc.mirroring',
           'Products.Poi',
           'Products.RedirectionTool',
+          'plone.memoize',
+          'zope.interface',
+          'Products.MemcachedManager',
+          'python-memcached',
+          'Products.GenericSetup >= 1.4.1',
 
 # These do not have a release yet
 #          'collective.psc.externalstorage',
