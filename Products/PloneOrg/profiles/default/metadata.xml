@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<metadata>
+  <version>1.0</version>
+  <dependencies>
+    <dependency>profile-Products.CacheSetup:default</dependency>
+    <dependency>profile-Products.FoundationMember:default</dependency>
+    <dependency>profile-Products.PloneHelpCenter:default</dependency>
+    <dependency>profile-Products.PloneSoftwareCenter:default</dependency>
+    <dependency>profile-Products.Poi:default</dependency>
+  </dependencies>
+</metadata>
+

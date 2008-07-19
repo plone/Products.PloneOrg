@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<object name="portal_skins">
+ <object name="jirc_applet"
+    meta_type="Filesystem Directory View"
+    directory="Products.PloneOrg:skins/jirc_applet"/>
+
+ <object name="ploneorg"
+    meta_type="Filesystem Directory View"
+    directory="Products.PloneOrg:skins/ploneorg"/>
+
+ <object name="ploneorg_frontpage"
+    meta_type="Filesystem Directory View"
+    directory="Products.PloneOrg:skins/ploneorg_frontpage"/>
+
+ <object name="ploneorg_images"
+    meta_type="Filesystem Directory View"
+    directory="Products.PloneOrg:skins/ploneorg_images"/>
+
+ <skin-path name="*">
+  <layer name="jirc_applet" insert-after="custom"/>
+  <layer name="ploneorg" insert-after="custom"/>
+  <layer name="ploneorg_frontpage" insert-after="custom"/>
+  <layer name="ploneorg_images" insert-after="custom"/>
+ </skin-path>
+</object>
+
