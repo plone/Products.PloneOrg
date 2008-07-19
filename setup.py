@@ -25,25 +25,19 @@ setup(name='Products.PloneOrg',
       install_requires=[
           'setuptools',
           'Products.PloneLDAP',
-          'Products.AddRemoveWidget',
-          'Products.ArchAddOn',
-          'Products.CacheSetup',
-          'Products.DataGridField',
-          'Products.ExternalStorage',
+          'Products.CacheSetup >=1.2.jarn.3',
+          'Products.ExternalStorage',   # For migration purposes only
+          'Products.contentmigration',  # For migration purposes only?
           'Products.FoundationMember',
           'Products.PloneHelpCenter',
           'Products.PloneSoftwareCenter',
+          'collective.psc.mirroring',
           'Products.Poi',
           'Products.RedirectionTool',
-          'Products.contentmigration',
-          'collective.psc.externalstorage',
-          'collective.psc.blobstorage',
-          'collective.psc.mirroring',
-          'plone.intelligenttext',
-          'plone.app.blob',
+
+# These do not have a release yet
+#          'collective.psc.externalstorage',
+#          'collective.psc.blobstorage',
       ],
-      entry_points="""
-      # -*- Entry points: -*-
-      """,
       )
 
