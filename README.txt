@@ -1,7 +1,3 @@
-Products.PloneOrg Package Readme
-=========================
+Introduction
+============
 
-Overview
---------
-
-Plone.org site policy package.

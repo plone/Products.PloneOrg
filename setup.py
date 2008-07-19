@@ -1,17 +1,15 @@
 from setuptools import setup, find_packages
+import os.path
 
-version = '0.4'
+version = '1.0'
 
 setup(name='Products.PloneOrg',
       version=version,
       description="Plone.org site policy package.",
-      long_description="""\
-""",
-      # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+      long_description=open("README.txt").read() + "\n" +
+                       open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
         "Framework :: Plone",
-        "Framework :: Zope2",
-        "Framework :: Zope3",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
@@ -26,9 +24,26 @@ setup(name='Products.PloneOrg',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          # -*- Extra requirements: -*-
+          'Products.PloneLDAP',
+          'Products.AddRemoveWidget',
+          'Products.ArchAddOn',
+          'Products.CacheSetup',
+          'Products.DataGridField',
+          'Products.ExternalStorage',
+          'Products.FoundationMember',
+          'Products.PloneHelpCenter',
+          'Products.PloneSoftwareCenter',
+          'Products.Poi',
+          'Products.RedirectionTool',
+          'Products.contentmigration',
+          'collective.psc.externalstorage',
+          'collective.psc.blobstorage',
+          'collective.psc.mirroring',
+          'plone.intelligenttext',
+          'plone.app.blob',
       ],
       entry_points="""
       # -*- Entry points: -*-
       """,
       )
+

@@ -1,9 +1,8 @@
-Changelog for Products.PloneOrg
+Changelog
+=========
 
-    (name of developer listed in brackets)
+1.0 - Unreleased
+----------------
 
-Products.PloneOrg - 0.4 Unreleased
-
-    - Initial package structure.
-      [zopeskel]
+* Initial release
 
