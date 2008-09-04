@@ -2,7 +2,9 @@
            xmlns:cmf="http://namespaces.zope.org/cmf"
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
-  <cmf:registerDirectory name="skins" />
+<!--
+  <cmf:registerDirectory name=".skins" />
+-->
 
   <genericsetup:registerProfile
       name="default"
