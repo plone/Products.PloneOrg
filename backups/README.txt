@@ -2,11 +2,12 @@
 Backup plone.org catalog and data.fs to aneka
 =============================================
 
-repozo.cron;
-    - repozo backups run daily from cron on antiloop 
-    - stored in plone.org:/srv/plone.org/backups
+repozo.cron (antiloop):
+    - repozo backups
+    - can be run from cron 
+    - stored in /srv/plone.org/backups
 
-rsync.cron:
+rsync.cron (aneka):
     - rsync of plone.org:/srv/plone.org 
-    - run daily from cron on aneka
-    - stored in aneka:/srv/backup.plone.org
+    - can be run from cron
+    - stored in /srv/backup.plone.org
