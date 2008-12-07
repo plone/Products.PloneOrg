@@ -1,9 +1,6 @@
 #/bin/sh
 
-# symlink from /etc/cron.daily on antiloop
-
 BUILDOUT=/srv/plone.org/buildout
-
 DEST=$BUILDOUT/../backups
 
 cd $BUILDOUT

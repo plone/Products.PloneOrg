@@ -1,7 +1,5 @@
 #!/usr/bin/python
 
-# symlink from /etc/cron.daily on aneka
-
 import os, sys, commands
 
 source='antiloop.plone.org:/srv/plone.org'
@@ -10,7 +8,7 @@ dest='/srv/backup.plone.org/rsync/antiloop/plone.org'
 def backup(source, dest):
     print 'Backing up %s' % source
     out = commands.getoutput('rsync -e ssh --partial --progress -av %s/ %s/' % 
-         (source, dest))
+        (source, dest))
     print out
     print '\n\n'
 
