@@ -1,0 +1,11 @@
+#/bin/sh
+
+# symlink from /etc/cron.daily on antiloop
+
+BUILDOUT=/srv/plone.org/buildout
+
+DEST=$BUILDOUT/../backups
+
+cd $BUILDOUT
+bin/repozo -v -B -f var/filestorage/Data.fs -r $DEST
+bin/repozo -v -B -f var/filestorage/CatalogData.fs -r $DEST/catalog
