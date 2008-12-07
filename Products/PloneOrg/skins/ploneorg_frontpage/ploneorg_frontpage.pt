@@ -288,9 +288,9 @@ Plone CMS, a user-friendly and powerful open source Content Management System
 
     <dl class="summaryColumn">
         <dt>Get Plone</dt>
-        <dd><span class="discreet">Latest release: Plone 3.0.6 (Feb 2008)</span></dd>
+        <dd><span class="discreet">Latest release: Plone 3.1.7 (November 2008)</span></dd>
         <dd><a href="/products/plone">Download Plone</a></dd>
-        <dd><a href="/products/plone/features/3.0">What's New in 3.0?</a></dd>
+        <dd><a href="/products/plone/features/3.0">What's New in Plone 3?</a></dd>
         <dd><a href="/products/plone/roadmap">Roadmap</a></dd>
         <dd><a href="/products">Add-on Products</a></dd>
     </dl>
@@ -315,25 +315,56 @@ Plone CMS, a user-friendly and powerful open source Content Management System
 <div class="visualClear">&nbsp;</div>
 </div>
 
-<!--
-<div style="padding: 1em; margin-left: auto; margin-right: auto; width: 540px;">
-<a href="/events/regional/plone-symposium-2008/"><img src="http://plone.org/events/regional/plone-symposium-2008/horizontal.png" alt="Plone Symposium East 2008" title="Plone Symposium East 2008" height="196" width="536" /></a>
-</div>
--->
 
+<!-- WorldPloneDay 2008 -->
 
-<div style="padding: 1em; margin-left: auto; margin-right: auto; width: 540px;">
-<a href="http://www.openplans.org/projects/plone-summer-of-code-2008/project-home">
-<p>Google Summer of Code has begun!</p>
-<p>We are now accepting submissions from students.</p>
-</a>
+<div tal:condition="python:False" style="width: 770px; margin-left: auto; padding: 0.8em; margin-right: auto;">
+<a href="http://plone.org/events/wpd"><img src="http://plone.org/events/wpd/wpd08-300.png" width="300" height="244" alt="World Plone Day 2008" style="float:left; padding-right: 2em; padding-botton:1em;"/></a>
+
+<p style="padding-top: 1.5em;"><strong>World Plone Day</strong> - more than 60 cities, 31 countries on 5 continents</p>
+<p>No matter where you are, meet Plone during <strong>November 7th</strong>, discover its benefits in education, government, ngos and business.</p>
+<p>
+<a href="http://plone.org/events/wpd/2008/wpd-countries#argentina">Argentina</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#australia">Australia</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#austria">Austria</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#belgium">Belgium</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#brazil">Brazil</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#canada">Canada</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#france">France</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#germany">Germany</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#hungary">Hungary</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#india">India</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#indonesia">Indonesia</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#italy">Italy</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#jamaica">Jamaica</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#japan">Japan</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#mexico">Mexico</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#new-zealand">New Zealand</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#philippines">Philippines</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#poland">Poland</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#russia">Russia</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#slovenia">Slovenia</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#south-africa">South Africa</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#spain">Spain</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#switzerland">Switzerland</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#taiwan">Taiwan</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#turkey">Turkey</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#ukraine">Ukraine</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#united-kingdom">United Kingdom</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#united-states">United States</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#venezuela">Venezuela</a>&nbsp;
+<a href="http://plone.org/events/wpd/2008/wpd-countries#viet-nam">Viet Nam</a>&nbsp;
+</p>
+<p><a href="http://plone.org/events/wpd">More information.</a> 
+Are you a WPD local host? <a href="http://plone.org/events/wpd/2008/createObject?type_name=Event">Register</a> your event now.</p>
+
 </div>
+<!-- End of WorldPloneDay 2008 -->
 
 
 <div class="visualClear">&nbsp;</div>
 
 <div class="tabber">
-
 
 <div class="tabbertab">
     <h2>Easy to Get Started</h2>
@@ -662,4 +693,3 @@ Training
 </metal:main>
 </body>
 </html>
-
