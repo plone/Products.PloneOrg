@@ -1,0 +1,2 @@
+Products.FoundationMember https://svn.plone.org/svn/plone/Products.FoundationMember/trunk/
+Products.PloneSoftwareCenter https://svn.plone.org/svn/collective/Products.PloneSoftwareCenter/trunk/
