@@ -2,28 +2,30 @@
            xmlns:cmf="http://namespaces.zope.org/cmf"
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
-<!--
-  <cmf:registerDirectory name=".skins" />
--->
+    <genericsetup:registerProfile
+        name="default"
+        title="Plone.org site"
+        directory="profiles/default"
+        description="Site configuration for plone.org"
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        />
 
-  <genericsetup:registerProfile
-      name="default"
-      title="Plone.org site"
-      directory="profiles/default"
-      description="Site configuration for plone.org"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-      />
+    <genericsetup:importStep
+        name="PloneOrg.deployment.various"
+        title="Complete plone.org site configuration "
+        description="Perform the non-GenericSetup parts of site configuration. "
+        handler=".setuphandlers.setupVarious">
+        <depends name="toolset"/>
+    </genericsetup:importStep>
 
-  <genericsetup:importStep
-      name="PloneOrg.deployment.various"
-      title="Complete plone.org site configuration "
-      description="Perform the non-GenericSetup parts of site configuration. "
-      handler=".setuphandlers.setupVarious">
-      <depends name="toolset"/>
-  </genericsetup:importStep>
+    <include package=".browser" />
 
-
-  <include package=".browser" />
+    <cmf:registerDirectory
+        name="ploneorg"/>
+    <cmf:registerDirectory
+        name="ploneorg_images"/>
+    <cmf:registerDirectory
+        name="ploneorg_frontpage"/>
 
 </configure>
