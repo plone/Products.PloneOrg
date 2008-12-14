@@ -1,0 +1,130 @@
+OVERVIEW
+========
+
+Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.5.1
+--------------------------------------------------------------------------------
+
+- make sure you have room in your /tmp folder, at least 2 gigas
+  if not, hack the ZEO/TransactionBuffer.py file and add a folder
+  prefix in the constructor in order to make that file created in a place
+  where there's room.
+
+- remove all logs before you start
+
+- Got to ZMI -> portal_catalog/ Advanced. clike on "Clear and Rebuild"
+  Otherwise you might get a few errors in some updates
+  This is taking around one hour
+
+- Disable CMFSquidTool by removing the plone.org url from 
+    /plone.org/portal_squid -> Proxy URLs. I removed the URL expression as well.
+    This apparently will save hours of time when migrating, and I have
+    experienced that the archetype_tool (see below) migration takes a lot longer
+    on plone.org than it did locally (over an hour so far).
+
+- Go to ZMI -> portal_migration
+    - Scroll down to the 'Force Upgrade' section.
+    - 'Force Upgrade' from Plone 2.5.3-rc1
+    - Watch the uncannily quick migration ;)
+
+- Go to ZMI -> archetype_tool -> Update Schema
+    - Select all the classes and the checkbox at the bottom to Remove schema
+      attributes *BUT* PloneSoftwareCenter.PSCFile, that must remain unchecked
+
+    - Watch the uncannily long schema update (This seriously takes ~1 hour ;)
+
+- Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and run it
+  You need to check the log to control for any missing files. 
+
+- Go to Site Setup and reinstall POI
+ 
+- Go to ZMI -> portal_setup -> upgrades. Choose Products.POI, and run it
+
+- Go to the PMI here : /prefs_install_products_form, and install PSC External Storage 0.1.0  and PSC Mirroring 0.1.0
+
+- set in @@extstorage-config an absolute path for ES : /srv/plone.org/files. Make sure the zope process can write there
+
+- set in @@mirroring-config  an absolute path for mirroring files: /srv/plone.org/mirror
+
+- Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create a new, 
+    blank custom folder. The site will now be a bit faster.
+
+- Go to /Control_Panel/Products/manage_main and delete all the product entries, so they update 
+    when you restart (reinstalling will result in the blank version bug if you don't do this and 
+    the products have different paths. Why these are persistent is anybody's guess, probably 
+    because Zope needs to support ZClasses) 
+    
+- Restart !!
+
+Still needed ?- Go to Site Setup and reinstall all the add-on products that need it.
+
+ - XXX to be fixed : fails for POI and plone.org site
+
+- Go to /products and select the plonesoftwarecenter_ploneorg template from the 'Display' menu.
+
+- Go to /products/edit and change the storage strategy to External Storage. This will
+  fill the External storage folder.
+
+- XXX i don't get this one (tarek says)
+    Make sure the JS and CSS registries emit as few units as possible (ideally just one each, 
+    the front page will probably have two with the current setup). The tabber JS is included in 
+    Plone, so can be removed from the page, I assume.
+
+- Go to portal_skins and make sure there are no bogus entries. When starting up locally, 
+    I get references to at least the following non-existant entries:
+     irclogs refers to a non-existing path -> It does XXX
+     keyword_manager refers to a non-existing path -> it does XXX
+     plone_tableless refers to a non-existing path
+
+- Make the front page 4x faster by removing the legacy portlets (really!):
+  Go to /@@manage-portlets in the site root, convert legacy portlets if it 
+  asks, then remove them from the listings. This reduces the front page 
+  rendering time from 24s to 6s on my laptop.
+  Additionally, if you remove everything but the navigation portlet (which is
+  really the only thing we use on plone.org on all levels), it goes down to
+  5s. For extra brownie points, remove the navigation portlet from the root,
+  and only add it to the subfolders. This further reduces the page load time
+  to 4.5s.
+
+- Delete broken transforms in portal_transforms, including: web_intelligent_plain_text_to_html
+  Force migrate from 3.0-rc1 to current version to get them back.
+
+- run migration.py script. This will initiate the package mirror
+
+KNOWN ISSUES:
+============
+
+o TypesTool throws an AttributeError: IRCLogs, I assume we need to just delete the IRCLogs entry from portal_types
+
+o CacheSetup adds a Cache Configuration Tool tab to the portal, WTF? :)
+
+o Fix INFO/WARNINGS
+    - These occur during normal operation of the site, but we should look into
+      fixing them.
+
+    2007-11-24 18:06:56 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterTutorial" which has already been registered.  The new type Products.PloneHelpCenter.types.Tutorial.HelpCenterTutorial is going to override Products.PloneHelpCenter.content.Tutorial.HelpCenterTutorial
+
+    2007-11-24 18:06:58 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterTutorialPage" which has already been registered.  The new type Products.PloneHelpCenter.types.TutorialPage.HelpCenterTutorialPage is going to override Products.PloneHelpCenter.content.TutorialPage.HelpCenterTutorialPage
+
+    2007-11-24 18:07:31 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManual" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManual.HelpCenterReferenceManual is going to override Products.PloneHelpCenter.content.ReferenceManual.HelpCenterReferenceManual
+
+    2007-11-24 18:07:31 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManualSection" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManualSection.HelpCenterReferenceManualSection is going to override Products.PloneHelpCenter.content.ReferenceManualSection.HelpCenterReferenceManualSection
+
+    2007-11-24 18:07:32 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManualPage" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManualPage.HelpCenterReferenceManualPage is going to override Products.PloneHelpCenter.content.ReferenceManualPage.HelpCenterReferenceManualPage
+
+    2007-11-24 18:07:57 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterErrorReference" which has already been registered.  The new type Products.PloneHelpCenter.types.ErrorReference.HelpCenterErrorReference is going to override Products.PloneHelpCenter.content.ErrorReference.HelpCenterErrorReference
+
+    2007-11-24 18:08:00 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterLink" which has already been registered.  The new type Products.PloneHelpCenter.types.Link.HelpCenterLink is going to override Products.PloneHelpCenter.content.Link.HelpCenterLink
+
+    2007-11-24 18:08:03 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterDefinition" which has already been registered.  The new type Products.PloneHelpCenter.types.Definition.HelpCenterDefinition is going to override Products.PloneHelpCenter.content.Definition.HelpCenterDefinition
+
+    2007-11-24 18:08:11 WARNING OFS.Uninstalled Could not import class 'PersistentOutline' from module 'Products.ZWiki.OutlineSupport'
+
+    WARNING ZODB Could not import class 'CMFWikiPage' from module 'Products.CMFWiki.CMFWikiPage'
+
+    WARNING ZODB Could not import class 'CMFWikiFolder' from module 'Products.CMFWiki.CMFWikiPage'
+
+    WARNING ZODB Could not import class 'CMFPhotoAlbum' from module 'Products.CMFPhotoAlbum'
+
+    WARNING ZODB Could not import class 'PersistentOutline' from module 'Products.ZWiki.OutlineSupport'
+
+    WARNING ZODB Could not import class 'AmazonItem' from module 'Products.ATAmazon.AmazonItem'
