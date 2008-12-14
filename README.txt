@@ -19,3 +19,5 @@ To use plone.org data:
     6. cp database/Data.fs var/filestorage
     7. cp database/CatalogData.fs var/filestorage
     8. bin/instance fg
+
+Now open http://localhost:8080/plone.org in your browser.
