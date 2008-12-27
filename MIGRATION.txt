@@ -10,7 +10,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
 
 (Some steps are optional. Some can be done out of order. YMMV.)
 
-- Make sure you have at least 2 GB your /tmp folder. If not, edit 
+[x] -Make sure you have at least 2 GB your /tmp folder. If not, edit 
   ZEO/TransactionBuffer.py file and add a folder prefix in the constructor 
   in order to make that file created in a place where there's room. [tarek]
 
@@ -20,79 +20,79 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
       TEMP ${buildout:directory}/tmp
     </environment>
   
-- Remove all logs before you start. [tarek]
+[x] -Remove all logs before you start. [tarek]
 
-- Go to ZMI -> portal_catalog -> Advanced. Click on "Clear and Rebuild".
+[ ] -Go to ZMI -> portal_catalog -> Advanced. Click on "Clear and Rebuild".
   Otherwise, you might get a few errors in some updates. This takes about an 
   hour. [tarek]
 
-- Disable CMFSquidTool by removing the plone.org url from 
+[x] -Disable CMFSquidTool by removing the plone.org url from 
   plone.org -> portal_squid -> Proxy URLs. [aclark]
   Don't forget to put them back:
     http://plone.org:80
     http://plone.org
 
-- Go to ZMI -> portal_migration [limi]
-    - Scroll down to the 'Force Upgrade' section.
-    - 'Force Upgrade' from Plone 2.5.3-rc1
-    - Watch the uncannily quick migration ;)
+[x] -Go to ZMI -> portal_migration [limi]
+    [x] -Scroll down to the 'Force Upgrade' section.
+    [x] -'Force Upgrade' from Plone 2.5.3-rc1
+    [x] -Watch the uncannily quick migration ;)
 
-- Run portal_quickinstaller upgrades. [aclark]
+[x] -Run portal_quickinstaller upgrades. [aclark]
 
-- Go to ZMI -> archetype_tool -> Update Schema [aclark, tarek]
-    - Select all the classes and the checkbox at the bottom to Remove schema
+[x] -Go to ZMI -> archetype_tool -> Update Schema [aclark, tarek]
+    [x] -Select all the classes and the checkbox at the bottom to Remove schema
       attributes *BUT* PloneSoftwareCenter.PSCFile, that must remain unchecked
-    - Watch the uncannily long schema update (This seriously takes ~1 hour ;)
+    [ ] -Watch the uncannily long schema update (This seriously takes ~1 hour ;)
 
-- Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
+[ ] -Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
   run it You need to check the log to control for any missing files. [tarek]
 
-- Go to Site Setup and reinstall POI [tarek]
+[ ] -Go to Site Setup and reinstall POI [tarek]
  
-- Go to ZMI -> portal_setup -> upgrades. Choose Products.POI, and run it. [tarek]
+[ ] -Go to ZMI -> portal_setup -> upgrades. Choose Products.POI, and run it. [tarek]
 
-- Go to Site Setup -> Add/Remove Products (/prefs_install_products_form) and 
+[ ] -Go to Site Setup -> Add/Remove Products (/prefs_install_products_form) and 
   install PSC External Storage 0.1.0  and PSC Mirroring 0.1.0. [tarek]
 
-- Go to @@extstorage-config and configure an absolute path for
+[ ] -Go to @@extstorage-config and configure an absolute path for
   ExternalStorage, e.g. /srv/plone.org/files. Make sure the zope process can 
   write there. [tarek]
 
-- Go to @@mirroring-config  an absolute path for mirroring files, e.g.
+[ ] -Go to @@mirroring-config  an absolute path for mirroring files, e.g.
   /srv/plone.org/mirror. [tarek]
 
-- Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create 
+[ ] -Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create 
   a new, blank custom folder. The site will now be a bit faster. [limi]
 
-- Go to /Control_Panel/Products/manage_main and delete all the product entries, 
+[ ] -Go to /Control_Panel/Products/manage_main and delete all the product entries, 
   so they update when you restart (reinstalling will result in the blank version 
   bug if you don't do this and the products have different paths. Why these are 
   persistent is anybody's guess, probably because Zope needs to support ZClasses) 
   Restart. [limi] 
 
-- Go to Site Setup and reinstall all the add-on products that need it. [limi]
+[ ] -Go to Site Setup and reinstall all the add-on products that need it. [limi]
   (Plone.org site 1.0 needs to be last, to avoid AttributeError default_view.)
 
-- Go to /products and select the plonesoftwarecenter_ploneorg template from the 
+[ ] -Go to /products and select the plonesoftwarecenter_ploneorg template from the 
   'Display' menu. [aclark]
 
-- Go to /products/edit and change the storage strategy to External Storage. This will
+[ ] -Go to /products/edit and change the storage strategy to External Storage. This will
   fill the External storage folder. [tarek]
 
-- Make sure the JS and CSS registries emit as few units as possible (ideally just one 
+[ ] -Make sure the JS and CSS registries emit as few units as possible (ideally just one 
   each, the front page will probably have two with the current setup). The tabber JS 
   is included in Plone, so can be removed from the page, I assume. [limi]
 
     XXX I don't get this one [tarek]
 
-- Go to portal_skins and make sure there are no bogus entries. When starting up 
+[ ] -Go to portal_skins and make sure there are no bogus entries. When starting up 
   locally, I get references to at least the following non-existant entries:
 
-    - irclogs refers to a non-existing path
-    - keyword_manager refers to a non-existing path
-    - plone_tableless refers to a non-existing path
+    [ ] -irclogs refers to a non-existing path
+    [ ] -keyword_manager refers to a non-existing path
+    [ ] -plone_tableless refers to a non-existing path
 
-- Make the front page 4x faster by removing the legacy portlets (really!):
+[ ] -Make the front page 4x faster by removing the legacy portlets (really!):
   Go to /@@manage-portlets in the site root, convert legacy portlets if it 
   asks, then remove them from the listings. This reduces the front page 
   rendering time from 24s to 6s on my laptop.
@@ -102,25 +102,25 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
   and only add it to the subfolders. This further reduces the page load time
   to 4.5s. [limi]
 
-- Delete broken transforms in portal_transforms, including: 
+[ ] -Delete broken transforms in portal_transforms, including: 
   web_intelligent_plain_text_to_html Force migrate from 3.0-rc1 to current 
   version to get them back. [aclark]
 
-- run migration.py script. This will initiate the package mirror. [tarek]
+[ ] -run migration.py script. This will initiate the package mirror. [tarek]
 
   XXX You mean mirror.py ? [aclark]
 
 KNOWN ISSUES
 ============
 
-- TypesTool throws an AttributeError: IRCLogs, I assume we need to just delete the 
+[ ] -TypesTool throws an AttributeError: IRCLogs, I assume we need to just delete the 
   IRCLogs entry from portal_types. [limi]
 
-- CacheSetup adds a Cache Configuration Tool tab to the portal, WTF? :)
+[ ] -CacheSetup adds a Cache Configuration Tool tab to the portal, WTF? :)
   [limi]
 
-- Fix INFO/WARNINGS
-    - These occur during normal operation of the site, but we should look into
+[ ] -Fix INFO/WARNINGS
+    [ ] -These occur during normal operation of the site, but we should look into
       fixing them. [limi]
 
     XXX Add latest INFO/WARNINGS here. I removed the old ones because I'm not
