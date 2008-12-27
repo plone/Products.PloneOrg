@@ -26,6 +26,9 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
 
 - Disable CMFSquidTool by removing the plone.org url from 
   plone.org -> portal_squid -> Proxy URLs. [aclark]
+  Don't forget to put them back:
+    http://plone.org:80
+    http://plone.org
 
 - Go to ZMI -> portal_migration [limi]
     - Scroll down to the 'Force Upgrade' section.
