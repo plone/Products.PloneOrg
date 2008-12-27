@@ -42,9 +42,9 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
 [x] -Go to ZMI -> archetype_tool -> Update Schema [aclark, tarek]
     [x] -Select all the classes and the checkbox at the bottom to Remove schema
       attributes *BUT* PloneSoftwareCenter.PSCFile, that must remain unchecked
-    [ ] -Watch the uncannily long schema update (This seriously takes ~1 hour ;)
+    [x] -Watch the uncannily long schema update (This seriously takes ~1 hour ;)
 
-[ ] -Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
+[x] -Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
   run it You need to check the log to control for any missing files. [tarek]
 
 [ ] -Go to Site Setup and reinstall POI [tarek]
