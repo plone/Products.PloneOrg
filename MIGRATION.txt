@@ -8,6 +8,8 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
 
 (Roughly in order of priority.)
 
+(Some steps are optional. Some can be done out of order. YMMV.)
+
 - Make sure you have at least 2 GB your /tmp folder. If not, edit 
   ZEO/TransactionBuffer.py file and add a folder prefix in the constructor 
   in order to make that file created in a place where there's room. [tarek]
@@ -34,6 +36,8 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
     - Scroll down to the 'Force Upgrade' section.
     - 'Force Upgrade' from Plone 2.5.3-rc1
     - Watch the uncannily quick migration ;)
+
+- Run portal_quickinstaller upgrades. [aclark]
 
 - Go to ZMI -> archetype_tool -> Update Schema [aclark, tarek]
     - Select all the classes and the checkbox at the bottom to Remove schema
