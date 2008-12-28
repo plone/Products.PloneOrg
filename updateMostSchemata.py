@@ -1,5 +1,6 @@
 from Products.CMFCore.utils import getToolByName
 from StringIO import StringIO
+import transaction
 
 attool = app['plone.org'].archetype_tool
 
@@ -53,4 +54,6 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
     print >> out, 'Done.'
     return out.getvalue()
 
+transaction.commit()
 print manage_updateSchema(attool)
+
