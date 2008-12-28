@@ -2,6 +2,15 @@ from Products.CMFCore.utils import getToolByName
 from StringIO import StringIO
 import transaction
 
+from AccessControl.SecurityManagement import newSecurityManager
+from AccessControl.SecurityManager import setSecurityPolicy
+from Testing.makerequest import makerequest
+from Products.CMFCore.tests.base.security import PermissiveSecurityPolicy, OmnipotentUser
+_policy=PermissiveSecurityPolicy()
+_oldpolicy=setSecurityPolicy(_policy)
+newSecurityManager(None, OmnipotentUser().__of__(app.acl_users))
+app=makerequest(app)
+
 attool = app['plone.org'].archetype_tool
 
 def manage_updateSchema(self, REQUEST=None, update_all=None,
@@ -58,5 +67,5 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
     return out.getvalue()
 
 transaction.commit()
-print manage_updateSchema(attool)
+print manage_updateSchema(attool, REQUEST=app.REQUEST)
 
