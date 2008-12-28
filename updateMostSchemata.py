@@ -10,7 +10,6 @@ _policy=PermissiveSecurityPolicy()
 _oldpolicy=setSecurityPolicy(_policy)
 newSecurityManager(None, OmnipotentUser().__of__(app.acl_users))
 app=makerequest(app)
-
 attool = app['plone.org'].archetype_tool
 
 def manage_updateSchema(self, REQUEST=None, update_all=None,
@@ -30,7 +29,7 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
             update_types.append(t)
         update_all = REQUEST.form.get('update_all', False)
         remove_instance_schemas = REQUEST.form.get(
-            'remove_instance_schemas', False)
+            'remove_instance_schemas', remove_instance_schemas)
 
     # XXX: Enter this block only when there are types to update!
     if update_types:
@@ -44,6 +43,7 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
         meta_types = [a['meta_type'] for a in self.listRegisteredTypes() if "%s.%s"%(a['package'],a['name']) in update_types]
         meta_types.remove("PSCFile")
         if remove_instance_schemas:
+            print "I'll remove the schema too"
             func_update_changed = self._removeSchemaAndUpdateChangedObject
             func_update_all = self._removeSchemaAndUpdateObject
         else:
@@ -65,6 +65,6 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
     print >> out, 'Done.'
     return out.getvalue()
 
+print manage_updateSchema(attool, REQUEST=app.REQUEST, remove_instance_schemas=True)
 transaction.commit()
-print manage_updateSchema(attool, REQUEST=app.REQUEST)
 
