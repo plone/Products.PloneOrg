@@ -22,7 +22,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
   
 [x] -Remove all logs before you start. [tarek]
 
-[ ] -Go to ZMI -> portal_catalog -> Advanced. Click on "Clear and Rebuild".
+[x] -Go to ZMI -> portal_catalog -> Advanced. Click on "Clear and Rebuild".
   Otherwise, you might get a few errors in some updates. This takes about an 
   hour. [tarek]
 
@@ -43,6 +43,10 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
     [x] -Select all the classes and the checkbox at the bottom to Remove schema
       attributes *BUT* PloneSoftwareCenter.PSCFile, that must remain unchecked
     [x] -Watch the uncannily long schema update (This seriously takes ~1 hour ;)
+
+[x] -Delete broken transforms in portal_transforms, including: 
+  web_intelligent_plain_text_to_html Force migrate from 3.0-rc1 to current 
+  version to get them back. [aclark]
 
 [ ] -Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
   run it You need to check the log to control for any missing files. [tarek]
@@ -101,10 +105,6 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
   5s. For extra brownie points, remove the navigation portlet from the root,
   and only add it to the subfolders. This further reduces the page load time
   to 4.5s. [limi]
-
-[ ] -Delete broken transforms in portal_transforms, including: 
-  web_intelligent_plain_text_to_html Force migrate from 3.0-rc1 to current 
-  version to get them back. [aclark]
 
 [ ] -run migration.py script. This will initiate the package mirror. [tarek]
 
