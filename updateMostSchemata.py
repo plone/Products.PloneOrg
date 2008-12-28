@@ -33,7 +33,7 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
         # can't update it if you require that it be in the catalog.
         catalog = getToolByName(self, 'portal_catalog')
         portal = getToolByName(self, 'portal_url').getPortalObject()
-        meta_types = [_types[t]['meta_type'] for t in update_types]
+        meta_types = [a['meta_type'] for a in self.listRegisteredTypes() if "%s.%s"%(a['package'],a['name']) in update_types]
         meta_types.remove("PSCFile")
         if remove_instance_schemas:
             func_update_changed = self._removeSchemaAndUpdateChangedObject
@@ -47,8 +47,11 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
         else:
             catalog.ZopeFindAndApply(portal, obj_metatypes=meta_types,
                 search_sub=True, apply_func=func_update_changed)
-        for t in update_types:
-            self._types[t] = _types[t]['signature']
+        for t in self.listRegisteredTypes():
+            if t['meta_type'] in meta_types:
+                print >> out, "Updating signature of %s" % (t['meta_type'])
+                ident = "%s.%s"%(t['package'],t['name'])
+                self._types[ident] = t['signature']
         self._p_changed = True
 
     print >> out, 'Done.'
