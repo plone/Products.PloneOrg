@@ -27,8 +27,7 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
     else:
         # DM (avoid persistency bug):
         for t in self._listAllTypes():
-            if REQUEST.form.get(t, False):
-                update_types.append(t)
+            update_types.append(t)
         update_all = REQUEST.form.get('update_all', False)
         remove_instance_schemas = REQUEST.form.get(
             'remove_instance_schemas', False)
