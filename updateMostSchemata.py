@@ -40,27 +40,28 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
         # can't update it if you require that it be in the catalog.
         catalog = getToolByName(self, 'portal_catalog')
         portal = getToolByName(self, 'portal_url').getPortalObject()
-        meta_types = [a['meta_type'] for a in self.listRegisteredTypes() if "%s.%s"%(a['package'],a['name']) in update_types]
-        meta_types.remove("PSCFile")
-        if remove_instance_schemas:
-            print "I'll remove the schema too"
-            func_update_changed = self._removeSchemaAndUpdateChangedObject
-            func_update_all = self._removeSchemaAndUpdateObject
-        else:
-            func_update_changed = self._updateChangedObject
-            func_update_all = self._updateObject
-        if update_all:
-            catalog.ZopeFindAndApply(portal, obj_metatypes=meta_types,
-                search_sub=True, apply_func=func_update_all)
-        else:
-            catalog.ZopeFindAndApply(portal, obj_metatypes=meta_types,
-                search_sub=True, apply_func=func_update_changed)
         for t in self.listRegisteredTypes():
-            if t['meta_type'] in meta_types:
-                print >> out, "Updating signature of %s" % (t['meta_type'])
-                ident = "%s.%s"%(t['package'],t['name'])
-                self._types[ident] = t['signature']
-        self._p_changed = True
+            meta_type = t['meta_type']
+            if meta_type == "PSCFile":
+                continue
+            if remove_instance_schemas:
+                print "I'll remove the schema too"
+                func_update_changed = self._removeSchemaAndUpdateChangedObject
+                func_update_all = self._removeSchemaAndUpdateObject
+            else:
+                func_update_changed = self._updateChangedObject
+                func_update_all = self._updateObject
+            if update_all:
+                catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_type,),
+                    search_sub=True, apply_func=func_update_all)
+            else:
+                catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_types,),
+                    search_sub=True, apply_func=func_update_changed)
+            print >> out, "Updating signature of %s" % (t['meta_type'])
+            ident = "%s.%s"%(t['package'],t['name'])
+            self._types[ident] = t['signature']
+            self._p_changed = True
+            transaction.commit()
 
     print >> out, 'Done.'
     return out.getvalue()
