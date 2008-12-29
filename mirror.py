@@ -1,3 +1,7 @@
+# Run 'python mirror.py' to copy existing-externally-stored-files to
+# where they can be web-served (TARGET). New uploads will automatically
+# be copied there.
+
 import os
 from os.path import join
 import shutil
