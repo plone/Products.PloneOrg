@@ -56,7 +56,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 [ ] -Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
   run it You need to check the log to control for any missing files. [tarek]
 
-[ ] -Go to Site Setup and reinstall POI [tarek]
+[x] -Go to Site Setup and reinstall POI [tarek]
  
 [ ] -Go to ZMI -> portal_setup -> upgrades. Choose Products.POI, and run it. [tarek]
 
@@ -70,7 +70,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 [ ] -Go to @@mirroring-config  an absolute path for mirroring files, e.g.
   /srv/plone.org/mirror. [tarek]
 
-[ ] -Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create 
+[x] -Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create 
   a new, blank custom folder. The site will now be a bit faster. [limi]
 
 [ ] -Go to /Control_Panel/Products/manage_main and delete all the product entries, 
@@ -79,10 +79,10 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
   persistent is anybody's guess, probably because Zope needs to support ZClasses) 
   Restart. [limi] 
 
-[ ] -Go to Site Setup and reinstall all the add-on products that need it. [limi]
+[x] -Go to Site Setup and reinstall all the add-on products that need it. [limi]
   (Plone.org site 1.0 needs to be last, to avoid AttributeError default_view.)
 
-[ ] -Go to /products and select the plonesoftwarecenter_ploneorg template from the 
+[x] -Go to /products and select the plonesoftwarecenter_ploneorg template from the 
   'Display' menu. [aclark]
 
 [ ] -Go to /products/edit and change the storage strategy to External Storage. This will
@@ -101,7 +101,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
     [ ] -keyword_manager refers to a non-existing path
     [ ] -plone_tableless refers to a non-existing path
 
-[ ] -Make the front page 4x faster by removing the legacy portlets (really!):
+[x] -Make the front page 4x faster by removing the legacy portlets (really!):
   Go to /@@manage-portlets in the site root, convert legacy portlets if it 
   asks, then remove them from the listings. This reduces the front page 
   rendering time from 24s to 6s on my laptop.
@@ -110,6 +110,8 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
   5s. For extra brownie points, remove the navigation portlet from the root,
   and only add it to the subfolders. This further reduces the page load time
   to 4.5s. [limi]
+
+    XXX I think the upgrade does the conversion automatically now.
 
 [ ] -run migration.py script. This will initiate the package mirror. [tarek]
 
