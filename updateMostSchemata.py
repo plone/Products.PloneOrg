@@ -25,8 +25,7 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
         update_types = [ti[0] for ti in self.getChangedSchema() if ti[1]]
     else:
         # DM (avoid persistency bug):
-        for t in self._listAllTypes():
-            update_types.append(t)
+        update_types = [ti[0] for ti in self.getChangedSchema() if ti[1]]
         update_all = REQUEST.form.get('update_all', False)
         remove_instance_schemas = REQUEST.form.get(
             'remove_instance_schemas', remove_instance_schemas)
@@ -41,6 +40,9 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
         catalog = getToolByName(self, 'portal_catalog')
         portal = getToolByName(self, 'portal_url').getPortalObject()
         for t in self.listRegisteredTypes():
+            ident = "%s.%s"%(t['package'],t['name'])
+            if ident not in update_types:
+                continue            
             meta_type = t['meta_type']
             if meta_type == "PSCFile":
                 continue
@@ -55,10 +57,11 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
                 catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_type,),
                     search_sub=True, apply_func=func_update_all)
             else:
-                catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_types,),
+                print "Updating %s" % t
+                catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_type,),
                     search_sub=True, apply_func=func_update_changed)
-            print >> out, "Updating signature of %s" % (t['meta_type'])
-            ident = "%s.%s"%(t['package'],t['name'])
+            print "Updating signature of %s" % (t['meta_type'])
+            print "Signature %s is changing to %s" % (`self._types[ident]`, `t['signature']`)
             self._types[ident] = t['signature']
             self._p_changed = True
             transaction.commit()
