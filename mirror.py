@@ -2,8 +2,8 @@ import os
 from os.path import join
 import shutil
 
-SOURCE = '/srv/plone.org/files'
-TARGET = '/srv/plone.org/mirror'
+SOURCE = '/srv/plone.org/zope/files'
+TARGET = '/srv/dist.plone.org/http/root/packages'
 
 for root, dirs, files in os.walk(SOURCE):
     for file in files:
