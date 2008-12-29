@@ -12,6 +12,7 @@ for root, dirs, files in os.walk(SOURCE):
 	if ext not in ('.egg', '.zip', '.gz', '.tgz'):
 	    continue
 	target = join(TARGET, file)
+    print 'Copying %s to %s' % (path, target)
 	shutil.copyfile(path, target)
 	
 
