@@ -1,8 +1,13 @@
-OVERVIEW
-========
+Upgrade XXX to XXX
+==================
 
-Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
--------------------------------------------------------------------------------
+XXX Describe
+
+Upgrade 2.5.4-devel to 3.2rc1
+=============================
+
+Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
+--------------------------------------------------------------------------------
 
 (If you add or edit a step, please include your name in brackets.)
 
@@ -111,7 +116,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.1.7
   XXX You mean mirror.py ? [aclark]
 
 KNOWN ISSUES
-============
+------------
 
 [ ] -TypesTool throws an AttributeError: IRCLogs, I assume we need to just delete the 
   IRCLogs entry from portal_types. [limi]
