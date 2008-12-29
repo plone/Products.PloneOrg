@@ -24,7 +24,7 @@ setup(name='Products.PloneOrg',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'Products.PloneLDAP',
+#          'Products.PloneLDAP',
 #          'Products.CacheSetup >=1.2.jarn.3',
           'Products.CacheSetup',
           'Products.ExternalStorage',   # For migration purposes only
