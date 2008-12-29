@@ -6,6 +6,7 @@ SOURCE = '/srv/plone.org/zope/files'
 TARGET = '/srv/dist.plone.org/http/root/packages'
 
 for root, dirs, files in os.walk(SOURCE):
+    file, ext = '',''
     for file in files:
         ext = os.path.splitext(file)[-1]
     path = join(root, file)
