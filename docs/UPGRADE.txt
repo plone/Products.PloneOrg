@@ -130,11 +130,20 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 KNOWN ISSUES
 ------------
 
+Plone Help Center:
+
 [ ] http://new.plone.org/documentation is missing the left portlets from http://plone.org/documentation. I can't see any way to get the @@manage-portlets to work, so I can't put them back. [limi]
 
 [ ] PloneHelpCenter needs a little love, it should be switched to the 1.6 branch, and I should work with Steve to make sure it's ready for the transition to the new theme. Currently, it has quite a few 2.5-isms. [limi]
 
+
+Plone Software Center:
+
 [ ] RSS feeds on individual projects in PSC seem to be empty.
+
+[ ] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
+
+
 
 [ ] After moving the instance over to plone.org, we should remove the error filters for a few days, and keep an eye on the error log. We have a lot of broken links and other random stuff that can easily be fixed. Also a good idea wrt. to checking in whether there's any abuse/spidering going on.
 
@@ -150,6 +159,7 @@ Getting warnings about products that were uninstalled in 2003 or thereabouts —
 
 2008-12-30T05:37:19 WARNING OFS.Uninstalled Could not import class 'CMFWikiFolder' from module 'Products.CMFWiki.CMFWikiPage'
 
+(these were manually killed off by Newbery while eating ice cream! Finally gone, we uninstalled these products in ~2003 :P )
 
 On first access of Help Center content, we get:
 
