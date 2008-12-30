@@ -144,12 +144,13 @@ Plone Help Center:
 
 2008-12-30T07:43:03 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManual" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManual.HelpCenterReferenceManual is going to override Products.PloneHelpCenter.content.ReferenceManual.HelpCenterReferenceManual
 
-[ ] PHC nested in PSC seems to have trouble, example:
+[X] PHC nested in PSC seems to have trouble, example:
  http://new.plone.org/products/ploneformgen/documentation/reference/referencemanualfolder_view - gets the following traceback: 
 
   Module Products.PloneHelpCenter.browser.phcfolder, line 141, in getItemsByAudiencesAndSections
   TypeError: iteration over non-sequence
 
+  -- I fixed this by reindexing the contents of these PHCs -- davisagli
 
 Plone Software Center:
 
