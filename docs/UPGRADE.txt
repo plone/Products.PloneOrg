@@ -117,6 +117,9 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 
     XXX I think the upgrade does this automatically now.
 
+[X] - Remove old types that are no longer used, all the "CMF something" types
+      and IRCLogs come to mind
+
 [x] -run migration.py script. This will initiate the package mirror. [tarek]
 
   XXX You mean mirror.py ?
@@ -124,8 +127,8 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 KNOWN ISSUES
 ------------
 
-[ ] -TypesTool throws an AttributeError: IRCLogs, I assume we need to just delete the 
-  IRCLogs entry from portal_types. [limi]
+[X] -TypesTool throws an AttributeError: IRCLogs, I assume we need to just 
+     delete the IRCLogs entry from portal_types. [limi]
 
 [ ] -CacheSetup adds a Cache Configuration Tool tab to the portal, WTF? :)
   [limi]
