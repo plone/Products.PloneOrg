@@ -130,9 +130,6 @@ KNOWN ISSUES
 [X] -TypesTool throws an AttributeError: IRCLogs, I assume we need to just 
      delete the IRCLogs entry from portal_types. [limi]
 
-[ ] -CacheSetup adds a Cache Configuration Tool tab to the portal, WTF? :)
-  [limi]
-
 [ ] -Fix INFO/WARNINGS
     [ ] -These occur during normal operation of the site, but we should look into
       fixing them. [limi]
