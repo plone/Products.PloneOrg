@@ -60,7 +60,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 
 [x] -Go to Site Setup and reinstall POI [tarek]
  
-[ ] -Go to ZMI -> portal_setup -> upgrades. Choose Products.POI, and run it. [tarek]
+[x] -Go to ZMI -> portal_setup -> upgrades. Choose Products.Poi, and run it. [tarek]
 
 [x] -Go to Site Setup -> Add/Remove Products (/prefs_install_products_form) and 
   install PSC External Storage 0.1.0  and PSC Mirroring 0.1.0. [tarek]
