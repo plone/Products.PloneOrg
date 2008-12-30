@@ -72,10 +72,10 @@
         <h1>Plone <span tal:replace="title"></span></h1>
 
         <!-- Group description -->
-        <div class="documentDescription"
+        <p class="documentDescription"
              tal:content="description">
             Group description
-        </div>
+        </p>
 
         <!-- Group members -->
         <tal:users define="users view/users;
