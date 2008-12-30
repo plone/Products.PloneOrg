@@ -35,10 +35,8 @@
                                 selected group/selected;">
                     <div class="visualIcon">
                         <a href="" 
-                           style="padding-left: 3px"
                            tal:attributes="class python:selected and 'navTreeCurrentItem' or '';
                                            href string:${here_url}/team/${groupid};">
-                           <img tal:replace="structure here/group.gif" /> 
                            <span tal:replace="group/title">Group title</span></a>
                     </div>
                 </li>
