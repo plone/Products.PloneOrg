@@ -152,6 +152,9 @@ Plone Help Center:
 
   -- I fixed this by reindexing the contents of these PHCs -- davisagli
 
+[ ] Topic area pages are giving an error re pickling acquisition-wrapped objects on second view.  This is due to memoizing catalog brains.  SteveM is working on this.
+
+
 Plone Software Center:
 
 [ ] RSS feeds on individual projects in PSC seem to be empty.
@@ -167,7 +170,7 @@ Fixed by reindexing PSCRelease type. [davisagli]
 
 Other/general issues:
 
-[ ] Sharing seems to be broken. 
+[X] Sharing seems to be broken. 
     Graham used to have access to http://new.plone.org/support/lists/
     (he was a local Owner role on that document)
     I removed his local Owner role and added him via the standard Plone 3 Sharing:
@@ -176,6 +179,10 @@ Other/general issues:
     Module OFS.Traversable, line 195, in unrestrictedTraverse
     - __traceback_info__: ([], '@@at_base_edit_view')
     Unauthorized: You are not allowed to access '@@at_base_edit_view' in this context
+
+This was due to the support and lists sections not acquiring the Modify portal content permission,
+so the Editor role which you gave Graham wasn't actually associated with that permission there.
+I fixed by turning acquiring back on for this permission.  --davisagli
 
 [ ] We need to do something about sendto_form, MSNbot (among others) is too stupid to not index it, so our pages are spidered twice. Probably customizing the sendto_form to return an HTTP status 404 would be easiest.
 
@@ -233,6 +240,7 @@ ValueError: year=1000 is before 1900; the datetime strftime() methods require ye
       Module Products.CMFPlacefulWorkflow.PlacefulWorkflowTool, line 212, in getWorkflowPolicyConfig
     Unauthorized: You need Manage portal permission on /plone.org/products/tracking/issues
 
+-- /plone.org/products/tracking/issues/placeful_workflow_configuration works for me, I think this is just a normal permission check failure -- davisagli
 
 [ ] This is probably harmless, but wanted to note it anyway: Whenever I delete an object with comments, I get the log message:
 2008-12-30T12:52:32 ERROR Zope.ZCatalog uncatalogObject unsuccessfully attempted to uncatalog an object with a uid of /plone.org/news/blah/talkback/1195686147. 
