@@ -219,7 +219,11 @@ ValueError: year=1000 is before 1900; the datetime strftime() methods require ye
       Module PythonExpr, line 1, in <expression>
       Module Products.CMFPlacefulWorkflow.PlacefulWorkflowTool, line 212, in getWorkflowPolicyConfig
     Unauthorized: You need Manage portal permission on /plone.org/products/tracking/issues
-    
+
+
+[ ] This is probably harmless, but wanted to note it anyway: Whenever I delete an object with comments, I get the log message:
+2008-12-30T12:52:32 ERROR Zope.ZCatalog uncatalogObject unsuccessfully attempted to uncatalog an object with a uid of /plone.org/news/blah/talkback/1195686147. 
+
 
 
 PloneOrg product updates:
@@ -247,4 +251,4 @@ Post-upgrade:
     Redirect
     Unauthorized
 
-[ ] Consider changing the workflow to private/published for Events and News, since spammers have started abusing the Draft state.
+[ ] Consider changing the workflow to private/published for Events and News, since spammers have started abusing the Draft state. The same goes for documentation types (there's spamming going on here too)
