@@ -217,3 +217,5 @@ Post-upgrade:
     NotFound
     Redirect
     Unauthorized
+
+[ ] Consider changing the workflow to private/published for Events and News, since spammers have started abusing the Draft state.
