@@ -120,6 +120,9 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 [X] - Remove old types that are no longer used, all the "CMF something" types
       and IRCLogs come to mind
 
+[X] -TypesTool throws an AttributeError: IRCLogs, I assume we need to just 
+     delete the IRCLogs entry from portal_types. [limi]
+
 [x] -run migration.py script. This will initiate the package mirror. [tarek]
 
   XXX You mean mirror.py ?
@@ -127,12 +130,50 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 KNOWN ISSUES
 ------------
 
-[X] -TypesTool throws an AttributeError: IRCLogs, I assume we need to just 
-     delete the IRCLogs entry from portal_types. [limi]
+[ ] http://new.plone.org/documentation is missing the left portlets from http://plone.org/documentation. I can't see any way to get the @@manage-portlets to work, so I can't put them back. [limi]
 
-[ ] -Fix INFO/WARNINGS
-    [ ] -These occur during normal operation of the site, but we should look into
-      fixing them. [limi]
+[ ] PloneHelpCenter needs a little love, it should be switched to the 1.6 branch, and I should work with Steve to make sure it's ready for the transition to the new theme. Currently, it has quite a few 2.5-isms. [limi]
 
-    XXX Add latest INFO/WARNINGS here. I removed the old ones because I'm not
-    seeing any of them anymore. [aclark]
+[ ] RSS feeds on individual projects in PSC seem to be empty.
+
+[ ] After moving the instance over to plone.org, we should remove the error filters for a few days, and keep an eye on the error log. We have a lot of broken links and other random stuff that can easily be fixed. Also a good idea wrt. to checking in whether there's any abuse/spidering going on.
+
+Fix INFO/WARNINGS:
+
+[ ] These occur during normal operation of the site, but we should look into fixing them. [limi]
+
+Getting warnings about products that were uninstalled in 2003 or thereabouts — CMFWiki, ZWiki and CMFPhotoAlbum, one example from each:
+
+2008-12-30T08:03:31 WARNING OFS.Uninstalled Could not import class 'PhotoAlbum' from module 'Products.CMFPhotoAlbum.PhotoAlbum'
+
+2008-12-30T07:02:30 WARNING OFS.Uninstalled Could not import class 'PersistentOutline' from module 'Products.ZWiki.OutlineSupport'
+
+2008-12-30T05:37:19 WARNING OFS.Uninstalled Could not import class 'CMFWikiFolder' from module 'Products.CMFWiki.CMFWikiPage'
+
+
+On first access of Help Center content, we get:
+
+2008-12-30T07:43:03 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManual" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManual.HelpCenterReferenceManual is going to override Products.PloneHelpCenter.content.ReferenceManual.HelpCenterReferenceManual
+
+
+
+
+This still happens, although less frequently:
+
+2008-12-30T08:04:45 ERROR PortalTransforms Cannot register transform html_to_web_intelligent_plain_text (ImportError), using BrokenTransform: Error
+ No module named intelligenttext.transforms.html_to_web_intelligent_plain_text
+
+Maybe there are objects that are not Poi-related that use intelligenttext that need an update?
+
+
+
+Some releases have invalid dates, like this zforum object:
+
+ Module None, line 4, in toLocalizedTime
+   - <FSPythonScript at /plone.org/toLocalizedTime used for /plone.org/products/zforum/releases/1.1.0.Preview>
+   - Line 4
+  Module Products.CMFPlone.browser.ploneview, line 191, in toLocalizedTime
+  Module Products.CMFPlone.TranslationServiceTool, line 79, in ulocalized_time
+  Module Products.CMFPlone.i18nl10n, line 107, in ulocalized_time
+  Module DateTime.DateTime, line 1491, in strftime
+ValueError: year=1000 is before 1900; the datetime strftime() methods require year >= 1900
