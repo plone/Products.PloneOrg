@@ -217,6 +217,9 @@ I recreated the html-to-intelligent text transform which was missing, so this ma
   Module DateTime.DateTime, line 1491, in strftime
 ValueError: year=1000 is before 1900; the datetime strftime() methods require year >= 1900
 
+-- Are we sure the correct DateTime library is being used?  This makes me think we shouldn't be having this problem: http://mail.zope.org/pipermail/zope-checkins/2005-May/029381.html -- davisagli
+
+
 [ ] Placeful Workflow seems to throw some errors, are we actually using it anywhere on plone.org? Example traceback excerpt:
 
     2008-12-30T12:46:18 ERROR Zope.SiteErrorLog http://new.plone.org/products/tracking/issues/placeful_workflow_configuration
