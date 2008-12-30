@@ -90,18 +90,20 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 [x] -Go to /products/edit and change the storage strategy to External Storage. This will
   fill the External storage folder. [tarek]
 
-[ ] -Make sure the JS and CSS registries emit as few units as possible (ideally just one 
+[X] -Make sure the JS and CSS registries emit as few units as possible (ideally just one 
   each, the front page will probably have two with the current setup). The tabber JS 
   is included in Plone, so can be removed from the page, I assume. [limi]
 
-    XXX I don't get this one [tarek]
-
-[ ] -Go to portal_skins and make sure there are no bogus entries. When starting up 
+[X] -Go to portal_skins and make sure there are no bogus entries. When starting up 
   locally, I get references to at least the following non-existant entries:
 
-    [ ] -irclogs refers to a non-existing path
-    [ ] -keyword_manager refers to a non-existing path
-    [ ] -plone_tableless refers to a non-existing path
+    -irclogs refers to a non-existing path
+    -keyword_manager refers to a non-existing path
+    -plone_tableless refers to a non-existing path
+
+    I also removed "plonepas", "LanguageToolFlags" and "cache_prefs_plone20".
+
+    Also make sure you press the correct "Save" button, there are two. ;)
 
 [x] -Make the front page 4x faster by removing the legacy portlets (really!):
   Go to /@@manage-portlets in the site root, convert legacy portlets if it 
