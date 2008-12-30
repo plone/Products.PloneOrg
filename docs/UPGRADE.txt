@@ -130,6 +130,10 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 KNOWN ISSUES
 ------------
 
+Image problems:
+
+[ ] It looks like we have trouble serving up images. See http://dev.plone.org/plone/ticket/8844
+
 Plone Help Center:
 
 [ ] http://new.plone.org/documentation is missing the left portlets from http://plone.org/documentation. I can't see any way to get the @@manage-portlets to work, so I can't put them back. [limi]
