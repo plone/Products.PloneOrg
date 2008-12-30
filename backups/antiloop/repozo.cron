@@ -1,6 +1,6 @@
 #/bin/sh
 
-BUILDOUT=/srv/plone.org/buildout
+BUILDOUT=/srv/plone.org/p3
 DEST=$BUILDOUT/../backups
 
 cd $BUILDOUT
