@@ -136,6 +136,16 @@ Plone Help Center:
 
 [ ] PloneHelpCenter needs a little love, it should be switched to the 1.6 branch, and I should work with Steve to make sure it's ready for the transition to the new theme. Currently, it has quite a few 2.5-isms. [limi]
 
+[ ] On first access of Help Center content, we get:
+
+2008-12-30T07:43:03 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManual" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManual.HelpCenterReferenceManual is going to override Products.PloneHelpCenter.content.ReferenceManual.HelpCenterReferenceManual
+
+[ ] PHC nested in PSC seems to have trouble, example:
+ http://new.plone.org/products/ploneformgen/documentation/reference/referencemanualfolder_view - gets the following traceback: 
+
+  Module Products.PloneHelpCenter.browser.phcfolder, line 141, in getItemsByAudiencesAndSections
+  TypeError: iteration over non-sequence
+
 
 Plone Software Center:
 
@@ -143,13 +153,25 @@ Plone Software Center:
 
 [ ] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
 
+[ ] No themes for Plone 3.0: http://new.plone.org/products?getCategories=themes&getCompatibility=Plone+3.0&product_search=Update
 
 
-[ ] After moving the instance over to plone.org, we should remove the error filters for a few days, and keep an eye on the error log. We have a lot of broken links and other random stuff that can easily be fixed. Also a good idea wrt. to checking in whether there's any abuse/spidering going on.
 
-Fix INFO/WARNINGS:
+Other/general issues:
 
-[ ] These occur during normal operation of the site, but we should look into fixing them. [limi]
+[ ] Sharing seems to be broken. 
+    Graham used to have access to http://new.plone.org/support/lists/
+    (he was a local Owner role on that document)
+    I removed his local Owner role and added him via the standard Plone 3 Sharing:
+    He gets insufficient privileges. The full traceback can be seen here:
+    http://paste.plone.org/25629 - excerpt:
+    Module OFS.Traversable, line 195, in unrestrictedTraverse
+    - __traceback_info__: ([], '@@at_base_edit_view')
+    Unauthorized: You are not allowed to access '@@at_base_edit_view' in this context
+
+
+
+[X] These occur during normal operation of the site, but we should look into fixing them. [limi]
 
 Getting warnings about products that were uninstalled in 2003 or thereabouts — CMFWiki, ZWiki and CMFPhotoAlbum, one example from each:
 
@@ -161,9 +183,6 @@ Getting warnings about products that were uninstalled in 2003 or thereabouts —
 
 (these were manually killed off by Newbery while eating ice cream! Finally gone, we uninstalled these products in ~2003 :P )
 
-On first access of Help Center content, we get:
-
-2008-12-30T07:43:03 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManual" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManual.HelpCenterReferenceManual is going to override Products.PloneHelpCenter.content.ReferenceManual.HelpCenterReferenceManual
 
 
 
@@ -187,3 +206,14 @@ Some releases have invalid dates, like this zforum object:
   Module Products.CMFPlone.i18nl10n, line 107, in ulocalized_time
   Module DateTime.DateTime, line 1491, in strftime
 ValueError: year=1000 is before 1900; the datetime strftime() methods require year >= 1900
+
+
+Post-upgrade:
+
+[X] We should remove the error filters for a few days, and keep an eye on the error log when it's running on plone.org. We have a lot of broken links and other random stuff that can easily be fixed. Also a good idea wrt. to checking in whether there's any abuse/spidering going on.
+
+[ ] Put back the exception filters again once we have done:
+
+    NotFound
+    Redirect
+    Unauthorized
