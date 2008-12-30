@@ -187,7 +187,7 @@ Getting warnings about products that were uninstalled in 2003 or thereabouts —
 
 
 
-This still happens, although less frequently:
+[ ] This still happens, although less frequently:
 
 2008-12-30T08:04:45 ERROR PortalTransforms Cannot register transform html_to_web_intelligent_plain_text (ImportError), using BrokenTransform: Error
  No module named intelligenttext.transforms.html_to_web_intelligent_plain_text
@@ -196,7 +196,7 @@ Maybe there are objects that are not Poi-related that use intelligenttext that n
 
 
 
-Some releases have invalid dates, like this zforum object:
+[ ] Some releases have invalid dates, like this zforum object:
 
  Module None, line 4, in toLocalizedTime
    - <FSPythonScript at /plone.org/toLocalizedTime used for /plone.org/products/zforum/releases/1.1.0.Preview>
@@ -206,6 +206,20 @@ Some releases have invalid dates, like this zforum object:
   Module Products.CMFPlone.i18nl10n, line 107, in ulocalized_time
   Module DateTime.DateTime, line 1491, in strftime
 ValueError: year=1000 is before 1900; the datetime strftime() methods require year >= 1900
+
+[ ] Placeful Workflow seems to throw some errors, are we actually using it anywhere on plone.org? Example traceback excerpt:
+
+    2008-12-30T12:46:18 ERROR Zope.SiteErrorLog http://new.plone.org/products/tracking/issues/placeful_workflow_configuration
+       - URL: file:/srv/plone.org/p3/eggs/Products.CMFPlacefulWorkflow-1.4.0-py2.4.egg/Products/CMFPlacefulWorkflow/skins/CMFPlacefulWorkflow/placeful_workflow_configuration.pt
+       - Line 30, Column 4
+       - Expression: <PythonExpr pwtool.getWorkflowPolicyConfig(here)>
+           'user': <SpecialUser 'Anonymous User'>}
+      Module Products.PageTemplates.ZRPythonExpr, line 49, in __call__
+       - __traceback_info__: pwtool.getWorkflowPolicyConfig(here)
+      Module PythonExpr, line 1, in <expression>
+      Module Products.CMFPlacefulWorkflow.PlacefulWorkflowTool, line 212, in getWorkflowPolicyConfig
+    Unauthorized: You need Manage portal permission on /plone.org/products/tracking/issues
+    
 
 
 PloneOrg product updates:
