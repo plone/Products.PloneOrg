@@ -212,7 +212,9 @@ PloneOrg product updates:
 
 [ ] mail_uninstall.py doesn't work. What is it for? uninstall-feedback.pt? :)
 
-[ ] personalize_form.cpt needs to be updated to 3.x format.
+[ ] personalize_form.cpt needs to be updated to 3.x format. When saving your profile, currently it fails like this:
+    Module plone.protect.authenticator, line 60, in check
+    Forbidden: Form authenticator is invalid.
 
 [ ] portlet_(events|news|training) possibly need to be updated to 3.x format.
 
