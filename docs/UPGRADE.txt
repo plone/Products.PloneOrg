@@ -136,7 +136,7 @@ Image problems:
 
 Plone Help Center:
 
-[ ] http://new.plone.org/documentation is missing the left portlets from http://plone.org/documentation. I can't see any way to get the @@manage-portlets to work, so I can't put them back. [limi]
+[X] http://new.plone.org/documentation is missing the left portlets from http://plone.org/documentation. I can't see any way to get the @@manage-portlets to work, so I can't put them back. (with PHC 1.6, this works) [limi]
 
 [ ] PloneHelpCenter needs a little love, it should be switched to the 1.6 branch, and I should work with Steve to make sure it's ready for the transition to the new theme. Currently, it has quite a few 2.5-isms. [limi]
 
