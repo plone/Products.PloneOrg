@@ -134,6 +134,8 @@ Image problems:
 
 [ ] It looks like we have trouble serving up images. See http://dev.plone.org/plone/ticket/8844
 
+Maybe related to the redirection tool?  I can't really tell without being able to log in to plone.org for comparison --davisagli
+
 Plone Help Center:
 
 [X] http://new.plone.org/documentation is missing the left portlets from http://plone.org/documentation. I can't see any way to get the @@manage-portlets to work, so I can't put them back. (with PHC 1.6, this works) [limi]
