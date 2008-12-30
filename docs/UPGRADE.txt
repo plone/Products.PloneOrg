@@ -156,10 +156,13 @@ Plone Software Center:
 
 [ ] RSS feeds on individual projects in PSC seem to be empty.
 
+This appears to be because the RSS link includes review_state=published, but PSCReleases use a custom workflow and are usually not in the 'published' state.
+
 [ ] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
 
-[ ] No themes for Plone 3.0: http://new.plone.org/products?getCategories=themes&getCompatibility=Plone+3.0&product_search=Update
+[X] No themes for Plone 3.0: http://new.plone.org/products?getCategories=themes&getCompatibility=Plone+3.0&product_search=Update
 
+Fixed by reindexing PSCRelease type. [davisagli]
 
 
 Other/general issues:
@@ -200,6 +203,7 @@ Getting warnings about products that were uninstalled in 2003 or thereabouts —
 
 Maybe there are objects that are not Poi-related that use intelligenttext that need an update?
 
+I recreated the html-to-intelligent text transform which was missing, so this may be working now. -- davisagli
 
 
 [ ] Some releases have invalid dates, like this zforum object:
