@@ -5,58 +5,9 @@
 <metal:block fill-slot="top_slot"
              tal:define="dummy python:request.set('disable_border',1)" />
 </head>
-
-
 <body>
-<div metal:fill-slot="main">
-<h1>Uninstalling Plone?</h1>
 
-<div class="documentDescription">
-This form lets you submit some feedback as to why you are uninstalling Plone. 
-This will allow us to make Plone better, and we appreciate constructive comments.
-</div>
+<iframe src="https://spreadsheets.google.com/embeddedform?key=pjvc1IO4Q7JaEDGzxYFucOg" width="310" height="883" frameborder="0" marginheight="0" marginwidth="0" >Loading...</iframe>
 
-<div class="discreet">
-There's no need to submit this form if you're only doing a routine reinstall or move of servers, 
-and you don't have to submit the form to complete the uninstall. It's just a convenience function
-for the Plone Team to get feedback from people that chose to not use Plone. Feel free to just close 
-this browser window if you don't have anything you want to tell us. :)
-</div>
-
-<p>Thank you for trying Plone. Please provide us with feedback from your experience.
-With your comments can we improve the Plone product.</p>
-<p>Any personal information given will only be used to contact you in case we need more info
-about your comments. They will not be used for anything else. The mail goes to
-a shared and spam-filtered mailing list, though &mdash; so make sure you don't
-include any confidential information.
-</p>
-
-
-<form action="mail_uninstall" method="post">
-<fieldset>
-<legend>Feedback</legend>
-
-<div class="field">
-  <label>Name (optional)</label>
-  <input 
-        type="text" 
-        name="fromName" 
-        tal:attributes="value request/fromName|nothing"/>
-</div>
-<div class="field">
-  <label>Email (optional)</label>
-  <input type="text" name="fromEmail" 
-        tal:attributes="value request/fromEmail|nothing"/>
-</div>
-<div class="field">
-  <label>Your comments</label>
-  <textarea rows="10" name="feedBack" tal:content="request/feedBack|nothing"></textarea>
-</div>
-<div class="formControls">
-<input class="context" type="submit" value="Submit feedback" />
-</div>
-
-</form>
-</div>
 </body>
 </html>
