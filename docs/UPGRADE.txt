@@ -51,7 +51,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 [x] -Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
   run it You need to check the log to control for any missing files. [tarek]
 
-[ ] - fixing missing files [tarek]
+[ ] - check distutils ids for projects that uses links and the migration step could not get the file through that link to check the id [tarek]
 
 [x] -Go to Site Setup and reinstall POI [tarek]
  
