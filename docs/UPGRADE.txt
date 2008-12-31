@@ -1,4 +1,4 @@
-Upgrade XXX to XXX
+	Upgrade XXX to XXX
 ==================
 
 XXX Describe
@@ -75,7 +75,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 [x] -Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create 
   a new, blank custom folder. The site will now be a bit faster. [limi]
 
-[ ] -Go to /Control_Panel/Products/manage_main and delete all the product entries, 
+[x] -Go to /Control_Panel/Products/manage_main and delete all the product entries, 
   so they update when you restart (reinstalling will result in the blank version 
   bug if you don't do this and the products have different paths. Why these are 
   persistent is anybody's guess, probably because Zope needs to support ZClasses) 
