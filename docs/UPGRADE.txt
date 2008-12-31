@@ -165,7 +165,7 @@ Plone Software Center:
 
 This appears to be because the RSS link includes review_state=published, but PSCReleases use a custom workflow and are usually not in the 'published' state.
 
-[ ] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
+[x] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
 
 [X] No themes for Plone 3.0: http://new.plone.org/products?getCategories=themes&getCompatibility=Plone+3.0&product_search=Update
 
