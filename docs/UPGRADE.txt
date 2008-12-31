@@ -137,7 +137,7 @@ Plone Help Center:
 
 [x] PloneHelpCenter needs a little love, it should be switched to the 1.6 branch
 
-[ ] I should work with Steve to make sure it's ready for the transition to the new theme. Currently, it has quite a few 2.5-isms. [limi]
+[x] I should work with Steve to make sure it's ready for the transition to the new theme. Currently, it has quite a few 2.5-isms. [limi]
 
 [ ] On first access of Help Center content, we get:
 
@@ -156,7 +156,7 @@ Plone Help Center:
 
 Plone Software Center:
 
-[ ] RSS feeds on individual projects in PSC seem to be empty.
+[x] RSS feeds on individual projects in PSC seem to be empty.
 
 This appears to be because the RSS link includes review_state=published, but PSCReleases use a custom workflow and are usually not in the 'published' state.
 
