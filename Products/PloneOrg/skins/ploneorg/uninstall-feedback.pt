@@ -7,7 +7,9 @@
 </head>
 <body>
 
+<div metal:fill-slot="main">
 <iframe src="https://spreadsheets.google.com/embeddedform?key=pjvc1IO4Q7JaEDGzxYFucOg" width="310" height="883" frameborder="0" marginheight="0" marginwidth="0" >Loading...</iframe>
+</div>
 
 </body>
 </html>
