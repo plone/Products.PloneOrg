@@ -260,7 +260,7 @@ PloneOrg product updates:
      (not changed, but they seem to work fine, and since we're switching soon,
       I can't be bothered. ~limi)
 
-[ ] Double check that prefs_user_details fix has indeed been forward-ported to 3.x, and remove if so.
+[x] Double check that prefs_user_details fix has indeed been forward-ported to 3.x, and remove if so.
 
 [x] uninstall-feedback.pt embed a Google Spreadsheet survey instead, to remove the need for us to send email and letting the content end up in an SF.net mailing list. Sent out to some participants for initial feedback. I'll handle this one. [limi]
 
