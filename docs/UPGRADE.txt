@@ -10,7 +10,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 
 (Some steps are optional. Some can be done out of order. YMMV.)
 
-[x] -Make sure you have at least 2 GB your /tmp folder. If not, edit 
+[X] -Make sure you have at least 2 GB your /tmp folder. If not, edit 
   ZEO/TransactionBuffer.py file and add a folder prefix in the constructor 
   in order to make that file created in a place where there's room. [tarek]
 
@@ -20,69 +20,69 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
       TEMP ${buildout:directory}/tmp
     </environment>
   
-[x] -Remove all logs before you start. [tarek]
+[X] -Remove all logs before you start. [tarek]
 
-[x] -Go to ZMI -> portal_catalog -> Advanced. Click on "Clear and Rebuild".
+[X] -Go to ZMI -> portal_catalog -> Advanced. Click on "Clear and Rebuild".
   Otherwise, you might get a few errors in some updates. This takes about an 
   hour. [tarek]
 
-[x] -Disable CMFSquidTool by removing the plone.org url from 
+[X] -Disable CMFSquidTool by removing the plone.org url from 
   plone.org -> portal_squid -> Proxy URLs. [aclark]
   Don't forget to put them back:
     http://plone.org:80
     http://plone.org
 
-[x] -Go to ZMI -> portal_migration [limi]
-    [x] -Scroll down to the 'Force Upgrade' section.
-    [x] -'Force Upgrade' from Plone 2.5.3-rc1
-    [x] -Watch the uncannily quick migration ;)
+[X] -Go to ZMI -> portal_migration [limi]
+    [X] -Scroll down to the 'Force Upgrade' section.
+    [X] -'Force Upgrade' from Plone 2.5.3-rc1
+    [X] -Watch the uncannily quick migration ;)
 
-[x] -Run portal_quickinstaller upgrades. [aclark]
+[X] -Run portal_quickinstaller upgrades. [aclark]
 
-[x] -Go to ZMI -> archetype_tool -> Update Schema [aclark, tarek]
-    [x] -Select all the classes and the checkbox at the bottom to Remove schema
+[X] -Go to ZMI -> archetype_tool -> Update Schema [aclark, tarek]
+    [X] -Select all the classes and the checkbox at the bottom to Remove schema
       attributes *BUT* PloneSoftwareCenter.PSCFile, that must remain unchecked
-    [x] -Watch the uncannily long schema update (This seriously takes ~1 hour ;)
+    [X] -Watch the uncannily long schema update (This seriously takes ~1 hour ;)
 
-[x] -Delete broken transforms in portal_transforms, including: 
+[X] -Delete broken transforms in portal_transforms, including: 
   web_intelligent_plain_text_to_html Force migrate from 3.0-rc1 to current 
   version to get them back. [aclark]
 
-[x] -Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
+[X] -Go to ZMI -> portal_setup -> upgrades. Choose Products.PloneSoftwareCenter, and 
   run it You need to check the log to control for any missing files. [tarek]
 
 [ ] - check distutils ids for projects that uses links and the migration step could not get the file through that link to check the id [tarek]
 
-[x] -Go to Site Setup and reinstall POI [tarek]
+[X] -Go to Site Setup and reinstall POI [tarek]
  
-[x] -Go to ZMI -> portal_setup -> upgrades. Choose Products.Poi, and run it. [tarek]
+[X] -Go to ZMI -> portal_setup -> upgrades. Choose Products.Poi, and run it. [tarek]
 
-[x] -Go to Site Setup -> Add/Remove Products (/prefs_install_products_form) and 
+[X] -Go to Site Setup -> Add/Remove Products (/prefs_install_products_form) and 
   install PSC External Storage 0.1.0  and PSC Mirroring 0.1.0. [tarek]
 
-[x] -Go to @@extstorage-config and configure an absolute path for
+[X] -Go to @@extstorage-config and configure an absolute path for
   ExternalStorage, e.g. /srv/plone.org/files. Make sure the zope process can 
   write there. [tarek]
 
-[x] -Go to @@mirroring-config  an absolute path for mirroring files, e.g.
+[X] -Go to @@mirroring-config  an absolute path for mirroring files, e.g.
   /srv/plone.org/mirror. [tarek]
 
-[x] -Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create 
+[X] -Go to portal_skins in the ZMI and rename 'custom' to 'custom_old', and create 
   a new, blank custom folder. The site will now be a bit faster. [limi]
 
-[x] -Go to /Control_Panel/Products/manage_main and delete all the product entries, 
+[X] -Go to /Control_Panel/Products/manage_main and delete all the product entries, 
   so they update when you restart (reinstalling will result in the blank version 
   bug if you don't do this and the products have different paths. Why these are 
   persistent is anybody's guess, probably because Zope needs to support ZClasses) 
   Restart. [limi] 
 
-[x] -Go to Site Setup and reinstall all the add-on products that need it. [limi]
+[X] -Go to Site Setup and reinstall all the add-on products that need it. [limi]
   (Plone.org site 1.0 needs to be last, to avoid AttributeError default_view.)
 
-[x] -Go to /products and select the plonesoftwarecenter_ploneorg template from the 
+[X] -Go to /products and select the plonesoftwarecenter_ploneorg template from the 
   'Display' menu. [aclark]
 
-[x] -Go to /products/edit and change the storage strategy to External Storage. This will
+[X] -Go to /products/edit and change the storage strategy to External Storage. This will
   fill the External storage folder. [tarek]
 
 [X] -Make sure the JS and CSS registries emit as few units as possible (ideally just one 
@@ -100,7 +100,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 
     Also make sure you press the correct "Save" button, there are two. ;)
 
-[x] -Make the front page 4x faster by removing the legacy portlets (really!):
+[X] -Make the front page 4x faster by removing the legacy portlets (really!):
   Go to /@@manage-portlets in the site root, convert legacy portlets if it 
   asks, then remove them from the listings. This reduces the front page 
   rendering time from 24s to 6s on my laptop.
@@ -118,7 +118,7 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 [X] -TypesTool throws an AttributeError: IRCLogs, I assume we need to just 
      delete the IRCLogs entry from portal_types. [limi]
 
-[x] -run migration.py script. This will initiate the package mirror. [tarek]
+[X] -run migration.py script. This will initiate the package mirror. [tarek]
 
   XXX You mean mirror.py ?
 
@@ -135,9 +135,9 @@ Plone Help Center:
 
 [X] http://new.plone.org/documentation is missing the left portlets from http://plone.org/documentation. I can't see any way to get the @@manage-portlets to work, so I can't put them back. (with PHC 1.6, this works) [limi]
 
-[x] PloneHelpCenter needs a little love, it should be switched to the 1.6 branch
+[X] PloneHelpCenter needs a little love, it should be switched to the 1.6 branch
 
-[x] I should work with Steve to make sure it's ready for the transition to the new theme. Currently, it has quite a few 2.5-isms. [limi]
+[X] I should work with Steve to make sure it's ready for the transition to the new theme. Currently, it has quite a few 2.5-isms. [limi]
 
 [ ] On first access of Help Center content, we get:
 
@@ -151,16 +151,16 @@ Plone Help Center:
 
   -- I fixed this by reindexing the contents of these PHCs -- davisagli
 
-[x] Topic area pages are giving an error re pickling acquisition-wrapped objects on second view.  This is due to memoizing catalog brains.  SteveM is working on this.
+[X] Topic area pages are giving an error re pickling acquisition-wrapped objects on second view.  This is due to memoizing catalog brains.  SteveM is working on this.
 
 
 Plone Software Center:
 
-[x] RSS feeds on individual projects in PSC seem to be empty.
+[X] RSS feeds on individual projects in PSC seem to be empty.
 
 This appears to be because the RSS link includes review_state=published, but PSCReleases use a custom workflow and are usually not in the 'published' state.
 
-[x] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
+[X] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
 
 [X] No themes for Plone 3.0: http://new.plone.org/products?getCategories=themes&getCompatibility=Plone+3.0&product_search=Update
     Fixed by reindexing PSCRelease type. [davisagli]
@@ -183,7 +183,7 @@ This was due to the support and lists sections not acquiring the Modify portal c
 so the Editor role which you gave Graham wasn't actually associated with that permission there.
 I fixed by turning acquiring back on for this permission.  --davisagli
 
-[x] We need to do something about sendto_form, MSNbot (among others) is too stupid to not index it, so our pages are spidered twice. Probably customizing the sendto_form to return an HTTP status 404 would be easiest.
+[X] We need to do something about sendto_form, MSNbot (among others) is too stupid to not index it, so our pages are spidered twice. Probably customizing the sendto_form to return an HTTP status 404 would be easiest.
 
 
 [X] These occur during normal operation of the site, but we should look into fixing them. [limi]
@@ -202,7 +202,7 @@ Getting warnings about products that were uninstalled in 2003 or thereabouts —
 
 
 
-[x] This still happens, although less frequently:
+[X] This still happens, although less frequently:
 
 2008-12-30T08:04:45 ERROR PortalTransforms Cannot register transform html_to_web_intelligent_plain_text (ImportError), using BrokenTransform: Error
  No module named intelligenttext.transforms.html_to_web_intelligent_plain_text
@@ -250,19 +250,19 @@ I fixed by handling the ValueError in the view. This exposes a general problem w
 
 PloneOrg product updates:
 
-[x] mail_uninstall.py doesn't work. What is it for? uninstall-feedback.pt? :)
+[X] mail_uninstall.py doesn't work. What is it for? uninstall-feedback.pt? :)
 
-[x] personalize_form.cpt needs to be updated to 3.x format. When saving your profile, currently it fails like this:
+[X] personalize_form.cpt needs to be updated to 3.x format. When saving your profile, currently it fails like this:
     Module plone.protect.authenticator, line 60, in check
     Forbidden: Form authenticator is invalid.
 
-[x] portlet_(events|news|training) possibly need to be updated to 3.x format.
+[X] portlet_(events|news|training) possibly need to be updated to 3.x format.
      (not changed, but they seem to work fine, and since we're switching soon,
       I can't be bothered. ~limi)
 
-[x] Double check that prefs_user_details fix has indeed been forward-ported to 3.x, and remove if so.
+[X] Double check that prefs_user_details fix has indeed been forward-ported to 3.x, and remove if so.
 
-[x] uninstall-feedback.pt embed a Google Spreadsheet survey instead, to remove the need for us to send email and letting the content end up in an SF.net mailing list. Sent out to some participants for initial feedback. I'll handle this one. [limi]
+[X] uninstall-feedback.pt embed a Google Spreadsheet survey instead, to remove the need for us to send email and letting the content end up in an SF.net mailing list. Sent out to some participants for initial feedback. I'll handle this one. [limi]
 
 
 Post-upgrade:
