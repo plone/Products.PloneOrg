@@ -1,10 +1,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
-      metal:use-macro="here/prefs_main_template/macros/master"
+      metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
 <tal:comment replace="nothing">
-    This is a forked template from Plone 2.5.3. It adds support for the
+    This is a forked template from Plone 3.2. It adds support for the
     following memberdata properties:
     - nickname
     - organization_title
@@ -15,25 +18,29 @@
     
 </tal:comment>
 
-<metal:block fill-slot="top_slot"
-             tal:define="dummy python:request.set('disable_border',1)" />
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1)" />
+    <metal:block fill-slot="column_one_slot" />
+    <metal:block fill-slot="column_two_slot" />
+</head>
 
 <body>
 
-<div metal:fill-slot="prefs_configlet_content"
-     tal:define="errors options/state/getErrors;">
+<metal:main fill-slot="content"
+            tal:define="errors options/state/getErrors;">
+    <tal:main-macro metal:define-macro="main">
 
-    <span tal:define="dummy python:request.response.setHeader('pragma','no-cache')" />
-
-     <div id="content" 
-          class="documentEditable">
+    <div class="documentEditable">
 
             <h5 class="hiddenStructure">Views</h5>
         
             <ul class="contentViews">
               <li>
                 <a href=""
-                   tal:attributes="href string: ${portal_url}/author/${member}"
+                   tal:define="member_id python:member.getId();
+                               member_url python:(member_id.startswith('http:') or member_id.startswith('https:')) and ('?author=%s' % member_id) or member_id"
+                   tal:attributes="href string:${portal_url}/author/${member_url}"
                    i18n:translate="label_view">View</a>
               </li>
               <li class="selected">
@@ -47,7 +54,7 @@
               &nbsp;
             </div>
 
-            <div class="documentContent" id="region-content">
+            <div class="documentContent" id="content">
 
                 <a name="documentContent"></a>
 
@@ -55,23 +62,25 @@
                     Portal status message
                 </div>
 
-                <h1 i18n:translate="heading_my_preferences">Personal Preferences</h1>
+                <h1 class="documentFirstHeading"
+                    i18n:translate="heading_my_preferences">Personal Preferences</h1>
 
                 <a href=""
                    class="link-parent"
-                   tal:attributes="href string: $portal_url/plone_memberprefs_panel"
-                   i18n:translate="label_up_to_preferences">
-                Up to My Preferences
-                </a>
+                   tal:attributes="href string:${portal_url}/dashboard"
+                   tal:condition="python:context.portal_membership.checkPermission('Portlets: Manage own portlets', context)"
+                   i18n:translate="label_to_dashboard">
+                    Up to my dashboard
+                 </a>
 
                 <p i18n:translate="description_my_preferences">
                 Your personal settings.
                 </p>
 
                 <form action="personalize"
+                      class="enableAutoFocus enableUnloadProtection"
                       method="post"
                       enctype="multipart/form-data"
-                      class="enableUnloadProtection"
                       tal:condition="member"
                       tal:attributes="action template_id">
 
@@ -103,10 +112,8 @@
                                    id="fullname"
                                    name="fullname"
                                    size="25"
-                                   tabindex=""
                                    value="member.fullname html_quote"
                                    tal:attributes="value fullname;
-                                       tabindex tabindex/next;
                                        disabled python:member.canWriteProperty('fullname') and default or 'disabled'"
                                    />
 
@@ -129,10 +136,8 @@
                                    id="email"
                                    name="email"
                                    size="25"
-                                   tabindex=""
                                    value="member.email html_quote"
                                    tal:attributes="value email;
-                                       tabindex tabindex/next;
                                        readonly python:member.canWriteProperty('email') and default or 'readonly'"
                                    />
 
@@ -159,10 +164,8 @@
                                    id="location"
                                    name="location"
                                    size="25"
-                                   tabindex=""
                                    value="member.location html_quote"
                                    tal:attributes="value location;
-                                       tabindex tabindex/next;
                                        disabled python:member.canWriteProperty('location') and default or 'disabled'"
                                    />
 
@@ -185,10 +188,8 @@
                                    id="organization_title"
                                    name="organization_title"
                                    size="25"
-                                   tabindex=""
                                    value="member.organization_title html_quote"
                                    tal:attributes="value location;
-                                       tabindex tabindex/next;
                                        disabled python:member.canWriteProperty('organization_title') and default or 'disabled'"
                                    />
 
@@ -212,10 +213,8 @@
                                    id="organization_link"
                                    name="organization_link"
                                    size="25"
-                                   tabindex=""
                                    value="member.organization_link html_quote"
                                    tal:attributes="value location;
-                                       tabindex tabindex/next;
                                        disabled python:member.canWriteProperty('organization_link') and default or 'disabled'"
                                    />
 
@@ -241,8 +240,7 @@
                                    name="description"
                                    tal:content="description"
                                    rows="5"
-                                   tal:attributes="tabindex tabindex/next;
-                                       disabled python:member.canWriteProperty('description') and default or 'disabled'"
+                                   tal:attributes="disabled python:member.canWriteProperty('description') and default or 'disabled'"
                                    />
 
                         </div>
@@ -264,10 +262,8 @@
                                    id="nickname"
                                    name="nickname"
                                    size="25"
-                                   tabindex=""
                                    value="member.nickname html_quote"
                                    tal:attributes="value location;
-                                       tabindex tabindex/next;
                                        disabled python:member.canWriteProperty('nickname') and default or 'disabled'"
                                    />
 
@@ -290,10 +286,8 @@
                                    id="home_page"
                                    name="home_page"
                                    size="25"
-                                   tabindex=""
                                    value="member.home_page html_quote"
                                    tal:attributes="value home_page;
-                                   tabindex tabindex/next;
                                        disabled python:member.canWriteProperty('home_page') and default or 'disabled'"
                                    />
 
@@ -315,9 +309,7 @@
 
                             <select name="language"
                                     id="language"
-                                    tabindex=""
-                                    tal:attributes="tabindex tabindex/next;
-                                        disabled python:member.canWriteProperty('language') and default or 'disabled'">
+                                    tal:attributes="disabled python:member.canWriteProperty('language') and default or 'disabled'">
                                 <tal:block tal:repeat="lang here/availableLanguages">
                                     <option value="None"
                                         tal:content="python:lang[1]"
@@ -342,9 +334,7 @@
 
                             <select name="wysiwyg_editor"
                                     id="wysiwyg_editor"
-                                    tabindex=""
-                                    tal:attributes="tabindex tabindex/next;
-                                        disabled python:member.canWriteProperty('wysiwyg_editor') and default or 'disabled'">
+                                    tal:attributes="disabled python:member.canWriteProperty('wysiwyg_editor') and default or 'disabled'">
                                 <tal:block tal:repeat="editor site_properties/available_editors">
                                 <option tal:condition="python:editor != 'None'"
                                         value="None"
@@ -372,8 +362,7 @@
                                    class="noborder"
                                    name="ext_editor"
                                    id="cb_ext_editor"
-                                   tal:attributes="tabindex tabindex/next;
-                                       checked python:test(ext_editor, 'checked', None);
+                                   tal:attributes="checked python:test(ext_editor, 'checked', None);
                                        disabled python:member.canWriteProperty('ext_editor') and default or 'disabled'"
                                    />
 
@@ -395,8 +384,7 @@
                                    class="noborder"
                                    name="listed"
                                    id="cb_listed"
-                                   tal:attributes="tabindex tabindex/next;
-                                       checked python:test(listed, 'checked', None);
+                                   tal:attributes="checked python:test(listed, 'checked', None);
                                        disabled python:member.canWriteProperty('listed') and default or 'disabled'"
                                    />
 
@@ -416,8 +404,7 @@
                                    class="noborder"
                                    name="visible_ids"
                                    id="cb_invisible_ids"
-                                   tal:attributes="tabindex tabindex/next;
-                                       checked python:test(visible_ids, 'checked', None);
+                                   tal:attributes="checked python:test(visible_ids, 'checked', None);
                                        disabled python:member.canWriteProperty('visible_ids') and default or 'disabled'"
                                    />
 
@@ -447,9 +434,7 @@
 
                             <select name="portal_skin"
                                     id="portal_skin"
-                                    tabindex=""
-                                    tal:attributes="tabindex tabindex/next;
-                                        disabled python:member.canWriteProperty('portal_skin') and default or 'disabled'"
+                                    tal:attributes="disabled python:member.canWriteProperty('portal_skin') and default or 'disabled'"
                                     >
                             <option value="#"
                                     i18n:translate=""
@@ -486,19 +471,15 @@
                                    name="portrait"
                                    id="portrait"
                                    size="20"
-                                   tabindex=""
-                                   tal:attributes="tabindex tabindex/next;"
                                    />
 
                             <br />
 
                             <input class="noborder"
-                                tabindex=""
                                 type="checkbox"
                                 id="pdelete"
                                 value="Delete Portrait"
                                 name="delete_portrait"
-                                tal:attributes="tabindex tabindex/next;"
                                 />
                             <label for="pdelete" i18n:translate="label_delete_portrait">Delete Portrait</label>
 
@@ -510,24 +491,22 @@
                         
                         <div class="formControls">
                             <input class="context"
-                                   tabindex=""
                                    type="submit"
                                    value="Save"
                                    name="form.button.Save"
                                    i18n:attributes="value label_save;"
-                                   tal:attributes="tabindex tabindex/next;"
                                    />
                             <input class="standalone"
-                                   tabindex=""
                                    type="submit"
                                    value="Cancel"
                                    name="form.button.Cancel"
                                    i18n:attributes="value label_cancel;"
-                                   tal:attributes="tabindex tabindex/next;"
                                    />
                         </div>
 
                         <input type="hidden" name="form.submitted" value="1" />
+
+                        <input tal:replace="structure context/@@authenticator/authenticator" />
 
                     </fieldset>
                     </metal:userdetails>
@@ -535,8 +514,8 @@
             </div>
         </div>
 
-</div>
-
+    </tal:main-macro>
+</metal:main>
 </body>
 </html>
 
