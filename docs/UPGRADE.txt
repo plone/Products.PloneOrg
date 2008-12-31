@@ -207,7 +207,7 @@ Getting warnings about products that were uninstalled in 2003 or thereabouts —
 
 
 
-[ ] This still happens, although less frequently:
+[x] This still happens, although less frequently:
 
 2008-12-30T08:04:45 ERROR PortalTransforms Cannot register transform html_to_web_intelligent_plain_text (ImportError), using BrokenTransform: Error
  No module named intelligenttext.transforms.html_to_web_intelligent_plain_text
@@ -215,6 +215,8 @@ Getting warnings about products that were uninstalled in 2003 or thereabouts —
 Maybe there are objects that are not Poi-related that use intelligenttext that need an update?
 
 I recreated the html-to-intelligent text transform which was missing, so this may be working now. -- davisagli
+
+Haven't seen this in a while, so I assume it is fixed, thanks! [limi]
 
 
 [ ] Some releases have invalid dates, like this zforum object:
@@ -263,7 +265,7 @@ PloneOrg product updates:
 
 [ ] Double check that prefs_user_details fix has indeed been forward-ported to 3.x, and remove if so.
 
-[ ] uninstall-feedback.pt should go to a Google Spreadsheet survey instead, to remove the need for us to send email and letting the content end up in an SF.net mailing list. I'll handle this one. [limi]
+[ ] uninstall-feedback.pt embed a Google Spreadsheet survey instead, to remove the need for us to send email and letting the content end up in an SF.net mailing list. Sent out to some participants for initial feedback. I'll handle this one. [limi]
 
 
 Post-upgrade:
