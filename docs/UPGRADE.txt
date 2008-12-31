@@ -214,7 +214,7 @@ I recreated the html-to-intelligent text transform which was missing, so this ma
 Haven't seen this in a while, so I assume it is fixed, thanks! [limi]
 
 
-[ ] Some releases have invalid dates, like this zforum object:
+[X] Some releases have invalid dates, like this zforum object:
 
  Module None, line 4, in toLocalizedTime
    - <FSPythonScript at /plone.org/toLocalizedTime used for /plone.org/products/zforum/releases/1.1.0.Preview>
@@ -225,7 +225,7 @@ Haven't seen this in a while, so I assume it is fixed, thanks! [limi]
   Module DateTime.DateTime, line 1491, in strftime
 ValueError: year=1000 is before 1900; the datetime strftime() methods require year >= 1900
 
--- Are we sure the correct DateTime library is being used?  This makes me think we shouldn't be having this problem: http://mail.zope.org/pipermail/zope-checkins/2005-May/029381.html -- davisagli
+I fixed by handling the ValueError in the view. This exposes a general problem with the effective method of Archetypes' ExtensibleMetadata which is usually masked because the only common pre-1900 effective date is the FLOOR_DATE, and the exception it generates while indexing is swallowed. --davisagli
 
 
 [ ] Placeful Workflow seems to throw some errors, are we actually using it anywhere on plone.org? Example traceback excerpt:
