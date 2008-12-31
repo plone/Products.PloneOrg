@@ -250,7 +250,7 @@ ValueError: year=1000 is before 1900; the datetime strftime() methods require ye
 
 PloneOrg product updates:
 
-[ ] mail_uninstall.py doesn't work. What is it for? uninstall-feedback.pt? :)
+[x] mail_uninstall.py doesn't work. What is it for? uninstall-feedback.pt? :)
 
 [ ] personalize_form.cpt needs to be updated to 3.x format. When saving your profile, currently it fails like this:
     Module plone.protect.authenticator, line 60, in check
@@ -260,7 +260,7 @@ PloneOrg product updates:
 
 [ ] Double check that prefs_user_details fix has indeed been forward-ported to 3.x, and remove if so.
 
-[ ] uninstall-feedback.pt embed a Google Spreadsheet survey instead, to remove the need for us to send email and letting the content end up in an SF.net mailing list. Sent out to some participants for initial feedback. I'll handle this one. [limi]
+[x] uninstall-feedback.pt embed a Google Spreadsheet survey instead, to remove the need for us to send email and letting the content end up in an SF.net mailing list. Sent out to some participants for initial feedback. I'll handle this one. [limi]
 
 
 Post-upgrade:
