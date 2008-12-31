@@ -163,9 +163,9 @@ This appears to be because the RSS link includes review_state=published, but PSC
 [x] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
 
 [X] No themes for Plone 3.0: http://new.plone.org/products?getCategories=themes&getCompatibility=Plone+3.0&product_search=Update
+    Fixed by reindexing PSCRelease type. [davisagli]
 
-Fixed by reindexing PSCRelease type. [davisagli]
-
+[ ] Adding new downloadable file creates pscfile.99817395, instead of RealFilename.tgz. In general, if you could look at PSCFile and make it more like ATFile that might help. [aclark]
 
 Other/general issues:
 
@@ -243,9 +243,9 @@ I fixed by handling the ValueError in the view. This exposes a general problem w
 
 -- /plone.org/products/tracking/issues/placeful_workflow_configuration works for me, I think this is just a normal permission check failure -- davisagli
 
-[ ] This is probably harmless, but wanted to note it anyway: Whenever I delete an object with comments, I get the log message:
+[X] This is probably harmless, but wanted to note it anyway: Whenever I delete an object with comments, I get the log message:
 2008-12-30T12:52:32 ERROR Zope.ZCatalog uncatalogObject unsuccessfully attempted to uncatalog an object with a uid of /plone.org/news/blah/talkback/1195686147. 
-
+    (this happens in all Plone instances)
 
 
 PloneOrg product updates:
