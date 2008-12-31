@@ -278,3 +278,18 @@ Post-upgrade:
     Unauthorized
 
 [ ] Consider changing the workflow to private/published for Events and News, since spammers have started abusing the Draft state. The same goes for documentation types (there's spamming going on here too)
+
+
+[ ] Implement buildout changes suggested by Clayton Parker, "Just took a look at the prod buildout and noticed a couple things.
+    http://svn.plone.org/svn/plone/Products.PloneOrg/trunk/production.cfg For the
+    extra instances you 
+    should use collective.recipe.zope2cluster to cut down on possible errors and
+    redundant config: http://pypi.python.org/pypi/collective.recipe.zope2cluster
+    Also, in the 
+    zope2instance part the &lt;environment&gt; in the zope-conf-additional is now
+    an option in the recipe. environment-vars = DISBLE_PTS 1 FOO bar There is also
+    a recipe f
+    or creating mount points:
+    http://pypi.python.org/pypi/collective.recipe.filestorage claytron"
+
+
