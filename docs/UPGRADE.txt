@@ -188,7 +188,7 @@ This was due to the support and lists sections not acquiring the Modify portal c
 so the Editor role which you gave Graham wasn't actually associated with that permission there.
 I fixed by turning acquiring back on for this permission.  --davisagli
 
-[ ] We need to do something about sendto_form, MSNbot (among others) is too stupid to not index it, so our pages are spidered twice. Probably customizing the sendto_form to return an HTTP status 404 would be easiest.
+[x] We need to do something about sendto_form, MSNbot (among others) is too stupid to not index it, so our pages are spidered twice. Probably customizing the sendto_form to return an HTTP status 404 would be easiest.
 
 
 [X] These occur during normal operation of the site, but we should look into fixing them. [limi]
