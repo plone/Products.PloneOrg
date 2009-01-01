@@ -167,6 +167,8 @@ This appears to be because the RSS link includes review_state=published, but PSC
 
 [ ] Adding new downloadable file creates pscfile.99817395, instead of RealFilename.tgz. In general, if you could look at PSCFile and make it more like ATFile that might help. [aclark]
 
+[ ] calendaring 0.4's package doesn't exist in the dist.plone.org directory, the file still exists in PSC but isn't navigable due to the rewrite rule [MatthewWilkes]
+
 Other/general issues:
 
 [X] Sharing seems to be broken. 
@@ -264,6 +266,7 @@ PloneOrg product updates:
 
 [X] uninstall-feedback.pt embed a Google Spreadsheet survey instead, to remove the need for us to send email and letting the content end up in an SF.net mailing list. Sent out to some participants for initial feedback. I'll handle this one. [limi]
 
+[ ] Poi issue responses are no longer archetypes objects, need to run the upgrade steps from migrate-poi.html [MatthewWilkes]
 
 Post-upgrade:
 
