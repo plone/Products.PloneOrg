@@ -14,14 +14,14 @@ for SOURCE in SOURCES:
         file, ext = '', ''
         for file in files:
             ext = os.path.splitext(file)[-1]
-        path = join(root, file)
-        if ext not in ('.egg', '.zip', '.gz', '.tgz'):
-            continue
-        target = join(TARGET, file)
-        if os.path.exists(target):
-            continue   
-        print 'Copying %s to %s' % (path, target)
-        shutil.copy2(path, target)
+            path = join(root, file)
+            if ext not in ('.egg', '.zip', '.gz', '.tgz'):
+                continue
+            target = join(TARGET, file)
+            if os.path.exists(target):
+                continue   
+            print 'Copying %s to %s' % (path, target)
+            shutil.copy2(path, target)
    
 print 'Done. make sure you fix the rights in %s' % TARGET
 

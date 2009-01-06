@@ -4,5 +4,5 @@ BUILDOUT=/srv/plone.org/p3
 DEST=$BUILDOUT/../backups
 
 cd $BUILDOUT
-bin/repozo -v -B -f var/filestorage/Data.fs -r $DEST
-bin/repozo -v -B -f var/filestorage/CatalogData.fs -r $DEST/catalog
+bin/repozo -F -v -B -f var/filestorage/Data.fs -r $DEST
+bin/repozo -F -v -B -f var/filestorage/CatalogData.fs -r $DEST/catalog
