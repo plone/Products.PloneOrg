@@ -13,6 +13,6 @@ utool = portal.portal_url
 brains = portal.portal_catalog.searchResults(portal_type='PSCRelease', path='/plone.org/products')
 for brain in brains:
     obj = brain.getObject()
-    path = '/' + '/'.join(urltool.getRelativeContentPath(obj))
+    path = '/' + '/'.join(utool.getRelativeContentPath(obj))
     print 'Reindexing %s' % path
     obj.reindexObject(['getCategories', 'getClassifiers', 'getCompatibility'])
