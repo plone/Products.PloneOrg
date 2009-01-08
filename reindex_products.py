@@ -5,8 +5,7 @@ from Products.CMFCore.utils import getToolByName
 from Testing.makerequest import makerequest
 
 app=makerequest(app)
-user = AccessControl.SpecialUsers.system
-newSecurityManager(None, user)
+newSecurityManager(None, system)
 
 portal = app['plone.org']
 
