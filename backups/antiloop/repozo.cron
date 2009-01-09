@@ -25,7 +25,7 @@ def backup_full(s,d):
 
 if __name__ == '__main__':
     if len(sys.argv) > 1:
-        if not sys.argv[1] == '-f':
-            backup(source, dest)
-        else:
+        if sys.argv[1] == '-F':
             backup_full(source, dest)
+    else:
+        backup(source, dest)
