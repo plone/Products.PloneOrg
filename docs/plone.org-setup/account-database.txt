@@ -1,0 +1,89 @@
+LDAP Database
+
+OpenLDAP
+
+OpenLDAP is used as LDAP server. Its configuration is fairly standard: only two
+changes were made:
+
+* the daemon binds only to localhost to prevent external access 
+
+* presence, equality and substring indices were added for the cn and uid properties to speed
+op searching. 
+
+Schema
+
+Since no special user properties are used only standard object classes are
+needed. For users we use the structural class pilotPerson with the supplemental
+uidObject class added (to get the uid attribute). For groups the
+groupOfUniqueNames is used. Group members are stored using uniqueMember
+attributes with a full DN. pilotPerson requires the sn property which is not
+used in Plone; in order to support that it is set with a bogus value.
+
+
+
+Using the LDAP database
+
+Apache
+
+Apache 2 includes the mod_auth_ldap module which allows us to authenticate
+directly against the LDAP directory. The Apache configuration for this looks
+like this:
+
+AuthLDAPEnabled       On
+AuthLDAPAuthoritative On
+AuthName              "plone.org tracker"
+AuthType              Basic
+require               valid-user
+AuthLDAPUrl           ldap://localhost:389/ou=People,dc=plone,dc=org
+
+This example (from the site configuration for dev.plone.org) allows all existing
+users access.
+
+Trac
+
+Trac needs has different links to the account database: it uses the Apache
+built-in authentication to authenticate users. But since the Apache security
+model does not have a concept of groups (all apache auth plugins have to
+implement that themselves) trac can not get group membership information from
+Apache. To get this the trac LdapPlugin is used. It was patched to support full
+DNs for group members (patch 88, has been integrated in release 0.2.2) and to
+support groups and users in different parts of the LDAP hierarchy (patch 75).
+The LDAP configuration in trac.ini looks like this:
+
+[components]
+ldapplugin.* = enabled
+
+[ldap]
+enable = true
+basedn = dc=plone,dc=org
+uidattr = uid
+group_basedn = ou=Groups,dc=plone,dc=org
+groupmember = uniqueMember
+groupname = groupOfUniqueNames
+host = localhost
+user_basedn = ou=People,dc=plone,dc=org
+groupattr = cn
+Zope / plone
+
+All Zope-based websites (such as plone.org and plone.net) use PlonePAS for all
+authentication purposes. To connect this to LDAP the LDAPMultiPlugins is used.
+Since LDAPMultiPlugins missed a few required features it was modified by Rocky
+Burt and Wichert Akkerman to support using LDAP groups as normal groups,
+creating accounts and be able to write to member properties. The latest version
+of these changes can be found in this patch.
+
+The LDAP schema mapping used is:
+
+LDAP attribute name
+Friendly Name	Mapped to Name	Multi-valued
+mail 	Email address 	email 	no 
+cn 	Full name 	fullname 	no 
+sn 	Last Name 	 	no 
+uid	uid 	 	no 
+
+
+The uid attribute is configured as login name, user id and RDN attribute.
+
+The PAS configuration is fairly standard: the modified LDAPMultiPlugins is
+configured for all its supported interfaces. It has to be configured as the only
+user adder plugin in order to prevent users from being created in the ZODB.

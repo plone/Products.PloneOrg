@@ -1,0 +1,83 @@
+Lies, damned lies and statistics is the popular saying. However we use
+statistics on services to determine truth about their performance and usage
+patterns.
+
+Performance
+
+Performance statisctics are gathered using MRTG.
+
+Machine statistics
+
+Information on the server itself is gathered using the standard mrtg utilities
+and mrtg-ip-acct, mrtg-load. Contrary to most standard mrtg setups our graphs
+are configured to grow from left to right using the growright option and
+bandwidth data is given in bits per second instead of bytes, giving a better
+indication of bandwith usage.
+
+Apache statistics
+
+Performance information for apache is gathered using the standard mrtg-apache
+utility. This requires Apache to be configured to provided extended status
+information for itself. Since this is not publicly useful information access to
+the server status is only allowed from the server itself.
+
+Squid statistics
+
+Squid offers SNMP access to its performance data. This can be enabled via
+squid.conf and access controlled via standard acl statements. For our setup we
+use:
+
+  acl snmppublic snmp_community public
+  snmp_port 3401
+  snmp_access allow snmppublic localhost
+  
+An example of how to configure MRTG for this can be found at Chris' MRTG resource.
+
+Website visits
+
+Information on website usage is generated with awstats. All general settings are
+set in the standard awstats.conf file. For each virtual host for which we want
+to generate statistics a new file named awstats.<hostname>.conf is created with
+the host-specific information and which includes the global configuration. An
+example file is:
+
+  Include "/etc/awstats/awstats.conf"
+  
+  LogFile="/var/log/apache2/paste.plone.org/access.log"
+  SiteDomain="paste.plone.org"
+  
+A crontab runs every 10 minutes to update the statistics. This is done using a
+simple script which looks for all configuration files and processes them:
+
+  #!/bin/sh
+  
+  umask 0022
+  
+  for cfg in /etc/awstats/awstats.*.conf ; do
+          site=$(echo $cfg | sed -e 's/.*awstats\.\(.*\)\.conf$/\1/')
+          /usr/lib/cgi-bin/awstats.pl -config=$site -update >/dev/null
+  done
+  
+Viewing the statistics is done through the awstats CGI utility. Since this
+utility uses a slightly non-userfriendly URL we use an apache rewrite rule to
+make things a bit simpler:
+
+  Alias           /awstats-icon/  /usr/share/awstats/icon/
+  RewriteEngine   On
+  RewriteRule     ^/awstats/(.*)  /cgi-bin/awstats.pl?config=$1 [R]
+  
+This turns the easy to remember /awstats/paste.plone.org into
+/cgi-bin/awstats.pl?config=paste.plone.org .
+
+
+Squid traffic
+
+The standard logging options from squid do not provide enough information to
+generate full awstat reports. Luckily there is a customlog patch available which
+makes it possible to produce standard common logfile format output from squid:
+
+  logformat combined %>a %ui %un [%{%d/%b/%Y:%H:%M:%S +0000}tl] "%rm %ru HTTP/%rv" %Hs %<st "%{Referer}>h" "%{User-Agent}>h" %Ss:%Sh
+  access_log /var/log/squid/combined.log combined
+  cache_access_log /var/log/squid/access.log
+  
+This output can be processed normally by awstats.

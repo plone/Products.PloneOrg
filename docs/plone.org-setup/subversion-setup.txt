@@ -1,0 +1,36 @@
+Plone uses subversion to manage its source code repositories.
+
+Access 
+The repositories are accessible via both HTTP and HTTPS. HTTP only allows for
+read-only access, while HTTPS supports both read-only and commit access.
+Read-only access to all repositories is open for everyone. For each repository a
+seperate group is used to limit commit access; only members of this group are
+able to commit. To implement this this Apache configuration snippets like these
+are used:
+
+<Location /svn/archetypes>
+    <LimitExcept GET PROPFIND OPTIONS REPORT>
+        Require group cn=ArchetypesCommitters,ou=Groups,dc=plone,dc=org
+    </LimitExcept>
+</Location>
+
+Accounts and groups are controlled via a standard Apache configuration using the
+LDAP database. For more information on the LDAP system please see the account
+database information.
+
+Repository browsing
+
+Besides access via subversion tools there are three way for users to browse
+through the repositories using a web browser:
+
+* directly browsing the raw repository
+* Using the trac interface
+
+Hooks
+
+Some repositories use hooks to perform special actions after a commit. The
+common hooks are:
+
+* CIA notification
+* trac hook to update issues using commit messages (standard trac script)
+* mail script to post commited changes to a list (standard mailer script from SVN)
