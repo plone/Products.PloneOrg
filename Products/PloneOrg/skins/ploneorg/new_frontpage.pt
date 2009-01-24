@@ -1,0 +1,199 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master">
+      
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Front page</title>
+</head>
+<body>
+<metal:main fill-slot="main">
+
+	<div id="logo-wrapper">
+	    <a href="."><img alt="Plone" id="logo" height="56" width="216" src="../images/plone-logo-56.png" /></a>
+	</div>
+
+	<div class="grid-row">
+		<div class="grid-cell width-three-quarters position-leftmost">
+			<div class="splash" id="splash-frontpage">
+				<h1>What is Plone?</h1>
+
+				<h2>A Powerful, Productive &amp; Collaborative Content Management Solution</h2>
+
+				<p>Lorem ipsum…</p>
+
+				<p><a href="/for">Explore the possibilities</a></p>
+			</div>
+		</div>
+
+		<div class="grid-cell width-quarter position-three-quarters">
+			<div class="sidebar">
+				<h1>What can Plone do for you?</h1>	  
+
+				<ul>
+					<li><a href="/for/smb"       >Small/Medium Business</a></li>
+					<li><a href="enterprise.html">Enterprise</a></li>
+					<li><a href="/for/nonprofits">Non-profits</a></li>
+					<li><a href="/for/government">Government</a></li>
+					<li><a href="/for/education" >Education</a></li>
+					<li><a href="/for/science"   >Science</a></li>
+					<li><a href="/for/media"     >Media &amp; Publishing</a></li>
+					<!-- <li><a href="/for/science"   >Developers</a></li> -->
+				</ul>
+			</div>
+		</div>
+
+	</div> <!-- End row -->
+
+	<div class="grid-row">
+		<div class="grid-cell width-quarter position-leftmost">
+			<div id="current" class="box">
+				<h1>Plone by Numbers</h1>
+				<ul>
+					<li class="spotlight">
+						Plone is one of the <strong>top 2%</strong> open source projects
+						in the world,
+						with over <strong>200 core developers</strong> and more than
+						<strong>250 solution providers</strong> 
+						in more than <strong>50 countries</strong>.
+						The project has existed <strong>since 1999</strong>,
+						is translated to more than <strong>40 languages</strong>,
+						and has the <strong>best security</strong> track record
+						of any major CMS. 
+						It is owned by the Plone Foundation, a 
+						<strong>501(c)(3) not-for-profit</strong> organization.
+						<div class="sources" style="font-size: 11px">
+						Sources: 
+						<a href="http://cve.mitre.org/" style="display: inline" title="Common Vulnerabilities and Exposures (CVE)"
+						>CVE</a> and
+							<a href="http://www.ohloh.net/" style="display: inline" title="Ohloh, the open source network"
+							>Ohloh</a>.
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+
+		<div class="grid-cell width-quarter position-quarter">
+			<div id="news" class="box">
+				<h1>News</h1>
+				<ul>
+					<li>
+						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Jul 9, 2008</span></a>
+					</li>
+					<li class="even">
+						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Jul 9, 2008</span></a>
+					</li>
+					<li>
+						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Jul 9, 2008</span></a>
+					</li>
+					<li class="even">
+						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Jul 9, 2008</span></a>
+					</li>
+					<li>
+						More news… Submit news item
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="grid-cell width-quarter position-half">
+			<div id="events" class="box">
+				<h1>Upcoming Events</h1>
+				<ul>
+					<li>
+						<a href="">Plone at LinuxWorld SF <span class="date">Moscone Center, San Francisco, CA, <br />Aug 5-7, 2008</span></a>
+					</li>
+					<li class="even">
+						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Freiburg im Breisgau, Germany, <br />Aug 25-27, 2008</span></a>
+					</li>
+					<li>
+						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Freiburg im Breisgau, Germany, <br />Aug 25-27, 2008</span></a>
+					</li>
+					<li class="even">
+						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Freiburg im Breisgau, Germany, <br />Aug 25-27, 2008</span></a>
+					</li>
+					<li>
+						More Events… Add new event
+					</li>
+				</ul>
+			</div>
+		</div> <!-- End cell -->
+		
+
+
+		<div class="grid-cell width-quarter position-three-quarters">
+			<div id="accordion">
+				<h2>Get Plone</h2>
+				<div>
+					<img id="plone-boxed" src="../images/plone-boxed.png" height="123" width="74" alt="" />
+					<a id="download-link" href="/download">DOWNLOAD NOW<br />Plone 3.1.5 · Aug ’08</a>
+					<dl>
+						<dt><a href="">What’s new in Plone 3</a></dt>
+						<dd>An overview of the new features.</dd>
+
+						<dt><a href="">Roadmap</a></dt>
+						<dd>What are our plans for the future?</dd>
+
+						<dt><a href="">Older releases</a></dt>
+						<dd>Looking for a previous release? </dd>
+
+						<dt><a href="">Add-on Products</a></dt>
+						<dd>Adapt Plone to your needs.</dd>
+					</dl>
+				</div>	
+
+				<h2>Learn Plone</h2>
+				<div>
+					<dl>
+						<dt><a href="/documentation">Documentation</a></dt>
+						<dd>Plone has a great collection of online documentation.</dd>
+
+						<dt><a href="/documentation/books">Buy Books</a></dt>
+						<dd>For those of you who think better in bed with a book.</dd>
+
+						<dt><a href="/support">Forums &amp; Chat Rooms</a></dt>
+						<dd>People are always ready to help you with your Plone questions.</dd>
+
+						<dt><a href="/events/training">Find Plone Training</a></dt>
+						<dd>Let one of the Plone experts guide you through getting productive.</dd>
+
+						<dt><a class="link-plain" href="http://plone.net">Commercial Support</a></dt>
+						<dd>Over 250 companies around the world offer Plone services.</dd>
+					</dl>
+				</div>
+
+				<h2>Get Involved</h2>
+				<div>
+					<dl>
+						<dt><a href="http://dev.plone.org/plone">Suggest New Features</a></dt>
+						<dd>Have an awesome idea about a new feature for Plone? Suggest it here!</dd>
+
+						<dt><a href="http://dev.plone.org/plone">Report Bugs</a></dt>
+						<dd>Plone has no bugs. If you found one anyway, report it here.</dd>
+
+						<dt><a href="/development/code">Write Code</a></dt>
+						<dd>If you’re proficient in Python, XHTML, CSS or Javascript, we want your help!</dd>
+
+						<dt><a href="/about/contributing">Translate, Write Docs, Help Test</a></dt>
+						<dd>Even if you’re not a programmer, there are lots of things you can help with to make Plone better.</dd>
+
+						<dt><a href="http://planet.plone.org">Read Blogs, Publish Yours</a></dt>
+						<dd>Stay up to date on the cutting edge of Plone development.</dd>
+
+						<dt><a href="/foundation">Support the Plone Foundation</a></dt>
+						<dd>If all else fails, give cold, hard cash.</dd>
+					</dl>
+				</div>
+
+			</div> <!-- End accordion -->
+		</div> <!-- End cell -->
+	</div> <!-- End row -->
+
+  <div style="clear:both"></div>
+
+
+</metal:main>
+</body>
+</html>
