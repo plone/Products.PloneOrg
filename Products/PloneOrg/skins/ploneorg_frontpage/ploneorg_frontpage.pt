@@ -288,7 +288,12 @@ Plone CMS, a user-friendly and powerful open source Content Management System
 
     <dl class="summaryColumn">
         <dt>Get Plone</dt>
-        <dd><span class="discreet">Latest release: Plone 3.1.7 (November 2008)</span></dd>
+        <dd>
+            <span class="discreet">
+                Latest release: 
+                <span tal:content="python: here.products.getFeaturedProjectRelease().getId()">[Plone 3.1.7]</span>
+            </span>
+        </dd>
         <dd><a href="/products/plone">Download Plone</a></dd>
         <dd><a href="/products/plone/features/3.0">What's New in Plone 3?</a></dd>
         <dd><a href="/products/plone/roadmap">Roadmap</a></dd>
