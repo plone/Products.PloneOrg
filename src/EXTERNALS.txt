@@ -1,6 +1,7 @@
 Products.FoundationMember https://svn.plone.org/svn/plone/Products.FoundationMember/trunk/
 Products.PloneSoftwareCenter https://svn.plone.org/svn/collective/Products.PloneSoftwareCenter/trunk/
 Products.PloneHelpCenter https://svn.plone.org/svn/collective/Products.PloneHelpCenter/branches/1.6/
+Products.Poi https://svn.plone.org/svn/collective/Products.Poi/trunk
 collective.psc.blobstorage https://svn.plone.org/svn/collective/collective.psc.blobstorage/trunk
 collective.psc.externalstorage https://svn.plone.org/svn/collective/collective.psc.externalstorage/trunk
 collective.psc.mirroring https://svn.plone.org/svn/collective/collective.psc.mirroring/trunk
