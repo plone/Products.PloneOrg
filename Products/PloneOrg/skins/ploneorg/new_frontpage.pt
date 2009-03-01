@@ -24,7 +24,7 @@
 		events python:[brain for brain in events if 'Training' not in brain.Subject][:4];">
 
 	<div id="logo-wrapper">
-	    <a href="/"><img alt="Plone" id="logo" height="56" width="216" src="/images/plone-logo-56.png" /></a>
+	    <a href="/"><img alt="Plone" id="logo" height="56" width="215" src="/images/plone-logo-56.png" /></a>
 	</div>
 
 	<div class="grid-row">
@@ -152,7 +152,7 @@
 						<dd>Our plans for the future.</dd>
 
 						<dt><a href="/products/plone/releases">Older releases</a></dt>
-						<dd>Looking for a previous version? </dd>
+						<dd>Looking for a previous version?</dd>
 
 						<dt><a href="/products">Add-on Products</a></dt>
 						<dd>Adapt Plone to your needs.</dd>
