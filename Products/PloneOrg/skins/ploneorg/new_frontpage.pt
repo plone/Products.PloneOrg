@@ -5,12 +5,26 @@
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 	<title>Front page</title>
+
+	<metal:js fill-slot="javascript_head_slot">
+		<script src="jquery-ui-accordion.js" type="text/javascript"></script>
+	</metal:js>
+
 </head>
 <body>
-<metal:main fill-slot="main">
+<metal:main fill-slot="main"
+	tal:define="
+	  news python:context.portal_catalog.searchResults(portal_type='News Item', sort_on='Date', sort_order='reverse', review_state='published')[:4];
+		events python:context.portal_catalog.searchResults(
+			portal_type='Event',
+			end={'query': here.ZopeTime(),
+				'range': 'min'},
+			sort_on='start',
+			review_state='published');
+		events python:[brain for brain in events if 'Training' not in brain.Subject][:4];">
 
 	<div id="logo-wrapper">
-	    <a href="."><img alt="Plone" id="logo" height="56" width="216" src="../images/plone-logo-56.png" /></a>
+	    <a href="/"><img alt="Plone" id="logo" height="56" width="216" src="/images/plone-logo-56.png" /></a>
 	</div>
 
 	<div class="grid-row">
@@ -48,7 +62,7 @@
 	<div class="grid-row">
 		<div class="grid-cell width-quarter position-leftmost">
 			<div id="current" class="box">
-				<h1>Plone by Numbers</h1>
+				<h1>Plone in Numbers</h1>
 				<ul>
 					<li class="spotlight">
 						Plone is one of the <strong>top 2%</strong> open source projects
@@ -79,20 +93,19 @@
 			<div id="news" class="box">
 				<h1>News</h1>
 				<ul>
+					<tal:newsitem tal:repeat="newsitem news">
 					<li>
-						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Jul 9, 2008</span></a>
+						<a href=""
+							tal:attributes="href newsitem/getURL; title newsitem/Description"
+							><span tal:replace="newsitem/Title">Updated: Preliminary sessions for Plone Conference 2008 announced!</span>
+							<span class="date"
+								tal:content="python:here.toLocalizedTime(newsitem.Date)">Jul 9, 2008</span></a>
 					</li>
-					<li class="even">
-						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Jul 9, 2008</span></a>
-					</li>
+					</tal:newsitem>
+					
 					<li>
-						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Jul 9, 2008</span></a>
-					</li>
-					<li class="even">
-						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Jul 9, 2008</span></a>
-					</li>
-					<li>
-						More news… Submit news item
+						<a href="/news">More news&hellip;</a>
+						<a href="/news/createObject?type_name=News%20Item">Add news&hellip;</a>
 					</li>
 				</ul>
 			</div>
@@ -102,44 +115,46 @@
 			<div id="events" class="box">
 				<h1>Upcoming Events</h1>
 				<ul>
-					<li>
-						<a href="">Plone at LinuxWorld SF <span class="date">Moscone Center, San Francisco, CA, <br />Aug 5-7, 2008</span></a>
-					</li>
+					<tal:event tal:repeat="event events">
 					<li class="even">
-						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Freiburg im Breisgau, Germany, <br />Aug 25-27, 2008</span></a>
+						<a href=""
+							tal:attributes="href event/getURL; title event/Description">
+							<span tal:replace="event/Title">Event title</span>
+							<span class="date" tal:content="event/location">Location</span>, <br />
+							<tal:date replace="python:here.toLocalizedTime(event.start)">
+							May 5
+							</tal:date></a>
 					</li>
+					</tal:event>
 					<li>
-						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Freiburg im Breisgau, Germany, <br />Aug 25-27, 2008</span></a>
-					</li>
-					<li class="even">
-						<a href="">Updated: Preliminary sessions for Plone Conference 2008 announced!<span class="date">Freiburg im Breisgau, Germany, <br />Aug 25-27, 2008</span></a>
-					</li>
-					<li>
-						More Events… Add new event
+						<a href="/news">Upcoming events&hellip;</a>
+						<a href="/events/community/createObject?type_name=Event">Add event&hellip;</a>
 					</li>
 				</ul>
 			</div>
 		</div> <!-- End cell -->
-		
-
 
 		<div class="grid-cell width-quarter position-three-quarters">
 			<div id="accordion">
 				<h2>Get Plone</h2>
 				<div>
 					<img id="plone-boxed" src="../images/plone-boxed.png" height="123" width="74" alt="" />
-					<a id="download-link" href="/download">DOWNLOAD NOW<br />Plone 3.1.5 · Aug ’08</a>
+					<a id="download-link" href="/download">DOWNLOAD NOW<br />
+						Plone 
+						<span tal:content="python: here.products.getFeaturedProjectRelease().getId()">3.2.0</span>
+						&middot; 
+						<span tal:content="python: here.products.getFeaturedProjectRelease().effective_date.strftime('%h ' + u'\u2019' + '%y')">Feb 2009</span></a>
 					<dl>
-						<dt><a href="">What’s new in Plone 3</a></dt>
+						<dt><a href="/products/plone/features/3.0">What’s new in Plone 3</a></dt>
 						<dd>An overview of the new features.</dd>
 
-						<dt><a href="">Roadmap</a></dt>
-						<dd>What are our plans for the future?</dd>
+						<dt><a href="/roadmap">Roadmap</a></dt>
+						<dd>Our plans for the future.</dd>
 
-						<dt><a href="">Older releases</a></dt>
-						<dd>Looking for a previous release? </dd>
+						<dt><a href="/products/plone/releases">Older releases</a></dt>
+						<dd>Looking for a previous version? </dd>
 
-						<dt><a href="">Add-on Products</a></dt>
+						<dt><a href="/products">Add-on Products</a></dt>
 						<dd>Adapt Plone to your needs.</dd>
 					</dl>
 				</div>	
@@ -159,7 +174,7 @@
 						<dt><a href="/events/training">Find Plone Training</a></dt>
 						<dd>Let one of the Plone experts guide you through getting productive.</dd>
 
-						<dt><a class="link-plain" href="http://plone.net">Commercial Support</a></dt>
+						<dt><a href="http://plone.net">Commercial Support</a></dt>
 						<dd>Over 250 companies around the world offer Plone services.</dd>
 					</dl>
 				</div>
@@ -173,10 +188,10 @@
 						<dt><a href="http://dev.plone.org/plone">Report Bugs</a></dt>
 						<dd>Plone has no bugs. If you found one anyway, report it here.</dd>
 
-						<dt><a href="/development/code">Write Code</a></dt>
+						<dt><a href="http://dev.plone.org/plone">Write Code</a></dt>
 						<dd>If you’re proficient in Python, XHTML, CSS or Javascript, we want your help!</dd>
 
-						<dt><a href="/about/contributing">Translate, Write Docs, Help Test</a></dt>
+						<dt><a href="http://dev.plone.org/plone">Translate, Write Docs, Help Test</a></dt>
 						<dd>Even if you’re not a programmer, there are lots of things you can help with to make Plone better.</dd>
 
 						<dt><a href="http://planet.plone.org">Read Blogs, Publish Yours</a></dt>
