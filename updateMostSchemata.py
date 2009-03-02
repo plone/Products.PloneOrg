@@ -44,8 +44,8 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
             if ident not in update_types:
                 continue            
             meta_type = t['meta_type']
-            if meta_type == "PSCFile":
-                continue
+#            if meta_type == "PSCFile":
+#                continue
             if remove_instance_schemas:
                 print "I'll remove the schema too"
                 func_update_changed = self._removeSchemaAndUpdateChangedObject
@@ -69,6 +69,6 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
     print >> out, 'Done.'
     return out.getvalue()
 
-print manage_updateSchema(attool, REQUEST=app.REQUEST, remove_instance_schemas=True)
+print manage_updateSchema(attool, REQUEST=app.REQUEST, remove_instance_schemas=False)
 transaction.commit()
 
