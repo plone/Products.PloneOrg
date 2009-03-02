@@ -7,7 +7,16 @@
 	<title>Front page</title>
 
 	<metal:js fill-slot="javascript_head_slot">
-		<script src="jquery-ui-accordion.js" type="text/javascript"></script>
+		<script src="/jquery-ui-accordion.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		(function($) {
+			$(document).ready(function(){
+				$("#accordion").accordion({header:'h2', selectedClass:'selected'});
+			});
+		})(jQuery)
+	</script>
+
 	</metal:js>
 
 </head>
