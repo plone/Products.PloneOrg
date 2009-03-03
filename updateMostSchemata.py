@@ -46,29 +46,33 @@ def manage_updateSchema(self, REQUEST=None, update_all=None,
             meta_type = t['meta_type']
 #            if meta_type == "PSCFile":
 #                continue
-            if remove_instance_schemas:
-                print "I'll remove the schema too"
-                func_update_changed = self._removeSchemaAndUpdateChangedObject
-                func_update_all = self._removeSchemaAndUpdateObject
+            if meta_type == "PSCProject":
+                if remove_instance_schemas:
+                    print "I'll remove the schema too"
+                    func_update_changed = self._removeSchemaAndUpdateChangedObject
+                    func_update_all = self._removeSchemaAndUpdateObject
+                else:
+                    func_update_changed = self._updateChangedObject
+                    func_update_all = self._updateObject
+                if update_all:
+                    catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_type,),
+                        search_sub=True, apply_func=func_update_all)
+                else:
+                    print "Updating %s" % t
+                    catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_type,),
+                        search_sub=True, apply_func=func_update_changed)
+                print "Updating signature of %s" % (t['meta_type'])
+                print "Signature %s is changing to %s" % (`self._types[ident]`, `t['signature']`)
+                self._types[ident] = t['signature']
+                self._p_changed = True
+                transaction.commit()
+
             else:
-                func_update_changed = self._updateChangedObject
-                func_update_all = self._updateObject
-            if update_all:
-                catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_type,),
-                    search_sub=True, apply_func=func_update_all)
-            else:
-                print "Updating %s" % t
-                catalog.ZopeFindAndApply(portal, obj_metatypes=(meta_type,),
-                    search_sub=True, apply_func=func_update_changed)
-            print "Updating signature of %s" % (t['meta_type'])
-            print "Signature %s is changing to %s" % (`self._types[ident]`, `t['signature']`)
-            self._types[ident] = t['signature']
-            self._p_changed = True
-            transaction.commit()
+                print "Doing nothing with %s" % meta_type
 
     print >> out, 'Done.'
     return out.getvalue()
 
-print manage_updateSchema(attool, REQUEST=app.REQUEST, remove_instance_schemas=False)
+print manage_updateSchema(attool, REQUEST=app.REQUEST, remove_instance_schemas=True)
 transaction.commit()
 
