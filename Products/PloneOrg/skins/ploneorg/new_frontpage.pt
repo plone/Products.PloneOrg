@@ -23,7 +23,7 @@
 <body>
 <metal:main fill-slot="main"
 	tal:define="
-	  news python:context.portal_catalog.searchResults(portal_type='News Item', sort_on='Date', sort_order='reverse', review_state='published')[:4];
+		news python:context.portal_catalog.searchResults(portal_type='News Item', sort_on='Date', sort_order='reverse', review_state='published')[:4];
 		events python:context.portal_catalog.searchResults(
 			portal_type='Event',
 			end={'query': here.ZopeTime(),
@@ -33,7 +33,7 @@
 		events python:[brain for brain in events if 'Training' not in brain.Subject][:4];">
 
 	<div id="logo-wrapper">
-	    <a href="/"><img alt="Plone" id="logo" height="56" width="215" src="/images/plone-logo-56.png" /></a>
+	    <a href="/" id="logo"></a>
 	</div>
 
 	<div class="grid-row">
@@ -45,13 +45,13 @@
 
 				<p>Lorem ipsum…</p>
 
-				<p><a href="/for">Explore the possibilities</a></p>
+				<p><a href="/for">Explore the possibilities &#9656; &#9654; &#9655;</a></p>
 			</div>
 		</div>
 
 		<div class="grid-cell width-quarter position-three-quarters">
-			<div class="sidebar">
-				<h1>What can Plone do for you?</h1>	  
+			<div class="sidebar" id="sidebar-frontpage">
+				<h3>What can Plone do for you?</h3>
 
 				<ul>
 					<li><a href="/for/smb"       >Small/Medium Business</a></li>
@@ -74,8 +74,8 @@
 				<h1>Plone in Numbers</h1>
 				<ul>
 					<li class="spotlight">
-						Plone is one of the <strong>top 2%</strong> open source projects
-						in the world,
+						Plone is among the <strong>top 2%</strong> of all open source 
+						projects worldwide,
 						with over <strong>200 core developers</strong> and more than
 						<strong>250 solution providers</strong> 
 						in more than <strong>50 countries</strong>.
@@ -147,7 +147,6 @@
 			<div id="accordion">
 				<h2>Get Plone</h2>
 				<div>
-					<img id="plone-boxed" src="../images/plone-boxed.png" height="123" width="74" alt="" />
 					<a id="download-link" href="/download">DOWNLOAD NOW<br />
 						Plone 
 						<span tal:content="python: here.products.getFeaturedProjectRelease().getId()">3.2.0</span>
