@@ -85,7 +85,7 @@
 						of any major CMS. 
 						It is owned by the Plone Foundation, a 
 						<strong>501(c)(3) not-for-profit</strong> organization.
-						<div class="sources" style="font-size: 11px">
+						<div class="sources">
 						Sources: 
 						<a href="http://cve.mitre.org/" style="display: inline" title="Common Vulnerabilities and Exposures (CVE)"
 						>CVE</a> and
@@ -103,18 +103,19 @@
 				<h1>News</h1>
 				<ul>
 					<tal:newsitem tal:repeat="newsitem news">
-					<li>
+					<li class="link-tile">
 						<a href=""
 							tal:attributes="href newsitem/getURL; title newsitem/Description"
-							><span tal:replace="newsitem/Title">Updated: Preliminary sessions for Plone Conference 2008 announced!</span>
-							<span class="date"
-								tal:content="python:here.toLocalizedTime(newsitem.Date)">Jul 9, 2008</span></a>
+							tal:content="newsitem/Title">News item title</a>
+							<span class="info"
+								tal:content="python:here.toLocalizedTime(newsitem.Date)">Jul 9, 2008</span>
 					</li>
 					</tal:newsitem>
 					
 					<li>
-						<a href="/news">More news&hellip;</a>
-						<a href="/news/createObject?type_name=News%20Item">Add news&hellip;</a>
+						<a class="add"
+							href="/news/createObject?type_name=News%20Item">Add news&hellip;</a>
+						<a href="/news/">More news&hellip;</a>
 					</li>
 				</ul>
 			</div>
@@ -125,19 +126,22 @@
 				<h1>Upcoming Events</h1>
 				<ul>
 					<tal:event tal:repeat="event events">
-					<li class="even">
+					<li class="link-tile">
 						<a href=""
-							tal:attributes="href event/getURL; title event/Description">
-							<span tal:replace="event/Title">Event title</span>
-							<span class="date" tal:content="event/location">Location</span>, <br />
-							<tal:date replace="python:here.toLocalizedTime(event.start)">
-							May 5
-							</tal:date></a>
+							tal:attributes="href event/getURL; title event/Description"
+							tal:content="event/Title">Event title</a>
+							<span class="info">
+								<span tal:replace="event/location">Location</span><br />
+								<span tal:replace="python:here.toLocalizedTime(event.start)">
+									May 5
+								</span>
+							</span>
 					</li>
 					</tal:event>
 					<li>
-						<a href="/news">Upcoming events&hellip;</a>
-						<a href="/events/community/createObject?type_name=Event">Add event&hellip;</a>
+						<a class="add"
+							href="/events/community/createObject?type_name=Event">Add event&hellip;</a>
+						<a href="/events/community/">Upcoming&hellip;</a>
 					</li>
 				</ul>
 			</div>
@@ -191,16 +195,16 @@
 				<div>
 					<dl>
 						<dt><a href="http://dev.plone.org/plone">Suggest New Features</a></dt>
-						<dd>Have an awesome idea about a new feature for Plone? Suggest it here!</dd>
+						<dd>Have an awesome idea about a new feature for Plone?</dd>
 
 						<dt><a href="http://dev.plone.org/plone">Report Bugs</a></dt>
 						<dd>Plone has no bugs. If you found one anyway, report it here.</dd>
 
 						<dt><a href="http://dev.plone.org/plone">Write Code</a></dt>
-						<dd>If you’re proficient in Python, XHTML, CSS or Javascript, we want your help!</dd>
+						<dd>If you’re proficient in Python, HTML, CSS or JS, join us!</dd>
 
 						<dt><a href="http://dev.plone.org/plone">Translate, Write Docs, Help Test</a></dt>
-						<dd>Even if you’re not a programmer, there are lots of things you can help with to make Plone better.</dd>
+						<dd>There are lots of things you can do to make Plone better.</dd>
 
 						<dt><a href="http://planet.plone.org">Read Blogs, Publish Yours</a></dt>
 						<dd>Stay up to date on the cutting edge of Plone development.</dd>
