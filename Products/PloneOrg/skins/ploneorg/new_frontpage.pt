@@ -41,16 +41,26 @@
 			<div class="splash" id="splash-frontpage">
 				<h1>What is Plone?</h1>
 
-				<h2>A Powerful, Productive &amp; Collaborative Content Management Solution</h2>
+				<h2>A powerful, flexible Content Management<br />
+					solution that is easy to install, use and extend</h2>
 
-				<p>Lorem ipsum…</p>
+				<p>Plone lets non-technical people create and maintain information using <br/>only a web browser. Perfect for web sites or intranets, Plone offers <br/>superior security without sacrificing extensibility or ease of use.</p>
 
-				<p><a href="/for">Explore the possibilities &#9656; &#9654; &#9655;</a></p>
+				<p><a href="/for">Explore the possibilities</a></p>
 			</div>
 		</div>
 
 		<div class="grid-cell width-quarter position-three-quarters">
-			<div class="sidebar" id="sidebar-frontpage">
+
+<img src="/conferences.png" alt="" usemap="#conferences" />
+<map name="conferences">
+  <area shape="rect" coords="0,0,226,157" href="/events/regional/european-symposium-2009"
+    alt="European Plone Symposium 2009: May 11-17, 2009"> 
+  <area shape="rect" coords="0,158,226,296" href="/events/regional/plone-symposium-east-2009"
+    alt="Plone Symposium East 2009: May 26-29, 2009"> 
+</map>
+			<div tal:condition="nothing"
+				class="sidebar" id="sidebar-frontpage">
 				<h3>What can Plone do for you?</h3>
 
 				<ul>
@@ -80,7 +90,7 @@
 						<strong>300 solution providers</strong> 
 						in more than <strong>50 countries</strong>.
 						The project has existed <strong>since 1999</strong>,
-						is translated to more than <strong>40 languages</strong>,
+						is available in more than <strong>40 languages</strong>,
 						and has the <strong>best security</strong> track record
 						of any major CMS. 
 						It is owned by the Plone Foundation, a 
@@ -207,7 +217,7 @@
 						<dd>There are lots of things you can do to make Plone better.</dd>
 
 						<dt><a href="http://planet.plone.org">Read Blogs, Publish Yours</a></dt>
-						<dd>Stay up to date on the cutting edge of Plone development.</dd>
+						<dd>Stay up to date on Plone</dd>
 
 						<dt><a href="/foundation">Support the Plone Foundation</a></dt>
 						<dd>If all else fails, give cold, hard cash.</dd>
