@@ -1,0 +1,212 @@
+Index: include/mod_transform_private.h
+===================================================================
+--- include/mod_transform_private.h	(revision 92)
++++ include/mod_transform_private.h	(working copy)
+@@ -63,6 +63,8 @@
+ #define NO_OPTIONS          (1 <<  0)
+ #define USE_APACHE_FS       (1 <<  1)
+ #define XINCLUDES           (1 <<  2)
++#define USE_HTML_PARSER     (1 <<  4)
++#define HIDE_PARSE_ERRORS   (1 <<  8)
+ 
+ /* Extension Namespace */
+ #define TRANSFORM_APACHE_NAMESPACE ((const xmlChar *) "http://outoforder.cc/apache")
+@@ -133,6 +135,14 @@
+ }
+ transform_xmlio_input_ctx;
+ 
++typedef struct
++{
++    int counter;
++    request_rec *r;
++    const char **params;
++}
++params_ctx;
++
+ apr_status_t transform_apachefs_filter(ap_filter_t * f,
+                                        apr_bucket_brigade * bb);
+ 
+Index: src/mod_transform.c
+===================================================================
+--- src/mod_transform.c	(revision 92)
++++ src/mod_transform.c	(working copy)
+@@ -28,6 +28,7 @@
+ #include "mod_transform_private.h"
+ #include <libxslt/extensions.h>
+ #include <libxml/xpathInternals.h>
++#include <libxml/HTMLparser.h>
+ #include <apr_dso.h>
+ #include <ctype.h>
+ 
+@@ -132,6 +133,66 @@
+     }
+ }
+ 
++/* apr_table_do callback for populating the xslt params array */
++static int populate_params(void *rec, const char *key, const char *value)
++{
++    params_ctx *ctx = rec;
++    char *quoted;
++    if (strchr(value, '"')) {
++       if (strchr(value, '\'')) {
++	  ap_log_rerror(APLOG_MARK, APLOG_DEBUG, 0, ctx->r,
++			"mod_transform: stringparam contains both quote and double-quotes: (%d) %s - %s",
++			ctx->counter, key, value);
++	  ctx->params[ctx->counter++] = key;
++	  ctx->params[ctx->counter++] = NULL;
++	  return 1;
++       }
++       quoted = apr_psprintf(ctx->r->pool, "'%s'", value);
++    } else {
++       quoted = apr_psprintf(ctx->r->pool, "\"%s\"", value);
++    }
++    ap_log_rerror(APLOG_MARK, APLOG_DEBUG, 0, ctx->r, 
++                  "mod_transform: populating array with: (%d) %s - %s",
++                  ctx->counter, key, quoted);
++    ctx->params[ctx->counter++] = key;
++    ctx->params[ctx->counter++] = quoted;
++    return 1;
++}
++
++/* Convert subprocess_env to the format libxslt expects for params */
++static char *env_to_params(request_rec *r)
++{
++    int params_cnt, env_cnt;
++    const char **params;
++    params_ctx *ctx;
++    
++    /* Get the number of entries in the env table. */
++    env_cnt = apr_table_elts(r->subprocess_env)->nelts;
++    ap_log_rerror(APLOG_MARK, APLOG_DEBUG, 0, r,
++                  "mod_transform: Env var count: %d", env_cnt);
++    
++    /** 
++     * Create the params array large enough to hold a flattened, null terminated
++     * subprocess_env. The format is:
++     * const char *feh[] = {"key", "val", "key", "val", NULL};
++     */
++    params_cnt = env_cnt * 2 + 1;
++    params = apr_palloc(r->pool, sizeof(char *) * params_cnt);
++    
++    /* Use this simple struct to keep state in the callback */
++    ctx = apr_palloc(r->pool, sizeof(params_ctx));
++    ctx->r = r;
++    ctx->counter = 0;
++    ctx->params = params;
++    
++    /* Populate params */
++    apr_table_do(populate_params, ctx, r->subprocess_env);
++    /* Terminate the array */
++    ctx->params[params_cnt - 1] = NULL;
++    
++    return ctx->params;
++}
++
+ static apr_status_t transform_run(ap_filter_t * f, xmlDocPtr doc)
+ {
+     size_t length;
+@@ -150,6 +211,7 @@
+                                           &transform_module);
+     svr_cfg *sconf = ap_get_module_config(f->r->server->module_config,
+                                           &transform_module);
++    const char **params;
+ 
+     if (!doc) {
+         return pass_failure(f, "XSLT: Couldn't parse XML Document", notes);
+@@ -221,8 +283,9 @@
+     } else {
+     	getvars = NULL;
+     }*/
+-
+-    result = xsltApplyStylesheetUser(transform, doc, NULL, NULL, NULL, tcontext);
++    
++    params = env_to_params(f->r);
++    result = xsltApplyStylesheetUser(transform, doc, params, NULL, NULL, tcontext);
+     // free the transform context
+ 	xsltFreeTransformContext(tcontext);
+ 
+@@ -329,9 +392,12 @@
+     apr_status_t ret = APR_SUCCESS;
+     void *orig_error_cb = xmlGenericErrorContext;
+     xmlGenericErrorFunc orig_error_func = xmlGenericError;
++    dir_cfg *dconf = ap_get_module_config(f->r->per_dir_config,
++                                          &transform_module);
++    int isHtml = 0;
+ 
+     xmlSetGenericErrorFunc((void *) f, transform_error_cb);
+-
++    
+     /* First Run of this Filter */
+     if (!ctxt) {
+         /* unset content-length */
+@@ -344,24 +410,50 @@
+     if ((f->r->proto_num >= 1001) && !f->r->main && !f->r->prev)
+         f->r->chunked = 1;
+ 
++    isHtml = dconf->opts & USE_HTML_PARSER; /* use html parser  */
++
+     for (b = APR_BRIGADE_FIRST(bb);
+          b != APR_BRIGADE_SENTINEL(bb); b = APR_BUCKET_NEXT(b)) {
+         if (APR_BUCKET_IS_EOS(b)) {
+             if (ctxt) {         /* done reading the file. run the transform now */
+-                xmlParseChunk(ctxt, buf, 0, 1);
+-                ret = transform_run(f, ctxt->myDoc);
+-                xmlFreeParserCtxt(ctxt);
++	      if (isHtml) {
++                  htmlParseChunk(ctxt, buf, 0, 1);
++                  ret = transform_run(f, ctxt->myDoc);
++                  htmlFreeParserCtxt(ctxt);
++	      }
++	      else {
++                  xmlParseChunk(ctxt, buf, 0, 1);
++                  ret = transform_run(f, ctxt->myDoc);
++                  xmlFreeParserCtxt(ctxt);
++	      }		
+             }
+         }
+         else if (apr_bucket_read(b, &buf, &bytes, APR_BLOCK_READ)
+                  == APR_SUCCESS) {
+             if (ctxt) {
+-                xmlParseChunk(ctxt, buf, bytes, 0);
++	        if (isHtml) {
++		    htmlParseChunk(ctxt, buf, bytes, 0);
++		}
++		else {
++		    xmlParseChunk(ctxt, buf, bytes, 0);
++		}
+             }
+             else {
+-                f->ctx = ctxt = xmlCreatePushParserCtxt(0, 0, buf, bytes, 0);
+-                xmlCtxtUseOptions(ctxt, XML_PARSE_NOENT | XML_PARSE_NOCDATA);
+-                ctxt->directory = xmlParserGetDirectory(f->r->filename);
++	        if (isHtml) {
++		    f->ctx = ctxt = htmlCreatePushParserCtxt(0, 0, buf, bytes, 0, XML_CHAR_ENCODING_UTF8);
++		    if (dconf->opts & HIDE_PARSE_ERRORS) {
++		        htmlCtxtUseOptions(ctxt, HTML_PARSE_RECOVER | HTML_PARSE_NOERROR | HTML_PARSE_NOWARNING);
++		    }
++		    else {
++		        htmlCtxtUseOptions(ctxt, HTML_PARSE_RECOVER);
++		    }
++		    
++		}
++		else {
++                    f->ctx = ctxt = xmlCreatePushParserCtxt(0, 0, buf, bytes, 0);
++		    xmlCtxtUseOptions(ctxt, XML_PARSE_NOENT | XML_PARSE_NOCDATA);
++		}
++		ctxt->directory = xmlParserGetDirectory(f->r->filename);
+             }
+         }
+     }
+@@ -496,6 +588,12 @@
+         else if (!strcasecmp(w, "XIncludes")) {
+             option = XINCLUDES;
+         }
++        else if (!strcasecmp(w, "HTML")) {
++            option = USE_HTML_PARSER;
++        }
++        else if (!strcasecmp(w, "HideParseErrors")) {
++            option = HIDE_PARSE_ERRORS;
++        }
+         else if (!strcasecmp(w, "None")) {
+             if (action != '\0') {
+                 return "Cannot combine '+' or '-' with 'None' keyword";

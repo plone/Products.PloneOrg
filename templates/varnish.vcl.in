@@ -1,0 +1,138 @@
+# This is a basic VCL configuration file for varnish.  See the vcl(7)
+# man page for details on VCL syntax and semantics.
+
+backend plone_org {
+	.host = "127.0.0.1";
+	.port = "8001";
+}
+
+backend plone_net {
+	.host = "127.0.0.1";
+	.port = "8002";
+}
+
+backend new_plone_org {
+        .host = "127.0.0.1";
+        .port = "5500";
+}
+
+acl purge {
+	"localhost";
+}
+
+sub vcl_recv {
+	set req.grace = 120s;
+	
+	if (req.http.host ~ "^plone.org$") {
+		set req.backend = plone_org;
+	} elseif (req.http.host ~ "^plone.net$") {
+		set req.backend = plone_net;
+	} elseif (req.http.host ~ "^new.plone.org$") {
+		set req.backend = new_plone_org;
+	} else {
+		error 404 "Unknown virtual host";
+	}
+    
+	if (req.request == "PURGE") {
+		if (!client.ip ~ purge) {
+			error 405 "Not allowed.";
+		}
+		/* Let's purge unconditionally */
+		purge_url(req.url);
+		error 200 "Purged";
+	}
+
+	if (req.request != "GET" &&
+		req.request != "HEAD" &&
+		req.request != "PUT" &&
+		req.request != "POST" &&
+		req.request != "TRACE" &&
+		req.request != "OPTIONS" &&
+		req.request != "DELETE") {
+		/* Non-RFC2616 or CONNECT which is weird. */
+		pipe;
+	}
+
+	if (req.request != "GET" && req.request != "HEAD") {
+		/* We only deal with GET and HEAD by default */
+		pass;
+	}
+
+	if (req.http.If-None-Match) {
+		pass;
+	}
+
+	lookup;
+}
+
+sub vcl_pipe {
+	# This is not necessary if you do not do any request rewriting.
+	set req.http.connection = "close";
+}
+
+sub vcl_hit {
+	if (!obj.cacheable) {
+		set obj.http.X-Varnish-Action = "PASS (not cacheable - hit)";
+		pass;
+	}
+	if (obj.http.Cache-Control ~ "(stale-while-revalidate|no-transform)") {
+		# This is a special cache. Don't serve to authenticated.
+		if (req.http.Cookie ~ "__ac=" || req.http.Authorization) {
+			set obj.http.X-Varnish-Action = "PASS (special not cacheable - hit)";
+			pass;
+		}
+	}
+	set obj.http.X-Varnish-Action = "HIT (deliver - from cache)";
+}
+
+sub vcl_miss {
+	if (req.http.If-Modified-Since) {
+		pass;
+	}
+	fetch;
+}
+
+sub vcl_fetch {
+	set obj.grace = 120s;
+	
+	if (!obj.valid) {
+		error;
+	}
+	if (obj.http.Cache-Control ~ "(stale-while-revalidate|no-transform)") {
+		# Leveraging a non-varnish token to set a minimum ttl without contaminating s-maxage
+		# Wouldn't need this if varnish supported Surrogate-Control
+		if (obj.ttl < 3600s) {
+			set obj.http.X-Varnish-Special = "SPECIAL (local proxy for 1 hour)";
+			unset obj.http.expires;
+			set obj.ttl = 3600s;
+			# Add reset marker
+			set obj.http.reset-age = "1";
+		}
+	}
+	if (!obj.cacheable) {
+		set obj.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
+		pass;
+	}
+	if (obj.http.Set-Cookie) {
+		set obj.http.X-Varnish-Action = "FETCH (pass - response sets cookie)";
+		pass;
+	}
+	if (obj.http.Cache-Control ~ "(private|no-cache|no-store)") {
+		set obj.http.X-Varnish-Action = "FETCH (pass - cache control disallows)";
+		pass;
+	}
+	if (req.http.Authorization && !obj.http.Cache-Control ~ "public") {
+		set obj.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
+		pass;
+	}
+	set obj.http.X-Varnish-Action = "FETCH (insert)";
+}
+
+
+sub vcl_deliver {
+	if (resp.http.reset-age) {
+                set resp.http.age = "0";
+		# Remove reset marker
+		unset resp.http.reset-age;
+	}
+}

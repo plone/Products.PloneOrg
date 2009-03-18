@@ -1,0 +1,84 @@
+user ${nginx-conf:user};
+worker_processes 4;
+daemon off;
+events {
+    worker_connections 1024;
+}
+http {
+    include    ${buildout:directory}/etc/mime.types;
+    error_log  ${buildout:directory}/var/log/nginx-error.log debug;
+
+    # Main server goes upstream to Varnish
+    server {
+        listen ${nginx-conf:listen};
+        server_name localhost;
+        root ${buildout:directory}/static; 
+
+        gzip             on;
+        gzip_min_length  1000;
+        gzip_proxied     any;
+        gzip_types       text/plain application/xml;
+        gzip_disable     "MSIE [1-6] \.";
+
+        location ^~ /images/ {
+            autoindex on;
+        }
+        location ^~ /plone.css {  }
+        location ^~ /ie.css {  }
+        location ~ /emptypage$ {
+            rewrite ^/(.*)$ ${nginx-conf:virtual-host}/$1 break;
+            proxy_pass ${nginx-conf:backend};
+            proxy_read_timeout ${nginx-conf:proxy_read_timeout};
+            proxy_set_header Accept-Encoding '';
+        }
+        location / {
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/;
+            proxy_read_timeout ${nginx-conf:proxy_read_timeout};
+            proxy_set_header Accept-Encoding '';
+            xslt_stylesheet ${buildout:directory}/etc/default.xsl;
+            xslt_html_parser on;
+            xslt_types text/html;
+        }
+        location = / {
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/;
+            proxy_read_timeout ${nginx-conf:proxy_read_timeout};
+            proxy_set_header Accept-Encoding '';
+            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
+            xslt_html_parser on;
+            xslt_types text/html;
+        }
+        location = /products {
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/products;
+            proxy_read_timeout ${nginx-conf:proxy_read_timeout};
+            proxy_set_header Accept-Encoding '';
+            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
+            xslt_html_parser on;
+            xslt_types text/html;
+        }
+        location = /support {
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/support;
+            proxy_read_timeout ${nginx-conf:proxy_read_timeout};
+            proxy_set_header Accept-Encoding '';
+            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
+            xslt_html_parser on;
+            xslt_types text/html;
+        }
+        location = /new_frontpage {
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/new_frontpage;
+            proxy_read_timeout ${nginx-conf:proxy_read_timeout};
+            proxy_set_header Accept-Encoding '';
+            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
+            xslt_html_parser on;
+            xslt_types text/html;
+        }
+        location = /products/psc_view_ploneorg {
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/products/psc_view_ploneorg;
+            proxy_read_timeout ${nginx-conf:proxy_read_timeout};
+            proxy_set_header Accept-Encoding '';
+            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
+            xslt_html_parser on;
+            xslt_types text/html;
+        }
+        
+    }
+}
