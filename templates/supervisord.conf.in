@@ -36,7 +36,7 @@ redirect_stderr = true
 priority = 11
 
 # [program:varnish]
-# command = ${varnish:location}/sbin/varnishd -f ${buildout:directory}/etc/varnish.vcl -F
+# command = $ ####### {varnish:location}/sbin/varnishd -f ${buildout:directory}/etc/varnish.vcl -F
 # autostart= true
 # autorestart = true
 # redirect_stderr = true
