@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>plone.org redesign prototype</title>
+	<style type="text/css" media="screen">
+		@import url("../plone.css");
+	</style>
+	<!--[if IE]>
+        <style type="text/css" media="all">@import url(../ie.css);</style>
+    <![endif]-->	
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+	<script src="../jquery-ui-accordion.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    $("#topics").accordion({header:'h3', selectedClass:'selected'});
+	  	});
+	</script>
+
+</head>
+<body>
+<div id="main">
+
+<div id="outer-wrapper"><div id="inner-wrapper">
+
+
+<div id="nav">
+
+	<div id="search">
+		<input type="search" value="Search…" />
+	</div>
+	
+	<div id="user">
+		<a href="">Bruce Wayne ▼</a>
+	</div>
+
+	<ul id="main-nav" class="navigation">
+		<li><a href=".">Home</a></li
+		><li><a href="downloads.html" class="selected">Downloads</a></li
+		><li><a href="documentation.html">Documentation</a></li
+		><li><a href="developers.html">Developers</a></li
+		><li><a href="foundation.html">Plone&nbsp;Foundation</a></li
+		><li><a href="support.html">Support</a></li>
+	</ul>
+
+</div>
+
+<div id="content-wrapper">
+
+	<div class="grid-row">
+		<div class="grid-cell position-two-thirds width-third">
+			<div class="pullout">
+				<h2>Plone Add-ons!</h2>
+				<p>Add-ons extend your Plone site with additional functionality. Currently there are 850 projects with a total of 2218 releases available.</p>
+				<h3>Submit your add-ons</h3>
+				<span class="list-your-addon"><img alt="" src="../images/list-your-addon.png" /></span>
+			</div>
+		</div>
+		
+		<div class="grid-cell position-leftmost width-two-thirds">
+			<div class="splash" id="splash-downloads">
+	
+				<h1>Get Plone for Your Platform</h1>
+
+				<p>Latest release: Plone 3.1.6 (October 2008)</p>
+				<div id="download-plone">
+					<div id="download-plone-hdr"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="grid-row">
+		<div class="grid-cell position-leftmost width-two-thirds">
+			<div class="pane">
+
+		 		<h1>Add on Product Releases <a href="" class="versions">for Plone 3 ▼</a></h1>
+
+				<div class="downloadssearch">
+					<input type="search" value="Search Downloads…" size="25" />
+					&nbsp;
+					<a href="">Advanced search</a>
+				</div>
+
+				<div id="sort-by"><span class="sort">Sort by:</span><a href="" class="plain">Most recent</span>&nbsp;<a href="" class="selected">Most popular</a></div>
+
+				<div class="" id="categories">
+
+					<span class="advice">Make sure you have Plone installed before downloading the add-ons and ensure you are using add-ons that have been certified for use with your particular version.</span>
+
+					<h2>All Categories</h2>
+
+					<div id="numreleases">809 releases matching your criteria, sorted with most recent releases first.</div>
+
+					<ul class="downloads">
+					  <li>
+					    <h3><a href="">Product One</a></h3>
+						<div id="product-details">
+							<span class="product-leadin">
+								<span class="product-date">Sept. 3, 2008</span> in <span class="product-category">Development Tools, Versioning, Staging and Deployment</span>
+							</span>
+						<span class="company-logo"><img alt="" src="images/company-logo.png" /></span>
+						<p class="product-description">How to ask for help when you have a problem. Following these simple steps will make everything easier both for yourself and us.</p>
+						<p class="new-in-this-release">New in this release: </p>
+						<p class="new-details">New messages to users. Now compatible with any editor.</p>
+					  </li>
+					  <li>
+					    <h3><a href="">Product Two</a></h3>
+						<div id="product-details">
+							<span class="product-leadin">
+								<span class="product-date">Sept. 3, 2008</span> in <span class="product-category">Development Tools, Versioning, Staging and Deployment</span>
+							</span>
+						<span class="company-logo"><img alt="" src="images/company-logo.png" /></span>
+						<p class="product-description">How to ask for help when you have a problem. Following these simple steps will make everything easier both for yourself and us.</p>
+						<p class="new-in-this-release">New in this release: </p>
+						<p class="new-details">New messages to users. Now compatible with any editor.</p>
+					  </li>
+
+					</ul>
+				</div>
+
+			</div>
+		</div> <!-- End cell -->
+
+		<div class="grid-cell position-two-thirds width-third">
+			<div class="sidebar">
+				<h2 class="add-on-categories-hdr">Add-on Categories</h2>
+
+				<ol id="add-on-categories">
+					<li>All categories</li>
+					<li><a href="">Plone releases</a></li>
+					<li><a href="">Themes</a></li>
+					<li><a href="">Theming Tools</a></li>
+					<li>...etc. </li>
+				</ol>
+
+			</div>
+		</div> <!-- End cell -->
+	</div> <!-- End row -->
+
+</div>
+
+<div style="clear:both"></div>
+
+</div></div> <!-- end inner/outer-wrapper -->
+
+<div id="footer">
+	<a id="footer-logo"
+	   href="http://plone.org" 
+	   title="Plone CMS, the open source content management system">
+		<img alt="" src="../images/footer-logo.png" />
+	</a>
+	<div id="footer-text">
+		<p>The Plone<sup>®</sup> CMS — Open Source Content Management System is Copyright © 2000-2008 by the Plone Foundation et al.</p>
+		<p>Plone<sup>®</sup> and the Plone logo are registered trademarks of the Plone Foundation. Distributed under the GNU GPL license.</p>
+	</div>
+</div>
+
+</div>
+</body>
+</html>
