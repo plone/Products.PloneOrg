@@ -129,7 +129,7 @@
 +                              "htmlCreatePushParserCtxt() failed");
 +                return NGX_ERROR;
 +            } else {
-+                htmlCtxtUseOptions(ctxt, HTML_PARSE_RECOVER | HTML_PARSE_NONET | HTML_PARSE_COMPACT);
++                htmlCtxtUseOptions(ctxt, HTML_PARSE_RECOVER | HTML_PARSE_NONET | HTML_PARSE_COMPACT | HTML_PARSE_NOWARNING);
 +            }
 +        } else {
 +            ctxt = xmlCreatePushParserCtxt(NULL, NULL, NULL, 0, NULL);

@@ -21,7 +21,7 @@ directory = ${buildout:directory}/var/log
 
 [program:nginx]
 command = ${nginx:location}/sbin/nginx
-environment = LD_LIBRARY_PATH='${nginx:libxml2}/lib:${nginx:libxslt}/lib'
+environment = LD_LIBRARY_PATH=${nginx:libxml2}/lib:${nginx:libxslt}/lib
 autostart = true
 autorestart = true
 stdout_logfile = NONE
@@ -49,28 +49,28 @@ directory = ${zeo:location}
 priority = 10
 redirect_stderr = false
 
-[program:instance1]
+[program:zope]
 command = ${instance1:location}/bin/runzope 
 process_name = instance1
 directory = ${instance1:location}
 priority = 20
 redirect_stderr = false
 
-[program:instance2]
+[program:zope]
 command = ${instance2:location}/bin/runzope 
 process_name = instance2
 directory = ${instance2:location}
 priority = 30
 redirect_stderr = false
 
-[program:instance3]
+[program:zope]
 command = ${instance3:location}/bin/runzope 
 process_name = instance3
 directory = ${instance3:location}
 priority = 20
 redirect_stderr = false
 
-[program:instance4]
+[program:zope]
 command = ${instance4:location}/bin/runzope 
 process_name = instance4
 directory = ${instance4:location}

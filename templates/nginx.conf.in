@@ -26,7 +26,7 @@ http {
         location ^~ /plone.css {  }
         location ^~ /ie.css {  }
         location ~ /emptypage$ {
-            rewrite ^/(.*)$ ${nginx-conf:virtual-host}/$1 break;
+            rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
             proxy_pass ${nginx-conf:backend};
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
             proxy_set_header Accept-Encoding '';
