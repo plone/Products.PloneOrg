@@ -17,8 +17,7 @@ http {
         gzip             on;
         gzip_min_length  1000;
         gzip_proxied     any;
-        gzip_types       text/plain application/xml;
-        gzip_disable     "MSIE [1-6] \.";
+        gzip_types       text/xml text/plain application/xml;
 
         location ^~ /images/ {
             autoindex on;
@@ -29,12 +28,10 @@ http {
             rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
             proxy_pass ${nginx-conf:backend};
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
-            proxy_set_header Accept-Encoding '';
         }
         location / {
             proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/;
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
-            proxy_set_header Accept-Encoding '';
             xslt_stylesheet ${buildout:directory}/etc/default.xsl;
             xslt_html_parser on;
             xslt_types text/html;
@@ -42,7 +39,6 @@ http {
         location = / {
             proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/;
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
-            proxy_set_header Accept-Encoding '';
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
@@ -50,7 +46,6 @@ http {
         location = /products {
             proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/products;
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
-            proxy_set_header Accept-Encoding '';
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
@@ -58,7 +53,6 @@ http {
         location = /support {
             proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/support;
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
-            proxy_set_header Accept-Encoding '';
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
@@ -66,7 +60,6 @@ http {
         location = /new_frontpage {
             proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/new_frontpage;
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
-            proxy_set_header Accept-Encoding '';
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
@@ -74,7 +67,6 @@ http {
         location = /products/psc_view_ploneorg {
             proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/products/psc_view_ploneorg;
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
-            proxy_set_header Accept-Encoding '';
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
