@@ -26,53 +26,35 @@ autostart = true
 autorestart = true
 stdout_logfile = NONE
 stderr_logfile = NONE
-priority = 12
+priority = 40
 
 [program:haproxy]
 command = ${buildout:directory}/bin/haproxy -f ${buildout:directory}/etc/haproxy.conf -db
 autostart= true
 autorestart = true
 redirect_stderr = true
-priority = 11
+priority = 30
 
 # [program:varnish]
 # command = $ ####### {varnish:location}/sbin/varnishd -f ${buildout:directory}/etc/varnish.vcl -F
 # autostart= true
 # autorestart = true
 # redirect_stderr = true
-# priority = 13
+# priority = 50
 
 [program:zeo]
 command = ${zeo:location}/bin/runzeo 
-process_name = zeo
 directory = ${zeo:location}
 priority = 10
-redirect_stderr = false
 
-[program:zope]
-command = ${instance1:location}/bin/runzope 
-process_name = instance1
-directory = ${instance1:location}
+[program:instance]
+numprocs = 4
+numprocs_start = 1
+process_name = %(process_num)s
+command = ${buildout:directory}/parts/instance%(process_num)s/bin/runzope 
 priority = 20
-redirect_stderr = false
 
-[program:zope]
-command = ${instance2:location}/bin/runzope 
-process_name = instance2
-directory = ${instance2:location}
-priority = 30
-redirect_stderr = false
-
-[program:zope]
-command = ${instance3:location}/bin/runzope 
-process_name = instance3
-directory = ${instance3:location}
-priority = 20
-redirect_stderr = false
-
-[program:zope]
-command = ${instance4:location}/bin/runzope 
-process_name = instance4
-directory = ${instance4:location}
-priority = 30
-redirect_stderr = false
+[program:dev-instance]
+command = ${dev-instance:location}/bin/runzope 
+process_name = dev-instance
+autostart = false
