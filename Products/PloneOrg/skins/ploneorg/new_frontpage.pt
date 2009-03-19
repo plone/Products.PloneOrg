@@ -46,13 +46,13 @@
 
 				<p>Plone lets non-technical people create and maintain information using <br/>only a web browser. Perfect for web sites or intranets, Plone offers <br/>superior security without sacrificing extensibility or ease of use.</p>
 
-				<p><a href="/for">Explore the possibilities</a></p>
+				<p><a href="/about">Explore the possibilities</a></p>
 			</div>
 		</div>
 
 		<div class="grid-cell width-quarter position-three-quarters">
 
-<img src="/conferences.png" alt="" usemap="#conferences" />
+<img src="/images/conferences.png" alt="" usemap="#conferences" style="border: none" />
 <map name="conferences">
   <area shape="rect" coords="0,0,226,157" href="/events/regional/european-symposium-2009"
     alt="European Plone Symposium 2009: May 11-17, 2009"> 
@@ -84,23 +84,25 @@
 				<h1>Plone in Numbers</h1>
 				<ul>
 					<li class="spotlight">
-						Plone is among the <strong>top 2%</strong> of all open source 
-						projects worldwide,
-						with over <strong>200 core developers</strong> and more than
-						<strong>300 solution providers</strong> 
-						in more than <strong>50 countries</strong>.
-						The project has existed <strong>since 1999</strong>,
-						is available in more than <strong>40 languages</strong>,
-						and has the <strong>best security</strong> track record
-						of any major CMS. 
-						It is owned by the Plone Foundation, a 
-						<strong>501(c)(3) not-for-profit</strong> organization.
+						Plone is among the <a href="http://www.ohloh.net">top 2%</a> 
+						of all open source projects worldwide,
+						with <a href="/team">200 core developers</a> and more than
+						<a href="http://plone.net/providers">300 solution providers</a> 
+						in <a href="http://plone.net/providers">57 countries</a>.
+						The project has been actively developed 
+						<a href="/documentation/faq/plone-history">since 1999</a>,
+						is available in more than 
+						<a href="/documentation/faq/translations">40 languages</a>,
+						and has the <a href="http://cve.mitre.org">best security</a>
+						track record of any major CMS. <br/>
+						It is owned by the <a href="/foundation">Plone Foundation</a>,
+						a 501(c)(3) not-for-profit organization,
+						and is available for 
+						<a href="/download">all major operating systems</a>.
 						<div class="sources">
 						Sources: 
-						<a href="http://cve.mitre.org/" style="display: inline" title="Common Vulnerabilities and Exposures (CVE)"
-						>CVE</a> and
-							<a href="http://www.ohloh.net/" style="display: inline" title="Ohloh, the open source network"
-							>Ohloh</a>.
+						<a title="Common Vulnerabilities and Exposures (CVE)" style="display: inline;" href="http://cve.mitre.org/">CVE</a> and
+							<a title="Ohloh, the open source network" style="display: inline;" href="http://www.ohloh.net/">Ohloh</a>.
 						</div>
 					</li>
 				</ul>
