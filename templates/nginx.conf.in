@@ -28,12 +28,24 @@ http {
         gzip_min_length  1000;
         gzip_proxied     any;
         gzip_types       text/xml text/plain application/xml;
+	
+        error_page 500 /500.html;
+        location = /500.html { 
+            add_header Expires '';
+            add_header Vary '';
+            add_header Last-Modified '';
+            add_header Cache-Control '';
+            add_header X-Caching-Rule-Id '';
+            add_header X-Header-Set-Id '';
+            add_header X-Cache-Headers-Set-By '';
+
+        }
 
         location ^~ /images/ {
             autoindex on;
         }
-        location ^~ /plone.css {  }
-        location ^~ /ie.css {  }
+        location = /plone.css {  }
+        location = /ie.css {  }
         location ~ /emptypage$ {
             rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
             proxy_pass ${nginx-conf:backend};
@@ -84,6 +96,16 @@ http {
         location / {
             proxy_pass ${nginx-conf:backend}/${nginx-conf:old-virtual-host}/;
         }
+        location ^~ /images/ {
+            autoindex on;
+        }
+        location ^~ /plone.css {  }
+        location ^~ /ie.css {  }
+        location ~ /emptypage$ {
+            rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
+            proxy_pass ${nginx-conf:backend};
+        }
+
 
     }
 

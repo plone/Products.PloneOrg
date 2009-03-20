@@ -21,7 +21,7 @@
     <script type="text/javascript">
         window.onload = function(){
             var link = String(document.location);
-            link.replace('http://plone.org', 'http://old.plone.org');
+            link = link.replace(/http:\/\/plone.org/, 'http://old.plone.org');
             document.getElementById('link-to-old').href = link;
         }
     </script>
