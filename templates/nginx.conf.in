@@ -37,14 +37,14 @@ http {
             xslt_types text/html;
         }
         location = / {
-            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/;
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/new_frontpage; # !!!CHANGEME
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
         }
         location = /products {
-            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/products;
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/products/psc_view_ploneorg; # !!!CHANGEME
             proxy_read_timeout ${nginx-conf:proxy_read_timeout};
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
