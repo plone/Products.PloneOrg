@@ -1,7 +1,7 @@
 [unix_http_server]
 file = ${buildout:directory}/var/supervisor.sock
 chmod = 0600
-chown = root:root
+chown = root:admin
 
 [supervisorctl]
 serverurl = unix://${buildout:directory}/var/supervisor.sock
@@ -35,12 +35,12 @@ autorestart = true
 redirect_stderr = true
 priority = 30
 
-# [program:varnish]
-# command = $ ####### {varnish:location}/sbin/varnishd -f ${buildout:directory}/etc/varnish.vcl -F
-# autostart= true
-# autorestart = true
-# redirect_stderr = true
-# priority = 50
+[program:varnish]
+command = ${varnish:location}/sbin/varnishd -f ${buildout:directory}/etc/varnish.vcl -F -a ${varnish-conf:listen} -T ${varnish-conf:telnet}
+autostart= true
+autorestart = true
+redirect_stderr = true
+priority = 5
 
 [program:zeo]
 command = ${zeo:location}/bin/runzeo 
