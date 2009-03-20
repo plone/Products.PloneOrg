@@ -1,358 +1,178 @@
-<!DOCTYPE html PUBLIC
-  "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-  <head>
 
-    <meta http-equiv="Content-Type"
-          content="text/html;charset=utf-8" />
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+	<title>Plone CMS: Open Source Content Management</title>
+  <base href="http://plone.org/" />
 
-    
-      <base href="http://plone.org/" /><!--[if lt IE 7]></base><![endif]-->
-    
+	<link rel="alternate" type="application/rss+xml" href="http://feeds.plone.org/plonenews" title="Plone News" /> 
+	<link rel="alternate" type="application/rss+xml" href="http://feeds.plone.org/plonereleases" title="Plone Releases" /> 
+	<link rel="alternate" type="application/rss+xml" href="http://feeds.plone.org/ploneevents" title="Upcoming Plone Events" /> 
+	<link rel="alternate" type="application/rss+xml" href="http://feeds.plone.org/ploneaddons" title="Latest Plone &amp; Add-on Releases" /> 
+	<link rel="alternate" type="application/rss+xml" href="http://feeds.plone.org/plonetraining" title="Upcoming Plone Training" /> 
 
-<title>Plone CMS: Open Source Content Management</title>
+	<link rel="stylesheet" href="/plone.css" type="text/css" media="screen" />
 
-    <meta content="Leading open source CMS for Content Management, Document Management and Knowledge Management. Get your intranet, portal, web site or community site up and running in minutes!"
-          name="description" />
+	<!--[if IE]><style type="text/css" media="all">@import url(/ie.css);</style><![endif]-->	
+	<!--[if lte IE 6]><script src="/ie6warn.js" type="text/javascript"></script><![endif]-->
 
-    <!-- Internet Explorer Fixes -->
-    <!--[if IE]>
-        <style type="text/css" media="all">@import url(http://plone.org/IEFixes.css);</style>
-        
-        <script type="text/javascript"
-                src="http://plone.org/iefixes.js">
-        </script>
-        
-    <![endif]-->
-
-    <link rel="shortcut icon" type="image/x-icon"
-          href="http://plone.org/favicon.ico" />
-
-
-
-    <link rel="home" href="http://plone.org"
-          title="Front page" />
-
-    <link rel="contents" href="http://plone.org/sitemap"
-          title="Site Map" />
-
-
-
-
-<link rel="alternate" href="http://plone.org/RSS"
-      title="RSS 1.0" type="application/rss+xml" />
-
-
-    <link rel="search" href="http://plone.org/search_form"
-          title="Search this site" />
-
-
-
-    <!-- Disable IE6 image toolbar -->
-    <meta http-equiv="imagetoolbar" content="no" />
-    
-    
     <script type="text/javascript">
-        function oldlink(obj) {
-            obj.href = document.location.replace('http://plone.org', 'http://old.plone.org');
+        window.onload = function(){
+            var link = String(document.location);
+            link.replace('http://plone.org', 'http://old.plone.org');
+            document.getElementById('link-to-old').href = link;
         }
     </script>
     
+</head>
+<body>
 
-  </head>
+<div id="outer-wrapper"><div id="inner-wrapper">
 
-  <body class=" template-default_error_message" dir="ltr">
-    <div id="visual-portal-wrapper">
+<div id="nav">
 
-      <div id="portal-top">
-        <div id="portal-header">
-<p class="hiddenStructure">
-  <a accesskey="2"
-     href="http://plone.org/notfound#documentContent">Skip to content.</a> |
-
-  <a accesskey="6"
-     href="http://plone.org/notfound#portlet-navigation-tree">Skip to navigation</a>
-</p>
-
-
-
-<div id="portal-searchbox">
-    <form name="searchform" action="http://plone.org/search">
-
-        <label for="searchGadget" class="hiddenStructure">Search Site</label>
-
-        <div class="LSBox">
-        <input name="SearchableText" type="text" size="18"
-               title="Search Site" accesskey="4"
-               id="searchGadget" class="inputLabel" />
-
-        <input class="searchButton" type="submit"
-               value="Search" />
-    
-        <div class="searchSection">
-            <input id="searchbox_currentfolder_only"
-                   class="noborder" type="checkbox"
-                   name="path" value="/plone.org" />
-            <label for="searchbox_currentfolder_only"
-                   style="cursor: pointer">
-                only in current section
-            </label>
-        </div>
-
-        <div class="LSResult" id="LSResult" style=""><div class="LSShadow" id="LSShadow"></div></div>
-        </div>
-    </form>
-
-    <div id="portal-advanced-search" class="hiddenStructure">
-        <a href="http://plone.org/search_form" accesskey="5">
-            Advanced Search&hellip;
-        </a>
-    </div>
+	<form id="search" name="searchform" action="http://plone.org/search"> 
+		<input id="search-site"
+			name="SearchableText" type="search" 
+			title="Search this site&hellip;" accesskey="4"
+			class="inputLabel" size="15"
+			/> 
+	</form>
+	
+	<div id="user">
+		<a href="login">Log in</a>
+	</div>
+	
+	<ul id="main-nav" class="navigation">
+		<li><a href=".">Home</a></li
+		><li><a href="/products">Downloads</a></li
+		><li><a href="/documentation">Documentation</a></li
+		><li><a href="/contribute">Get Involved</a></li
+		><li><a href="/foundation">Plone&nbsp;Foundation</a></li
+		><li><a href="/support">Support</a></li>
+	</ul>
 
 </div>
 
-<a id="portal-logo" accesskey="1" href="http://plone.org">
-    <img src="http://plone.org/logo.jpg" alt="" title="Plone" height="57" width="252" /></a>
 
 
-    <h5 class="hiddenStructure">Sections</h5>
-
-    <ul id="portal-globalnav">
-        <li id="portaltab-index_html" class="selected"><a
-    href="http://plone.org" title="">Home</a></li>
-        <li id="portaltab-products" class="plain"><a
-    href="http://plone.org/products"
-    title="Plone releases and available add-on products for Plone. Make sure you have Plone installed before downloading the add-ons — and make sure you are using add-ons that have been certified for use with your particular version.">Downloads</a></li>
-        <li id="portaltab-documentation" class="plain"><a
-    href="http://plone.org/documentation"
-    title="The primary source for Plone documentation.">Documentation</a></li>
-        <li id="portaltab-contribute" class="plain"><a
-    href="http://plone.org/contribute"
-    title="Contains all developer-related material.">Get Involved</a></li>
-        <li id="portaltab-foundation" class="plain"><a
-    href="http://plone.org/foundation"
-    title="The Plone Foundation exists to further the development, marketing, and legal affairs of Plone and the Plone community.">Plone Foundation</a></li>
-        <li id="portaltab-support" class="plain"><a
-    href="http://plone.org/support"
-    title="Contact details for the Plone project.">Support</a></li>
-    </ul>
-
-</div>
-
-<div id="portal-personaltools-wrapper">
-
-<h5 class="hiddenStructure">Personal tools</h5>
-
-<ul id="portal-personaltools" class="visualInline">
-   
-
-    
-        <li>
-            <a href="http://plone.org/login_form">Log in</a>
-        </li>
-    
-    
-        <li>
-            <a href="http://plone.org/join_form">Register</a>
-        </li>
-    
-
-</ul>
+<div id="edit-bar">
+	<div id="action-menu"></div>
+	<div id="edit-menu"></div>
 </div>
 
 
-    
 
+<div id="content-wrapper">
+	<div id="region-content">
 
-<div id="portal-breadcrumbs">
+		<h1 class="documentFirstHeading">
+            We&#8217;re sorry, but there is a problem displaying this page&hellip;
+        </h1>
 
-    <span id="breadcrumbs-you-are-here">You
-are here:</span>
-    <a href="http://plone.org">Home</a>
-    
+        <br />
 
+        <p>
+        This page may display better <a id="link-to-old" href="http://old.plone.org">here</a>.
+        </p>
+
+	</div>
 </div>
 
-      </div>
+<div style="clear:both">&nbsp;</div>
 
-      <div class="visualClear" id="clear-space-before-wrapper-table"><!-- --></div>
+</div><!-- end inner-wrapper -->
+<div id="push"></div>
+</div> <!-- end outer-wrapper -->
 
-      <table id="portal-columns">
-        <tbody>
-          <tr>
-            
-            
-            
+<div id="footer-wrapper">
+	<div id="footer-gradient"></div>
+	<div id="footer">
+		<a id="footer-logo" 
+		   href="http://plone.org" 
+		   title="Plone CMS, the open source content management system"></a>
+			<p>The Plone<sup>&reg;</sup> Content Management System is copyright &copy; 2000&ndash;2009 the Plone Foundation and friends.</p>
+			<p>Plone<sup>&reg;</sup> and the Plone logo are registered trademarks of the Plone Foundation. You&#x2019;re looking good today.</p>
+	
+		<div id="sitemap">
 
-            
-            <td id="portal-column-content">
+			<!-- <dl>
+				<dt><a href="">Plone for…</a></dt>
+				<dd><a href="">Small/Medium Business </a></dd>
+				<dd><a href="">Enterprise            </a></dd>
+				<dd><a href="">Non-profits           </a></dd>
+				<dd><a href="">Government            </a></dd>
+				<dd><a href="">Education             </a></dd>
+				<dd><a href="">Science               </a></dd>
+				<dd><a href="">Media &amp; Publishing</a></dd>
+			</dl> -->
 
-              
-                <div class="">
+			<dl>
+				<dt><a href="/products">Downloads</a></dt>
+				<dd><a href="/download">Get Plone                           </a></dd>
+				<dd><a href="/products?getCategories=themes">Themes         </a></dd>
+				<dd><a href="/products?getCategories=dev">Development tools </a></dd>
+				<dd><a href="/products?getCategories=auth">Authentication   </a></dd>
+				<dd><a href="/products">&hellip;and more.     </a></dd>
+			</dl>
 
-                  
+			<dl>
+				<dt><a href="/documentation">Documentation</a></dt>
+				<dd><a href="/documentation/faq/">FAQs                      </a></dd>
+				<dd><a href="/documentation/movies/">Tutorial videos           </a></dd>
+				<dd><a href="/documentation/manual">Manuals                   </a></dd>
+				<dd><a href="/documentation/books">Books                     </a></dd>
+				<!-- <dd><a href="">Knowledge Base            </a></dd> -->
+				<dd><a href="/documentation/error">Error Reference           </a></dd>
+				<!-- <dd><a href="">Module documentation      </a></dd> -->
+			</dl>
 
+			<dl>
+				<dt><a href="http://dev.plone.org/plone">Developers</a></dt>
+				<dd><a href="http://dev.plone.org/plone/roadmap">Roadmap        </a></dd>
+				<dd><a href="http://dev.plone.org/plone">Report bugs  </a></dd>
+				<dd><a href="http://dev.plone.org/plone">Suggest new features    </a></dd>
+				<dd><a href="http://dev.plone.org/plone/timeline">Latest changes</a></dd>
+				<dd><a href="http://dev.plone.org/plone/browse">Browse source   </a></dd>
+				<dd><a href="http://dev.plone.org/plone">Contribute to Plone    </a></dd>
+				<dd><a href="http://planet.plone.org">Community blogs           </a></dd>
+			</dl>
 
-                  <div id="region-content" class="documentContent">
+			<dl>
+				<dt><a href="/foundation">Plone Foundation</a></dt>
+				<dd><a href="/foundation/foundation-donations">Donate     </a></dd>
+				<dd><a href="/foundation/donors">Sponsors                 </a></dd>
+				<dd><a href="/foundation/meetings/minutes">Meeting minutes</a></dd>
+				<dd><a href="/team/FoundationBoard">Current board         </a></dd>
+				<dd><a href="/foundation/members">Foundation members      </a></dd>
+				<dd><a href="/foundation/membership">Apply for membership </a></dd>
+				<dd><a href="/foundation#contact">Contact                 </a></dd>
+			</dl>
 
-                    <span id="contentTopLeft"></span>
-                    <span id="contentTopRight"></span>
-                    
-                    <a name="documentContent"></a>
-
-                    
-
-    <dl class="portalMessage info" id="kssPortalMessage" style="display:none">
-        <dt>Info</dt>
-        <dd></dd>
-    </dl>
-
-
-                    
-                    <div id="viewlet-above-content"></div>
-
-                    
-                    <div id="content">
-                      
-                      <div id="content">
-
-        <div>
-
-            
-                
-                
-                    
-                <h1 class="documentFirstHeading">
-                    We&#8217;re sorry, but there is a problem displaying this page&hellip;
-                </h1>
-
-                <p>
-                This page may display with at <a href="http://old.plone.org" onload="oldlink(this)">old.plone.org</a>
-                </p>
-
-                <p>
-                Thank you.
-                </p>
-                
-                
-
-            
-
-        </div>
-
-        
-        
-
-</div>
-                    </div>
-                    
-
-                    
-                    
-                      
-
-                    
-                    
-
-                    <span id="contentBottomLeft"></span>
-                    <span id="contentBottomRight"></span>
-
-                  </div>
-
-                </div>
-
-              
-            </td>
-            
-
-            
-            
-            
-          </tr>
-        </tbody>
-      </table>
-      
-
-      <div class="visualClear" id="clear-space-before-footer"><!-- --></div>
-      
-      
-
-      
-
-        <div id="portal-footer">
-
-<p>
-    
-    The
-    <a href="http://plone.org">Plone<sup>&reg;</sup> CMS &mdash; Open Source Content Management System</a>
-    is
-    <acronym title="Copyright">&copy;</acronym>
-    2000-2009
-    by the
-    <a href="http://plone.org/foundation">Plone Foundation</a>
-    et al.
-    
-</p>
-
-<p>
-    
-    Plone<sup>&reg;</sup> and the Plone logo are registered trademarks of the
-        <a href="http://plone.org/foundation">Plone Foundation</a>.
-    
-
-    
-    Distributed under the
-        <a href="http://creativecommons.org/licenses/GPL/2.0/">GNU GPL license</a>.
-    
-</p>
-
+			<dl>
+				<dt><a href="/support">Support</a></dt>
+				<dd><a href="http://plone.net/providers">Commercial services</a></dd>
+				<dd><a href="/support/chat">Chat room                      </a></dd>
+				<dd><a href="/support/forums">Forums                       </a></dd>
+				<dd><a href="/support/for">Sector-specific forums          </a></dd>
+				<dd><a href="/support/region">Region-specific forums       </a></dd>
+				<dd><a href="/support/local-user-groups">Local user groups </a></dd>
+				<dd><a href="/events/training">Training                    </a></dd>
+			</dl>
+		</div>
+	</div>
 </div>
 
-  <div id="portal-colophon">
-      
 
-      
-
-      <div class="colophonWrapper">
-      <ul>
-        <li>
-          <a href="http://plone.org"
-             title="This site was built using Plone CMS, the Open Source Content Management System. Click for more information.">
-            Powered by Plone</a>
-        </li>
-        <li>
-          <a href="http://validator.w3.org/check/referer"
-             title="This site is valid XHTML.">
-            Valid XHTML</a>
-        </li>
-        <li>
-          <a href="http://jigsaw.w3.org/css-validator/check/referer&amp;warning=no&amp;profile=css3&amp;usermedium=all"
-             title="This site was built with valid CSS.">
-            Valid CSS</a>
-        </li>
-        <li>
-          <a href="http://www.section508.gov"
-             title="This site conforms to the US Government Section 508 Accessibility Guidelines.">
-            Section 508</a>
-        </li>
-        <li>
-          <a href="http://www.w3.org/WAI/WCAG1AA-Conformance"
-             title="This site conforms to the W3C-WAI Web Content Accessibility Guidelines.">
-            WCAG</a>
-        </li>
-      </ul>
-      </div>
-
-    </div>
-
-<script type="text/javascript"> var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www."); document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E")); </script> <script type="text/javascript"> var pageTracker = _gat._getTracker("UA-1907133-2"); pageTracker._trackPageview(); </script>
-
-      
-
-      <div class="visualClear"><!-- --></div>
-    </div>
-<div id="kss-spinner"><img alt=""
-                           src="http://plone.org/spinner.gif" /></div>
+<script type="text/javascript"> 
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script> 
+<script type="text/javascript"> 
+var pageTracker = _gat._getTracker("UA-1907133-2");
+pageTracker._trackPageview();
+</script> 
 </body>
 </html>
