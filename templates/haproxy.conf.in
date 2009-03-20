@@ -1,8 +1,9 @@
 global
   log 127.0.0.1 local6
-  maxconn ${haproxy-conf:maxconn}
-#  user ${haproxy-conf:user}
-#  group ${haproxy-conf:group}
+  maxconn  ${haproxy-conf:maxconn}
+  ulimit-n ${haproxy-conf:ulimit-n}
+  user     ${haproxy-conf:user}
+  group    ${haproxy-conf:group}
   daemon
   nbproc 1
 
@@ -35,7 +36,6 @@ defaults
 
 frontend zopecluster
   bind ${haproxy-conf:bind}
-  maxconn 1000
   default_backend zope
 
   capture cookie __ac len 10
