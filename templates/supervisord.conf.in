@@ -18,6 +18,8 @@ pidfile = ${buildout:directory}/var/supervisord.pid ;
 childlogdir = ${buildout:directory}/var/log
 nodaemon = false
 directory = ${buildout:directory}/var/log
+port = 9002
+serverurl = http://127.0.0.1:9002
 
 [program:nginx]
 command = ${nginx:location}/sbin/nginx
