@@ -1,0 +1,46 @@
+/* Copied from trac.css */
+
+/* Heading anchors */
+.anchor:link, .anchor:visited {
+ border: none;
+ color: #d7d7d7;
+ font-size: .8em;
+ vertical-align: text-top;
+}
+* > .anchor:link, * > .anchor:visited {
+ visibility: hidden;
+}
+h1:hover .anchor, h2:hover .anchor, h3:hover .anchor,
+h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
+ visibility: visible;
+}
+
+/* Wiki toolbar */
+.wikitoolbar {
+ border: solid #d7d7d7;
+ border-width: 1px 1px 1px 0;
+ height: 18px;
+ width: 208px;
+}
+.wikitoolbar :link, .wikitoolbar :visited {
+ background: transparent url(../chrome/common/edit_toolbar.png) no-repeat;
+ border: 1px solid #fff;
+ border-left-color: #d7d7d7;
+ cursor: default;
+ display: block;
+ float: left;
+ width: 24px;
+ height: 16px;
+}
+.wikitoolbar :link:hover, .wikitoolbar :visited:hover {
+ background-color: transparent;
+ border: 1px solid #fb2;
+}
+.wikitoolbar a#em { background-position: 0 0 }
+.wikitoolbar a#strong { background-position: 0 -16px }
+.wikitoolbar a#heading { background-position: 0 -32px }
+.wikitoolbar a#link { background-position: 0 -48px }
+.wikitoolbar a#code { background-position: 0 -64px }
+.wikitoolbar a#hr { background-position: 0 -80px }
+.wikitoolbar a#np { background-position: 0 -96px }
+.wikitoolbar a#br { background-position: 0 -112px }
