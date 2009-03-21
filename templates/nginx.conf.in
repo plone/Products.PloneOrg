@@ -29,17 +29,9 @@ http {
         gzip_proxied     any;
         gzip_types       text/xml text/plain application/xml;
 	
-        error_page 500 /500.html;
-        location = /500.html { 
-            add_header Expires '';
-            add_header Vary '';
-            add_header Last-Modified '';
-            add_header Cache-Control '';
-            add_header X-Caching-Rule-Id '';
-            add_header X-Header-Set-Id '';
-            add_header X-Cache-Headers-Set-By '';
-
-        }
+        # Push this to the frontend nginx to avoid problems
+        # error_page 500 /500.html;
+        location = /500.html {  }
 
         location ^~ /images/ {
             autoindex on;
