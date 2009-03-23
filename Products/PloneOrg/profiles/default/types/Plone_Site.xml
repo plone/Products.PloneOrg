@@ -21,6 +21,7 @@
   <element value="folder_tabular_view"/>
   <element value="atct_album_view"/>
   <element value="ploneorg_frontpage"/>
+    <element value="new_frontpage"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>

@@ -27,5 +27,17 @@
         name="ploneorg_images"/>
     <cmf:registerDirectory
         name="ploneorg_frontpage"/>
-
+    
+    <adapter
+       zcml:condition="installed Products.CacheSetup"
+       for="Products.ATContentTypes.interface.news.IATNewsItem"
+       factory=".purger.FrontpagePurger"
+       />
+  
+   <adapter
+       zcml:condition="installed Products.CacheSetup"
+       for="Products.ATContentTypes.interface.event.IATEvent"
+       factory=".purger.FrontpagePurger"
+       />  
+     
 </configure>
