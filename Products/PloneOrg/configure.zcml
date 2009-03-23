@@ -1,6 +1,7 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:cmf="http://namespaces.zope.org/cmf"
-           xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+           xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+           xmlns:zcml="http://namespaces.zope.org/zcml">
 
     <genericsetup:registerProfile
         name="default"
