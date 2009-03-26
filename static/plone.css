@@ -1,6 +1,6 @@
 /* @override 
-	http://new.plone.org/plone.css
 	http://dev.plone.org/plone.css
+	http://plone.org/plone.css
 */
 
 /* @group CSS Reset */
@@ -312,6 +312,7 @@ div.splash {
 }
 
 #content div.splash h1 {	
+	color: White;
 	letter-spacing: 0;
 }
 
