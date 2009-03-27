@@ -25,7 +25,7 @@ defaults
   monitor-uri /haproxy-ping
 
   timeout connect 7s
-  timeout queue   15s
+  timeout queue   300s
   timeout client  300s
   timeout server  300s
 
@@ -38,18 +38,16 @@ frontend zopecluster
   bind ${haproxy-conf:bind}
   default_backend zope
 
-  capture cookie __ac len 10
-  option httplog
-  log 127.0.0.1 local6
+  # capture cookie __ac len 10
+  # option httplog
+  # log 127.0.0.1 local6
 
 # Load balancing over the zope instances
 backend zope
-  appsession __ac len 32 timeout 1d
+  # appsession __ac len 32 timeout 1d
   balance roundrobin
-  cookie serverid
+  # cookie serverid
   option httpchk GET /
 
-  server  plone0101 127.0.0.1:${instance1:http-address} cookie p0101 check maxconn 1 maxqueue 2
-  server  plone0102 127.0.0.1:${instance2:http-address} cookie p0102 check maxconn 1 maxqueue 2
-  server  plone0103 127.0.0.1:${instance3:http-address} cookie p0103 check maxconn 1 maxqueue 2
-  server  plone0104 127.0.0.1:${instance4:http-address} cookie p0104 check maxconn 1 maxqueue 2
+  server  plone0101 127.0.0.1:${instance1:http-address} cookie p0101 check maxconn 2
+  server  plone0102 127.0.0.1:${instance2:http-address} cookie p0102 check maxconn 2

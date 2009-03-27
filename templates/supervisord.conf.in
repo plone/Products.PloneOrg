@@ -50,7 +50,7 @@ directory = ${zeo:location}
 priority = 10
 
 [program:instance]
-numprocs = 4
+numprocs = 2
 numprocs_start = 1
 process_name = %(process_num)s
 command = ${buildout:directory}/parts/instance%(process_num)s/bin/runzope 
