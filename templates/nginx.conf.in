@@ -1,5 +1,5 @@
 user ${nginx-conf:user};
-worker_processes 8;
+worker_processes 4;
 daemon off;
 events {
     worker_connections 1024;
@@ -7,6 +7,7 @@ events {
 http {
     include    ${buildout:directory}/etc/mime.types;
     error_log  ${buildout:directory}/var/log/nginx-error.log debug;
+    access_log off;
 
     proxy_connect_timeout 75;
     proxy_read_timeout 185;
