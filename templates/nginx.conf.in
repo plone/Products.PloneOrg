@@ -55,7 +55,7 @@ http {
             xslt_html_parser on;
             xslt_types text/html;
         }
-        location ~ ^/(products|support)/?$ {
+        location ~ ^/(products(/psc_view_ploneorg)?|support)/?$ {
             rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
             proxy_pass ${nginx-conf:backend};
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
