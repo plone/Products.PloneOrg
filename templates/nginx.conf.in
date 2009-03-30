@@ -55,14 +55,9 @@ http {
             xslt_html_parser on;
             xslt_types text/html;
         }
-        location = /products {
-            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/products;
-            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
-        }
-        location = /support {
-            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/support;
+        location ~ ^/(products|support)/?$ {
+            rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
+            proxy_pass ${nginx-conf:backend};
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
