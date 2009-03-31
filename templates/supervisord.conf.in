@@ -21,6 +21,10 @@ directory = ${buildout:directory}/var/log
 port = 9002
 serverurl = http://127.0.0.1:9002
 
+[eventlistener:memmon]
+command=memmon -a 500MB
+events=TICK_60
+
 [program:nginx]
 command = ${nginx:location}/sbin/nginx
 environment = LD_LIBRARY_PATH=${nginx:libxml2}/lib:${nginx:libxslt}/lib
@@ -39,7 +43,7 @@ priority = 30
 
 [program:varnish]
 command = ${varnish:location}/sbin/varnishd -f ${buildout:directory}/etc/varnish.vcl -F -a ${varnish-conf:listen} -T ${varnish-conf:telnet}
-autostart= true
+autostart= false
 autorestart = true
 redirect_stderr = true
 priority = 5
@@ -48,6 +52,7 @@ priority = 5
 command = ${zeo:location}/bin/runzeo 
 directory = ${zeo:location}
 priority = 10
+autostart = false
 
 [program:instance]
 numprocs = 2
