@@ -6,7 +6,7 @@ events {
 }
 http {
     include    ${buildout:directory}/etc/mime.types;
-    error_log  ${buildout:directory}/var/log/nginx-error.log debug;
+    error_log  ${buildout:directory}/var/log/nginx-error.log error;
     access_log off;
 
     proxy_connect_timeout 75;
@@ -29,6 +29,8 @@ http {
         gzip_min_length  1000;
         gzip_proxied     any;
         gzip_types       text/xml text/plain application/xml;
+
+        client_max_body_size 10M;
 	
         # Push this to the frontend nginx to avoid problems
         # error_page 500 /500.html;
