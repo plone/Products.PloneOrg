@@ -1699,7 +1699,7 @@ li.formTab a.notify {
     color: Black;
 }
 li.formTab a.required span {
-    background-image: url(http://localhost:8080/demo/required.png);
+    background-image: url(/required.png);
     background-position: center right;
     background-repeat: no-repeat;
     padding-right: 8px;
@@ -1784,7 +1784,7 @@ margin-top: 1em;
 	width: 100%;
 }
 .fieldRequired {
-background: url(http://localhost:8080/demo/required.gif) center left no-repeat;
+background: url(/required.gif) center left no-repeat;
 padding: 0 0 0 8px;
 color: White;
 }
