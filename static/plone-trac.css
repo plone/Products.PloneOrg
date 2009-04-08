@@ -11,8 +11,6 @@
 	padding: 0.4em 0.6em;
 	color: Black;
 	font-weight: bold;
-	border-right: 1px solid #dcdcdc;
-	border-left: 1px solid white;
 	white-space: nowrap;
 }
 
@@ -24,11 +22,6 @@
 #ctxtnav li.active a {
 	color: #75ad0a;
 	padding: 6px 8px 5px;
-	border-bottom: 2px solid white;
-}
-
-#ctxtnav li a {
-	border-right: none;
 }
 
 
