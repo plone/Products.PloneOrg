@@ -13,7 +13,7 @@
 	
 	<copy content='//*[@id="metanav"]/ul/li[@class="first"]'	theme='//*[@id="user"]' />
 
-	<copy content='//*[@id="ctxtnav"]'	theme='//*[@id="edit-bar"]' />
+	<replace content='//*[@id="ctxtnav"]'	theme='//*[@id="edit-bar"]' />
 	
 	<!-- Copy over the contents of the page body -->
 	<replace content='//*[@id="content"]'	theme='//*[@id="content"]' />
