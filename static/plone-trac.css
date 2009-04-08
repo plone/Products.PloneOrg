@@ -1,3 +1,7 @@
+#legend, div.buttons {
+	clear: both;
+}
+
 /* Copied from trac.css */
 
 /* Heading anchors */
