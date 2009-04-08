@@ -230,7 +230,7 @@ body.template-new_frontpage #main-nav li:first-child a:hover {
 }*/
 
 #sub-nav {
-	font: 13px/30px "Helvetica Neue", Arial;
+	font: 13px/30px "Helvetica Neue", Arial, FreeSans;
 	border-top: 1px solid #dcdcdc;
 	margin-right: 210px;
 }

@@ -1,6 +1,10 @@
 #legend, div.buttons {
 	clear: both;
 }
+#ctxnav {
+	font: 13px/30px "Helvetica Neue", Arial, FreeSans;
+	text-align: right;
+}
 
 /* Copied from trac.css */
 
