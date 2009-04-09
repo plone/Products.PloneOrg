@@ -24,6 +24,8 @@
 	padding: 6px 8px 5px;
 }
 
+a.closed:link, a.closed:visited { text-decoration: line-through }
+
 
 /* Copied from trac.css */
 
