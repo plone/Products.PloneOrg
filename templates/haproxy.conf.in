@@ -47,7 +47,7 @@ backend zope
   # appsession __ac len 32 timeout 1d
   balance roundrobin
   # cookie serverid
-  option httpchk GET /
+  # option httpchk GET /
 
-  server  plone0101 127.0.0.1:${instance1:http-address} cookie p0101 check maxconn 2
-  server  plone0102 127.0.0.1:${instance2:http-address} cookie p0102 check maxconn 2
+  server  plone0101 127.0.0.1:${instance1:http-address} cookie p0101 maxconn 2
+  server  plone0102 127.0.0.1:${instance2:http-address} cookie p0102 maxconn 2

@@ -12,6 +12,10 @@ http {
     proxy_connect_timeout 75;
     proxy_read_timeout 185;
 
+    upstream backend {
+        server 127.0.0.1:${instance1:http-address};
+        server 127.0.0.1:${instance2:http-address};
+    }
 
     # Main server goes upstream to Varnish
     server {

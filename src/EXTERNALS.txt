@@ -5,3 +5,4 @@ Products.Poi https://svn.plone.org/svn/collective/Products.Poi/trunk
 collective.psc.blobstorage https://svn.plone.org/svn/collective/collective.psc.blobstorage/trunk
 collective.psc.externalstorage https://svn.plone.org/svn/collective/collective.psc.externalstorage/trunk
 collective.psc.mirroring https://svn.plone.org/svn/collective/collective.psc.mirroring/trunk
+zope.structuredtext http://svn.zope.org/repos/main/zope.structuredtext/trunk

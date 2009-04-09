@@ -22,7 +22,7 @@ port = 9002
 serverurl = http://127.0.0.1:9002
 
 [eventlistener:memmon]
-command=memmon -a 500MB
+command=${buildout:directory}/bin/memmon -a 700MB
 events=TICK_60
 
 [program:nginx]
@@ -36,7 +36,7 @@ priority = 40
 
 [program:haproxy]
 command = ${buildout:directory}/bin/haproxy -f ${buildout:directory}/etc/haproxy.conf -db
-autostart= true
+autostart= false
 autorestart = true
 redirect_stderr = true
 priority = 30
