@@ -26,8 +26,6 @@
         name="ploneorg"/>
     <cmf:registerDirectory
         name="ploneorg_images"/>
-    <cmf:registerDirectory
-        name="ploneorg_frontpage"/>
     
     <adapter
        zcml:condition="installed Products.CacheSetup"
