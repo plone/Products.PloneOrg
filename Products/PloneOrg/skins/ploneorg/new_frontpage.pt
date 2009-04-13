@@ -52,12 +52,17 @@
 
 		<div class="grid-cell width-quarter position-three-quarters">
 
-<img src="/images/conferences.png" alt="" usemap="#conferences" style="border: none" />
+<img src="/images/conferences-wpd.png" alt="" usemap="#conferences" style="border: none" />
 <map name="conferences">
-  <area shape="rect" coords="0,0,226,157" href="/events/regional/european-symposium-2009"
-    alt="European Plone Symposium 2009: May 11-17, 2009"> 
-  <area shape="rect" coords="0,158,226,296" href="/events/regional/plone-symposium-east-2009"
-    alt="Plone Symposium East 2009: May 26-29, 2009"> 
+  <area shape="rect" coords="0,0,226,98"
+        href="/wpd"
+        alt="World Plone Day 2009: April 22, 2009" />
+  <area shape="rect" coords="0,99,226,197"
+        href="/events/regional/european-symposium-2009"
+        alt="European Plone Symposium 2009: May 11-17, 2009" />
+  <area shape="rect" coords="0,198,226,297"
+        href="/events/regional/plone-symposium-east-2009"
+        alt="Plone Symposium East 2009: May 26-29, 2009" />
 </map>
 			<div tal:condition="nothing"
 				class="sidebar" id="sidebar-frontpage">
