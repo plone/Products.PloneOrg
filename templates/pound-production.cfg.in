@@ -1,0 +1,71 @@
+user "zope"
+group "zope"
+Control "/tmp/pound.sock"
+LogFacility local6
+LogLevel 2
+
+ListenHTTP
+        Address 0.0.0.0
+        Port 5501
+        xHTTP 2
+
+        Service
+
+                BackEnd
+                        Address 127.0.0.1
+                        Port    5011
+                        Timeout 600
+                End
+
+                Backend
+                        Address 127.0.0.1
+                        port    5012
+                        Timeout 600
+                End
+
+                Backend
+                        Address 127.0.0.1
+                        port    5013
+                        Timeout 600
+                End
+
+                Backend
+                        Address 127.0.0.1
+                        port    5014
+                        Timeout 600
+                End
+
+                Backend
+                        Address 127.0.0.1
+                        port    5015
+                        Timeout 600
+                End
+
+                Backend
+                        Address 127.0.0.1
+                        port    5016
+                        Timeout 600
+                End
+
+                Backend
+                        Address 127.0.0.1
+                        port    5017
+                        Timeout 600
+                End
+
+                Backend
+                        Address 127.0.0.1
+                        port    5018
+                        Timeout 600
+                End
+
+                Session
+                        Type COOKIE
+                        ID      "__ac"
+                        TTL 300
+                End
+
+        End
+
+End
+
