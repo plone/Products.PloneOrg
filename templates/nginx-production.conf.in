@@ -49,7 +49,17 @@
             xslt_html_parser on;
             xslt_types text/html;
         }
-        
+        location ~ ^/products/(simple|links|\+\+simple\+\+)/?$ {
+            rewrite ^    http://dist.plone.org/packages permanent;
+        }
+        location /dist.plone.org {
+            internal;
+            # autoindex on;
+            alias /srv/dist.plone.org/http/root/;
+        }
+        location ~ ^/products/(.*)/((.*)(tgz|tar.gz|bz2|tar.bz2|zip|tbz|exe))$ {
+            rewrite ^/products/(.*)/((.*)(tgz|tar.gz|bz2|tar.bz2|zip|tbz|exe))$ /dist.plone.org/packages/$3$4;
+        }
     }
 
     server {
