@@ -11,3 +11,5 @@ Rules of thumb:
 - Don't go overboard with using the grid, sometimes it's easier to do simple floats.
 
 - Once you start doing grid layouts, you will notice how important it is to put margins on the right and bottom parts of elements.
+
+
