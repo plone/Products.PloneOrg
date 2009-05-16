@@ -3,13 +3,14 @@
 }
 #ctxtnav {
 	font: 13px/30px "Helvetica Neue", Arial, FreeSans;
-	float: right;
+	position: absolute;
+	right: 2em;
 }
 
 #ctxtnav li a,
 #ctxtnav li a:visited {
 	padding: 0.4em 0.6em;
-	color: Black;
+	color: #666;
 	font-weight: bold;
 	white-space: nowrap;
 }
