@@ -10,7 +10,7 @@
 	<append content='/html/head/link[@type!="text/css"]' theme='/html/head' />
 
 	<copy content='//*[@id="mainnav"]/ul'	theme='//*[@id="sub-nav"]' />
-	<append content='//*[@id="ctxtnav"]'	theme='//*[@id="nav"]' />
+	<append content='//*[@id="ctxtnav"]/ul'	theme='//*[@id="nav"]' />
 	
 	<copy content='//*[@id="metanav"]/ul/li[@class="first"]'	theme='//*[@id="user"]' />
 	
