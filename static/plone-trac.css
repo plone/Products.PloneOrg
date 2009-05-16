@@ -1,6 +1,14 @@
+#content h1 {
+	max-width: 60%;
+}
+
 #legend, div.buttons {
 	clear: both;
 }
+div.buttons form {
+	float: left;
+}
+
 #ctxtnav {
 	font: 13px/30px "Helvetica Neue", Arial, FreeSans;
 	position: absolute;
