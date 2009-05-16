@@ -30,7 +30,8 @@ def html_validity(self, url):
             line, column = e.position
             msg = data.split('\n')[line-10:line]
             msg.append('-'*(column-1)+'^')
-            msg.append('%s, line %s, column %s' % (e.error_log, line, column))
+            msg.append('%s: %s' % (e.__class__.__name__, e.args[0].encode('utf-8')))
+            msg.append(str(p.feed_error_log))
             return '\n'.join(msg)
         else:
             next = pos + CHUNK_SIZE
