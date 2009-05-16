@@ -3,7 +3,7 @@
 }
 #ctxtnav {
 	font: 13px/30px "Helvetica Neue", Arial, FreeSans;
-	text-align: right;
+	float: right;
 }
 
 #ctxtnav li a,
