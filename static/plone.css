@@ -256,7 +256,7 @@ ul.navigation li a:hover {
 ul.navigation li.selected a,
 ul.navigation li.active a {
 	color: #75ad0a;
-	padding: 6px 8px 5px;
+	padding: 6px 8px;
 	border-bottom: 2px solid white;
 }
 
