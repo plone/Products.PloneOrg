@@ -10,7 +10,9 @@ import urlparse
 def html_validity(self, url):
     request = self.REQUEST
     request.RESPONSE.setHeader('Content-Type','text/plain')
-    path = urlparse.urlsplit(url)[2]
+    path, qs = urlparse.urlsplit(url)[2:4]
+    if qs:
+        path += '?' + qs
     plone_path = request['PATH_INFO'].split('VirtualHostRoot')[0]
     plone_url = 'http://%s/%sVirtualHostRoot%s' % (request['HTTP_HOST'], plone_path, path)
     response = urlopen(plone_url)
