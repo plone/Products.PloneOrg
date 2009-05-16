@@ -10,7 +10,7 @@ div.buttons form {
 }
 
 #ctxtnav {
-	font: 13px/30px "Helvetica Neue", Arial, FreeSans;
+	font: bold 13px/30px "Helvetica Neue", Arial, FreeSans;
 	position: absolute;
 	right: 2em;
 }
