@@ -16,8 +16,12 @@
         gzip_types       text/xml text/plain application/xml;
 
         client_max_body_size 10M;
-	
-        # Push this to the frontend nginx to avoid problems
+
+        # increase proxy buffer size to avoid problems with HTMLParser
+        proxy_buffers 8 256k;
+        proxy_buffer_size 256k;
+
+        # Push this to varnish to avoid problems
         # error_page 500 /500.html;
         location = /500.html {  }
 
