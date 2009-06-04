@@ -4,7 +4,7 @@ usage: html_validity?url=<url>
 """
 
 from lxml import etree
-from urllib2 import urlopen, Request
+from urllib2 import urlopen, Request, HTTPError
 import urlparse
 
 def html_validity(self, url):
@@ -13,13 +13,18 @@ def html_validity(self, url):
     path, qs = urlparse.urlsplit(url)[2:4]
     if qs:
         path += '?' + qs
-    plone_path = request['PATH_INFO'].split('VirtualHostRoot')[0]
+    #plone_path = request['PATH_INFO'].split('VirtualHostRoot')[0]
+    plone_path = 'VirtualHostBase/http/plone.org:80/plone.org/'
     plone_url = 'http://%s/%sVirtualHostRoot%s' % (request['HTTP_HOST'], plone_path, path)
+    request.environ['debug_plone_url'] = plone_url
     new_req = Request(plone_url)
     cookie = request.environ.get('HTTP_COOKIE', None)
     if cookie is not None:
         new_req.add_header('Cookie', cookie)
-    response = urlopen(new_req)
+    try:
+        response = urlopen(new_req)
+    except HTTPError, e:
+        return 'Error opening url.\n%s' % e
     data = response.read()
     header_len = len('HTTP/1.0 200 OK\r\n') + len(''.join(response.headers.headers)) + len('\r\n')
 
