@@ -1,0 +1,51 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+<body>
+
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+ 
+        <div metal:use-macro="here/document_actions/macros/document_actions">
+            Document actions (print, sendto etc)
+        </div>
+ 
+        <h1>All Sessions
+        </h1>
+
+        <div metal:use-macro="here/document_byline/macros/byline">
+          Get the byline - contains details about author and modification date.
+        </div>
+ 
+        <p class="documentDescription"
+           tal:content="here/Description"
+           tal:condition="here/Description">
+            Description
+        </p>
+
+        <div tal:define="sessions python:
+            [a for a in context.objectIds() if a != 'toc' and a != 'all-sessions' and a != 'sessions' and a != 'all_sessions' and a != 'schedule']">
+
+            <div tal:repeat="session sessions">
+
+                <div tal:content="structure python: 
+                    context.restrictedTraverse('/plone.org/events/conferences/2008-washington-dc/agenda/%s/index_html' % session).getText()">
+                </div>
+
+                <a style="display: block; padding-bottom: 3em;" tal:attributes="href 
+                    python: context.restrictedTraverse('/plone.org/events/conferences/2008-washington-dc/agenda/%s/index_html' % 
+                        session).absolute_url()">Click to view session details</a>
+            </div>
+        </div>
+ 
+        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
+            show related items if they exist
+        </div>
+
+    </tal:main-macro>
+</metal:main>
+ 
+</body>
+</html>
