@@ -1,2 +1,2 @@
 [default]
-cache=RAMCache
+cache=HTTPCache
