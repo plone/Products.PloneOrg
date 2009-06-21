@@ -34,6 +34,8 @@ div.buttons form {
 	padding: 6px 8px 5px;
 }
 
+div.inlinebuttons { float: right;}
+
 a.closed:link, a.closed:visited { text-decoration: line-through }
 
 
