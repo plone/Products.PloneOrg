@@ -1904,6 +1904,15 @@ dl.toc dd ol {
 	font-size: 0.7em;
 }
 
+#footer p a { 
+    color: White;
+}
+
+#footer p a:hover {
+	color: #329fd7;
+	background-color: White;
+}
+
 #footer-logo {
 	float: left;
 	background-image: url(http://plone.org/images/sprite-ploneorg.png);
