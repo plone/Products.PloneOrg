@@ -34,6 +34,14 @@ div.buttons form {
 	padding: 6px 8px 5px;
 }
 
+.wiki-toc {
+    float: right;
+    width: 10em;
+    border: 1px solid #d7d7d7;
+    padding: 1em;
+    margin: 0 0 1em 1em;
+}
+
 div.inlinebuttons { float: right;}
 
 a.closed:link, a.closed:visited { text-decoration: line-through }
