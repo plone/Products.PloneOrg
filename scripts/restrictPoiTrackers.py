@@ -32,7 +32,7 @@ for brain in brains:
             if count % 25 == 0:
                 transaction.commit()
                 print '    (Committed)'
-
-
+transaction.commit()
+print '    (Committed, final.)'
 
 
