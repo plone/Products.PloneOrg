@@ -25,7 +25,7 @@ for brain in brains:
     print '%s' % '/'.join(obj.getPhysicalPath())
     review_state = wf.getInfoFor(obj, 'review_state')
     if not review_state == 'restricted': 
-        if review_state == 'open' or 'close':
+        if review_state == 'open' or review_state == 'close':
             wf.doActionFor(obj,'restrict',wf_id='poi_tracker_workflow')
             count += 1
             print '    Restricting tracker: %s' % '/'.join(obj.getPhysicalPath())
