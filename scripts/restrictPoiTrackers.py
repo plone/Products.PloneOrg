@@ -20,9 +20,19 @@ wf = getToolByName(portal, 'portal_workflow')
 
 brains = portal.portal_catalog(portal_type='PoiPscTracker',path='plone.org')
 for brain in brains:
+    count = 0
     obj = brain.getObject()
     print '%s' % '/'.join(obj.getPhysicalPath())
     review_state = wf.getInfoFor(obj, 'review_state')
-    if not review_state == 'restricted':
-        wf.doActionFor(obj,'restrict',wf_id='poi_tracker_workflow')
-        print '    Restricting tracker: %s' % '/'.join(obj.getPhysicalPath())
+    if not review_state == 'restricted': 
+        if review_state == 'open' or 'close':
+            wf.doActionFor(obj,'restrict',wf_id='poi_tracker_workflow')
+            count += 1
+            print '    Restricting tracker: %s' % '/'.join(obj.getPhysicalPath())
+            if count % 25 == 0:
+                transaction.commit()
+                print '    (Committed)'
+
+
+
+
