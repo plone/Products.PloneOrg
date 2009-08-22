@@ -17,7 +17,7 @@ wf = getToolByName(portal, 'portal_workflow')
 brains = portal.portal_catalog(portal_type='PoiPscTracker',path='plone.org')
 for brain in brains:
     obj = brain.getObject()
-    print '%s' % '/'.join(obj[1].getPhysicalPath())
+    print '%s' % '/'.join(obj.getPhysicalPath())
 
 #    review_state = wf.getInfoFor(obj, 'review_state')
 #    if not review_state == 'restricted':
