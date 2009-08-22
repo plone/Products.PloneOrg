@@ -10,7 +10,7 @@ newSecurityManager(None, system)
 portal = app['plone.org']
 
 utool = portal.portal_url
-brains = portal.portal_catalog.searchResults(portal_type='PSCFile', path='/plone.org/products')
+brains = portal.portal_catalog.searchResults(portal_type='PSCFile', path='plone.org/products')
 count = 0
 
 #17:59 < tarek> brain.getObject().getId()
