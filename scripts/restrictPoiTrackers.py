@@ -11,19 +11,13 @@ newSecurityManager(None, system)
 portal = app['plone.org']
 wf = getToolByName(portal, 'portal_workflow')
 
-#brains = portal.portal_catalog(portal_type='PoiTracker',path='plone.org')
-#for brain in brains:
-#    obj = brain.getObject()
+#items = portal.ZopeFind(portal, obj_metatypes=['PoiTracker',], search_sub=1)
+#for obj in items:
 
-
-items = portal.ZopeFind(portal, obj_metatypes=['PoiTracker',], search_sub=1)
-for obj in items:
+brains = portal.portal_catalog(portal_type='PoiPscTracker',path='plone.org')
+for brain in brains:
+    obj = brain.getObject()
     print '%s' % '/'.join(obj[1].getPhysicalPath())
-
-
-
-
-
 
 #    review_state = wf.getInfoFor(obj, 'review_state')
 #    if not review_state == 'restricted':
