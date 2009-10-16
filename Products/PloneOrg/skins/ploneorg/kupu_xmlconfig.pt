@@ -1,0 +1,48 @@
+<metal:block use-macro="here/global_defines/macros/defines" />
+      <xml id="kupuconfig" class="kupuconfig">
+        <kupuconfig>
+          
+    <dst>fulldoc.html</dst>
+    <use_css>0</use_css>
+    <reload_after_save>0</reload_after_save>
+    <strict_output>1</strict_output>
+    <content_type>application/xhtml+xml</content_type>
+    <compatible_singletons>1</compatible_singletons>
+    <filtersourceedit tal:condition="here/kupu_library_tool/getFiltersourceedit">1</filtersourceedit>
+    
+    <tal:block define="table_classnames here/get_table_classnames|here/kupu_library_tool/getTableClassnames|nothing">
+    <table_classes tal:condition="table_classnames">
+      <tal:loop repeat="klass table_classnames">
+      <class tal:define="parts python:klass.split('|', 1)*2;" tal:condition="python:parts[0].strip()">
+          <xcaption i18n:translate="" tal:content="python:parts[1]"/>
+          <classname tal:content="python:parts[0]"/>
+      </class>
+      </tal:loop>
+    </table_classes>
+    </tal:block>
+
+<tal:block define="excludes here/kupu_library_tool/getHtmlExclusions">
+<htmlfilter>
+<tal:block repeat="exclude excludes"><tal:block define="tags python:exclude[0]; attributes python:exclude[1];"><c tal:omit-tag="not:python:tags and attributes"><a tal:repeat="attr attributes" tal:content="attr">
+  </a><t tal:repeat="tag tags" tal:content="tag"/></c></tal:block></tal:block>
+<xstyle tal:repeat="st here/kupu_library_tool/getStyleWhitelist" tal:content="st"/>
+<class tal:repeat="cl here/kupu_library_tool/getClassBlacklist" tal:content="cl"/>
+</htmlfilter>
+</tal:block>
+  
+    <tal:var define="field field|nothing;
+                     tool here/kupu_library_tool;
+                     usecaptions python:tool.getCaptioning() and tool.canCaption(field);
+                     base python:here.kupu_library_tool.getBaseUrl(here);
+                     base kupu_base_override|base;">
+        <captions tal:condition="usecaptions">1</captions>
+        <xsl_uri tal:content="string:${portal_url}/kupudrawers/drawer.xsl"/>
+        <image_resource>mediaobject</image_resource>
+        <link_resource>linkable</link_resource>
+        <lib_prefix tal:content="string:${base}/kupulibraries.xml?resource_type="/>
+        <search_prefix tal:content="string:${portal_url}/kupusearch.xml?resource_type="/>
+        <select_prefix tal:content="string:${portal_url}/kupuselection.xml?resource_type="/>
+    </tal:var>
+  
+        </kupuconfig>
+      </xml>
