@@ -1,0 +1,122 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+	xmlns:metal="http://xml.zope.org/namespaces/metal"
+	i18n:domain="plone">
+<body>
+<div metal:define-macro="portlet"
+    tal:define="view context/@@plone;
+                navRoot here/getNavRootObject | nothing">
+
+
+<dl class="portlet" tal:condition="python:here.portal_type != 'HelpCenter'">
+	<dt class="portletHeader">
+		About
+	</dt>
+
+	<dd class="portletItem">
+	    
+    <div tal:condition="python:navRoot">
+         
+    	<p>You are reading:</p>
+
+   		<form method="get" action="selectRedirect" class="manualNavForm">
+        <label for="selectRedirect" class="hiddenStructure">Jump to:</label>
+   			<select name="target"
+      	        style="width: 100%; margin-bottom: 1em"
+                onchange="location.href=this.options[this.selectedIndex].value">
+      		<option tal:attributes="value navRoot/absolute_url"
+      		        tal:content="navRoot/pretty_title_or_id">
+      		  Table of Contents
+      		</option>
+      		<tal:block tal:repeat="sec python:navRoot.getTOCSelectOptions(here)">
+        		<option 
+        		  tal:content="sec/title"
+              tal:attributes="selected python:test(sec['current'],'selected',None);
+                              value sec/url">
+        		  Section Title
+        		</option>
+      		</tal:block>
+      	</select>
+  			<noscript>
+  				<input class="standalone"
+  					type="submit"
+  					value="Go"
+  					i18n:attributes="value" />
+  			</noscript>
+    	</form>
+
+    	<p>from 
+    	  <a href="#" tal:attributes="href navRoot/absolute_url"
+    	   tal:content="navRoot/title">Plone 3.0 User Manual</a>.
+    	</p>
+    	<p tal:content="navRoot/Description">
+    		Description
+    	</p>
+
+      <p>
+        <a href="referencemanual-all-pages"
+           tal:attributes="href navRoot/getAllPagesURL"
+           i18n:translate="all_content_on_one_page">
+          All content on a single page</a>
+      </p>
+    </div>
+
+    <div id="phcMetadata" tal:condition="nocall:here/getVersions | nothing">
+      	<p tal:condition="here/getVersions | nothing"><strong>Use with</strong>:
+      	<span tal:replace="python:', '.join(here.getVersions())">Plone 3</span><br/>
+        <tal:if tal:condition="nocall:here/getAudiences | nothing">
+      	  <strong>Relevant for</strong>:
+      	  <span tal:replace="python:', '.join(here.getAudiences())">End users</span>
+        </tal:if>
+      	</p>
+
+        <tal:name tal:condition="python:(site_properties.allowAnonymousViewAbout or not isAnon) and getattr(here,'Creator',nothing)"
+        	tal:define="creator here/Creator;
+        	author python:mtool.getMemberInfo(creator)">
+
+            <img tal:define="portrait python: mtool.getPersonalPortrait(here.Creator());"
+                 src=""
+                 alt=""
+                 class="portraitPhoto"
+                 width="75"
+                 height="100"
+                 style="float: left; margin: 0 1em 0.5em 0"
+                 tal:attributes="src portrait/absolute_url" />
+
+            <p>This document was contributed by
+               <a href=""
+                  tal:attributes="href string:${portal_url}/author/${creator}" 
+                  tal:content="python:author and author['fullname'] or creator">Steve McMahon</a>,
+               and last modified
+               <span tal:replace="python:'%d' % (DateTime() - DateTime(here.ModificationDate()))">5</span>
+               days ago.
+            </p>
+            <p tal:condition="here/Contributors">
+                Also contributing: <span tal:content="python: ', '.join(here.Contributors())">Mary</span>.
+            </p>
+        </tal:name>
+    </div>	
+
+    <p tal:content="here/Rights" tal:condition="here/Rights">
+    Copyleft NiceCorp Inc.
+    </p>
+	
+    <p>
+    <img src="/speakplone_sm.png" alt="" width="80" height="28" style="float: left" />
+      Visit our 
+      <a href="/support/chat">chat rooms</a> or 
+      <a href="/support/forums">support forums</a> 
+      if you have more specific questions.
+    </p>
+
+    <p>You can also learn how to design, build, and deploy a website in Plone 
+    through one of the numerous 
+    <a href="/events/training">Plone training sessions</a> around the world.
+    </p>
+
+  </dd>
+
+</dl>
+
+</div>
+</body>
+</html>

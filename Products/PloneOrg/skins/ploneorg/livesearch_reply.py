@@ -1,3 +1,12 @@
+## Script (Python) "livesearch_reply"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=q,limit=10,path=None
+##title=Removed query parameter 'searchterm' from rendered URLs to improve caching. Should be backported to Plone. More detail: http://dev.plone.org/plone/ticket/8770 ~limi
+##
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.browser.navtree import getNavigationRoot

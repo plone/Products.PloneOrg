@@ -1,0 +1,17 @@
+#portal-globalnav {
+    text-align: center;
+}
+
+/* span styles for legal markup, used in Foundation section for bylaws changes */
+.addition {
+ color: red;
+}
+
+.striken {
+ text-decoration: line-through;
+}
+#content a[href ^="http:"]{
+background: none !important;
+padding: 0 !important;
+}
+/* end of legal markup styles */

@@ -1,0 +1,15 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+       xmlns:metal="http://xml.zope.org/namespaces/metal"
+       metal:use-macro="here/main_template/macros/master">
+<head>
+<metal:block fill-slot="top_slot"
+             tal:define="dummy python:request.set('disable_border',1)" />
+</head>
+<body>
+
+<div metal:fill-slot="main">
+<iframe src="https://spreadsheets.google.com/embeddedform?key=pjvc1IO4Q7JaEDGzxYFucOg" width="600" height="883" frameborder="0" marginheight="0" marginwidth="0" >Loading...</iframe>
+</div>
+
+</body>
+</html>

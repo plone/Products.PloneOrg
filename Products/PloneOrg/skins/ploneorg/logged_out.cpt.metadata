@@ -1,0 +1,2 @@
+[default]
+title:string=Removed duplicate "new account" section (it's part of the login form)

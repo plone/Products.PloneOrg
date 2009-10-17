@@ -1,0 +1,141 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en"
+      lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="plonesoftwarecenter">
+
+<body>
+
+<div metal:define-macro="portlet"
+     tal:define="project_view context/getView">
+
+    <dl class="portlet">
+        <dt class="portletHeader"
+            i18n:translate="label_project_resources">Project Resources</dt>
+        <dd class="portletItem">
+
+
+            <ul>
+                <li tal:repeat="resource project_view/additional_resources">
+                    <a href=""
+                       class="link-plain"
+                       tal:attributes="href resource/absolute_url;
+                                       title resource/Description;">
+                       <span tal:replace="resource/Title">Folder resource</span></a>
+                </li>
+                <li tal:condition="project_view/has_documentation_link">
+                    <a href=""
+                       title="Documentation for this project"
+                       i18n:attributes="title title_project_resources_documentation"
+                       tal:attributes="href project_view/documentation_url;
+                                       class project_view/documentation_link_class">
+                        <span i18n:translate="label_project_resources_documentation"> Documentation</span>
+                    </a>
+                </li>
+                
+                <li tal:condition="here/getHomepage">
+                    <a href=""
+                       class="link-plain"
+                       title="Additional home page for this project"
+                       i18n:attributes="title title_resource_project_page"
+                       tal:attributes="href here/getHomepage">
+                        <span i18n:translate="label_resource_project_page"> External project page</span>
+                    </a>
+                </li>
+
+                <li tal:condition="here/getRepository">
+                    <a href=""
+                       class="link-plain"
+                       title="Version control repository location for this project"
+                       i18n:attributes="title title_resource_code_repository"
+                       tal:attributes="href here/getRepository">
+                       <span i18n:translate="label_resource_code_repository"> Code repository</span>
+                    </a>
+                </li>
+
+                <li tal:condition="here/getTracker">
+                    <a href=""
+                       class="link-plain"
+                       title="A place to submit bug reports and feature requests for this project"
+                       i18n:attributes="title title_resource_issue_tracker"
+                       tal:attributes="href here/getTracker">
+                       <span i18n:translate="label_resource_issue_tracker"> Issue tracker</span>
+                    </a>
+                </li>
+
+                <li tal:condition="here/getMailingList">
+                    <a href=""
+                       class="link-plain"
+                       title="Support options for this product"
+                       i18n:attributes="title title_resource_support"
+                       tal:attributes="href here/getMailingList">
+                       <span i18n:translate="label_resource_support"> Support</span>
+                    </a>
+                </li>
+
+                <li tal:condition="here/getContactAddress">
+                    <a href=""
+                       class="link-plain"
+                       title="Contact address for this project"
+                       i18n:attributes="title title_resource_contact_address"
+                       tal:attributes="href here/getContactAddress">
+                       <span i18n:translate="label_resource_contact_address"> Contact address</span>
+                    </a>
+                </li>
+            </ul>
+
+
+        <p style="text-align: center"
+            tal:condition="creator"
+            tal:define="creator here/Creator; author python:mtool.getMemberInfo(creator)"
+            i18n:translate="label_portlet_project_resources_owner">
+            Project owner:
+          <a href="#"
+             tal:attributes="href string:${portal_url}/author/${creator}"
+             tal:content="python:author and author['fullname'] or creator"
+             tal:omit-tag="not:author" i18n:name="name_portlet_project_resources_owner">
+            Bob Dobalina
+          </a>
+        </p>
+
+        <p style="text-align: center;" 
+           tal:condition="syntool/isSiteSyndicationAllowed | nothing">
+               <a href="" title="Subscribe to updates for this project"
+                  tal:attributes="href project_view/release_rss_url | nothing"
+                  i18n:attributes="title title_portlet_project_resources_subscribe_updates">
+                  <img tal:attributes="src here/rss.gif/absolute_url"
+                       alt="Subscribe to updates for this project"
+                       i18n:attributes="title title_portlet_project_resources_subscribe_updates" />
+                  <span
+                       i18n:translate="title_portlet_project_resources_subscribe_updates"> Subscribe to updates for this project</span>
+               </a>
+        </p>
+
+
+        </dd>
+    </dl>
+
+        <div style="text-align: center; margin-bottom: 1em"
+            tal:condition="here/screenshot_preview | nothing">
+            <a class="discreet zoom"
+                href="#screenshot_zoom">
+                <img tal:attributes="src here/screenshot/absolute_url"
+                     width="240" alt="Screenshot &mdash; click to enlarge"
+                     i18n:attributes="alt label_screenshot_click_to_enlarge"/>
+                <br />
+                <span i18n:translate="label_screenshot_click_to_enlarge">
+                    Screenshot &mdash; click to enlarge
+                </span>
+            </a>
+            
+            <div id="screenshot_zoom">
+                <img tal:replace="structure here/screenshot" />
+            </div>
+        </div>
+
+
+</div>
+</body>
+</html>

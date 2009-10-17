@@ -1,3 +1,12 @@
+## Script (Python) "cleanKupuTypes"
+##bind container=container
+##bind context=context
+##bind namespace=
+##bind script=script
+##bind subpath=traverse_subpath
+##parameters=
+##title=Clean out bogus kupu resource types
+##
 # kupu can accumulate bad type info in its linkable resource list
 
 klt = context.kupu_library_tool

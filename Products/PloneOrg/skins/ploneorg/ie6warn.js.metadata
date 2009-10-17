@@ -1,0 +1,4 @@
+[default]
+title=Warns people using IE6 to upgrade, but lets them dismiss the dialog
+content_type=application/x-javascript
+precondition=
