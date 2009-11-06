@@ -20,7 +20,7 @@
   <element value="folder_summary_view"/>
   <element value="folder_tabular_view"/>
   <element value="atct_album_view"/>
-  <element value="new_frontpage"/>
+  <element value="frontpage"/>
  </property>
  <property name="default_view_fallback">False</property>
  <alias from="(Default)" to="(dynamic view)"/>
