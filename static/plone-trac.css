@@ -101,6 +101,7 @@ h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
     padding-right: .8em;
 }
 
+td.change .author { color: #888 }
 
 /* Ticket priorities */
 
@@ -127,4 +128,11 @@ h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
 .prio1 td:first-child,.color1-even td:first-child,.color1-odd td:first-child
 {
  border-left: 6px solid red;
+}
+
+
+/* Workarounds for Trac defaults that interfere */
+
+#dirlist td.name a, #dirlist td.rev a, td.summary a {
+  display: inline-block !important; /* Fix double-height entries */
 }
