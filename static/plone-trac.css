@@ -100,3 +100,31 @@ h4:hover .anchor, h5:hover .anchor, h6:hover .anchor {
     margin-left: 1em;
     padding-right: .8em;
 }
+
+
+/* Ticket priorities */
+
+.prio5 td:first-child,.color5-even td:first-child,.color5-odd td:first-child
+{
+ border-left: 6px solid lightblue;
+}
+
+.prio4 td:first-child,.color4-even td:first-child,.color4-odd td:first-child
+{
+ border-left: 6px solid lightgreen;
+}
+
+.prio3 td:first-child,.color3-even td:first-child,.color3-odd td:first-child
+{
+ border-left: 6px solid gold;
+}
+
+.prio2 td:first-child,.color2-even td:first-child,.color2-odd td:first-child
+{
+ border-left: 6px solid lightsalmon;
+}
+
+.prio1 td:first-child,.color1-even td:first-child,.color1-odd td:first-child
+{
+ border-left: 6px solid red;
+}
