@@ -136,3 +136,8 @@ td.change .author { color: #888 }
 #dirlist td.name a, #dirlist td.rev a, td.summary a {
   display: inline-block !important; /* Fix double-height entries */
 }
+
+#user li.first {
+  color: #666;
+  font-weight:bold;
+}
