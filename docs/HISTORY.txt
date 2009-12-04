@@ -1,8 +1,10 @@
 Changelog
 =========
 
-1.1 - (Unreleased)
+1.1 - Dec 3, 2009
 ------------------
+
+* Fix broken jquery-ui-accordion.js
 
 1.0 - Nov 23, 2009
 ------------------
