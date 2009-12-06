@@ -145,8 +145,7 @@
                             <label for="location" i18n:translate="label_location">Location</label>
 
                             <div class="formHelp" i18n:translate="help_location">
-                            Your location - either city and country - or in a company setting,
-                            where your office is located.
+                            Your location &mdash; city, state (if applicable) and country.
                             </div>
 
                             <div tal:content="error">Validation error output</div>
@@ -237,6 +236,81 @@
                                    />
 
                         </div>
+
+
+                        <div class="field"
+                             tal:define="error errors/organization_title | nothing;
+                                         location python:request.get('organization_title', member.getProperty('organization_title', ''));"
+                             tal:attributes="class python:test(error, 'field error', 'field')">
+
+                            <label for="organization_title">Title and organization/company</label>
+
+                            <div class="formHelp">
+                            The title you hold in your organization, and your company. Example: "CEO, SomeCorp, Inc."
+                            </div>
+ 
+                             <div tal:content="error">Validation error output</div>
+ 
+                            <input type="text"
+                                   id="organization_title"
+                                   name="organization_title"
+                                   size="25"
+                                   value="member.organization_title html_quote"
+                                   tal:attributes="value location;
+                                       disabled python:member.canWriteProperty('organization_title') and default or 'disabled'"
+                                   />
+ 
+                        </div>
+
+                        <div class="field"
+                             tal:define="error errors/organization_link | nothing;
+                                         location python:request.get('organization_link', member.getProperty('organization_link', ''));"
+                             tal:attributes="class python:test(error, 'field error', 'field')">
+
+                            <label for="organization_link">Organization/company URL</label>
+
+                            <div class="formHelp">
+                            The web address for your organization or company. This will used as a link on the previous
+                            title/organization field in the public listing. Remember the 'http://' prefix! :)
+                            </div>
+
+                            <div tal:content="error">Validation error output</div>
+
+                            <input type="text"
+                                   id="organization_link"
+                                   name="organization_link"
+                                   size="25"
+                                   value="member.organization_link html_quote"
+                                   tal:attributes="value location;
+                                       disabled python:member.canWriteProperty('organization_link') and default or 'disabled'"
+                                   /> 
+                         </div>
+ 
+ 
+                         <div class="field"
+                             tal:define="error errors/nickname | nothing;
+                                         location python:request.get('nickname', member.getProperty('nickname', ''));"
+                             tal:attributes="class python:test(error, 'field error', 'field')">
+
+                            <label for="nickname">IRC nickname</label>
+
+                            <div class="formHelp">
+                            If you have a registered nickname on IRC (irc.freenode.net, #plone), add it here.
+                            </div>
+
+                            <div tal:content="error">Validation error output</div>
+
+                            <input type="text"
+                                   id="nickname"
+                                   name="nickname"
+                                   size="25"
+                                   value="member.nickname html_quote"
+                                   tal:attributes="value location;
+                                       disabled python:member.canWriteProperty('nickname') and default or 'disabled'"
+                                   />
+
+                        </div>
+ 
 
                         <div class="field"
                                  tal:define="wysiwyg_editor python:request.get('wysiwyg_editor',
