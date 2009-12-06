@@ -6,6 +6,14 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
+<tal:comment replace="nothing">
+    This is a forked template from Plone 3.3. It adds support for the
+    following memberdata properties:
+    - nickname
+    - organization_title
+    - organization_link
+</tal:comment>
+
 <head>
     <metal:block fill-slot="top_slot"
                  tal:define="dummy python:request.set('disable_border',1)" />
