@@ -61,7 +61,7 @@ http {
             xslt_html_parser on;
             xslt_types text/html;
         }
-        location ~ ^/(products(/psc_view_ploneorg)?|support)/?$ {
+        location ~ ^/(products(/psc_view_ploneorg)?|documentation/ndocs|support)/?$ {
             rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
             proxy_pass ${nginx-conf:backend};
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
@@ -87,6 +87,10 @@ http {
         gzip_proxied     any;
         gzip_types       text/xml text/plain application/xml;
 
+ 	location = /norobots.txt { }
+ 	location = /robots.txt {
+ 	    rewrite ^/robots.txt /norobots.txt;
+ 	}
         location / {
             proxy_pass ${nginx-conf:backend}/${nginx-conf:old-virtual-host}/;
         }
