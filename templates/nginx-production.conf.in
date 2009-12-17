@@ -94,6 +94,34 @@
             rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
             proxy_pass ${nginx-conf:backend};
         }
+    server {
+        listen ${nginx-conf:listen};
+        server_name manage.plone.org;
+        root ${buildout:directory}/static;
+
+        location = /nginx-status {
+            stub_status on;
+            allow 127.0.0.1;
+            deny all;
+        }
+
+        gzip             on;
+        gzip_min_length  1000;
+        gzip_proxied     any;
+        gzip_types       text/xml text/plain application/xml;
+
+        location / {
+            proxy_pass ${nginx-conf:backend}/${nginx-conf:manage-virtual-host}/;
+        }
+        location ^~ /images/ {
+            autoindex on;
+        }
+        location ^~ /plone.css {  }
+        location ^~ /ie.css {  }
+        location ~ /emptypage$ {
+            rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
+            proxy_pass ${nginx-conf:backend};
+        }
 
 
     }
