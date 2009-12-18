@@ -12,49 +12,49 @@ ListenHTTP
         Service
 
                 BackEnd
-                        Address 127.0.0.1
+                        Address ${hosts:lanhost}
                         Port    5011
                         Timeout 600
                 End
 
                 Backend
-                        Address 127.0.0.1
+                        Address ${hosts:lanhost}
                         port    5012
                         Timeout 600
                 End
 
                 Backend
-                        Address 127.0.0.1
+                        Address ${hosts:lanhost}
                         port    5013
                         Timeout 600
                 End
 
                 Backend
-                        Address 127.0.0.1
+                        Address ${hosts:lanhost}
                         port    5014
                         Timeout 600
                 End
 
                 Backend
-                        Address 127.0.0.1
+                        Address ${hosts:lanhost}
                         port    5015
                         Timeout 600
                 End
 
                 Backend
-                        Address 127.0.0.1
+                        Address ${hosts:lanhost}
                         port    5016
                         Timeout 600
                 End
 
                 Backend
-                        Address 127.0.0.1
+                        Address ${hosts:lanhost}
                         port    5017
                         Timeout 600
                 End
 
                 Backend
-                        Address 127.0.0.1
+                        Address ${hosts:lanhost}
                         port    5018
                         Timeout 600
                 End
