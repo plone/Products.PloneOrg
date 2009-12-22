@@ -94,6 +94,10 @@
             rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
             proxy_pass ${nginx-conf:backend};
         }
+
+
+    }
+
     server {
         listen ${nginx-conf:listen};
         server_name manage.plone.org;
