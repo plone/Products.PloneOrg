@@ -5,7 +5,7 @@ Changelog
 ------------------
 
 - Add a css rule to make the highlighted text inside <pre>s
-  readable. Fixes http://dev.plone.org/plone.org/ticket/1743.
+  readable. Fixes http://dev.plone.org/plone.org/ticket/1743. 
   [dukebody]
 
 1.1 - Dec 3, 2009
