@@ -1018,6 +1018,10 @@ dl.portlet li {
     background-color: #ffb;
 }
 
+#content pre .visualHighlight {
+    color: #222222;
+}
+
 #content .pullquote {
     padding: 0 1em 0 1em;
     margin: 0 0 1em 1em;
