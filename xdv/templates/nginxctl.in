@@ -1,0 +1,41 @@
+#!/bin/sh
+ARGV="$@"
+NGINX='${buildout:directory}/parts/nginx/sbin/nginx'
+PIDFILE='${nginx:pid-path}'
+LD_LIBRARY_PATH='${nginx:libxml2}/lib:${nginx:libxslt}/lib'
+export LD_LIBRARY_PATH
+
+ERROR=0
+if [ "x$ARGV" = "x" ] ; then 
+    ARGV="-h"
+fi
+
+case $ARGV in
+start)
+    echo "Starting nginx "
+    $NGINX
+    error=$?
+    ;;
+stop)
+    echo "Stopping nginx "
+    kill `cat $PIDFILE`
+    error=$?
+    ;;
+reload)
+    echo "Reloading nginx "
+    kill -HUP `cat $PIDFILE`
+    error=$?
+    ;;
+reopen_transcript)
+    echo "Reopening logfiles"
+    kill -USR1 `cat $PIDFILE`
+    error=$?
+    ;;
+configtest)
+    echo "Testing nginx configuration "
+    $NGINX -t
+    ERROR=$?
+    ;;
+esac
+
+exit $ERROR

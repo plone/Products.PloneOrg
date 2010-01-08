@@ -1,0 +1,46 @@
+Index: src/mod_depends.c
+===================================================================
+--- src/mod_depends.c	(revision 7)
++++ src/mod_depends.c	(working copy)
+@@ -90,41 +90,6 @@
+ 
+ static int depends_filter(ap_filter_t *f, apr_bucket_brigade *bb)
+ {
+-    md_info *fp;
+-    apr_status_t rv;
+-    char *etag;
+-
+-    depends_conf* conf = ap_get_module_config(f->r->request_config, 
+-                                              &depends_module);
+-    if(!conf) {
+-        ap_remove_output_filter(f);
+-        return ap_pass_brigade(f->next, bb);
+-    }
+-    
+-    while((fp = apr_array_pop(conf->files)) != NULL) {
+-        apr_finfo_t finfo;
+-
+-        rv = apr_stat(&finfo, fp->path,
+-                      APR_FINFO_MTIME|APR_FINFO_INODE|APR_FINFO_SIZE, 
+-                      f->r->pool);
+-
+-        if(rv != APR_SUCCESS) {
+-            continue;
+-        }
+-
+-        apr_md5_update(&conf->md5ctx, &finfo.inode, sizeof(finfo.inode));
+-        apr_md5_update(&conf->md5ctx, &finfo.size, sizeof(finfo.size));
+-        apr_md5_update(&conf->md5ctx, &finfo.mtime, sizeof(finfo.mtime));
+-
+-        ap_update_mtime(f->r, finfo.mtime);
+-    }
+-
+-    etag = ap_md5contextTo64(f->r->pool, &conf->md5ctx);
+-
+-    apr_table_setn(f->r->headers_out, "ETag", etag);
+-    ap_set_last_modified(f->r);
+-
+-    ap_set_module_config(f->r->request_config, &depends_module, NULL);
+     ap_remove_output_filter(f);
+     return ap_pass_brigade(f->next, bb);
+ }
