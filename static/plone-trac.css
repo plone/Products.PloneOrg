@@ -46,6 +46,8 @@ div.inlinebuttons { float: right;}
 
 a.closed:link, a.closed:visited { text-decoration: line-through }
 
+#batchmod-form { clear: both; margin-top: 2em; }
+
 /* Collapsible query headers */
 
 #query fieldset.collapsed table, 
