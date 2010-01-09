@@ -46,6 +46,28 @@ div.inlinebuttons { float: right;}
 
 a.closed:link, a.closed:visited { text-decoration: line-through }
 
+/* Collapsible query headers */
+
+#query fieldset.collapsed table, 
+#query fieldset.collapsed div {
+    display:none;
+}
+
+#query fieldset.collapsed legend.foldable a:before {
+content:"▶ ";
+color: #329FD7;
+}
+
+#query fieldset legend.foldable a:before {
+content:"▼ ";
+color: #329FD7;
+}
+#query fieldset legend.foldable a {
+border: none;
+color: black;
+}
+
+
 
 /* Copied from trac.css */
 
