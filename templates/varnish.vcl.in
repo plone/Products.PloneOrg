@@ -3,15 +3,15 @@
 #Default backend is nginx on port 80:
 
 backend default {
-	.host = "127.0.0.1";
-	.port = "80";
+    .host = "127.0.0.1";
+    .port = "80";
 }
 
 # Define a sub to handle requests where we ignore cache-control headers.  Now
 # we don't have to put the check for a 200 status code in every content type:
 sub override {
     if (obj.status == 200) {
-	deliver;	
+    deliver;    
     }
     pass;
 }
@@ -31,7 +31,7 @@ sub vcl_recv {
                     error 405 "Not allowed.";
             }
             purge_url(req.url);
-	    error 200 "Purged";
+        error 200 "Purged";
     }
     if (req.request != "GET" && req.request != "HEAD") {
         /* We only deal with GET and HEAD by default */
@@ -46,18 +46,18 @@ sub vcl_recv {
 
 sub vcl_hit {
     if (req.request == "PURGE") {
-	set obj.ttl = 0s;
-	error 200 "Purged";
+    set obj.ttl = 0s;
+    error 200 "Purged";
     }
     if (!obj.cacheable) {
         set obj.http.X-Varnish-Action = "PASS (not cacheable - hit)";
         pass;
     }
     if (obj.http.Cache-Control ~ "(stale-while-revalidate|no-transform)") {
-    	# This is a special cache. Don't serve to authenticated.
-    	if (req.http.Cookie ~ "__ac=" || req.http.Authorization) {
-    		set obj.http.X-Varnish-Action = "PASS (special not cacheable - hit)";
-                	pass;
+        # This is a special cache. Don't serve to authenticated.
+        if (req.http.Cookie ~ "__ac=" || req.http.Authorization) {
+            set obj.http.X-Varnish-Action = "PASS (special not cacheable - hit)";
+                    pass;
                 }
         }
 
@@ -95,11 +95,11 @@ sub vcl_fetch {
     }
 
     if (req.url ~ "\.(jpg|jpeg|gif|png|tiff|tif|svg|swf|ico|css|js|vsd|doc|ppt|pps|xls|pdf|mp3|mp4|m4a|ogg|mov|avi|wmv|sxw|zip|gz|bz2|tgz|tar|rar|odc|odb|odf|odg|odi|odp|ods|odt|sxc|sxd|sxi|sxw|dmg|torrent|deb|msi|iso|rpm)$") {
-	set obj.ttl = 600s;
-	call override;
+    set obj.ttl = 600s;
+    call override;
     }
     if (obj.http.Content-Type ~ "image.*$") {
-	set obj.ttl = 600s;
+    set obj.ttl = 600s;
         call override;
     }
     if (obj.http.Set-Cookie) {
@@ -114,7 +114,7 @@ sub vcl_fetch {
         pass;
     }
     if (!obj.cacheable) {
-	set obj.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
+    set obj.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
         pass;
     }
     set obj.prefetch =  -30s;
@@ -146,9 +146,33 @@ sub vcl_error {
         
        <p>We should be back shortly, sorry about the inconvenience.</p>
        <i>&mdash;The Plone Team</i>
+
+      <small>If you are only getting this message on certain pages, but the rest of plone.org works fine, let us know in the <a href="http://dev.plone.org/plone.org">plone.org issue tracker</a>, and we'll take a look.</small>
   </body>
 
 </html>
 "};
     deliver;
 }
+
+#sub vcl_error {
+#    set obj.http.Content-Type = "text/html; charset=utf-8";
+#    synthetic {"
+#<?xml version="1.0" encoding="utf-8"?>
+#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+# "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+#<html>
+#  <head>
+#    <title>"} obj.status " " obj.response {"</title>
+#  </head>
+#  <body>
+#    <h1>Error "} obj.status " " obj.response {"</h1>
+#    <p>"} obj.response {"</p>
+#    <h3>Guru Meditation:</h3>
+#    <p>XID: "} req.xid {"</p>
+#    <address><a href="http://www.varnish-cache.org/">Varnish</a></address>
+#  </body>
+#</html>
+#"};
+#    deliver;
+#}
