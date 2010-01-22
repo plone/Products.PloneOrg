@@ -1,67 +1,73 @@
-[unix_http_server]
-file = ${buildout:directory}/var/supervisor.sock
-chmod = 0600
-#chown = root:admin
+[supervisord]
+umask=002                   ; (process file creation umask;default 022)
+logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
+logfile_maxbytes=50MB       ; (max main logfile bytes b4 rotation;default 50MB)
+logfile_backups=10          ; (num of main logfile rotation backups;default 10)
+loglevel=info               ; (logging level;default info; others: debug,warn)
+pidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+nodaemon=false              ; (start in foreground if true;default false)
+minfds=1024                 ; (min. avail startup file descriptors;default 1024)
+minprocs=200                ; (min. avail process descriptors;default 200)
+user=zope
+enironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
+identifier=supervisor
 
-[supervisorctl]
-serverurl = unix://${buildout:directory}/var/supervisor.sock
+[unix_http_server]
+file=/tmp/supervisor.sock
+chmod=0770
+chown=zope:zope
 
 [rpcinterface:supervisor]
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 
-[supervisord]
-logfile = ${buildout:directory}/var/log/supervisord.log
-logfile_maxbytes = 5MB
-logfile_backups = 10
-loglevel = info
-pidfile = ${buildout:directory}/var/supervisord.pid ;
-childlogdir = ${buildout:directory}/var/log
-nodaemon = false
-directory = ${buildout:directory}/var/log
-port = 9002
-serverurl = http://127.0.0.1:9002
+[supervisorctl]
+serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 
 [eventlistener:memmon]
-command=${buildout:directory}/bin/memmon -a 700MB
+command=/usr/local/bin/memmon -a 1024MB
 events=TICK_60
 
-[program:nginx]
-command = ${nginx:location}/sbin/nginx
-environment = LD_LIBRARY_PATH=${nginx:libxml2}/lib:${nginx:libxslt}/lib
-autostart = true
-autorestart = true
-stdout_logfile = NONE
-stderr_logfile = NONE
-priority = 40
+[program:plone.org-zss]
+command=/srv/plone.org/parts/zeo/bin/runzeo
+priority=1
+autostart=true
 
-[program:haproxy]
-command = ${buildout:directory}/bin/haproxy -f ${buildout:directory}/etc/haproxy.conf -db
-autostart= false
-autorestart = true
-redirect_stderr = true
-priority = 30
+[program:plone.org-client-1]
+command=/srv/plone.org/parts/instance1/bin/runzope
+priority=2
+autostart=true
 
-[program:varnish]
-command = ${varnish:location}/sbin/varnishd -f ${buildout:directory}/etc/varnish.vcl -F -a ${varnish-conf:listen} -T ${varnish-conf:telnet}
-autostart= false
-autorestart = true
-redirect_stderr = true
-priority = 5
+[program:plone.org-client-2]
+command=/srv/plone.org/parts/instance2/bin/runzope
+priority=2
+autostart=true
 
-[program:zeo]
-command = ${zeo:location}/bin/runzeo 
-directory = ${zeo:location}
-priority = 10
-autostart = false
+[program:plone.org-client-3]
+command=/srv/plone.org/parts/instance3/bin/runzope
+priority=2
+autostart=true
 
-[program:instance]
-numprocs = 2
-numprocs_start = 1
-process_name = %(process_num)s
-command = ${buildout:directory}/parts/instance%(process_num)s/bin/runzope 
-priority = 20
+[program:plone.org-client-4]
+command=/srv/plone.org/parts/instance4/bin/runzope
+priority=2
+autostart=true
 
-[program:dev-instance]
-command = ${dev-instance:location}/bin/runzope 
-process_name = dev-instance
-autostart = false
+[program:plone.org-client-5]
+command=/srv/plone.org/parts/instance5/bin/runzope
+priority=2
+autostart=false
+
+[program:plone.org-client-6]
+command=/srv/plone.org/parts/instance6/bin/runzope
+priority=2
+autostart=false
+
+[program:plone.org-client-7]
+command=/srv/plone.org/parts/instance7/bin/runzope
+priority=2
+autostart=false
+
+[program:plone.org-client-8]
+command=/srv/plone.org/parts/instance8/bin/runzope
+priority=2
+autostart=false
