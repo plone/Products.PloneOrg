@@ -44,7 +44,7 @@ priority=2
 autostart=true
 
 [program:plone.org-client-2]
-command=${buildout:bin-directory}/instance1 console
+command=${buildout:bin-directory}/instance2 console
 priority=2
 autostart=true
 
