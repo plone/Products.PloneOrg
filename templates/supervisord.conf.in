@@ -8,14 +8,14 @@ pidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
 nodaemon=false              ; (start in foreground if true;default false)
 minfds=1024                 ; (min. avail startup file descriptors;default 1024)
 minprocs=200                ; (min. avail process descriptors;default 200)
-user=zope
+user=${user}
 enironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
 identifier=supervisor
 
 [unix_http_server]
 file=/tmp/supervisor.sock
 chmod=0770
-chown=zope:zope
+chown=${user}:${user}
 
 [rpcinterface:supervisor]
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
@@ -26,6 +26,13 @@ serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 [eventlistener:memmon]
 command=/usr/local/bin/memmon -a 1024MB
 events=TICK_60
+
+[program:plone.org-nginx]
+command = ${nginx:location}/sbin/nginx
+autostart = true
+redirect_stderr = true
+stdout_logfile = ${buildout:directory}/var/log/nginx-stdout.log
+priority = 3
 
 [program:plone.org-zss]
 command=/srv/plone.org/parts/zeo/bin/runzeo

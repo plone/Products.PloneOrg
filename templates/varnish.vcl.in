@@ -7,6 +7,11 @@ backend default {
     .port = "80";
 }
 
+backend ploneorg {
+    .host = "127.0.0.1";
+    .port = "${ports:nginx}";
+}
+
 # Define a sub to handle requests where we ignore cache-control headers.  Now
 # we don't have to put the check for a 200 status code in every content type:
 sub override {
@@ -16,72 +21,74 @@ sub override {
     pass;
 }
 
+sub normalize_accept_encoding {
+    if (req.http.Accept-Encoding) {
+        if (req.url ~ "\.(jpe?g|png|gif|swf|pdf|gz|tgz|bz2|tbz|zip)$" || req.url ~ "/image_[^/]*$") {
+            # No point in compressing these
+            remove req.http.Accept-Encoding;
+        } elsif (req.http.user-agent ~ "MSIE [1-6]\." && req.url ~ "\.(css|js)$") {
+            # Some versions of IE6 can't handle css/js correctly
+            # See: http://www.webveteran.com/blog/index.php/web-coding/coldfusion/fix-for-ie6-and-gzip-compressed-javascripts/
+            remove req.http.Accept-Encoding;
+        } elsif (req.http.Accept-Encoding ~ "gzip") {
+            set req.http.Accept-Encoding = "gzip";
+        } else {
+            remove req.http.Accept-Encoding;
+        }
+    }
+}
+
+sub annotate_request {
+    if (!(req.http.Authorization || req.http.cookie ~ "(^|; )__ac=")) {
+        set req.http.X-Anonymous = "true";
+    }
+}
+
 acl purge {
     "localhost";
     "127.0.0.1";
 }
 
 sub vcl_recv {
-
-  set req.backend = default;
-  set req.grace = 120s;
-
+    set req.grace = 120s;
+    if (!req.http.host || req.http.host ~ "(^manage\.|^old\.|^)${hostnames:main}") {
+        set req.backend = ploneorg;
+    } else {
+        set req.backend = default;
+    }
     if (req.request == "PURGE") {
-            if (!client.ip ~ purge) {
-                    error 405 "Not allowed.";
-            }
-            purge_url(req.url);
+        if (!client.ip ~ purge) {
+                error 405 "Not allowed.";
+        }
+        purge_url(req.url);
         error 200 "Purged";
     }
     if (req.request != "GET" && req.request != "HEAD") {
-        /* We only deal with GET and HEAD by default */
+        # We only deal with GET and HEAD by default
         pass;
     }
-    if (req.restarts != 0) {
-        /* We only restart if we get a 500 error, serve our custom page instead */
-        set req.url = "/500.html";
-    }
+    call normalize_accept_encoding;
+    call annotate_request;
     lookup;
 }
 
 sub vcl_hit {
-    if (req.request == "PURGE") {
-    set obj.ttl = 0s;
-    error 200 "Purged";
-    }
     if (!obj.cacheable) {
         set obj.http.X-Varnish-Action = "PASS (not cacheable - hit)";
         pass;
     }
     if (obj.http.Cache-Control ~ "(stale-while-revalidate|no-transform)") {
         # This is a special cache. Don't serve to authenticated.
-        if (req.http.Cookie ~ "__ac=" || req.http.Authorization) {
+        if (!req.http.X-Anonymous) {
             set obj.http.X-Varnish-Action = "PASS (special not cacheable - hit)";
-                    pass;
-                }
+            pass;
         }
-
+    }
     set obj.http.X-Varnish-Action = "HIT (deliver - from cache)";
     deliver;
 }
 
-sub vcl_miss {
-    if (req.request == "PURGE") {
-            error 404 "Not in cache.";
-    }
-    fetch;
-}
-
 sub vcl_fetch {
-    if (obj.status == 500) {
-        /* This is probably an html parsing error in the nginx transform, serve our custom page instead */
-        restart;
-    }
-    if (req.url == "/500.html") {
-        set obj.status = 500;
-        set obj.response = "Internal Server Error";
-        pass;
-    }
     if (obj.http.Cache-Control ~ "(stale-while-revalidate|no-transform)") {
             # Leveraging a non-varnish token to set a minimum ttl without contaminating s-maxage
             # Wouldn't need this if varnish supported Surrogate-Control
@@ -106,18 +113,14 @@ sub vcl_fetch {
             set obj.http.X-Varnish-Action = "FETCH (pass - response sets cookie)";
             pass;
     }
-    if (req.http.Authorization && !obj.http.Cache-Control ~ "public") {
+    if (!req.http.X-Anonymous && !obj.http.Cache-Control ~ "public") {
             set obj.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
             pass;
-    }
-    if (obj.http.cookie ~ "__ac.*$") {
-        pass;
     }
     if (!obj.cacheable) {
     set obj.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
         pass;
     }
-    set obj.prefetch =  -30s;
     deliver;
 }
 sub vcl_error {

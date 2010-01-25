@@ -1,0 +1,63 @@
+[supervisord]
+logfile=${buildout:directory}/var/log/supervisord.log
+logfile_maxbytes=5MB
+logfile_backups=10
+loglevel=info
+pidfile=${buildout:directory}/var/supervisord.pid ;
+childlogdir=${buildout:directory}/var/log
+nodaemon=false              ; (start in foreground if true;default false)
+minfds=1024                 ; (min. avail startup file descriptors;default 1024)
+minprocs=200                ; (min. avail process descriptors;default 200)
+directory=${buildout:directory}
+enironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
+identifier=supervisor_staging
+
+[unix_http_server]
+file=${buildout:directory}/var/supervisor.sock
+chmod=0600
+
+[supervisorctl]
+serverurl=unix://${buildout:directory}/var/supervisor.sock
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[eventlistener:memmon]
+command=${buildout:bin-directory}/memmon -a 1024MB
+events=TICK_60
+
+[program:plone.org-nginx]
+command = ${nginx:location}/sbin/nginx
+autostart = true
+redirect_stderr = true
+stdout_logfile = ${buildout:directory}/var/log/nginx-stdout.log
+priority = 3
+
+[program:plone.org-zss]
+command=${zeo:location}/bin/runzeo
+priority=1
+autostart=false
+
+[program:plone.org-client-1]
+command=${buildout:bin-directory}/instance1 console
+priority=2
+autostart=true
+
+[program:plone.org-client-2]
+command=${buildout:bin-directory}/instance1 console
+priority=2
+autostart=true
+
+# [program:haproxy]
+# command = ${buildout:bin-directory}/haproxy -f ${buildout:directory}/etc/haproxy.conf -db
+# autostart= false
+# autorestart = true
+# redirect_stderr = true
+# priority = 30
+
+[program:varnish]
+command = ${buildout:bin-directory}/varnish -F
+autostart= true
+autorestart = false
+redirect_stderr = true
+priority = 5

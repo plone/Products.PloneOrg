@@ -1,111 +1,36 @@
-user ${nginx-conf:user};
-worker_processes 4;
-daemon off;
+daemon off; # for supervisord
+worker_processes  8;
+
 events {
-    worker_connections 1024;
+    worker_connections  1024;
 }
+
+
 http {
-    include    ${buildout:directory}/etc/mime.types;
-    error_log  ${buildout:directory}/var/log/nginx-error.log error;
-    access_log off;
+    include       mime.types;
+    default_type  application/octet-stream;
 
-    proxy_connect_timeout 75;
-    proxy_read_timeout 185;
+    log_format  main  '$remote_addr - $remote_user [$time_local] $request '
+                      '"$status" $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
 
-    upstream backend {
-        server 127.0.0.1:${instance1:http-address};
-        server 127.0.0.1:${instance2:http-address};
-    }
+    sendfile        on;
+    tcp_nopush      on;
 
-    # Main server goes upstream to Varnish
-    server {
-        listen ${nginx-conf:listen};
-        server_name plone.org;
-        root ${buildout:directory}/static; 
+    keepalive_timeout  65;
 
-	location = /nginx-status {
-            stub_status on;
-            allow 127.0.0.1;
-            deny all;
-	}
+    server_names_hash_bucket_size 512;
+    client_max_body_size        10m;
+    client_body_timeout         1200;
+    proxy_read_timeout          1200;
 
-        gzip             on;
-        gzip_min_length  1000;
-        gzip_proxied     any;
-        gzip_types       text/xml text/plain application/xml;
+    gzip             on;
+    gzip_min_length  1000;
+    gzip_proxied     any;
+    gzip_types       text/xml text/plain application/xml;
 
-        client_max_body_size 10M;
-	
-        # Push this to the frontend nginx to avoid problems
-        # error_page 500 /500.html;
-        location = /500.html {  }
+    set_real_ip_from   127.0.0.1;
+    real_ip_header     X-Forwarded-For;
 
-        location ^~ /images/ {
-            autoindex on;
-        }
-        location = /plone.css {  }
-        location = /ie.css {  }
-        location ~ /emptypage$ {
-            rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
-            proxy_pass ${nginx-conf:backend};
-        }
-        location / {
-            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/;
-            xslt_stylesheet ${buildout:directory}/etc/default.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
-        }
-        location = / {
-            proxy_pass ${nginx-conf:backend}/${nginx-conf:virtual-host}/;
-            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
-        }
-        location ~ ^/(products(/psc_view_ploneorg)?|documentation/ndocs|support)/?$ {
-            rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
-            proxy_pass ${nginx-conf:backend};
-            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
-        }
-        
-    }
-
-    server {
-        listen ${nginx-conf:listen};
-        server_name old.plone.org;
-        root ${buildout:directory}/static;
-
-        location = /nginx-status {
-            stub_status on;
-            allow 127.0.0.1;
-            deny all;
-        }
-
-        gzip             on;
-        gzip_min_length  1000;
-        gzip_proxied     any;
-        gzip_types       text/xml text/plain application/xml;
-
- 	location = /norobots.txt { }
- 	location = /robots.txt {
- 	    rewrite ^/robots.txt /norobots.txt;
- 	}
-        location / {
-            proxy_pass ${nginx-conf:backend}/${nginx-conf:old-virtual-host}/;
-        }
-        location ^~ /images/ {
-            autoindex on;
-        }
-        location ^~ /plone.css {  }
-        location ^~ /ie.css {  }
-        location ~ /emptypage$ {
-            rewrite ^/(.*)$ /${nginx-conf:virtual-host}/$1 break;
-            proxy_pass ${nginx-conf:backend};
-        }
-
-
-    }
-
-
+    include vhosts/*.conf;
 }
