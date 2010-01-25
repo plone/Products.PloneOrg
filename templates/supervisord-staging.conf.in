@@ -41,12 +41,12 @@ autostart=false
 [program:plone.org-client-1]
 command=${buildout:bin-directory}/instance1 console
 priority=2
-autostart=true
+autostart=false
 
 [program:plone.org-client-2]
 command=${buildout:bin-directory}/instance2 console
 priority=2
-autostart=true
+autostart=false
 
 # [program:haproxy]
 # command = ${buildout:bin-directory}/haproxy -f ${buildout:directory}/etc/haproxy.conf -db
