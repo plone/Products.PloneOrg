@@ -20,13 +20,13 @@
             rewrite ^/(.*)$ /${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV-Enabled "true";
+            proxy_set_header X-XDV "true";
         }
         location / {
             rewrite ^/(.*)$ /${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV-Enabled "true";
+            proxy_set_header X-XDV "true";
             xslt_stylesheet ${buildout:directory}/etc/default.xsl;
             xslt_html_parser on;
             xslt_types text/html;
@@ -35,7 +35,7 @@
             rewrite ^/(.*)$ /${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV-Enabled "true";
+            proxy_set_header X-XDV "true";
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
@@ -44,7 +44,7 @@
             rewrite ^/(.*)$ /${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV-Enabled "true";
+            proxy_set_header X-XDV "true";
             xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
