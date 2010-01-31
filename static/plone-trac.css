@@ -69,7 +69,13 @@ border: none;
 color: black;
 }
 
+#prefs label {
+	margin-left:0.5em;
+}
 
+table.progress {
+	margin-right: 0.25em
+}
 
 /* Copied from trac.css */
 
