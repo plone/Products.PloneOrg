@@ -12,11 +12,16 @@ backend ploneorg {
     .port = "${ports:nginx}";
 }
 
+acl purge {
+    "localhost";
+    "127.0.0.1";
+}
+
 # Define a sub to handle requests where we ignore cache-control headers.  Now
 # we don't have to put the check for a 200 status code in every content type:
 sub override {
     if (obj.status == 200) {
-    deliver;    
+        deliver;
     }
     pass;
 }
@@ -44,9 +49,27 @@ sub annotate_request {
     }
 }
 
-acl purge {
-    "localhost";
-    "127.0.0.1";
+sub rewrite_age {
+    if (resp.http.Age) {
+        # By definition we have a fresh object
+        set resp.http.X-Varnish-Age = resp.http.Age;
+        set resp.http.Age = "0";
+    }
+}
+
+sub rewrite_s_maxage {
+    # rewrite s-maxage as intermediary proxies cannot be purged
+    if (obj.http.Cache-Control ~ "s-maxage") {
+        set obj.http.Cache-Control = regsub(obj.http.Cache-Control, "s-maxage=[0-9]+", "s-maxage=0");
+    }
+}
+
+sub rewrite_maxage {
+    if (req.http.X-Anonymous && obj.http.Cache-Control ~ "max-age=0") {
+        # rewrite maxage so anonymous users' browsers cache for 5 minutes
+        set obj.http.Cache-Control = regsub(obj.http.Cache-Control, "max-age=0", "max-age=300");
+        remove obj.http.Expires;
+    }
 }
 
 sub vcl_recv {
@@ -55,6 +78,10 @@ sub vcl_recv {
         set req.backend = ploneorg;
     } else {
         set req.backend = default;
+        # media.plone.org requests should not be buffered by varnish
+        if (req.http.host == "media.plone.org") {
+            pipe;
+        }
     }
     if (req.request == "PURGE") {
         if (!client.ip ~ purge) {
@@ -72,57 +99,40 @@ sub vcl_recv {
     lookup;
 }
 
-sub vcl_hit {
-    if (!obj.cacheable) {
-        set obj.http.X-Varnish-Action = "PASS (not cacheable - hit)";
-        pass;
-    }
-    if (obj.http.Cache-Control ~ "(stale-while-revalidate|no-transform)") {
-        # This is a special cache. Don't serve to authenticated.
-        if (!req.http.X-Anonymous) {
-            set obj.http.X-Varnish-Action = "PASS (special not cacheable - hit)";
-            pass;
-        }
-    }
-    set obj.http.X-Varnish-Action = "HIT (deliver - from cache)";
-    deliver;
-}
-
 sub vcl_fetch {
-    if (obj.http.Cache-Control ~ "(stale-while-revalidate|no-transform)") {
-            # Leveraging a non-varnish token to set a minimum ttl without contaminating s-maxage
-            # Wouldn't need this if varnish supported Surrogate-Control
-            if (obj.ttl < 3600s) {
-                    set obj.http.X-Varnish-Special = "SPECIAL (local proxy for 1 hour)";
-                    unset obj.http.expires;
-                    set obj.ttl = 3600s;
-                    # Add reset marker
-                    set obj.http.reset-age = "1";
-            }
+    if (obj.http.Vary && obj.http.Content-Type ~ "text/html") {
+        # Make sure we vary on X-Anonymous so that logged in users do not get served anonymous data
+        set obj.http.Vary = obj.http.Vary ", X-Anonymous";
     }
-
     if (req.url ~ "\.(jpg|jpeg|gif|png|tiff|tif|svg|swf|ico|css|js|vsd|doc|ppt|pps|xls|pdf|mp3|mp4|m4a|ogg|mov|avi|wmv|sxw|zip|gz|bz2|tgz|tar|rar|odc|odb|odf|odg|odi|odp|ods|odt|sxc|sxd|sxi|sxw|dmg|torrent|deb|msi|iso|rpm)$") {
-    set obj.ttl = 600s;
-    call override;
+        set obj.ttl = 600s;
+        call override;
     }
     if (obj.http.Content-Type ~ "image.*$") {
-    set obj.ttl = 600s;
+        set obj.ttl = 600s;
         call override;
     }
     if (obj.http.Set-Cookie) {
-            set obj.http.X-Varnish-Action = "FETCH (pass - response sets cookie)";
-            pass;
-    }
-    if (!req.http.X-Anonymous && !obj.http.Cache-Control ~ "public") {
-            set obj.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
-            pass;
-    }
-    if (!obj.cacheable) {
-    set obj.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
+        set obj.http.X-Varnish-Action = "FETCH (pass - response sets cookie)";
         pass;
     }
+    if (!req.http.X-Anonymous && !obj.http.Cache-Control ~ "public") {
+        set obj.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
+        pass;
+    }
+    if (!obj.cacheable) {
+        set obj.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
+        pass;
+    }
+    call rewrite_maxage;
+    call rewrite_s_maxage;
     deliver;
 }
+
+sub vcl_deliver {
+    call rewrite_age;
+}
+
 sub vcl_error {
     set obj.http.Content-Type = "text/html; charset=utf-8";
     synthetic {"
@@ -157,25 +167,3 @@ sub vcl_error {
 "};
     deliver;
 }
-
-#sub vcl_error {
-#    set obj.http.Content-Type = "text/html; charset=utf-8";
-#    synthetic {"
-#<?xml version="1.0" encoding="utf-8"?>
-#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-# "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-#<html>
-#  <head>
-#    <title>"} obj.status " " obj.response {"</title>
-#  </head>
-#  <body>
-#    <h1>Error "} obj.status " " obj.response {"</h1>
-#    <p>"} obj.response {"</p>
-#    <h3>Guru Meditation:</h3>
-#    <p>XID: "} req.xid {"</p>
-#    <address><a href="http://www.varnish-cache.org/">Varnish</a></address>
-#  </body>
-#</html>
-#"};
-#    deliver;
-#}
