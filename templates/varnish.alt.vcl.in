@@ -20,6 +20,20 @@ acl purge {
     "127.0.0.1";
 }
 
+# Optimize the Accept-Encoding variant caching
+sub normalize_accept_encoding {
+    if (req.http.Accept-Encoding) {
+        if (req.url ~ "\.(jpe?g|png|gif|swf|pdf|gz|tgz|bz2|tbz|zip)$" || req.url ~ "/image_[^/]*$") {
+            remove req.http.Accept-Encoding;
+        } elsif (req.http.Accept-Encoding ~ "gzip") {
+            set req.http.Accept-Encoding = "gzip";
+        } else {
+            remove req.http.Accept-Encoding;
+        }
+    }
+}
+
+# Keep auth/anon variants apart if "Vary: X-Anonymous" is in the response
 sub annotate_request {
     if (!(req.http.Authorization || req.http.cookie ~ "(^|.*; )__ac=")) {
         set req.http.X-Anonymous = "True";
@@ -34,8 +48,8 @@ sub rewrite_age {
     }
 }
 
+# Rewrite s-maxage as intermediary proxies cannot be purged
 sub rewrite_s_maxage {
-    # rewrite s-maxage as intermediary proxies cannot be purged
     if (obj.http.Cache-Control ~ "s-maxage") {
         set obj.http.Cache-Control = regsub(obj.http.Cache-Control, "s-maxage=[0-9]+", "s-maxage=0");
     }
@@ -63,6 +77,7 @@ sub vcl_recv {
         # We only deal with GET and HEAD by default
         pass;
     }
+    call normalize_accept_encoding;
     call annotate_request;
     lookup;
 }
@@ -83,6 +98,10 @@ sub vcl_fetch {
     if (req.http.Authorization && !obj.http.Cache-Control ~ "public") {
         set obj.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
         pass;
+    }
+    if (req.http.X-Anonymous && !obj.http.Cache-Control) {
+        set obj.ttl = 600s;
+        set obj.http.X-Varnish-Action = "FETCH (override - backend not setting cache control)";
     }
     call rewrite_s_maxage;
     deliver;
