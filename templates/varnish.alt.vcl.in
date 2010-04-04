@@ -1,5 +1,8 @@
 # VCL file optimized for Plone with a webserver in front.  See vcl(7) for details
 
+# Updated to reflect syntax changes introduced with Varnish 2.1.0  [newbery]
+
+
 #Default backend is nginx on port 80:
 
 backend default {
@@ -63,7 +66,7 @@ sub vcl_recv {
         set req.backend = default;
         # media.plone.org requests should not be buffered by varnish
         if (req.http.host == "media.plone.org") {
-            pipe;
+            return(pipe);
         }
     }
     if (req.request == "PURGE") {
@@ -75,36 +78,36 @@ sub vcl_recv {
     }
     if (req.request != "GET" && req.request != "HEAD") {
         # We only deal with GET and HEAD by default
-        pass;
+        return(pass);
     }
     call normalize_accept_encoding;
     call annotate_request;
-    lookup;
+    return(lookup);
 }
 
 sub vcl_fetch {
-    if (!obj.cacheable) {
-        set obj.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
-        pass;
+    if (!beresp.cacheable) {
+        set beresp.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
+        return(pass);
     }
-    if (obj.http.Set-Cookie) {
-        set obj.http.X-Varnish-Action = "FETCH (pass - response sets cookie)";
-        pass;
+    if (beresp.http.Set-Cookie) {
+        set beresp.http.X-Varnish-Action = "FETCH (pass - response sets cookie)";
+        return(pass);
     }
-    if (!obj.http.Cache-Control ~ "s-maxage=[1-9]" && obj.http.Cache-Control ~ "(private|no-cache|no-store)") {
-        set obj.http.X-Varnish-Action = "FETCH (pass - response sets private/no-cache/no-store token)";
-        pass;
+    if (!beresp.http.Cache-Control ~ "s-maxage=[1-9]" && beresp.http.Cache-Control ~ "(private|no-cache|no-store)") {
+        set beresp.http.X-Varnish-Action = "FETCH (pass - response sets private/no-cache/no-store token)";
+        return(pass);
     }
-    if (req.http.Authorization && !obj.http.Cache-Control ~ "public") {
-        set obj.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
-        pass;
+    if (req.http.Authorization && !beresp.http.Cache-Control ~ "public") {
+        set beresp.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
+        return(pass);
     }
-    if (req.http.X-Anonymous && !obj.http.Cache-Control) {
-        set obj.ttl = 600s;
-        set obj.http.X-Varnish-Action = "FETCH (override - backend not setting cache control)";
+    if (req.http.X-Anonymous && !beresp.http.Cache-Control) {
+        set beresp.ttl = 600s;
+        set beresp.http.X-Varnish-Action = "FETCH (override - backend not setting cache control)";
     }
     call rewrite_s_maxage;
-    deliver;
+    return(deliver);
 }
 
 sub vcl_deliver {
@@ -143,5 +146,5 @@ sub vcl_error {
 
 </html>
 "};
-    deliver;
+    return(deliver);
 }
