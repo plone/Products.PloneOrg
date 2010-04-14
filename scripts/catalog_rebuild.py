@@ -14,7 +14,7 @@ THRESHOLD = 100
 
 class ContentUpdater(object):
     """Performs actions on ZODB objects using a catalog search or ZopeFind,
-    commits full transactions on batches to avoid coflicts"""
+    commits full transactions on batches to avoid conflicts"""
 
     def __init__(self, context):
         self.context = context
@@ -34,7 +34,7 @@ class ContentUpdater(object):
         slices = ((o for o in brains[start:end] if res_filter(o))
                     for start, end in izip(xrange(0, total, threshold),
                                xrange(threshold, total+threshold, threshold)))
-        # Run an abort here to help avoid confilcts on the first batch
+        # Run an abort here to help avoid conflicts on the first batch
         # resulting from the extended catalog search
         transaction.abort()
         log('Transaction abort after finding all content (%s objects)'%total)
@@ -53,7 +53,7 @@ class ContentUpdater(object):
         slices = ((o for (p, o) in results[start:end] if res_filter(o))
                   for start, end in izip(xrange(0, total, threshold),
                                  xrange(threshold, total+threshold, threshold)))
-        # Run an abort here to help avoid confilcts on the first batch
+        # Run an abort here to help avoid conflicts on the first batch
         # resulting from the extended run of ZopeFind
         transaction.abort()
         log('Transaction abort after finding all content (%s objects).'%total)

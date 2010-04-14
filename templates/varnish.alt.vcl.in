@@ -1,10 +1,16 @@
 # VCL file optimized for Plone with a webserver in front.  See vcl(7) for details
 
+# Updated to reflect syntax changes introduced with Varnish 2.1.0  [newbery]
+
+
 #Default backend is nginx on port 80:
 
 backend default {
     .host = "127.0.0.1";
     .port = "80";
+    .connect_timeout = 0.4s;
+    .first_byte_timeout = 300s;
+    .between_bytes_timeout = 60s;
 }
 
 backend ploneorg {
@@ -17,23 +23,10 @@ acl purge {
     "127.0.0.1";
 }
 
-# Define a sub to handle requests where we ignore cache-control headers.  Now
-# we don't have to put the check for a 200 status code in every content type:
-sub override {
-    if (obj.status == 200) {
-        deliver;
-    }
-    pass;
-}
-
+# Optimize the Accept-Encoding variant caching
 sub normalize_accept_encoding {
     if (req.http.Accept-Encoding) {
         if (req.url ~ "\.(jpe?g|png|gif|swf|pdf|gz|tgz|bz2|tbz|zip)$" || req.url ~ "/image_[^/]*$") {
-            # No point in compressing these
-            remove req.http.Accept-Encoding;
-        } elsif (req.http.user-agent ~ "MSIE [1-6]\." && req.url ~ "\.(css|js)$") {
-            # Some versions of IE6 can't handle css/js correctly
-            # See: http://www.webveteran.com/blog/index.php/web-coding/coldfusion/fix-for-ie6-and-gzip-compressed-javascripts/
             remove req.http.Accept-Encoding;
         } elsif (req.http.Accept-Encoding ~ "gzip") {
             set req.http.Accept-Encoding = "gzip";
@@ -43,9 +36,10 @@ sub normalize_accept_encoding {
     }
 }
 
+# Keep auth/anon variants apart if "Vary: X-Anonymous" is in the response
 sub annotate_request {
-    if (!(req.http.Authorization || req.http.cookie ~ "(^|; )__ac=")) {
-        set req.http.X-Anonymous = "true";
+    if (!(req.http.Authorization || req.http.cookie ~ "(^|.*; )__ac=")) {
+        set req.http.X-Anonymous = "True";
     }
 }
 
@@ -57,18 +51,10 @@ sub rewrite_age {
     }
 }
 
+# Rewrite s-maxage as intermediary proxies cannot be purged
 sub rewrite_s_maxage {
-    # rewrite s-maxage as intermediary proxies cannot be purged
     if (obj.http.Cache-Control ~ "s-maxage") {
         set obj.http.Cache-Control = regsub(obj.http.Cache-Control, "s-maxage=[0-9]+", "s-maxage=0");
-    }
-}
-
-sub rewrite_maxage {
-    if (req.http.X-Anonymous && obj.http.Cache-Control ~ "max-age=0") {
-        # rewrite maxage so anonymous users' browsers cache for 5 minutes
-        set obj.http.Cache-Control = regsub(obj.http.Cache-Control, "max-age=0", "max-age=300");
-        remove obj.http.Expires;
     }
 }
 
@@ -80,7 +66,7 @@ sub vcl_recv {
         set req.backend = default;
         # media.plone.org requests should not be buffered by varnish
         if (req.http.host == "media.plone.org") {
-            pipe;
+            return(pipe);
         }
     }
     if (req.request == "PURGE") {
@@ -92,41 +78,36 @@ sub vcl_recv {
     }
     if (req.request != "GET" && req.request != "HEAD") {
         # We only deal with GET and HEAD by default
-        pass;
+        return(pass);
     }
     call normalize_accept_encoding;
     call annotate_request;
-    lookup;
+    return(lookup);
 }
 
 sub vcl_fetch {
-    if (obj.http.Vary && obj.http.Content-Type ~ "text/html") {
-        # Make sure we vary on X-Anonymous so that logged in users do not get served anonymous data
-        set obj.http.Vary = obj.http.Vary ", X-Anonymous";
+    if (!beresp.cacheable) {
+        set beresp.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
+        return(pass);
     }
-    if (req.url ~ "\.(jpg|jpeg|gif|png|tiff|tif|svg|swf|ico|css|js|vsd|doc|ppt|pps|xls|pdf|mp3|mp4|m4a|ogg|mov|avi|wmv|sxw|zip|gz|bz2|tgz|tar|rar|odc|odb|odf|odg|odi|odp|ods|odt|sxc|sxd|sxi|sxw|dmg|torrent|deb|msi|iso|rpm)$") {
-        set obj.ttl = 600s;
-        call override;
+    if (beresp.http.Set-Cookie) {
+        set beresp.http.X-Varnish-Action = "FETCH (pass - response sets cookie)";
+        return(pass);
     }
-    if (obj.http.Content-Type ~ "image.*$") {
-        set obj.ttl = 600s;
-        call override;
+    if (!beresp.http.Cache-Control ~ "s-maxage=[1-9]" && beresp.http.Cache-Control ~ "(private|no-cache|no-store)") {
+        set beresp.http.X-Varnish-Action = "FETCH (pass - response sets private/no-cache/no-store token)";
+        return(pass);
     }
-    if (obj.http.Set-Cookie) {
-        set obj.http.X-Varnish-Action = "FETCH (pass - response sets cookie)";
-        pass;
+    if (req.http.Authorization && !beresp.http.Cache-Control ~ "public") {
+        set beresp.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
+        return(pass);
     }
-    if (!req.http.X-Anonymous && !obj.http.Cache-Control ~ "public") {
-        set obj.http.X-Varnish-Action = "FETCH (pass - authorized and no public cache control)";
-        pass;
+    if (req.http.X-Anonymous && !beresp.http.Cache-Control) {
+        set beresp.ttl = 600s;
+        set beresp.http.X-Varnish-Action = "FETCH (override - backend not setting cache control)";
     }
-    if (!obj.cacheable) {
-        set obj.http.X-Varnish-Action = "FETCH (pass - not cacheable)";
-        pass;
-    }
-    call rewrite_maxage;
     call rewrite_s_maxage;
-    deliver;
+    return(deliver);
 }
 
 sub vcl_deliver {
@@ -165,5 +146,5 @@ sub vcl_error {
 
 </html>
 "};
-    deliver;
+    return(deliver);
 }
