@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<object name="portal_properties" meta_type="Plone Properties Tool">
+ <object name="site_properties" meta_type="Plone Property Sheet">
+  <property name="allowedPublicGroups" type="lines">
+   <element value="Founders"/>
+   <element value="ReleaseManagers"/>
+   <element value="DeveloperTeam"/>
+   <element value="FrameworkTeam"/>
+   <element value="DocumentationTeamEditors"/>
+   <element value="DocumentationTeam"/>
+   <element value="i18nTeam"/>
+   <element value="UITeam"/>
+   <element value="FoundationBoard"/>
+   <element value="InfrastructureTeam"/>
+   <element value="SecurityTeam"/>
+   <element value="WebsiteTeam"/>
+  </property>
+ </object>
+</object>
