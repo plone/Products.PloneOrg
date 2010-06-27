@@ -1,0 +1,1 @@
+This version of the plone.org buildout is designed to work with Plone 4.
