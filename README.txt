@@ -8,10 +8,13 @@ power http://plone.org.
 - Questions and comments to admins@lists.plone.org
 - Report bugs to admins@lists.plone.org
 
+As of July 2010, trunk supports Plone 4.
+
 Base
 ----
 
-A base buildout good enough to run the plone.org data can be built with::
+A base buildout good enough to run the plone.org Data.fs and CatalogData.fs 
+can be built with::
 
     $ python2.6 bootstrap.py
     $ bin/buildout
@@ -20,7 +23,7 @@ A base buildout good enough to run the plone.org data can be built with::
 Develop
 -------
 
-A development buildout with trunk checkouts of all plone.org's dependencies 
+A development buildout with trunk checkouts of all of plone.org's dependencies 
 can be built with::
 
     $ python2.6 bootstrap.py
@@ -46,3 +49,4 @@ A production build, suitable for running on plone.org can be built with::
     $ bin/instance fg
 
 Questions/comments/concerns? Email admins@plone.org.
+
