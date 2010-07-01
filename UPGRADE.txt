@@ -4,11 +4,17 @@ Upgrade steps
 3.x -> 4.0
 ----------
 
-- Update catalog (not clear & rebuild, unless you feel like it)
+Run the migration, you should get an "id not in list"/Nonetype error. Do this:
 
-- Add ++resource++kukit-devel.js to portal_javascripts
+    - Add ++resource++kukit-devel.js to portal_javascripts
 
-- Remove the following objects (that contain remnants of ZWiki):
-    - /products/anz.dashboard
-    - /products/alphaflow
-    - /products/archetypes/documentation
+Run the migration, you should get a bunch of ZWiki errors. Do this:
+
+    - Remove the following objects (that contain remnants of ZWiki):
+        - /products/anz.dashboard
+        - /products/alphaflow
+        - /products/archetypes/documentation
+
+Run the migration. You should get an AttributeError on `old`. Do this:
+
+    - Update catalog (not clear & rebuild, unless you feel like it)
