@@ -18,3 +18,7 @@ Run the migration, you should get a bunch of ZWiki errors. Do this:
 Run the migration. You should get an AttributeError on `old`. Do this:
 
     - Update catalog (not clear & rebuild, unless you feel like it)
+
+Move custom out of the way.
+
+Done!
