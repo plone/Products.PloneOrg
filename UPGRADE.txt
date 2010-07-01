@@ -11,4 +11,4 @@ Upgrade steps
 - Remove the following objects (that contain remnants of ZWiki):
     - /products/anz.dashboard
     - /products/alphaflow
-    - /products/archetypes/documentation/faq
+    - /products/archetypes/documentation
