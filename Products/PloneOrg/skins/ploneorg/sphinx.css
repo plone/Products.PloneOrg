@@ -114,7 +114,7 @@ p.admonition-title:after {
  */
 
 /* We need a light background for these highlights */
-.sphinx-content pre {
+#content .sphinx-content pre {
 	color: black;
 	background: #eee;
 	border-bottom: 1px solid #aaa;
