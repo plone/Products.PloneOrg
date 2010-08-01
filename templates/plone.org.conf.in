@@ -1,5 +1,5 @@
-    upstream backend {${upstream}
-    }
+
+    upstream backend {${upstream}}
 
     server {
         listen ${listen};
@@ -66,12 +66,6 @@
         location ~ ^/products/(.*)/((.*)(tgz|tar.gz|bz2|tar.bz2|zip|tbz|exe))$ {
             rewrite ^/products/(.*)/((.*)(tgz|tar.gz|bz2|tar.bz2|zip|tbz|exe))$ /dist.plone.org/packages/$3$4;
         }
-    }
-
-    server {
-        listen ${listen};
-        server_name old.plone.org;
-        rewrite ^/(.*) http://manage.plone.org/$1 permanent;
     }
 
     server {
