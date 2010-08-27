@@ -30,7 +30,7 @@ A development buildout with trunk checkouts of all of plone.org's dependencies
 can be built with::
 
     $ python2.6 bootstrap.py
-    $ bin/buildout -c profiles/develop.cfg
+    $ bin/buildout -c conf/develop.cfg
     $ bin/instance fg
 
 Staging
@@ -40,7 +40,7 @@ A staging buildout, designed to configure a new plone.org alongside the
 current, can be built with::
 
     $ python2.6 bootstrap.py
-    $ bin/buildout -c profiles/staging.cfg
+    $ bin/buildout -c conf/staging.cfg
     $ bin/instance fg
 
 Production
@@ -49,7 +49,7 @@ Production
 A production build, suitable for running on plone.org can be built with::
 
     $ python2.6 bootstrap.py
-    $ bin/buildout -c profiles/production.cfg
+    $ bin/buildout -c conf/production.cfg
     $ bin/instance fg
 
 Database
@@ -59,7 +59,7 @@ If you need the Data.fs and CatalogData.fs files from plone.org, and you have
 a plone.org account, you can do this::
 
     $ python2.6 bootstrap.py
-    $ bin/buildout -c profiles/database.cfg
+    $ bin/buildout -c conf/database.cfg
     $ bin/instance fg
 
 Help
