@@ -11,7 +11,7 @@ Upgrade steps
 
 - Turn linkintegrity back on (site_properties/enable_link_integrity_checks)
 
-- Move custom out of the way.
+- Delete newsitem_view, portlet_phc_findhelp, and psc_view_ploneorg from custom.
 
 - The following add-ons have upgrade steps we should investigate:
   
