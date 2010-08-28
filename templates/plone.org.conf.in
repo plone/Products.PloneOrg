@@ -4,7 +4,7 @@
     server {
         listen ${listen};
         server_name ${server_name};
-        root ${buildout:directory}/static; 
+        root ${buildout:directory}/../static; 
 
         location = /nginx-status {
             stub_status on;
@@ -33,7 +33,7 @@
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
-            xslt_stylesheet ${buildout:directory}/etc/default.xsl;
+            xslt_stylesheet ${buildout:directory}/../etc/default.xsl;
             xslt_html_parser on;
             xslt_types text/html;
         }
@@ -42,7 +42,7 @@
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
-            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
+            xslt_stylesheet ${buildout:directory}/../etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
         }
@@ -51,7 +51,7 @@
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
-            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
+            xslt_stylesheet ${buildout:directory}/../etc/wide.xsl;
             xslt_html_parser on;
             xslt_types text/html;
         }
@@ -71,7 +71,7 @@
     server {
         listen ${listen};
         server_name ${manage-server_name};
-        root ${buildout:directory}/static;
+        root ${buildout:directory}/../static;
 
         location = /nginx-status {
             stub_status on;
