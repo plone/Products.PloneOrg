@@ -29,7 +29,7 @@
 	<drop content='//*[@id="plone-contentmenu-factories"]/dd/ul/li/a/img' /> 
 
 	<!-- Copy over the contents of the page body -->
-	<replace content='//*[@id="region-content"]'	theme='//*[@id="region-content"]' />
+	<replace content='//*[@id="content"]'	theme='//*[@id="region-content"]' />
 
 	<!-- Bring the portlet columns over  to the sidebar -->
 	<append content='//*[@id="portal-column-one"]/div'	theme='//*[@id="sidebar"]' />
