@@ -7,7 +7,11 @@ Upgrade steps
 
 - Turn linkintegrity off (site_properties/enable_link_integrity_checks)
 
-- Rebuild catalog
+- Go to the Catalog tab of portal_catalog. Set the path filter to:
+
+   /plone.org/products/collective.imagetags/documentation/how-to/configurint-collective.imagetags/imagetags-settings.png
+  
+  Now select that item and click the Remove button.
 
 - Run the migration, you should get an "id not in list"/Nonetype error. Do this:
 
