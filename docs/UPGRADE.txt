@@ -7,31 +7,20 @@ Upgrade steps
 
 - Turn linkintegrity off (site_properties/enable_link_integrity_checks)
 
-- Go to the Catalog tab of portal_catalog. Set the path filter to:
+- Run the upgrade steps.
 
-   /plone.org/products/collective.imagetags/documentation/how-to/configurint-collective.imagetags/imagetags-settings.png
-  
-  Now select that item and click the Remove button.
-
-- Run the migration, you should get an "id not in list"/Nonetype error. Do this:
-
-    - Add ++resource++kukit-devel.js to portal_javascripts
-
-- Run the migration, you should get a bunch of ZWiki errors. Do this:
-
-    - Remove the following objects (that contain remnants of ZWiki):
-
-        - /products/anz.dashboard
-        - /products/alphaflow
-        - /products/archetypes/documentation
-
-- Run the migration. You should get an AttributeError on `old`. Do this:
-
-    - Update catalog (not clear & rebuild, unless you feel like it)
+- Turn linkintegrity back on (site_properties/enable_link_integrity_checks)
 
 - Move custom out of the way.
 
-- Turn linkintegrity back on (site_properties/enable_link_integrity_checks)
+- The following add-ons have upgrade steps we should investigate:
+  
+  * ArchAddOn
+  * PloneFormGen
+  * Poi
+
+- search.pt is broken
+
 
 Done!
 
