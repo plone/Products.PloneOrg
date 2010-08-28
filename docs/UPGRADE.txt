@@ -7,6 +7,8 @@ Upgrade steps
 
 - Turn linkintegrity off (site_properties/enable_link_integrity_checks)
 
+- Rebuild catalog
+
 - Run the migration, you should get an "id not in list"/Nonetype error. Do this:
 
     - Add ++resource++kukit-devel.js to portal_javascripts
