@@ -11,6 +11,22 @@
             allow 127.0.0.1;
             deny all;
         }
+
+        gzip             on;
+        gzip_min_length  1000;
+        gzip_proxied     any;
+        gzip_types       text/xml text/plain application/xml;
+
+        client_max_body_size 10M;
+
+        # increase proxy buffer size to avoid problems with HTMLParser
+        proxy_buffers 8 256k;
+        proxy_buffer_size 256k;
+
+        # Push this to varnish to avoid problems
+        # error_page 500 /500.html;
+        location = /500.html {  }
+
         location ^~ /images/ {
             autoindex on;
         }
@@ -84,6 +100,12 @@
             allow 127.0.0.1;
             deny all;
         }
+
+        gzip             on;
+        gzip_min_length  1000;
+        gzip_proxied     any;
+        gzip_types       text/xml text/plain application/xml;
+
         location / {
             proxy_pass http://10.57.0.107:5011/${manage-virtual-host}/;
         }
