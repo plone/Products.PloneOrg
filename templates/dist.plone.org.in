@@ -1,0 +1,13 @@
+server {
+        listen ${listen};
+        server_name ${hosts:dist};
+
+        root /srv/dist.plone.org/http/root;
+
+        location / {
+                autoindex on;
+        }
+
+        access_log  /var/log/nginx/dist.plone.org/access.log  main;
+        error_log   /var/log/nginx/dist.plone.org/error.log;
+}
