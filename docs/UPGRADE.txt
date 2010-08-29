@@ -11,7 +11,7 @@ Upgrade steps
 
 - Turn linkintegrity back on (site_properties/enable_link_integrity_checks)
 
-- Delete newsitem_view, portlet_phc_findhelp, and psc_view_ploneorg from custom.
+- Delete unneeded items from custom and portal_view_customizations.
 
 - The following add-ons have upgrade steps we should investigate:
   
@@ -24,6 +24,9 @@ Upgrade steps
 
 - Check plone.org/team (can't check it now b/c needs LDAP)
 
+- We should update the username link to be the Plone-4 style dropdown personal bar.
+
+- Make sure TinyMCE works with the XDV theming.
 
 Done!
 
