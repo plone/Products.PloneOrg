@@ -21,7 +21,7 @@
 <dl class="portalMessage info">
 <dt>Upgrade complete</dt>
 <dd style="margin: 0 !important">
-Plone.org has been upgraded to Plone 4! Please bear with us while we perform additional maintenance & clean up. —Plone.org team
+Plone.org has been upgraded to Plone 4! Please bear with us while we perform additional maintenance & clean up. Logins are currently still disabled. —Plone.org team
 </dd>
 </dl>
 </tal:maintenance>
