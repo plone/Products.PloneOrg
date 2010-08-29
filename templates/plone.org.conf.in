@@ -164,6 +164,13 @@
             }
     }
 
-
+    # BBB media.plone.org
+    server {
+            listen ${listen};
+            server_name     media.plone.org;
+            rewrite ^(.*) http://dist.plone.org/media$1 permanent;
+            access_log ${buildout:directory}/../var/log/dist.plone.org-access.log main;
+            error_log ${buildout:directory}/../var/log/dist.plone.org-error.log;
+    }
 
 
