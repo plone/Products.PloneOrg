@@ -34,21 +34,21 @@ defaults
 frontend plone
   bind ${hosts:localhost}:${ports:haproxy}
   default_backend instances
-  capture cookie __ac len 10
-  option httplog
-  log ${hosts:localhost} local6
+  # capture cookie __ac len 10
+  # option httplog
+  # log ${hosts:localhost} local6
 
 # Load balancing over the zope instances
 backend instances
   appsession __ac len 32 timeout 1d
   balance roundrobin
-  cookie serverid
+  cookie serverid insert nocache indirect
   option httpchk GET /
-  server instance1 ${instance1:http-address} cookie instance1
-  server instance2 ${instance2:http-address} cookie instance2
-  server instance3 ${instance3:http-address} cookie instance3
-  server instance4 ${instance4:http-address} cookie instance4
-  server instance5 ${instance5:http-address} cookie instance5
-  server instance6 ${instance6:http-address} cookie instance6
-  server instance7 ${instance7:http-address} cookie instance7
-  server instance8 ${instance8:http-address} cookie instance8
+  server instance1 ${instance1:http-address} cookie instance1 maxconn 2
+  server instance2 ${instance2:http-address} cookie instance2 maxconn 2
+  server instance3 ${instance3:http-address} cookie instance3 maxconn 2
+  server instance4 ${instance4:http-address} cookie instance4 maxconn 2
+  server instance5 ${instance5:http-address} cookie instance5 maxconn 2
+  server instance6 ${instance6:http-address} cookie instance6 maxconn 2
+  server instance7 ${instance7:http-address} cookie instance7 maxconn 2
+  server instance8 ${instance8:http-address} cookie instance8 maxconn 2
