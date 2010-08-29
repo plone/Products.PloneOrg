@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rules xmlns="http://openplans.org/deliverance">
+<rules xmlns="http://namespaces.plone.org/xdv">
 	<replace content='/html/head/title' theme='/html/head/title' />
 	<replace content='/html/head/base' theme='/html/head/base' />
 
