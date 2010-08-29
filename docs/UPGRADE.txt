@@ -5,25 +5,30 @@ Upgrade steps
 3.x -> 4.0
 ----------
 
-- Turn linkintegrity off (site_properties/enable_link_integrity_checks)
+[X] Turn linkintegrity off (site_properties/enable_link_integrity_checks)
 
-- Run the upgrade steps.
+[X] Run the upgrade steps.
 
-- Turn linkintegrity back on (site_properties/enable_link_integrity_checks)
+[X] Turn linkintegrity back on (site_properties/enable_link_integrity_checks)
 
-- Delete unneeded items from custom and portal_view_customizations.
+[X] Delete unneeded items from custom and portal_view_customizations.
 
-- Run (null) upgrade steps for ArchAddOn and PloneFormGen.  Run the Poi upgrade
-  and wait for the long security reindex.
-  
-- Make sure custom member properties (nickname, organization_title, organization_link)
-  are shown on the personalize form
+[X] Run (null) upgrade steps for ArchAddOn and PloneFormGen.  Run the Poi upgrade
+    and wait for the long security reindex.
 
-- Check plone.org/team (can't check it now b/c needs LDAP)
+[X] Use in place of the old plone.org.  Re-enable logins.
 
-- We should update the username link to be the Plone-4 style dropdown personal bar.
+[ ] Make sure custom member properties (nickname, organization_title, organization_link)
+    are shown on the personalize form
 
-- Make sure TinyMCE works with the XDV theming.
+[ ] Check plone.org/team (can't check it now b/c needs LDAP)
+
+[ ] Fix styling of the dropdown personal bar.
+
+[X] Make TinyMCE the default editor, and make sure it works with the XDV theming.
+
+[ ] Turn on overlays.
+
 
 Done!
 
