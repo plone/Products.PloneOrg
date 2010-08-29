@@ -19,7 +19,10 @@ Upgrade steps
   * PloneFormGen
   * Poi
 
-- search.pt is broken
+- Make sure custom member properties (nickname, organization_title, organization_link)
+  are shown on the personalize form
+
+- Check plone.org/team (can't check it now b/c needs LDAP)
 
 
 Done!

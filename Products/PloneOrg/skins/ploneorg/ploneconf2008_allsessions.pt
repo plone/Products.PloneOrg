@@ -5,26 +5,9 @@
 <body>
 
 
-<metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
+<metal:main fill-slot="content-core">
+    <tal:main-macro metal:define-macro="content-core">
  
-        <div metal:use-macro="here/document_actions/macros/document_actions">
-            Document actions (print, sendto etc)
-        </div>
- 
-        <h1>All Sessions
-        </h1>
-
-        <div metal:use-macro="here/document_byline/macros/byline">
-          Get the byline - contains details about author and modification date.
-        </div>
- 
-        <p class="documentDescription"
-           tal:content="here/Description"
-           tal:condition="here/Description">
-            Description
-        </p>
-
         <div tal:define="sessions python:
             [a for a in context.objectIds() if a != 'toc' and a != 'all-sessions' and a != 'sessions' and a != 'all_sessions' and a != 'schedule']">
 
@@ -40,10 +23,6 @@
             </div>
         </div>
  
-        <div metal:use-macro="here/document_relateditems/macros/relatedItems">
-            show related items if they exist
-        </div>
-
     </tal:main-macro>
 </metal:main>
  

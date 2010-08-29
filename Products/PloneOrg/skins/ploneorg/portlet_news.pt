@@ -17,16 +17,16 @@
                class="feedButton link-plain">
                 <img alt="RSS"
                      title="RSS subscription feed for news items"
-                     tal:attributes="src string:${portal_url}/rss.gif" />
+                     tal:attributes="src string:${context/portal_url}/rss.gif" />
             </a>
 
             <a href="#"
                tal:condition="python:'news' in portal.contentIds()"
-               tal:attributes="href string:${utool}/news"
+               tal:attributes="href string:${context/portal_url}/news"
                i18n:translate="box_news">News</a>
             <a href="#" 
                tal:condition="python:'news' not in portal.contentIds()"
-               tal:attributes="href string:${utool}/news_listing"
+               tal:attributes="href string:${context/portal_url}/news_listing"
                i18n:translate="box_news">News</a>
         </dt>
 
@@ -52,13 +52,13 @@
             <a href="" 
                title="Add News Item" 
                style="float: left; margin-left: -0.5em"
-               tal:attributes="href string:${portal_url}/news/createObject?type_name=News%20Item">
+               tal:attributes="href string:${context/portal_url}/news/createObject?type_name=News%20Item">
                 <img src="" tal:replace="structure here/add_icon.gif"/>Add&hellip;
             </a>
 
             <a href=""
                tal:condition="python:'news' in portal.contentIds()"
-               tal:attributes="href string:${utool}/news"
+               tal:attributes="href string:${context/portal_url}/news"
                i18n:translate="box_more_news_link"
                >
               More news&hellip;
@@ -66,7 +66,7 @@
 
             <a href=""
                tal:condition="python:'news' not in portal.contentIds()"
-               tal:attributes="href string:${utool}/news_listing"
+               tal:attributes="href string:${context/portal_url}/news_listing"
                i18n:translate="box_more_news_link"
                >
               More news&hellip;

@@ -27,6 +27,15 @@
         events python:context.portal_catalog.searchResults(portal_type='Event', end={'query': here.ZopeTime(), 'range': 'min'}, sort_on='start', review_state='published');
         events python:[brain for brain in events if 'Training' not in brain.Subject][:4];">
 
+    <tal:maintenance condition="python: True">
+    <dl class="portalMessage info">
+    <dt>Maintenance in progress</dt>
+    <dd style="margin: 0 !important">
+    We are performing system maintenance tonight from 11:00PM-2:00AM EDT. There might be intermittent downtime and other inconsistencies while we do our thing. Logins will be disabled during this time. 
+    </dd>
+    </dl>
+    </tal:maintenance>
+
     <div id="logo-wrapper">
         <a href="/" id="logo"></a>
     </div>
@@ -47,7 +56,9 @@
 
         <div class="grid-cell width-quarter position-three-quarters">
 
-            <a href="http://www.plonesymposium.com.br/"><img src="/banner-pssa.jpg" alt="" style="border: none" /></a>
+            <div id="banners">
+            <a href="http://www.ploneconf2010.org/?utm_source=plone.org&utm_medium=banner&utm_campaign=Plone.org%2BHomepage%2BBanner"><img src="/ploneconf2010_banner.gif" alt="Plone Conference 2010, Bristol, UK - October 25th -31st 2010" title="Plone Conference 2010, Bristol, UK - October 25th -31st 2010" style="border: none" /></a>
+            </div>
 
             <div tal:condition="nothing"
                 class="sidebar" id="sidebar-frontpage">

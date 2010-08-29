@@ -20,18 +20,18 @@
            class="feedButton link-plain">
             <img alt="RSS"
                  title="RSS subscription feed for upcoming events"
-                 tal:attributes="src string:${portal_url}/rss.gif" />
+                 tal:attributes="src string:${context/portal_url}/rss.gif" />
         </a>
         <a href=""
            tal:condition="eventsfolder"
-           tal:attributes="href string:${utool}/events/community"
+           tal:attributes="href string:${context/portal_url}/events/community"
            i18n:translate="box_events">
             Upcoming Events
         </a>
 
         <a href=""
            tal:condition="not: eventsfolder"
-           tal:attributes="href string:${utool}/events_listing"
+           tal:attributes="href string:${context/portal_url}/events_listing"
            i18n:translate="box_events">
             Upcoming Events
         </a>
@@ -64,20 +64,20 @@
         <a href="" 
            title="Add Event" 
            style="float: left; margin-left: -0.5em"
-           tal:attributes="href string:${portal_url}/events/community/createObject?type_name=Event">
+           tal:attributes="href string:${context/portal_url}/events/community/createObject?type_name=Event">
             <img src="" tal:replace="structure here/add_icon.gif"/>Add&hellip;
         </a>
 
         <a href=""
            tal:condition="eventsfolder"
-           tal:attributes="href string:${utool}/events/community"
+           tal:attributes="href string:${context/portal_url}/events/community"
            i18n:translate="box_upcoming_events">
                 Upcoming events&hellip;
         </a>
 
         <a href=""
            tal:condition="not: eventsfolder"
-           tal:attributes="href string:${utool}/events_listing"
+           tal:attributes="href string:${context/portal_url}/events_listing"
            i18n:translate="box_upcoming_events">
                 Upcoming events&hellip;
         </a>
