@@ -19,9 +19,9 @@
 
 <tal:maintenance condition="python: True">
 <dl class="portalMessage info">
-<dt>Maintenance in progress</dt>
+<dt>Upgrade complete</dt>
 <dd style="margin: 0 !important">
-We are performing system maintenance tonight from 11:00PM-2:00AM EDT. There might be intermittent downtime and other inconsistencies while we do our thing. Logins will be disabled during this time. 
+Plone.org has been upgraded to Plone 4! Please bear with us while we perform additional maintenance & clean up. —Plone.org team
 </dd>
 </dl>
 </tal:maintenance>
