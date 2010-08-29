@@ -68,7 +68,7 @@
             xslt_html_parser on;
             xslt_types text/html;
         }
-        location ~ ^/(products(/psc_view_ploneorg)?|documentation/ndocs|support)/?$ {
+        location ~ ^/(products(/psc_view_ploneorg)?|documentation/ndocs|support|frontpage-plone4)/?$ {
             rewrite ^/(.*)$ /${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
