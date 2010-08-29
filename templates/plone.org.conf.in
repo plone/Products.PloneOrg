@@ -130,3 +130,40 @@
             access_log ${buildout:directory}/../var/log/dist.plone.org-access.log main;
             error_log ${buildout:directory}/../var/log/dist.plone.org-error.log;
     }
+
+    # plone countries
+    server {
+            listen ${listen};
+            server_name     plone.asia;
+            location / {
+                    rewrite ^/(.*)$ http://plone.org/$1 last;
+            }
+    }
+
+    server {
+            listen ${listen};
+            server_name     plone.it www.plone.it;
+            location / {
+                    rewrite ^/(.*)$ http://plone.org/countries/it/$1 last;
+            }
+    }
+
+    server {
+            listen ${listen};
+            server_name     plone.hu www.plone.hu;
+            location / {
+                    rewrite ^/(.*)$ http://plone.org/countries/hu/$1 last;
+            }
+    }
+
+    server {
+            listen ${listen};
+            server_name     plone.com.mx www.plone.com.mx plone.org.mx www.plone.org.mx;
+            location / {
+                    rewrite ^/(.*)$ http://plone.org/countries/mx/$1 last;
+            }
+    }
+
+
+
+
