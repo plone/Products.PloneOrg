@@ -27,6 +27,11 @@ Upgrade steps
 
 Done!
 
+Issues
+~~~~~~
+
+- Look into BSD support for p.r.haproxy
+
 2.5.4-devel -> 3.2rc1
 ---------------------
 
