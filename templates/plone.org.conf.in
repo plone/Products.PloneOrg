@@ -105,6 +105,6 @@
             location / {
                     autoindex on;
             }
-            access_log  /var/log/nginx/dist.plone.org/access.log  main;
-            error_log   /var/log/nginx/dist.plone.org/error.log;
+            access_log ${buildout:directory}/../var/log/dist.plone.org-access.log main;
+            error_log ${buildout:directory}/../var/log/dist.plone.org-error.log;
     }
