@@ -30,17 +30,11 @@ Upgrade steps
 
 Done!
 
-Upgrade 2.5.4-devel to 3.2rc1
-=============================
+2.5.4-devel -> 3.2rc1
+---------------------
 
-Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
---------------------------------------------------------------------------------
-
-(If you add or edit a step, please include your name in brackets.)
-
-(Roughly in order of priority.)
-
-(Some steps are optional. Some can be done out of order. YMMV.)
+If you add or edit a step, please include your name in brackets. Roughly in order of priority.
+Some steps are optional. Some can be done out of order. YMMV.
 
 [X] -Make sure you have at least 2 GB your /tmp folder. If not, edit 
   ZEO/TransactionBuffer.py file and add a folder prefix in the constructor 
@@ -154,16 +148,12 @@ Steps performed to migrate plone.org from 2.5.4-devel (svn/unreleased) to 3.2rc1
 
   XXX You mean mirror.py ?
 
-KNOWN ISSUES
-------------
-
-Image problems:
+Issues
+~~~~~~~
 
 [ ] It looks like we have trouble serving up images. See http://dev.plone.org/plone/ticket/8844
 
-Maybe related to the redirection tool?  I can't really tell without being able to log in to plone.org for comparison --davisagli
-
-Plone Help Center:
+    NB Maybe related to the redirection tool?  I can't really tell without being able to log in to plone.org for comparison --davisagli
 
 [X] http://new.plone.org/documentation is missing the left portlets from http://plone.org/documentation. I can't see any way to get the @@manage-portlets to work, so I can't put them back. (with PHC 1.6, this works) [limi]
 
@@ -173,7 +163,7 @@ Plone Help Center:
 
 [ ] On first access of Help Center content, we get:
 
-2008-12-30T07:43:03 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManual" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManual.HelpCenterReferenceManual is going to override Products.PloneHelpCenter.content.ReferenceManual.HelpCenterReferenceManual
+    2008-12-30T07:43:03 INFO Archetypes ArchetypesTool: Trying to register "PloneHelpCenter.HelpCenterReferenceManual" which has already been registered.  The new type Products.PloneHelpCenter.types.ReferenceManual.HelpCenterReferenceManual is going to override Products.PloneHelpCenter.content.ReferenceManual.HelpCenterReferenceManual
 
 [X] PHC nested in PSC seems to have trouble, example:
  http://new.plone.org/products/ploneformgen/documentation/reference/referencemanualfolder_view - gets the following traceback: 
@@ -181,21 +171,18 @@ Plone Help Center:
   Module Products.PloneHelpCenter.browser.phcfolder, line 141, in getItemsByAudiencesAndSections
   TypeError: iteration over non-sequence
 
-  -- I fixed this by reindexing the contents of these PHCs -- davisagli
+    XXX I fixed this by reindexing the contents of these PHCs -- davisagli
 
 [X] Topic area pages are giving an error re pickling acquisition-wrapped objects on second view.  This is due to memoizing catalog brains.  SteveM is working on this.
 
-
-Plone Software Center:
-
 [X] RSS feeds on individual projects in PSC seem to be empty.
 
-This appears to be because the RSS link includes review_state=published, but PSCReleases use a custom workflow and are usually not in the 'published' state.
+    This appears to be because the RSS link includes review_state=published, but PSCReleases use a custom workflow and are usually not in the 'published' state.
 
 [X] http://new.plone.org/products/plone can't find the icon for http://new.plone.org/platform_linux_bsd_unix.gif
 
 [X] No themes for Plone 3.0: http://new.plone.org/products?getCategories=themes&getCompatibility=Plone+3.0&product_search=Update
-    Fixed by reindexing PSCRelease type. [davisagli]
+    NB Fixed by reindexing PSCRelease type. [davisagli]
 
 [ ] Adding new downloadable file creates pscfile.99817395, instead of RealFilename.tgz. In general, if you could look at PSCFile and make it more like ATFile that might help. [aclark]
 
@@ -203,64 +190,48 @@ This appears to be because the RSS link includes review_state=published, but PSC
 
 Other/general issues:
 
-[X] Sharing seems to be broken. 
-    Graham used to have access to http://new.plone.org/support/lists/
-    (he was a local Owner role on that document)
-    I removed his local Owner role and added him via the standard Plone 3 Sharing:
-    He gets insufficient privileges. The full traceback can be seen here:
-    http://paste.plone.org/25629 - excerpt:
-    Module OFS.Traversable, line 195, in unrestrictedTraverse
-    - __traceback_info__: ([], '@@at_base_edit_view')
+[X] Sharing seems to be broken.  Graham used to have access to http://new.plone.org/support/lists/
+    (he was a local Owner role on that document) I removed his local Owner role and added him via the standard Plone 3 Sharing:
+    He gets insufficient privileges. The full traceback can be seen here: http://paste.plone.org/25629 - excerpt:
+    Module OFS.Traversable, line 195, in unrestrictedTraverse - __traceback_info__: ([], '@@at_base_edit_view')
     Unauthorized: You are not allowed to access '@@at_base_edit_view' in this context
 
-This was due to the support and lists sections not acquiring the Modify portal content permission,
+    NB This was due to the support and lists sections not acquiring the Modify portal content permission,
 so the Editor role which you gave Graham wasn't actually associated with that permission there.
 I fixed by turning acquiring back on for this permission.  --davisagli
 
 [X] We need to do something about sendto_form, MSNbot (among others) is too stupid to not index it, so our pages are spidered twice. Probably customizing the sendto_form to return an HTTP status 404 would be easiest.
 
-
 [X] These occur during normal operation of the site, but we should look into fixing them. [limi]
 
-Getting warnings about products that were uninstalled in 2003 or thereabouts — CMFWiki, ZWiki and CMFPhotoAlbum, one example from each:
-
-2008-12-30T08:03:31 WARNING OFS.Uninstalled Could not import class 'PhotoAlbum' from module 'Products.CMFPhotoAlbum.PhotoAlbum'
-
-2008-12-30T07:02:30 WARNING OFS.Uninstalled Could not import class 'PersistentOutline' from module 'Products.ZWiki.OutlineSupport'
-
-2008-12-30T05:37:19 WARNING OFS.Uninstalled Could not import class 'CMFWikiFolder' from module 'Products.CMFWiki.CMFWikiPage'
-
-(these were manually killed off by Newbery while eating ice cream! Finally gone, we uninstalled these products in ~2003 :P )
-
-
-
-
+    Getting warnings about products that were uninstalled in 2003 or thereabouts — CMFWiki, ZWiki and CMFPhotoAlbum, one example from each:
+    2008-12-30T08:03:31 WARNING OFS.Uninstalled Could not import class 'PhotoAlbum' from module 'Products.CMFPhotoAlbum.PhotoAlbum'
+    2008-12-30T07:02:30 WARNING OFS.Uninstalled Could not import class 'PersistentOutline' from module 'Products.ZWiki.OutlineSupport'
+    2008-12-30T05:37:19 WARNING OFS.Uninstalled Could not import class 'CMFWikiFolder' from module 'Products.CMFWiki.CMFWikiPage'
+    NB these were manually killed off by Newbery while eating ice cream! Finally gone, we uninstalled these products in ~2003 :P
 
 [X] This still happens, although less frequently:
 
-2008-12-30T08:04:45 ERROR PortalTransforms Cannot register transform html_to_web_intelligent_plain_text (ImportError), using BrokenTransform: Error
+    2008-12-30T08:04:45 ERROR PortalTransforms Cannot register transform html_to_web_intelligent_plain_text (ImportError), using BrokenTransform: Error
  No module named intelligenttext.transforms.html_to_web_intelligent_plain_text
 
-Maybe there are objects that are not Poi-related that use intelligenttext that need an update?
+    NB Maybe there are objects that are not Poi-related that use intelligenttext that need an update?
+    I recreated the html-to-intelligent text transform which was missing, so this may be working now. -- davisagli
 
-I recreated the html-to-intelligent text transform which was missing, so this may be working now. -- davisagli
-
-Haven't seen this in a while, so I assume it is fixed, thanks! [limi]
-
+    Haven't seen this in a while, so I assume it is fixed, thanks! [limi]
 
 [X] Some releases have invalid dates, like this zforum object:
 
- Module None, line 4, in toLocalizedTime
-   - <FSPythonScript at /plone.org/toLocalizedTime used for /plone.org/products/zforum/releases/1.1.0.Preview>
-   - Line 4
-  Module Products.CMFPlone.browser.ploneview, line 191, in toLocalizedTime
-  Module Products.CMFPlone.TranslationServiceTool, line 79, in ulocalized_time
-  Module Products.CMFPlone.i18nl10n, line 107, in ulocalized_time
-  Module DateTime.DateTime, line 1491, in strftime
-ValueError: year=1000 is before 1900; the datetime strftime() methods require year >= 1900
+    Module None, line 4, in toLocalizedTime
+       - <FSPythonScript at /plone.org/toLocalizedTime used for /plone.org/products/zforum/releases/1.1.0.Preview>
+       - Line 4
+    Module Products.CMFPlone.browser.ploneview, line 191, in toLocalizedTime
+    Module Products.CMFPlone.TranslationServiceTool, line 79, in ulocalized_time
+    Module Products.CMFPlone.i18nl10n, line 107, in ulocalized_time
+    Module DateTime.DateTime, line 1491, in strftime
+    ValueError: year=1000 is before 1900; the datetime strftime() methods require year >= 1900
 
-I fixed by handling the ValueError in the view. This exposes a general problem with the effective method of Archetypes' ExtensibleMetadata which is usually masked because the only common pre-1900 effective date is the FLOOR_DATE, and the exception it generates while indexing is swallowed. --davisagli
-
+    NB I fixed by handling the ValueError in the view. This exposes a general problem with the effective method of Archetypes' ExtensibleMetadata which is usually masked because the only common pre-1900 effective date is the FLOOR_DATE, and the exception it generates while indexing is swallowed. --davisagli
 
 [ ] Placeful Workflow seems to throw some errors, are we actually using it anywhere on plone.org? Example traceback excerpt:
 
@@ -278,11 +249,7 @@ I fixed by handling the ValueError in the view. This exposes a general problem w
 -- /plone.org/products/tracking/issues/placeful_workflow_configuration works for me, I think this is just a normal permission check failure -- davisagli
 
 [X] This is probably harmless, but wanted to note it anyway: Whenever I delete an object with comments, I get the log message:
-2008-12-30T12:52:32 ERROR Zope.ZCatalog uncatalogObject unsuccessfully attempted to uncatalog an object with a uid of /plone.org/news/blah/talkback/1195686147. 
-    (this happens in all Plone instances)
-
-
-PloneOrg product updates:
+2008-12-30T12:52:32 ERROR Zope.ZCatalog uncatalogObject unsuccessfully attempted to uncatalog an object with a uid of /plone.org/news/blah/talkback/1195686147. (this happens in all Plone instances)
 
 [X] mail_uninstall.py doesn't work. What is it for? uninstall-feedback.pt? :)
 
@@ -300,20 +267,19 @@ PloneOrg product updates:
 
 [ ] Poi issue responses are no longer archetypes objects, need to run the upgrade steps from migrate-poi.html [MatthewWilkes]
 
-Post-upgrade:
+Post-upgrade
+~~~~~~~~~~~~
 
 [ ] REMEMBER TO REMOVE ROBOTS.TXT FROM THE SITE ROOT! Currently, we disallow all bots while it's running on new.plone.org.
 
 [X] We should remove the error filters for a few days, and keep an eye on the error log when it's running on plone.org. We have a lot of broken links and other random stuff that can easily be fixed. Also a good idea wrt. to checking in whether there's any abuse/spidering going on.
 
 [ ] Put back the exception filters again once we have done:
-
     NotFound
     Redirect
     Unauthorized
 
 [ ] Consider changing the workflow to private/published for Events and News, since spammers have started abusing the Draft state. The same goes for documentation types (there's spamming going on here too)
-
 
 [ ] Implement buildout changes suggested by Clayton Parker, "Just took a look at the prod buildout and noticed a couple things.
     http://svn.plone.org/svn/plone/Products.PloneOrg/trunk/production.cfg For the
@@ -326,5 +292,3 @@ Post-upgrade:
     a recipe f
     or creating mount points:
     http://pypi.python.org/pypi/collective.recipe.filestorage claytron"
-
-
