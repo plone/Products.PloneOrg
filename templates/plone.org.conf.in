@@ -28,6 +28,12 @@
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
         }
+        location ~ /plugins/plone {
+            rewrite ^/(.*)$ /${virtual-host}/$1 break;
+            proxy_pass http://backend;
+            proxy_set_header Host $host;
+            proxy_set_header X-XDV "true";
+        }
         location / {
             rewrite ^/(.*)$ /${virtual-host}/$1 break;
             proxy_pass http://backend;
