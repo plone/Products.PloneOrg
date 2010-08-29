@@ -13,12 +13,9 @@ Upgrade steps
 
 - Delete unneeded items from custom and portal_view_customizations.
 
-- The following add-ons have upgrade steps we should investigate:
+- Run (null) upgrade steps for ArchAddOn and PloneFormGen.  Run the Poi upgrade
+  and wait for the long security reindex.
   
-  * ArchAddOn
-  * PloneFormGen
-  * Poi
-
 - Make sure custom member properties (nickname, organization_title, organization_link)
   are shown on the personalize form
 

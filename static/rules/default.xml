@@ -18,9 +18,8 @@
 	<!-- Copy the main navigation -->
 	<copy content='//*[@id="portal-globalnav"]/li'		theme='//*[@id="main-nav"]' />
 
-	<!-- Get rid of the user icon and copy the user link -->
-	<drop content='//*[@id="user-name"]/img' /> 
-	<replace content='//*[@id="user-name"]' theme='//*[@id="user"]/a' />
+	<!-- Use the personal tools menu for the user info -->
+	<replace content='//*[@id="portal-personaltools"]' theme='//*[@id="user"]/a'/>
 
 	<!-- Copy the edit bar -->
 	<copy content='//*[@id="content-views"]'			theme='//*[@id="edit-menu"]' />
