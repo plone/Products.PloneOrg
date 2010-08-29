@@ -32,49 +32,43 @@ serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 #autostart = true
 #redirect_stderr = true
 #stdout_logfile = ${buildout:directory}/../var/log/nginx-stdout.log
-#priority = 3
 
 [program:plone.org-zeo]
 command=${buildout:directory}/../bin/zeo fg
-priority=1
 autostart=true
 
 [program:plone.org-client-1]
 command=${buildout:directory}/../bin/instance1 console
-priority=2
 autostart=true
 
 [program:plone.org-client-2]
 command=${buildout:directory}/../bin/instance2 console
-priority=2
 autostart=true
 
 [program:plone.org-client-3]
 command=${buildout:directory}/../bin/instance3 console
-priority=2
 autostart=true
 
 [program:plone.org-client-4]
 command=${buildout:directory}/../bin/instance4 console
-priority=2
 autostart=true
 
 [program:plone.org-client-5]
 command=${buildout:directory}/../bin/instance5 console
-priority=2
 autostart=true
 
 [program:plone.org-client-6]
 command=${buildout:directory}/../bin/instance6 console
-priority=2
 autostart=true
 
 [program:plone.org-client-7]
 command=${buildout:directory}/../bin/instance7 console
-priority=2
 autostart=true
 
 [program:plone.org-client-8]
 command=${buildout:directory}/../bin/instance8 console
-priority=2
+autostart=true
+
+[program:haproxy]
+command=${buildout:directory}/../bin/haproxy -f ${buildout:directory}/../etc/haproxy.conf -db
 autostart=true
