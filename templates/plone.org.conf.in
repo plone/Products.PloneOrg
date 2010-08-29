@@ -3,7 +3,7 @@
 
     server {
         listen ${listen};
-        server_name ${server_name};
+        server_name ${hosts:production} www.${hosts:production};
         root ${buildout:directory}/../static; 
 
         location = /nginx-status {
@@ -92,7 +92,7 @@
 
     server {
         listen ${listen};
-        server_name ${manage-server_name};
+        server_name ${hosts:manage};
         root ${buildout:directory}/../static;
 
         location = /nginx-status {
@@ -122,7 +122,7 @@
 
     server {
             listen ${listen};
-            server_name ${dist-server_name};
+            server_name ${hosts:dist};
             root /srv/dist.plone.org/http/root;
             location / {
                     autoindex on;
