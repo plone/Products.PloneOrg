@@ -3,7 +3,7 @@
 
     server {
         listen ${listen};
-        server_name ${hosts:production} www.${hosts:production};
+        server_name ${hosts:production};
         root ${buildout:directory}/../static; 
 
         location = /nginx-status {
@@ -189,4 +189,13 @@
 #                    rewrite ^/(.*)$ http://plone.net/$1 last;
 #            }
 #    }
+
+    # rewrite www.plone.org to plone.org for SEO
+    server {
+            listen ${listen};
+            server_name     www.plone.org
+            location / {
+                    rewrite ^/(.*)$ http://plone.org/$1 last;
+            }
+    }
 
