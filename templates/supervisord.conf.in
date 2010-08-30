@@ -71,4 +71,4 @@ autostart=true
 
 [program:haproxy]
 command=${buildout:directory}/../bin/haproxy -f ${buildout:directory}/../etc/haproxy.conf -db
-autostart=true
+autostart=false
