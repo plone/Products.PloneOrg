@@ -23,9 +23,9 @@ supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 [supervisorctl]
 serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 
-#[eventlistener:memmon]
-#command=/usr/local/bin/memmon -a 1024MB
-#events=TICK_60
+[eventlistener:memmon]
+command=/usr/local/bin/memmon -a 1024MB
+events=TICK_60
 
 [program:plone.org-nginx]
 command = ${buildout:directory}/../parts/nginx/sbin/nginx
