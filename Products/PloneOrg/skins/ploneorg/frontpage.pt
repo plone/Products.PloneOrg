@@ -30,7 +30,7 @@
 
 
 
-<tal:maintenance condition="python: True">
+<tal:maintenance condition="python: False">
 <dl class="portalMessage info">
 <dt>Upgrade complete</dt>
 <dd style="margin: 0 !important">
