@@ -181,3 +181,12 @@
             error_log ${buildout:directory}/../var/log/dist.plone.org-error.log;
     }
 
+#    # plone.net
+#    server {
+#            listen          5021;
+#            server_name     www.plone.net;
+#            location / {
+#                    rewrite ^/(.*)$ http://plone.net/$1 last;
+#            }
+#    }
+
