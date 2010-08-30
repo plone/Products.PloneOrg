@@ -725,11 +725,13 @@ dl.portlet dt {
 }
 
 
+#accordion h2.current,
 #accordion h2.selected {
 	cursor: inherit;
 	/*padding-left: 1.6em;*/
 }
 
+#accordion h2.current:before,
 #accordion h2.selected:before {
 	content: "▼ ";
 	/*content: " ";*/
