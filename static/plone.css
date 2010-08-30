@@ -1046,7 +1046,7 @@ dl.portlet li {
 	text-align: left;
 }
 
-#content p.documentDescription,
+#content .documentDescription,
 #description {
 	color: gray !important;
 	font: bold 1em "Helvetica Neue", Arial, FreeSans, sans-serif !important;
