@@ -711,6 +711,11 @@ dl.portlet {
 	cursor: pointer;
 }
 
+#content #accordion h2.current {
+	cursor: normal;
+}
+
+
 #content #accordion h2,
 dl.portlet dt {
 	background-color: #76AD17;
