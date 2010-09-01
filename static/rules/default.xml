@@ -38,6 +38,8 @@
 
 	<!-- <copy content='/html/body/div/table/tbody/tr/td/div/div/dl/dd/ul/li' theme='//*[@id="sub-nav"]' /> -->
 
+    <!-- Drop the register link (see http://dev.plone.org/plone/ticket/11005)-->
+    <drop content='//dt[@id="anon-personalbar"]/a[text()="Register"]' />
     
 </rules>
 
