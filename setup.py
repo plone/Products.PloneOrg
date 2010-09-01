@@ -24,7 +24,6 @@ setup(name='Products.PloneOrg',
       zip_safe=False,
       install_requires=[
         'setuptools',
-        'Products.CacheSetup',
         'Products.ExternalStorage',
         'Products.FoundationMember',
         'Products.MemcachedManager',
