@@ -36,7 +36,7 @@
                     <div class="visualIcon">
                         <a href="" 
                            tal:attributes="class python:selected and 'navTreeCurrentItem' or '';
-                                           href string:${here_url}/team/${groupid};">
+                                           href string:${context/absolute_url}/team/${groupid};">
                            <span tal:replace="group/title">Group title</span></a>
                     </div>
                 </li>
@@ -102,19 +102,19 @@
             <div tal:repeat="user users">
 
                 <a tal:define="id user/getId"
-                   tal:attributes="href string:${here_url}/author/${id}"
+                   tal:attributes="href string:${context/absolute_url}/author/${id}"
                 ><img src=""
                       alt=""
                       class="portraitPhoto"
                       width="75"
                       height="100"
                       style="float: left; margin: 0.25em 1em 0.5em 0;"
-                      tal:attributes="src python: mtool.getPersonalPortrait(user.getId()).absolute_url()" /></a>
+                      tal:attributes="src python: context.portal_membership.getPersonalPortrait(user.getId()).absolute_url()" /></a>
 
                 <h3>
                     <a tal:content="python:username(user)"
                        tal:define="id user/getId"
-                       tal:attributes="href string:${here_url}/author/${id}">
+                       tal:attributes="href string:${context/absolute_url}/author/${id}">
                       User full name or id</a>
                 </h3>
 
