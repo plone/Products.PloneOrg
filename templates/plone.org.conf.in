@@ -44,7 +44,7 @@
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
         }
-        location ~ /plugins/plone {
+        location ~ /(plugins/plone|refbrowser_popup) {
             rewrite ^/(.*)$ /${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
