@@ -1,8 +1,13 @@
 /**
  * CSS styles for Sphinx and Plone integration
  * 
+ * Copyright 2010 mFabrik Research OY
  * 
  * @author Mikko Ohtamaa
+ * 
+ * http://mfabrik.com http://mfabrik.mobi
+ * 
+ * http://blog.mfabrik.com
  * 
  * 
  * We assume that all Sphinx HTML content is nested inside sphinx-content CSS 
@@ -17,15 +22,15 @@
   * have different meaning for this CSS class.
   * 
   */
-.sphinx-content .section div {
+#content .sphinx-content .section div {
 	padding-top: 0;
 	padding-bottom: 0;
 }
 
 /* Make sure that inline code examples use a correct font size */
-.sphinx-content span.pre,
-.sphinx-content code, 
-.sphinx-content tt {
+#content .sphinx-content span.pre,
+#content .sphinx-content code, 
+#content .sphinx-content tt {
         font-size: 100%;
 	background: transparent;
 }
@@ -109,7 +114,7 @@ p.admonition-title:after {
  */
 
 /* We need a light background for these highlights */
-.sphinx-content pre {
+#content .sphinx-content pre {
 	color: black;
 	background: #eee;
 	border-bottom: 1px solid #aaa;
@@ -179,4 +184,3 @@ p.admonition-title:after {
 .vg { color: #bb60d5 } /* Name.Variable.Global */
 .vi { color: #bb60d5 } /* Name.Variable.Instance */
 .il { color: #208050 } /* Literal.Number.Integer.Long */
-
