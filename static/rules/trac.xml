@@ -18,7 +18,7 @@
 	<replace content='//*[@id="content"]'	theme='//*[@id="content"]' />
 
     <!-- Add in 'download in other formats' block -->
-    <append content='//*[@id="altlinks"]' theme='//*[@id="content]' />
+    <append content='//*[@id="altlinks"]' theme='//*[@id="content"]' />
     
 </rules>
 
