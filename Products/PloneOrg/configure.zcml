@@ -20,6 +20,7 @@
         <depends name="toolset"/>
     </genericsetup:importStep>
 
+    <include package="collective.recaptcha" />
     <include package=".browser" />
 
     <cmf:registerDirectory

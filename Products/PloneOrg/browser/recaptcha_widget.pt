@@ -1,0 +1,16 @@
+<div tal:define="captcha_view nocall:context/@@captcha">
+    <div>
+        <img tal:replace="structure captcha_view/image_tag"/>
+        <tal:block tal:define="audio_url captcha_view/audio_url"
+            tal:condition="audio_url">
+            <a tal:attributes="href audio_url">[audio]</a>
+        </tal:block>
+    </div>
+    <input tal:define="is_external context/@@captcha/external|python:False"
+           tal:condition="not:is_external"
+           name="captcha"
+           id="captcha"
+           value="" alt="Enter the word above" title="Enter the word above"
+           size="15"
+           i18n:attributes="alt; title" />
+</div>

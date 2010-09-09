@@ -16,4 +16,6 @@
       factory=".userschema.PloneOrgUserDataPanelAdapter"
       />
 
+    <include package=".browser" file="overrides.zcml"/>
+
 </configure>
