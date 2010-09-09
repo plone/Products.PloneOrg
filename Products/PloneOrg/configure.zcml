@@ -21,6 +21,9 @@
     </genericsetup:importStep>
 
     <include package="collective.recaptcha" />
+    <include package="collective.contentrules.mailtogroup" />
+    <include package="collective.contentrules.mailtolocalrole" />
+    
     <include package=".browser" />
 
     <cmf:registerDirectory
