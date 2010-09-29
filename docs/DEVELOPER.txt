@@ -2,7 +2,7 @@ PloneOrg buildout
 =================
 
 This is the plone.org policy product and corresponding buildout. It is used to
-power http://plone.org. As of July 2010, trunk supports Plone 4.
+power http://plone.org.
 
 - Code repository: http://svn.plone.org/svn/plone/Products.PloneOrg
 - Questions and comments to admins@lists.plone.org
@@ -14,36 +14,10 @@ Profiles
 Base
 ~~~~
 
-The base buildout is good enough to run Plone::
+The base buildout (i.e. buildout.cfg) will install Plone only::
 
     $ python2.6 bootstrap.py -d
     $ bin/buildout
-    $ bin/instance fg
-
-Develop
-~~~~~~~
-
-WARNING: According to aclark, this does not work. eleddy got it up and 
-running by adding plone.app.registry to the develop.cfg eggs list so until
-someone agrees on how to fix that either manually do that or use something else.
-
-A development buildout with trunk checkouts of all of plone.org's dependencies 
-can be built with::
-
-    $ python2.6 bootstrap.py
-    $ bin/buildout -c conf/develop.cfg
-    $ bin/instance fg
-
-Staging
-~~~~~~~
-
-WARNING: This is not tested and likely to be broken (via aclark)!
-
-A staging buildout, designed to configure a new plone.org alongside the
-current, can be built with::
-
-    $ python2.6 bootstrap.py
-    $ bin/buildout -c conf/staging.cfg
     $ bin/instance fg
 
 Production
