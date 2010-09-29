@@ -240,7 +240,7 @@ $.tools.tabs.addEffect("slide", function(i, done) {
 <!-- main navigator -->
 <ul id="main_navi">
 
-    <li id="navi-1" style="width: 206px;" class="active">
+    <li id="navi-1" style="width: 198;" class="active">
         <strong>The New Plone 4</strong>
         Speed, Power and Beauty
     </li>
