@@ -1,3 +1,4 @@
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       lang="en"
       metal:use-macro="here/main_template/macros/master">
@@ -6,18 +7,152 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Front page</title>
 
-    <metal:js fill-slot="javascript_head_slot">
-        <script src="/jquery-ui-accordion.js" type="text/javascript"></script>
+<metal:js fill-slot="javascript_head_slot">
+<script type="text/javascript">
+$(document).ready(function() {
 
-    <script type="text/javascript">
-        (function($) {
-            $(document).ready(function(){
-                $("#accordion").accordion({header:'h2', selectedClass:'selected'});
-            });
-        })(jQuery)
-    </script>
 
-    </metal:js>
+// main vertical scroll
+$("#splash-frontpage").scrollable({
+
+    // basic settings
+    vertical: true,
+
+// main navigator (thumbnail images)
+}).navigator("#main_navi");
+
+// Accordion
+$("#accordion").tabs("#accordion div.pane", {tabs: 'h2', effect: 'slide', initialIndex: null});
+
+// add new effect to the tabs
+$.tools.tabs.addEffect("slide", function(i, done) {
+
+    // 1. upon hiding, the active pane has a ruby background color
+    this.getPanes().slideUp().css({backgroundColor: "#eee"});
+
+    // 2. after a pane is revealed, its background is set to its original color (transparent)
+    this.getPanes().eq(i).slideDown(function()  {
+        $(this).css({backgroundColor: '#eee'});
+
+        // the supplied callback must be called after the effect has finished its job
+        done.call();
+    });
+});
+
+
+
+});
+</script>
+</metal:js>
+
+
+<metal:css fill-slot="style_slot">
+    <style type="text/css">
+    div.splash h1 {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+    font-weight: 300;
+    font-size: 1.75em
+    }
+
+    /* Local overrides */
+    #splash-frontpage {
+        background-image: none;
+        margin-bottom: 0;
+        border-radius: 0;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        padding: 0;
+    }
+    #splash-frontpage a {
+        float: none;
+        margin-top: 0;
+        font-size: inherit !important;
+        background: none !important;
+        padding-left: 0 !important;
+    }
+    #splash-frontpage a.arrow {
+        background: url("/images/sprite-ploneorg.png") no-repeat scroll 0 -114px !important;
+        font-size: 1.375em !important; 
+        padding-left: 16px !important;
+    }
+
+    /* main vertical scroll */
+    #splash-frontpage {
+        position:relative;
+        overflow:hidden;
+        height: 225px;
+    }
+    
+    /* root element for pages */
+    #pages {
+        position:absolute;
+        height:2000em;
+        background-color: #0C3264;
+        background-image: url(panel-bg2.png);
+        background-repeat: no-repeat;
+    }
+    
+    /* single page */
+    .page {
+        padding: 10px 20px;
+        height: 225px;
+        color:White;
+        width:667px;
+    }
+    
+    /* main navigator */
+    #main_navi {
+        padding:0px !important;
+        margin: 0 1em 1em 0 !important;
+    }
+    
+    #main_navi li {
+        background-color: #eee;
+        color: black;
+        font-size: 12px;
+        height: 50px;
+        list-style-type: none;
+        padding: 10px;
+        cursor: pointer;
+        display: inline-block;
+    }
+    
+    #main_navi li:hover {
+        color: #75AD0A;
+    }
+    #main_navi li.active:hover {
+        color: White;
+    }
+
+    #navi-1.active {
+        background-color: #0C3264;
+        color: White;
+    }
+    #navi-2.active {
+        background-color: #184A7D;
+        color: White;
+    }
+    #navi-3.active {
+        background-color: #205C90;
+        color: White;
+    }
+
+    #main_navi img {
+        float:left;
+        margin-right:10px;
+    }
+    
+    #main_navi strong {
+        display:block;
+    }
+    
+#accordion .pane {
+    display: none;
+    height: 32em;
+}
+    </style>
+
+</metal:css>
 
 </head>
 <body>
@@ -27,20 +162,14 @@
         events python:context.portal_catalog.searchResults(portal_type='Event', end={'query': here.ZopeTime(), 'range': 'min'}, sort_on='start', review_state='published');
         events python:[brain for brain in events if 'Training' not in brain.Subject][:4];">
 
-
-
-
-<tal:maintenance condition="python: False">
-<dl class="portalMessage info">
-<dt>Upgrade complete</dt>
-<dd style="margin: 0 !important">
-Plone.org has been upgraded to Plone 4! Please bear with us while we polish things over the next day or two. &#8212;Plone.org team
-</dd>
-</dl>
-</tal:maintenance>
-
-
-
+    <tal:maintenance condition="python: False">
+        <dl class="portalMessage info">
+            <dt>Upgrade complete</dt>
+            <dd style="margin: 0 !important">
+                Plone.org is currently undergoing system maintenance. Please excuse the occasional error while we improve the site for you! Normal functionaly will return shortly. &#8212;Plone.org team
+            </dd>
+        </dl>
+    </tal:maintenance>
 
     <div id="logo-wrapper">
         <a href="/" id="logo"></a>
@@ -48,21 +177,99 @@ Plone.org has been upgraded to Plone 4! Please bear with us while we polish thin
 
     <div class="grid-row">
         <div class="grid-cell width-three-quarters position-leftmost">
-            <div class="splash" id="splash-frontpage">
-                <h1>What is Plone?</h1>
 
-                <h2>A powerful, flexible Content Management<br />
-                    solution that is easy to install, use and extend</h2>
+<!-- root element for the main scrollable -->
+<div class="splash" id="splash-frontpage">
 
-                <p>Plone lets non-technical people create and maintain information using <br/>only a web browser. Perfect for web sites or intranets, Plone offers <br/>superior security without sacrificing extensibility or ease of use.</p>
+    <!-- root element for pages -->
 
-                <p><a href="/about">Explore the possibilities</a></p>
-            </div>
+    <div id="pages">
+
+        <!-- page #1 -->
+        <div class="page">
+
+            <h1>Plone 4: Speed, Power &amp; Beauty</h1>
+            <p style="padding-right: 23em">We're proud to announce Plone 4, the latest version of our 
+            state-of-the-art open source <abbr title="Content Management System">CMS</abbr>.  
+            It's faster, more powerful 
+            and more beautiful than ever before.</p>
+            <p><a href="/products/plone/features/" class="arrow">Take a tour of the new 
+                features in Plone 4</a></p>
+
+        </div>
+
+        <!-- page #2 -->
+        <div class="page" style="margin-left: 15em">
+
+            <h1>Under the hood</h1>
+            <p style="width: 25em">Plone 4 brings significant performance improvements &mdash; it's 50% 
+               faster than Plone 3. It's more memory efficient, and 
+               serves massive files and video without breaking a sweat.</p>
+               <p style="width: 25em">
+               Plus, all of this Python &amp; NoSQL goodness is wrapped in a sparkling new  
+               theme that is beautiful, accessible and easy to customize.</p>
+
+        </div>
+
+        <!-- page #3 -->
+        <div class="page" style="margin-left: 10em">
+
+            <h1>Plone Powered</h1>
+            <p style="width: 36em">Large enterprises, small businesses, non-profits, universities 
+                and governments around the world have chosen Plone for their 
+                websites, intranets and extranets.  When security, scalability,
+                accessibility and approachability count — <br />Plone delivers.</p>
+            <p style="width: 32em">We're proud to power websites for 
+               <a href="http://qt.nokia.com/">Nokia</a>,
+               <a href="http://www.amnesty.ch">Amnesty International</a>, 
+               <a href="http://discovermagazine.com">Discover Magazine</a>, 
+               the <a href="http://www.brazil.gov.br">Government of Brazil</a>,
+               the <a href="http://norden.org">Nordic Council</a>, the universities of
+               <a href="http://ocw.mit.edu">MIT</a>, 
+               <a href="http://seas.harvard.edu">Harvard</a> &amp; 
+               <a href="http://www.smeal.psu.edu/">Penn State</a>,
+               the <a href="http://www.fsf.org/">Free Software Foundation</a>
+               and thousands of others.</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- main navigator -->
+<ul id="main_navi">
+
+    <li id="navi-1" style="width: 206px;" class="active">
+        <strong>The New Plone 4</strong>
+        Speed, Power and Beauty
+    </li>
+    <li id="navi-2" style="width: 208px;">
+        <strong>Under the Hood</strong>
+        Faster, new theme &amp; more
+    </li>
+    <li id="navi-3" style="width: 193px;">
+        <strong>Plone Powered</strong>
+        Known by the company we keep
+    </li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
 
         <div class="grid-cell width-quarter position-three-quarters">
 
-            <div id="banners">
+            <div id="banners" style="height: 318px; background-color: #f7f7f7">
             <a href="http://www.ploneconf2010.org/?utm_source=plone.org&utm_medium=banner&utm_campaign=Plone.org%2BHomepage%2BBanner"><img src="/ploneconf2010_banner.gif" alt="Plone Conference 2010, Bristol, UK - October 25th -31st 2010" title="Plone Conference 2010, Bristol, UK - October 25th -31st 2010" style="border: none" /></a>
             </div>
 
@@ -93,7 +300,7 @@ Plone.org has been upgraded to Plone 4! Please bear with us while we polish thin
                     <li class="spotlight">
                         Plone is among the <a href="http://www.ohloh.net">top 2%</a> 
                         of all open source projects worldwide,
-                        with <a href="/team">200 core developers</a> and more than
+                        with <a href="/team">340 core developers</a> and more than
                         <a href="http://plone.net/providers">300 solution providers</a> 
                         in <a href="http://plone.net/providers">57 countries</a>.
                         The project has been actively developed 
@@ -168,15 +375,15 @@ Plone.org has been upgraded to Plone 4! Please bear with us while we polish thin
 
         <div class="grid-cell width-quarter position-three-quarters">
             <div id="accordion">
-                <h2>Get Plone</h2>
-                <div>
+                <h2 class="current">Get Plone</h2>
+                <div class="pane" style="display:block">
                     <a id="download-link" href="/download">DOWNLOAD NOW<br />
                         Plone 
                         <span tal:content="python: here.products.getFeaturedProjectRelease().getId()">3.2.0</span>
                         &middot; 
                         <span tal:content="python: here.products.getFeaturedProjectRelease().effective_date.strftime('%h ' + u'\u2019' + '%y')">Feb 2009</span></a>
                     <dl>
-                        <dt><a href="/products/plone/features/3.0">What’s new in Plone 3</a></dt>
+                        <dt><a href="/products/plone/features/">What’s new in Plone 4</a></dt>
                         <dd>An overview of the new features.</dd>
 
                         <dt><a href="http://dev.plone.org/plone/roadmap">Roadmap</a></dt>
@@ -191,7 +398,7 @@ Plone.org has been upgraded to Plone 4! Please bear with us while we polish thin
                 </div>  
 
                 <h2>Learn Plone</h2>
-                <div>
+                <div class="pane">
                     <dl>
                         <dt><a href="/documentation">Documentation</a></dt>
                         <dd>Plone has a great collection of online documentation.</dd>
@@ -211,7 +418,7 @@ Plone.org has been upgraded to Plone 4! Please bear with us while we polish thin
                 </div>
 
                 <h2>Get Involved</h2>
-                <div>
+                <div class="pane">
                     <dl>
                         <dt><a href="http://dev.plone.org/plone">Suggest New Features</a></dt>
                         <dd>Have an awesome idea about a new feature for Plone?</dd>
