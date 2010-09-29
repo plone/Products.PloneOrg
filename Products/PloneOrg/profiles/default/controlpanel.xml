@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel" meta_type="Plone Control Panel Tool">
+ <configlet title="Zope Management Interface" action_id="ZMI" appId="ZMI"
+    category="Plone" condition_expr=""
+    icon_expr="string:$portal_url/zope_icon.png"
+    url_expr="string:http://manage.plone.org/manage_main" visible="True">
+  <permission>Manage portal</permission>
+ </configlet>
+</object>
