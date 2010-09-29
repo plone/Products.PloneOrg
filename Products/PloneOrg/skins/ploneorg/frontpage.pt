@@ -166,7 +166,7 @@ $.tools.tabs.addEffect("slide", function(i, done) {
         <dl class="portalMessage info">
             <dt>System maintenance</dt>
             <dd style="margin: 0 !important">
-                Plone.org is currently undergoing system maintenance. Please excuse the occasional error while we improve the site for you! Normal functionaly will return shortly. &#8212;Plone.org team
+                Plone.org is currently undergoing system maintenance. Please excuse the occasional error while we improve the site for you! Normal functionality will return shortly. &#8212;Plone.org team
             </dd>
         </dl>
     </tal:maintenance>
