@@ -15,3 +15,22 @@ background: none !important;
 padding: 0 !important;
 }
 /* end of legal markup styles */
+
+
+
+/* override the main search css */
+
+.template-phc_asearch_form #content #search{
+float:left;
+width:100%;
+text-align:left;
+background:transparent;
+
+}
+
+/* move the labels to the right to stop them being pushed into the selection boxes */
+
+.template-phc_asearch_form #content #search label  {
+padding-left:0.4em;
+
+}
