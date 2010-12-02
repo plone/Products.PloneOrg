@@ -1,19 +1,27 @@
 Changelog
 =========
 
-1.2 - Dec 8, 2009
-------------------
+1.3 (12/02/2010)
+----------------
+
+- Plone 4 upgrade and other fixes [aclark, davisagli, dukebody,
+    eleddy, jonstahl, kleist, ldr, limi, maurits, miohtama,
+    newbery , smcmahon , vincentfretin] 
+
+1.2 (12/08/2009)
+----------------
 
 - Add a css rule to make the highlighted text inside <pre>s
-  readable. Fixes http://dev.plone.org/plone.org/ticket/1743. 
+  readable. Fixes http://dev.plone.org/plone.org/ticket/1743
   [dukebody]
 
 1.1 - Dec 3, 2009
 ------------------
 
-* Fix broken jquery-ui-accordion.js
+* Fix broken jquery-ui-accordion.js [aclark]
 
 1.0 - Nov 23, 2009
 ------------------
 
 * Initial release [aclark]
+* Create package [wichert]

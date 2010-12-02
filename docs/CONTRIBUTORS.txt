@@ -1,0 +1,27 @@
+
+Contributors
+------------
+
+A list of contributors since the package's inception:
+
+ * aclark 
+ * alecm 
+ * calvinhp 
+ * davisagli 
+ * dukebody 
+ * eleddy 
+ * esteele 
+ * jensens 
+ * jonstahl 
+ * kleist 
+ * ldr 
+ * limi 
+ * matthewwilkes 
+ * maurits 
+ * miohtama 
+ * newbery 
+ * smcmahon 
+ * tarek 
+ * vincentfretin 
+ * wichert 
+

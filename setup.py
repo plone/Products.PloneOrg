@@ -1,24 +1,26 @@
 from setuptools import setup, find_packages
-import os.path
 
-version = '1.2'
+
+def read(input):
+    return open(input, 'rb').read()
+
 
 setup(name='Products.PloneOrg',
-      version=version,
+      version='1.3',
       description="Plone.org site policy package.",
-      long_description=open("README.txt").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+      long_description=read('README.txt') + read('docs/DEVELOPER.txt') +
+            read('docs/HISTORY.txt'),
       classifiers=[
         "Framework :: Plone",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
       keywords='',
-      author='Plone Foundation',
-      author_email='plone-developers@lists.sourceforge.net',
+      author='Plone Admins',
+      author_email='admins@plone.org',
       url='http://svn.plone.org/svn/plone/Products.PloneOrg',
       license='GPL',
-      packages=find_packages(exclude=['ez_setup']),
+      packages=find_packages(),
       namespace_packages=['Products'],
       include_package_data=True,
       zip_safe=False,
@@ -40,6 +42,7 @@ setup(name='Products.PloneOrg',
         'collective.psc.externalstorage',
         'collective.psc.mirroring',
         'collective.recaptcha',
+        'collective.xdv',
         'plone.app.jquerytools',
         'plone.memoize',
         'python-memcached',
@@ -48,4 +51,3 @@ setup(name='Products.PloneOrg',
         'zope.structuredtext',
       ],
       )
-

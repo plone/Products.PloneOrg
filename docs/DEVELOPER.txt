@@ -1,45 +1,40 @@
-PloneOrg buildout
-=================
 
-This is the plone.org policy product and corresponding buildout. It is used to
-power http://plone.org.
-
-- Code repository: http://svn.plone.org/svn/plone/Products.PloneOrg
-- Questions and comments to admins@lists.plone.org
-- Report bugs to admins@lists.plone.org
-
-Profiles
---------
+Development
+-----------
 
 Base
 ~~~~
 
-The base buildout (i.e. buildout.cfg) will install Plone only::
+A base build, suitable for testing the ``Products.PloneOrg`` add-on is described
+in the top-level README.txt of this package.
 
-    $ python2.6 bootstrap.py -d
-    $ bin/buildout
+Development
+~~~~~~~~~~~
+
+A development build, suitable for developing the latest 
+
+    $ python2.6 bootstrap.py
+    $ bin/buildout -c production.cfg
     $ bin/instance fg
 
 Production
 ~~~~~~~~~~
 
-A production build, suitable for running on plone.org can be built with::
+A production build, suitable for running plone.org can be built with::
 
     $ python2.6 bootstrap.py
-    $ bin/buildout -c conf/production.cfg
-    $ bin/instance fg
+    $ bin/buildout -c production.cfg
+    $ bin/supervisord
 
 Database
 ~~~~~~~~
 
 If you need the Data.fs and CatalogData.fs files from plone.org, and you have 
-a plone.org account, you can do this::
+a plone.org UNIX system account you can do this::
 
     $ python2.6 bootstrap.py
-    $ bin/buildout -c conf/database.cfg
+    $ bin/buildout -c database.cfg
     $ bin/instance fg
 
-Help
-----
-
-Questions/comments/concerns? Please email admins@plone.org.
+If you do not have an account but want one, please contact the admins team
+(admins@plone.org).
