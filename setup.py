@@ -6,7 +6,7 @@ def read(input):
 
 
 setup(name='Products.PloneOrg',
-      version='1.3',
+      version='1.4',
       description="Plone.org site policy package.",
       long_description=read('README.txt') + read('docs/DEVELOPER.txt') +
             read('docs/HISTORY.txt'),
