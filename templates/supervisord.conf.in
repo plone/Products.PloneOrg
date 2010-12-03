@@ -27,12 +27,6 @@ serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
 command=/usr/local/bin/memmon -a 1024MB
 events=TICK_60
 
-[program:plone.org-nginx]
-command = ${buildout:directory}/parts/nginx/sbin/nginx
-autostart = true
-redirect_stderr = true
-stdout_logfile = ${buildout:directory}/var/log/nginx-stdout.log
-
 [program:plone.org-zeo]
 command=${buildout:directory}/bin/zeo fg
 autostart=true
