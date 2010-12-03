@@ -11,7 +11,7 @@ in the top-level README.txt of this package.
 Development
 ~~~~~~~~~~~
 
-A development build, suitable for developing the latest 
+A development build, suitable for developing the latest packages::
 
     $ python2.6 bootstrap.py
     $ bin/buildout -c production.cfg

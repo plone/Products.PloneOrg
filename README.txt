@@ -20,15 +20,6 @@ You can install it like so::
 Now check http://localhost:8080. You should be able to add a Plone site and
 install the Products.PloneOrg add-on.
 
-.. Note::
-
-    This initial setup makes a few compromises::
-
-    * The ``develop`` parameter is used to tell Buildout to include this
-      package. The rest of the (non-dev) packages come from PyPI or
-      dist.plone.org.
-    * There is no plone.org data.
-
 Development
 -----------
 
