@@ -11,7 +11,7 @@ community website.
 
 You can install it like so::
 
-    $ svn co https://svn.plone.org/svn/plone/Products.PloneOrg/trunk Products.PloneOrg
+    $ svn co https://svn.plone.org/svn/plone/Products.PloneOrg/trunk ploneorg
     $ cd Products.PloneOrg
     $ python bootstrap.py -d
     $ bin/buildout
