@@ -1,33 +1,20 @@
-Plone.org
-=========
+PloneOrg buildout
+=================
 
-This is the plone.org website package and buildout.
+This is the plone.org site package and corresponding buildout. It is used to
+power http://plone.org.
 
-Installation
-------------
-
-This package allows people to easily develop and deploy the plone.org
-community website.
-
-You can install it like so::
-
-    $ svn co https://svn.plone.org/svn/plone/plone.org/Products.PloneOrg/trunk ploneorg
-    $ cd Products.PloneOrg
-    $ python bootstrap.py -d
-    $ bin/buildout
-    $ bin/plone fg
-
-Now check http://localhost:8080. You should be able to add a Plone site and
-install the Products.PloneOrg add-on.
-
-Development
------------
-
-Please see docs/DEVELOPER.txt
-
-
-Contact
+Install
 -------
 
-Questions/comments/concerns? Please email: admins@plone.org.
+To install and run Plone (only), follow these steps::
+
+    $ python2.6 bootstrap.py -d
+    $ bin/buildout
+    $ bin/instance fg
+
+Develop
+-------
+
+To install and run Plone.org, follow the steps in docs/DEVELOPER.txt 
 

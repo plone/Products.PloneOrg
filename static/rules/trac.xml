@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules xmlns="http://namespaces.plone.org/xdv">
+	<replace content='/html/head/title' theme='/html/head/title' />
+
+	<!-- Add in the trac JS and page specific CSS in addition to the static ones -->
+	<append  content='/html/head/script' theme='/html/head' />
+	<append  content='/html/head/style' theme='/html/head' />
+	
+	<!-- Add non css links -->
+	<append content='/html/head/link[@type!="text/css"]' theme='/html/head' />
+
+	<copy content='//*[@id="mainnav"]/ul'	theme='//*[@id="sub-nav"]' />
+	<copy content='//*[@id="ctxtnav"]/ul'	theme='//*[@id="ctxtnav"]' />
+	
+	<copy content='//*[@id="metanav"]/ul/li[@class="first"]'	theme='//*[@id="user"]' />
+	
+	<!-- Copy over the contents of the page body -->
+	<replace content='//*[@id="content"]'	theme='//*[@id="content"]' />
+
+    <!-- Add in 'download in other formats' block -->
+    <append content='//*[@id="altlinks"]' theme='//*[@id="content"]' />
+    
+</rules>
+
