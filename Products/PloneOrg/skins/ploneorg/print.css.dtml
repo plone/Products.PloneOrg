@@ -97,3 +97,11 @@ div.top,
 .visualNoPrint {
     display: none;
 }
+
+/* Remove the third column */
+.position-two-thirds {display: none;}
+#content-wrapper {width:100% !important;}
+.width-two-thirds {width:100% !important;}
+
+/* Silly Firefox can't print floating things, therefore */
+.grid-row {float: none !important;}
