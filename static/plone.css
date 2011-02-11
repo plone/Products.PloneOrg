@@ -151,7 +151,7 @@ html, body {
 
 
 #outer-wrapper {
-	background: left -859px url("http://plone.org/images/sprite-ploneorg.png") repeat-x;
+	background: left -859px url("//plone.org/images/sprite-ploneorg.png") repeat-x;
 /* Sticky footer w/IE fixes*/
 	min-height: 100%;
 	height: auto !important;
@@ -175,7 +175,7 @@ html, body {
 
 #logo {
 	margin: 0 22px 25px;
-	background: 0 -775px url(http://plone.org/images/sprite-ploneorg.png);
+	background: 0 -775px url(//plone.org/images/sprite-ploneorg.png);
 	width: 215px;
 	height: 56px;
 	display: block;
@@ -264,7 +264,7 @@ ul.navigation li.active a {
 #search {
 	float: right;
 	position: relative;
-	background: #329fd7 0 -706px url(http://plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: #329fd7 0 -706px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
 	height: 39px;
 	width: 199px;
 	text-align: center;
@@ -327,7 +327,7 @@ div.splash {
 #content div.splash a {
 	color: White;
 	border: none;
-	background: transparent 0 -114px url(http://plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: transparent 0 -114px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
 	padding-left: 16px;
 	font-size: 1.375em;
 	font-weight: bold;
@@ -383,7 +383,7 @@ div.sidebar {
 	border-top: 1px solid #eee;
 	border-bottom: none;
 	font-weight: bold;
-	background: url(http://plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: url(//plone.org/images/sprite-ploneorg.png) no-repeat;
     background-position: 0 -441px;
 	padding-left: 16px;
 	letter-spacing: -1px;
@@ -440,7 +440,7 @@ img.book-cover {
 }
 
 #splash-download-plone {
-	background: transparent 0 -30px url(http://plone.org/images/sprite-ploneorg.png) no-repeat !important;
+	background: transparent 0 -30px url(//plone.org/images/sprite-ploneorg.png) no-repeat !important;
 	height:58px;
 	width:300px;
 	margin:10px 0px 10px 260px;
@@ -451,7 +451,7 @@ img.book-cover {
 }	
 
 #splash-download-package {
-	background: transparent 0 -495px url(http://plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: transparent 0 -495px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
 	height:130px;
 	margin-left: 2em;
 }
@@ -614,7 +614,7 @@ div.box h1 {
 	margin: -0.625em -1em !important;
 	padding: 0 1em;
 	line-height: 2em;
-	background: #eee url(http://plone.org/images/sprite-ploneorg.png) repeat-x;
+	background: #eee url(//plone.org/images/sprite-ploneorg.png) repeat-x;
 	background-position: 0 -163px;
 	font-size: 120%;
 }
@@ -779,7 +779,7 @@ dl.portlet dt {
 	width: 123px;
 	height: 51px;
 	line-height: 1.25em;
-	background: 0 -495px url(http://plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: 0 -495px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
 	color: white !important;
 	border-bottom: none !important;
 	font-weight: bold;
@@ -1894,7 +1894,7 @@ dl.toc dd ol {
 }
 
 #footer-gradient {
-	background: top left url(http://plone.org/images/sprite-ploneorg.png) repeat-x;
+	background: top left url(//plone.org/images/sprite-ploneorg.png) repeat-x;
 	height: 7px;
 }
 
@@ -1926,7 +1926,7 @@ dl.toc dd ol {
 
 #footer-logo {
 	float: left;
-	background-image: url(http://plone.org/images/sprite-ploneorg.png);
+	background-image: url(//plone.org/images/sprite-ploneorg.png);
 	background-position: 0 -376px;
 	width: 114px;
 	height: 44px;
