@@ -1,3 +1,7 @@
+/* THIS IS NOT THE FILE YOU WANT TO UPDATE 
+   The active plone.org CSS file is inside the Products/PloneOrg/skins
+   folder, and is called newplone.css. This file is just for dev previews. */
+
 /* @override 
 	http://dev.plone.org/plone.css
 	http://plone.org/plone.css
@@ -13,58 +17,111 @@
    - Linked images should not have borders
    */
 
-* { margin: 0; padding: 0; }
-* :link,:visited { text-decoration:none }
-* ul,ol { list-style:none; }
-* li { display: inline; }
-* h1,h2,h3,h4,h5,h6,pre,code { font-size:1em; }
-* a img,:link img,:visited img { border:none } 
-a { outline: none; }
-table { border-spacing: 0; }
-img { vertical-align: middle; }
+* {
+	margin: 0;
+	padding: 0;
+}
 
+* :link,:visited {
+	text-decoration: none;
+}
 
+* ul,ol {
+	list-style: none;
+}
+
+* li {
+	display: inline;
+}
+
+* h1,h2,h3,h4,h5,h6,pre,code {
+	font-size: 1em;
+}
+
+* a img,:link img,:visited img {
+	border: none;
+}
+
+a {
+	outline: none;
+}
+
+table {
+	border-spacing: 0;
+}
+
+img {
+	vertical-align: middle;
+}
 
 /* @end */
 
 /* @group Basics */
 
-body { 
+body {
 	font: 100% Arial, FreeSans, sans-serif;
 	background: White;
 	color: Black;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
+	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif;
 	font-weight: bold;
 	line-height: 125%;
 	color: Black;
 }
+
 h1, h2 {
 	letter-spacing: -1px;
 }
+
 h1 {
-	font-size: 1.625em; /* 26px equiv */
+	font-size: 1.625em;
+
+
+/* 26px equiv */
 }
+
 h2 {
-	font-size: 1.375em; /* 22px equiv */
+	font-size: 1.375em;
+
+
+/* 22px equiv */
 }
+
 h3 {
-	font-size: 1.125em; /* 18px equiv */
+	font-size: 1.125em;
+
+
+/* 18px equiv */
 }
+
 h4 {
-	font-size: 0.875em; /* 14px equiv */
+	font-size: 0.875em;
+
+
+/* 14px equiv */
 }
+
 h5 {
-	font-size: 0.75em; /* 12px equiv */
+	font-size: 0.75em;
+
+
+/* 12px equiv */
 }
+
 h6 {
-	font-size: 0.625em; /* 10px equiv */
+	font-size: 0.625em;
+
+
+/* 10px equiv */
 }
 
 p {
-	font-size: 0.75em; /* 12px equiv */
+	font-size: 0.75em;
+
+
+/* 12px equiv */
 }
 
 a:link, a:visited {
@@ -79,6 +136,7 @@ a:visited:hover {
 dt {
 	font-weight: bold;
 }
+
 input {
 	font-family: "Lucida Grande", Arial, FreeSans;
 }
@@ -88,53 +146,66 @@ input {
 /* @group Grid */
 
 /* Grid classes, these can also be nested */
+
 .grid-row {
-  float: left;
-  width: 100%;
-  display: block;
-  position: relative;
+	float: left;
+	width: 100%;
+	display: block;
+	position: relative;
 }
+
 .grid-cell {
-  position: relative;
-  float: left;
-  left: 100%;
+	position: relative;
+	float: left;
+	left: 100%;
 }
 
 /* Widths, these are abstracted out so that pixel-based layouts or other
    similar approaches can be retrofitted without changing the markup,
    or if you want to apply rules like the Golden Ratio to your layouts */
+
 .width-half {
 	width: 50%;
 }
+
 .width-quarter {
 	width: 25%;
 }
+
 .width-three-quarters {
 	width: 75%;
 }
+
 .width-third {
 	width: 33.33%;
 }
+
 .width-two-thirds {
 	width: 66.67%;
 }
 
 /* Positioning classes, these are subtracting from a rightmost position */
+
 .position-leftmost {
 	margin-left: -100%;
 }
+
 .position-third {
 	margin-left: -66.67%;
 }
+
 .position-two-thirds {
 	margin-left: -33.33%;
 }
+
 .position-quarter {
 	margin-left: -75%;
 }
+
 .position-half {
 	margin-left: -50%;
 }
+
 .position-three-quarters {
 	margin-left: -25%;
 }
@@ -143,28 +214,34 @@ input {
 
 /* @group Wrappers */
 
-
 html, body {
+
+
 /* Sticky footer */
 	height: 100%;
 }
 
-
 #outer-wrapper {
 	background: left -859px url("//plone.org/images/sprite-ploneorg.png") repeat-x;
+
+
 /* Sticky footer w/IE fixes*/
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -16em;
 }
+
 #inner-wrapper {
-	border-top: 11px solid #329fd7; 
+	border-top: 11px solid #329fd7;
 	padding: 0 1em 2em;
 }
 
 #content-wrapper {
-	width: 910px; /* 937px; */
+	width: 910px;
+
+
+/* 937px; */
 	margin: 1em auto 0;
 }
 
@@ -187,10 +264,12 @@ html, body {
 /* @group Navigation/search */
 
 #nav {
+
+
 /* Should be named header, but conflicts with the accordion.js for now */
 	width: 910px;
 	margin: 0 auto;
-	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
+	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif;
 }
 
 #main-nav {
@@ -202,32 +281,6 @@ html, body {
 	border-left: none;
 }
 
-/*	XXX TODO: mini-logo goes here
-
-#main-nav li:first-child {
-	display: inline-block;
-	width: 2.93em !important;
-}
-
-#main-nav li:first-child a {
-	border-left: none;
-	background: 0.5em 0.3em url(http://plone.org/images/plone-icon-24.png) no-repeat;
-	color: transparent;
-	padding: 0.4em 0 0.6em;
-}
-
-#main-nav li:first-child a:hover {
-	background: 0.5em 0.3em url(http://plone.org/images/plone-icon-24-selected.png) no-repeat;
-}
-
-body.template-new_frontpage #main-nav li:first-child a {
-	opacity: 0.2;
-	padding: 0.4em 0 0.6em;
-}
-body.template-new_frontpage #main-nav li:first-child a:hover {
-	cursor: default;
-	background: 0.5em 0.3em url(http://plone.org/images/plone-icon-24.png) no-repeat;
-}*/
 
 #sub-nav {
 	font: 13px/30px "Helvetica Neue", Arial, FreeSans;
@@ -239,9 +292,24 @@ body.template-new_frontpage #main-nav li:first-child a:hover {
 	border-right: none;
 }
 
-ul.navigation li a,
-ul.navigation li a:visited {
-	padding: 0.4em 0.6em;
+#portal-personaltools {
+	margin-right: .5em;
+}
+
+#portal-personaltools dt.actionMenuHeader a:after {
+	content: " ▼";
+}
+
+#portal-personaltools dd.actionMenuContent ul li a {
+	color: White;
+}
+
+#portal-personaltools dd.actionMenuContent ul li a:hover {
+	background-color: White;
+}
+
+ul.navigation li a,ul.navigation li a:visited {
+	padding: .4em .6em;
 	color: Black;
 	font-weight: bold;
 	border-right: 1px solid #dcdcdc;
@@ -256,10 +324,9 @@ ul.navigation li a:hover {
 ul.navigation li.selected a,
 ul.navigation li.active a {
 	color: #75ad0a;
-	padding: 6px 8px;
+	padding: 6px 8px 5px;
 	border-bottom: 2px solid white;
 }
-
 
 #search {
 	float: right;
@@ -278,7 +345,6 @@ ul.navigation li.active a {
 #user {
 	font-size: 0.875em;
 	width: 7.5em;
-	overflow: hidden;
 	float: right;
 	line-height: 2.3em;
 	white-space: nowrap;
@@ -297,11 +363,10 @@ ul.navigation li.active a {
 
 /* @end */
 
-
 /* @group Splash pages */
 
 div.splash {
-	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif; 
+	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif;
 	background-color: #205c90;
 	color: White;
 	margin-bottom: 1em;
@@ -311,11 +376,10 @@ div.splash {
 	-moz-border-radius: 0.5em;
 }
 
-#content div.splash h1 {	
+#content div.splash h1 {
 	color: White;
 	letter-spacing: 0;
 }
-
 
 #content div.splash h2,
 #content div.splash h3 {
@@ -334,7 +398,7 @@ div.splash {
 }
 
 div.pullout {
-	background-color: #87B829;
+	background-color: #87b829;
 	padding-left: 2.5em;
 	margin-left: -1em;
 }
@@ -348,6 +412,7 @@ div.pullout li a:before {
 }
 
 /*TODO: #sidebar & .sidebar need to be consolidated*/
+
 #sidebar {
 	padding-top: 2em;
 }
@@ -368,7 +433,7 @@ div.sidebar {
 
 #content div.sidebar ul,
 #content div.sidebar ol {
-	list-style: none;	
+	list-style: none;
 	margin: 0;
 }
 
@@ -384,7 +449,7 @@ div.sidebar {
 	border-bottom: none;
 	font-weight: bold;
 	background: url(//plone.org/images/sprite-ploneorg.png) no-repeat;
-    background-position: 0 -441px;
+	background-position: 0 -441px;
 	padding-left: 16px;
 	letter-spacing: -1px;
 }
@@ -422,7 +487,6 @@ img.book-cover {
 #splash-frontpage a {
 	float: right;
 	margin-top: 3.5em;
-
 }
 
 #splash-downloads {
@@ -441,25 +505,23 @@ img.book-cover {
 
 #splash-download-plone {
 	background: transparent 0 -30px url(//plone.org/images/sprite-ploneorg.png) no-repeat !important;
-	height:58px;
-	width:300px;
-	margin:10px 0px 10px 260px;
+	height: 58px;
+	width: 300px;
+	margin: 10px 0 10px 260px;
 	display: block;
 	float: right;
 	font-size: 1em !important;
 	padding-top: 1em;
-}	
+}
 
 #splash-download-package {
 	background: transparent 0 -495px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
-	height:130px;
+	height: 130px;
 	margin-left: 2em;
 }
 
-
 #splash-documentation {
 	min-height: 99px;
-
 }
 
 /* @end */
@@ -504,8 +566,8 @@ div.pagesearch {
 
 #categories {
 	background-color: white;
-	padding: 0.7em; 
-	/*margin-top: 8px; compensate for corners*/ 
+	padding: 0.7em;
+	/* margin-top: 8px; compensate for corners */ 
 	border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
 	-moz-border-radius: 0.5em;
@@ -522,7 +584,9 @@ div.pagesearch {
 }
 
 #categories h3.selected a {
-	/*padding-left: 1.25em;*/
+	
+
+/*padding-left: 1.25em;*/
 	color: black;
 	cursor: default;
 }
@@ -538,12 +602,13 @@ div.pagesearch {
 div.collapsible h3 a:before {
 	content: "▶ ";
 }
+
 div.collapsible h3.selected a:before {
 	content: "▼ ";
 }
 
 div.collapsible p {
-	font-size: 11px;	
+	font-size: 11px;
 }
 
 ul.topic {
@@ -551,14 +616,12 @@ ul.topic {
 }
 
 ul.topic li {
-	display: inline-block !important;	
+	display: inline-block !important;
 	vertical-align: top;
 	width: 29.5%;
 	margin: 0 0 1em 1.5em;
 	text-align: justify;
 }
-
-
 
 /* @end */
 
@@ -566,24 +629,21 @@ ul.topic li {
 
 /* TODO: Refactor these */
 
-
-
 #sort-by {
-	margin-left:.7em;
-	font-size:.7em;
+	margin-left: .7em;
+	font-size: .7em;
 }
 
 #numreleases {
-	font-size:.8em;
-	border-bottom:1px solid #ccc;
+	font-size: .8em;
+	border-bottom: 1px solid #ccc;
 	display: block;
-	padding:5px 0px;
+	padding: 5px 0;
 }
-
 
 #product-details {
 	border-bottom: 1px solid #ccc;
-	padding: 5px 0px;
+	padding: 5px 0;
 }
 
 .product-leadin {
@@ -629,7 +689,7 @@ div.box p {
 	margin-top: 0.5em;
 }
 
-div.box li {	
+div.box li {
 	list-style: none;
 	display: block;
 	margin: 0 -1em;
@@ -646,8 +706,12 @@ div.box li:nth-child(even) {
 }
 
 #current {
-	/*TODO: this needs to be a sprite element*/
-	/*background: 150px 380px url(http://plone.org/images/cogs.png) no-repeat;*/	
+	
+
+/*TODO: this needs to be a sprite element*/
+	
+
+/*background: 150px 380px url(http://plone.org/images/cogs.png) no-repeat;*/	
 	border: none;
 }
 
@@ -675,7 +739,6 @@ div.box li.spotlight a:hover {
 	color: #75ad0a !important;
 }
 
-
 #content div.box a {
 	border: none;
 }
@@ -689,7 +752,6 @@ div.box .info {
 div.box .add {
 	float: right;
 }
-
 
 /* @end */
 
@@ -712,9 +774,8 @@ dl.portlet {
 }
 
 #content #accordion h2.current {
-	cursor: normal;
+	cursor: default;
 }
-
 
 #content #accordion h2,
 dl.portlet dt {
@@ -729,23 +790,23 @@ dl.portlet dt {
 	letter-spacing: 0;
 }
 
-
 #accordion h2.current,
 #accordion h2.selected {
 	cursor: inherit;
-	/*padding-left: 1.6em;*/
+}
+
+#content #accordion h2.current {
+	cursor: default;
 }
 
 #accordion h2.current:before,
 #accordion h2.selected:before {
 	content: "▼ ";
-	/*content: " ";*/
 }
 
 #accordion h2:before {
 	content: "▶ ";
 }
-
 
 #accordion div {
 	padding: 10px;
@@ -757,9 +818,8 @@ dl.portlet dt {
 }
 
 #accordion dl dt a {
-	color: #205c90 !important;	
+	color: #205c90 !important;
 }
-
 
 #accordion dl {
 	margin-top: 0;
@@ -770,6 +830,7 @@ dl.portlet dt {
 	font-weight: bold;
 	font-size: 12px;
 }
+
 #content #accordion dd {
 	margin-bottom: 0.3em;
 }
@@ -807,10 +868,9 @@ dl.portlet dt a:hover {
 }
 
 dl.portlet dd {
-	font-size: 0.825em;	
+	font-size: 0.825em;
 	padding: 1em 2em;
 }
-
 
 div.managePortletsLink {
 	text-align: center;
@@ -874,15 +934,19 @@ dl.portletNavigationTree li a.navTreeCurrentItem span {
 dl.portletNavigationTree ul {
 	margin: 0 !important;
 }
+
 dl.portletNavigationTree .navTreeLevel0 li a {
 	padding-left: 2em;
 }
+
 dl.portletNavigationTree .navTreeLevel1 li a {
 	padding-left: 3em;
 }
+
 dl.portletNavigationTree .navTreeLevel2 li a {
 	padding-left: 4em;
 }
+
 dl.portletNavigationTree .navTreeLevel3 li a {
 	padding-left: 5em;
 }
@@ -909,9 +973,8 @@ dl.portletNavigationTree .navTreeLevel3 li a {
 #content h3,
 #content h4 {
 	margin-top: 0.5em;
-	color: #444;	
+	color: #444;
 }
-
 
 #content p,
 #content ul,
@@ -945,11 +1008,11 @@ dl.portlet a:link:hover {
 	color: #75ad0a;
 }
 
-#content a:visited, 
-dl.portlet a:visited {
-	color: #58a;
+#content a:visited,dl.portlet a:visited {
+	color: #427597;
 	border-bottom: 1px solid #ccc;
 }
+
 #content a:target {
 	background-color: #ffb !important;
 }
@@ -982,6 +1045,7 @@ dl.portlet li {
 	margin-bottom: 0;
 	margin-right: 0;
 }
+
 #content dd {
 	margin: 0 0 1em 1em;
 }
@@ -989,7 +1053,7 @@ dl.portlet li {
 #content pre {
 	background-color: #222;
 	color: White;
-	font-family: Consolas, Inconsolata, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace;	
+	font-family: Consolas, Inconsolata, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace;
 	padding: 10px;
 	overflow-x: auto;
 	font-size: 90%;
@@ -1022,31 +1086,31 @@ dl.portlet li {
 }
 
 #content .visualHighlight {
-    background-color: #ffb;
+	background-color: #ffb;
 }
 
 #content pre .visualHighlight {
-    color: #222222;
+	color: #222;
 }
 
 #content .pullquote {
-    padding: 0 1em 0 1em;
-    margin: 0 0 1em 1em;
-    font-weight: bold;
-    float: right;
-    width: 35%;
-    clear: right;
-    border-left: 1px solid #888;
+	padding: 0 1em 0 1em;
+	margin: 0 0 1em 1em;
+	font-weight: bold;
+	float: right;
+	width: 35%;
+	clear: right;
+	border-left: 1px solid #888;
 	color: #888;
 }
+
 #content .callout {
-    color: #666;
-    padding: 1em;
+	color: #666;
+	padding: 1em;
 	border: 1px solid #666;
 	border-style: solid none;
-	clear:  both;
+	clear: both;
 }
-
 
 #content table {
 	width: 100%;
@@ -1058,6 +1122,7 @@ dl.portlet li {
 	color: gray !important;
 	font: bold 1em "Helvetica Neue", Arial, FreeSans, sans-serif !important;
 	margin-left: 0;
+	margin-bottom: 1em;
 }
 
 #content img.tileImage,
@@ -1065,9 +1130,11 @@ dl.portlet li {
 	float: right;
 	margin: 0 1em 0.5em 1em;
 }
+
 #content div.newsImageContainer {
 	width: 200px;
 }
+
 #content div.newsImageContainer p.discreet {
 	margin: 0;
 	padding: 0.5em;
@@ -1078,6 +1145,7 @@ dl.portlet li {
 	position: relative;
 	top: -3em;
 }
+
 /* @end */
 
 /* @group Edit bar */
@@ -1086,32 +1154,31 @@ dl.portlet li {
 	margin: 1em 0;
 }
 
-#edit-bar { 
+#edit-bar {
 	width: 910px;
 	margin: 0 auto;
 	background-color: #75ad0a;
 	clear: both;
 }
 
-#edit-menu ul { 
-	padding-left: 0.5em;
-	border-top: 4px solid #76AD17;
-	background-color: #76AD17;
-	border-bottom: 1em solid #63A100;
+#edit-menu ul {
+	padding-left: .5em;
+	border-top: 4px solid #76ad17;
+	background-color: #76ad17;
+	border-bottom: 1em solid #63a100;
 	line-height: 2em;
 	height: 1em;
 }
 
-#edit-menu li a { 
+#edit-menu li a {
 	color: White;
 	font-weight: bold;
 	padding: 0.5em;
 	line-height: 2em;
 }
 
-
 #edit-menu li a:hover, 
-#edit-menu li.selected a { 
+#edit-menu li.selected a {
 	color: #75ad0a;
 	background-color: White;
 	border-top: 1px solid #75ad0a;
@@ -1119,13 +1186,13 @@ dl.portlet li {
 }
 
 #edit-menu li:hover a, 
-#edit-menu li.selected a { 
+#edit-menu li.selected a {
 	color: #75ad0a;
 }
 
 #action-menu {
-	/*float:right;
-	clear: right;*/
+	
+
 }
 
 #action-menu ul li a {
@@ -1136,15 +1203,14 @@ dl.portlet li {
 #action-menu ul li a img {
 	display: none;
 }
+
 /* @end */
-
-
 
 /* @group Data tables */
 
 table.listing {
 	width: 100%;
-	border-spacing: 0; 
+	border-spacing: 0;
 }
 
 table.listing td, 
@@ -1164,27 +1230,33 @@ table.listing thead th {
 	border-bottom: 1px solid #e7e7e7;
 	padding-left: 0;
 }
+
 table.listing tbody th {
 	font-weight: bold;
 }
+
 table.listingtbody tr {
-	text-align:left;
+	text-align: left;
 }
+
 table.listing tbody tr.odd {
 	background: #f9f9f9;
 }
-table.listing tbody tr td { 
+
+table.listing tbody tr td {
 	background: transparent;
 }
-table.listing tbody tr.odd td { 
+
+table.listing tbody tr.odd td {
 	background: #f9f9f9;
 }
-table.listing a { 
+
+table.listing a {
 	border: none !important;
 }
 
 div.listingBar {
-	font-size: 13px;	
+	font-size: 13px;
 	margin: 1em 0;
 }
 
@@ -1209,64 +1281,70 @@ div.listingBar a:hover {
 	border-color: #329fd7 !important;
 }
 
-
-
 /* @end */
 
 /* @group Status messages */
 
 dl.portalMessage {
-    font-size: 12px;
-    background-color: #ffffe3; 
-    border: 1px solid #996;
-    margin-bottom: 1em;
+	font-size: 12px;
+	background-color: #ffffe3;
+	border: 1px solid #996;
+	margin-bottom: 1em;
 }
 
 dl.portalMessage a {
-    color: black !important;
-    border: none !important;
-    text-decoration: underline;
+	color: black !important;
+	border: none !important;
+	text-decoration: underline;
 }
+
 dl.portalMessage dt {
-    background-color: #996; 
-    font-weight: bold;
-    float: left;
-    margin: 0 0.5em 0 0;
-    padding: 0.5em 0.75em;
-    color: White;
-    line-height: 1.25em;
+	background-color: #996;
+	font-weight: bold;
+	float: left;
+	margin: 0 0.5em 0 0;
+	padding: 0.5em 0.75em;
+	color: White;
+	line-height: 1.25em;
 }
+
 dl.portalMessage dd {
-    padding: 0.5em 0.5em; 
-    margin: 0;
-    line-height: 1.25em;
+	padding: 0.5em 0.5em;
+	margin: 0;
+	line-height: 1.25em;
 }
+
 dl.warning {
-    border-color: #d80;
+	border-color: #d80;
 }
+
 dl.warning dt {
-    background-color: #d80;
+	background-color: #d80;
 }
+
 dl.error {
-    border-color: #d00;    
+	border-color: #d00;
 }
+
 dl.error dt {
-    background-color: #d00; 
+	background-color: #d00;
 }
+
 dl.warning {
-    border-color: #d80;    
+	border-color: #d80;
 }
+
 dl.warning dd {
-    background-color: #fd7; 
+	background-color: #fd7;
 }
+
 dl.error {
-    border-color: #d80;    
+	border-color: #d80;
 }
+
 dl.error dd {
-    background-color: #fd7; 
+	background-color: #fd7;
 }
-
-
 
 /* @end */
 
@@ -1275,305 +1353,361 @@ dl.error dd {
 /* @group Pulldown menus */
 
 .contentActions {
-    background-color: white;
-    text-align: right;
-    padding: 0 0 0 1em;
-    z-index: 2;
-    position:relative;
-    height: 1.6em;
+	background-color: white;
+	text-align: right;
+	padding: 0 0 0 1em;
+	z-index: 2;
+	position: relative;
+	height: 1.6em;
 }
+
 .contentActions ul,
 .contentActions li {
-    margin: 0;
-    list-style: none;
-    list-style-image: none;
-    color: Black;
-    text-align: left;
-    line-height: 1.6em;
+	margin: 0;
+	list-style: none;
+	list-style-image: none;
+	color: Black;
+	text-align: left;
+	line-height: 1.6em;
 }
+
 .contentActions li {
-    float: right;
-    z-index: 4;
-    border-left: 1px solid #74ae0b;
+	float: right;
+	z-index: 4;
+	border-left: 1px solid #74ae0b;
 }
+
 .contentActions a {
-    text-decoration: none;
-    color: White;
-    padding: 0 0.5em;
-    cursor: pointer;
+	text-decoration: none;
+	color: White;
+	padding: 0 0.5em;
+	cursor: pointer;
 }
+
 .contentActions span.subMenuTitle {
-    padding: 0em 0.5em;
-    position: relative;
-    white-space: nowrap;
-    display: inline;
+	padding: 0em 0.5em;
+	position: relative;
+	white-space: nowrap;
+	display: inline;
 }
+
 .contentActions a span.subMenuTitle {
-    padding: 0px;
-    display: inline;
+	padding: 0;
+	display: inline;
 }
+
 .actionMenu {
-    /*  The spec says we can't put this on an element with a float (although
+	/* 
+
+The spec says we can't put this on an element with a float (although
         Opera is the only one that cares) and we need it in order to catch
         the position:absolute bubbling up */
 
     position: relative;
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 	font-weight: bold;
 }
+
 .actionMenu .actionMenuHeader {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
+
 .actionMenu.activated .actionMenuHeader {
-    position: relative;
-    z-index: 10;
+	position: relative;
+	z-index: 10;
 }
+
 .actionMenu .actionMenuHeader a {
-    display: block;
+	display: block;
 	color: White;
 	padding: 0.5em 0.5em;
 }
+
 .arrowDownAlternative {
-    font-size: 0.85em;
+	font-size: 0.85em;
 }
+
 .actionMenu .actionMenuContent {
-    display: none;
-    z-index: 5;
-    position: absolute;
-    top: 1.5em;
-    right: 0;
-    height: auto;
-    padding: 0;
-    margin: 0;
+	display: none;
+	z-index: 5;
+	position: absolute;
+	top: 1.5em;
+	right: 0;
+	height: auto;
+	padding: 0;
+	margin: 0;
 }
+
 .actionMenu.activated .actionMenuContent {
-    display: block !important;
+	display: block !important;
 }
+
 .actionMenu.activated .actionMenuContent {
-    /* this one will be ignored by IE, it is here to fix the cut-off error in
+	/* 
+
+this one will be ignored by IE, it is here to fix the cut-off error in
        Firefox */
     display: table !important;
-    border-collapse: collapse;
-    border-spacing: 0;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
+
 .actionMenu.deactivated .actionMenuContent {
-    display: none !important;
+	display: none !important;
 }
+
 .actionMenu .actionMenuContent ul {
-    display: block;
-    background: #75ad0a;
+	display: block;
+	background: #75ad0a;
 	color: White;
-    margin: 0.5em 0 0 0;
+	margin: 0.5em 0 0 0;
 	border: 3px solid #74ae0b;
 }
+
 .actionMenu .actionMenuContent li {
-    float: none;
-    display: inline;
+	float: none;
+	display: inline;
 }
+
 .actionMenu .actionMenuContent li a {
-    display: block;
-    white-space: nowrap;
+	display: block;
+	white-space: nowrap;
 	background-color: #74ae0b;
 	color: White;
 	padding: 0.5em;
 }
+
 .actionMenu .actionMenuContent .selected {
-    display: block;
-    white-space: nowrap;
-    padding: 0 0.5em;
-    margin: 0.2em 0;
+	display: block;
+	white-space: nowrap;
+	padding: 0 0.5em;
+	margin: 0.2em 0;
 }
+
 .actionMenu .actionMenuContent li a:hover {
-    background-color: White;
-    color: #75ad0a !important;
+	background-color: White;
+	color: #75ad0a !important;
 }
+
 .actionMenu .actionMenuContent .actionSeparator a {
-    padding-top: 0.2em;
-    border-top: 1px solid #74ae0b;
+	padding-top: 0.2em;
+	border-top: 1px solid #74ae0b;
 }
+
 #templateMenu li a {
-    padding-left: 16px;
+	padding-left: 16px;
 }
 
 dl.actionMenu {
-	float:right;
+	float: right;
 }
-
-
 
 /* @end */
 
 /* @group Control panel */
 
 ul.configlets {
-    margin: 1em 0;
-    list-style-image: none;
-    list-style: none;
+	margin: 1em 0;
+	list-style-image: none;
+	list-style: none;
 }
 
 .configlet .contentViews {
-    font-size: 90%;
+	font-size: 90%;
 }
 
 ul.configlets li {
-    margin-bottom: 1em;
+	margin-bottom: 1em;
 }
+
 ul.configlets li a {
-    text-decoration: none;
-    border: none;
+	text-decoration: none;
+	border: none;
 }
+
 ul.configlets li a:visited {
-    color: #436976;
-    background-color: transparent;
+	color: #436976;
+	background-color: transparent;
 }
+
 ul.configlets li a:active {
-    color: #436976;
-    background-color: transparent;
+	color: #436976;
+	background-color: transparent;
 }
+
 ul.configlets li label {
-    font-weight: bold;
+	font-weight: bold;
 }
+
 ul.configletDetails {
-    margin: 0em 1em 1em 4em;
-    list-style-image: none;
-    list-style: none;
+	margin: 0em 1em 1em 4em;
+	list-style-image: none;
+	list-style: none;
 }
+
 ul.configletDetails li {
-    margin-bottom: 1em;
-    display: inline;
+	margin-bottom: 1em;
+	display: inline;
 }
+
 ul.configletDetails li a {
 	text-decoration: none;
 }
+
 ul.configletDetails li label {
-    font-weight: bold;
+	font-weight: bold;
 }
+
 ul.configletDetails li.configletDescription {
-    display: block;
-    color: #76797c;
-    font-size: 90%;
-    margin: 0;
+	display: block;
+	color: #76797c;
+	font-size: 90%;
+	margin: 0;
 }
+
 .inlineDisplay {
-display:inline
+	display: inline;
 }
+
 table.controlpanel-listing {
-width:100%;
+	width: 100%;
 }
+
 table.controlpanel-listing td, table.controlpanel-listing th {
-font-size:120%;
+	font-size: 120%;
 }
+
 table.controlpanel-listing dl {
-margin-top:0;
+	margin-top: 0;
 }
+
 table.controlpanel-listing dd {
-margin-left: 1em;
+	margin-left: 1em;
 }
-table.controlpanel-listing dl dt a .trigger{
-font-weight:normal;
+
+table.controlpanel-listing dl dt a .trigger {
+	font-weight: normal;
 }
+
 table .controlpanel-listing td {
-vertical-align:top;
+	vertical-align: top;
 }
-table.controlpanel-listing td.checker{
-text-align:center;
+
+table.controlpanel-listing td.checker {
+	text-align: center;
 }
+
 table.controlpanel-listing th.smallcolumn {
-width:1.5em;
+	width: 1.5em;
 }
+
 .chooser-right {
-float:right;
-margin-right:0 !important;
-margin-bottom:0 !important;
+	float: right;
+	margin-right: 0 !important;
+	margin-bottom: 0 !important;
 }
+
 .rule-element {
-background-color:#EEF3F5;
-margin:0.5em 0pt 0.5em;
-padding:0.3em 1em 0.3em 1em;
-width:auto;
+	background-color: #EEF3F5;
+	margin: 0.5em 0pt 0.5em;
+	padding: 0.3em 1em 0.3em 1em;
+	width: auto;
 }
+
 .rule-element dl {
+	
 }
+
 .rule-element dl dd {
-margin-left:1em;
+	margin-left: 1em;
 }
+
 .rule-updown, .rule-operations {
-float:right;
-padding-top:0.8em;
+	float: right;
+	padding-top: 0.8em;
 }
+
 /* @end */
 
 /* @group Collapsible */
+
 dl.collapsible {
-    border: 1px solid #8cacbb !important;
-    margin: 1em 0 0 0;
-    padding: 0;
+	border: 1px solid #8cacbb !important;
+	margin: 1em 0 0 0;
+	padding: 0;
 }
+
 dl.collapsible dt.collapsibleHeader {
-    display: block;
-    float: left;
-    background: White;
-    line-height: 1.2em;
-    vertical-align: middle;
-    font-size: 90%;
-    position: relative;
-    top: -0.6em;
-    width: auto;
-    margin: 0 0 -0.6em 1em;
-    padding: 0 0.5em;
+	display: block;
+	float: left;
+	background: White;
+	line-height: 1.2em;
+	vertical-align: middle;
+	font-size: 90%;
+	position: relative;
+	top: -0.6em;
+	width: auto;
+	margin: 0 0 -0.6em 1em;
+	padding: 0 0.5em;
 }
+
 dl.collapsible dd.collapsibleContent {
-    margin: 0;
-    padding: 0 1em;
-    clear: left;
+	margin: 0;
+	padding: 0 1em;
+	clear: left;
 }
 
 /* for IE the following isn't needed, that's why the css2 selector is used */
+
 dl.collapsible dd.collapsibleContent > dl {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 dl.expandedInlineCollapsible dt.collapsibleHeader,
 dl.expandedBlockCollapsible dt.collapsibleHeader {
-    padding: 0 6px 0 22px;
-    background: White url(treeExpanded.png) no-repeat 6px 50%;
-    cursor: pointer;
+	padding: 0 6px 0 22px;
+	background: White url(treeExpanded.png) no-repeat 6px 50%;
+	cursor: pointer;
 }
 
 dl.collapsedBlockCollapsible {
-    border: none !important;
-    height: 1em;
-    width: auto;
+	border: none !important;
+	height: 1em;
+	width: auto;
 }
+
 dl.collapsedBlockCollapsible dt.collapsibleHeader {
-    float: none;
-    position: static;
-    margin: 0;
-    padding: 0 0 0 22px;
-    line-height: 1em;
-    cursor: pointer;
+	float: none;
+	position: static;
+	margin: 0;
+	padding: 0 0 0 22px;
+	line-height: 1em;
+	cursor: pointer;
 }
+
 dl.collapsedInlineCollapsible dd.collapsibleContent,
 dl.collapsedBlockCollapsible dd.collapsibleContent {
-    display: none;
+	display: none;
 }
+
 dl.collapsedInlineCollapsible {
-    border: none !important;
-    height: 1em;
-    width: auto;
-    display: inline;
+	border: none !important;
+	height: 1em;
+	width: auto;
+	display: inline;
 }
+
 dl.collapsedInlineCollapsible dt.collapsibleHeader {
-    position: static;
-    float: none;
-    margin: 0;
-    padding: 0 0 0 22px;
-    line-height: 1em;
-    cursor: pointer;
-    display: inline;
+	position: static;
+	float: none;
+	margin: 0;
+	padding: 0 0 0 22px;
+	line-height: 1em;
+	cursor: pointer;
+	display: inline;
 }
 
 /* @end */
@@ -1583,18 +1717,20 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
 .comment {
 	border: 1px solid #eee;
 	background-color: #f6f6f6;
-    padding: 0.25em 1em 1em 1em;
-    margin-bottom: 1em;
+	padding: 0.25em 1em 1em 1em;
+	margin-bottom: 1em;
 }
+
 .comment h1,
 .comment h2,
 .comment h3,
 .comment h4, 
 .comment h5,
 .comment h6 {
-    border-bottom: 1px solid #76797c;
-    font-weight: normal;
+	border-bottom: 1px solid #76797c;
+	font-weight: normal;
 }
+
 .commentBody {
 	font-size: 13px;
 }
@@ -1602,137 +1738,166 @@ dl.collapsedInlineCollapsible dt.collapsibleHeader {
 /* @end */
 
 /* Additional STX workaround classes */
+
 .stx table p {
-    margin: 0;
-    padding: 0;
+	margin: 0;
+	padding: 0;
 }
+
 .stx table {
-    border: 1px solid #8cacbb ! important;
+	border: 1px solid #8cacbb ! important;
 }
+
 .stx table td {
-    border-bottom: 1px solid #8cacbb;
+	border-bottom: 1px solid #8cacbb;
 }
 
 .reviewHistory,
 .contentHistory {
-    display: inline;
-    font-size: 110% !important; 
-    color: Black;
+	display: inline;
+	font-size: 110% !important;
+	color: Black;
 }
+
 .spacer {
-    margin: 1em;
+	margin: 1em;
 }
 
 .label {
-    font-weight: bold;
-    display: inline;
-    padding-right: 0.5em;
+	font-weight: bold;
+	display: inline;
+	padding-right: 0.5em;
 }
+
 .optionsToggle {
-    border: 1px solid #8cacbb;
-    color: Black;
-    background-color: #dee7ec;
-    font-weight: normal !important;
-    font-size: 90%;
-} 
+	border: 1px solid #8cacbb;
+	color: Black;
+	background-color: #dee7ec;
+	font-weight: normal !important;
+	font-size: 90%;
+}
 
 #portal-column-content fieldset > * input:focus,
 #portal-column-content fieldset > * textarea:focus {
-    border-color: #ffa500;
-    border-width: 1px;
+	border-color: #ffa500;
+	border-width: 1px;
 }
 
 /* for highlighting of search terms */
+
 .highlightedSearchTerm {
-   background-color: #ffa;
+	background-color: #ffa;
+	background-color: rgba(255,255,140,0.5);
 }
 
 dl.searchResults .highlightedSearchTerm {
-    background-color: transparent;
-    font-weight: bold;
-}
-/* for greying out inherited roles */
-.noInheritedRoles {
-    color: #a0a0a0;
-}
-/* for highlighting current items, like the language or today in the calendar */
-.currentItem {
-    border-collapse: collapse;
-    border: 2px solid #ffa500;
-    padding: 1px;
-}
-.managePortletsLink {
-    display:  block;
-    color: #76797c;
-    font-size: 90%;
-    font-weight: normal;
+	background-color: transparent;
+	font-weight: bold;
 }
 
+/* for greying out inherited roles */
+
+.noInheritedRoles {
+	color: #a0a0a0;
+}
+
+/* for highlighting current items, like the language or today in the calendar */
+
+.currentItem {
+	border-collapse: collapse;
+	border: 2px solid #ffa500;
+	padding: 1px;
+}
+
+.managePortletsLink {
+	display: block;
+	color: #76797c;
+	font-size: 90%;
+	font-weight: normal;
+}
 
 /* @end */
 
 /* @group Tabbed form fieldsets */
 
 ul.formTabs {
-    position: relative;
-    display: block;
-    list-style-type: none;
-    text-align: center;
+	position: relative;
+	display: block;
+	list-style-type: none;
+	text-align: center;
 	background-color: #329fd7;
 	border-top: 3px solid #329fd7;
 	margin-left: 0 !important;
 }
+
 li.formTab {
-    display: inline !important;
-    margin: 0;
-    padding: 0;
+	display: inline !important;
+	margin: 0;
+	padding: 0;
 }
+
 li.formTab a {
-    /* this isn't supported by all browsers, so we keep it in a separate rule */
+	/* 
+
+this isn't supported by all browsers, so we keep it in a separate rule */
     display: inline-block;
 }
+
 li.formTab a {
 	background-color: #329fd7;
-    color: White !important;
-    padding: 0.125em 0.75em;
-    text-decoration: none;
+	color: White !important;
+	padding: 0.125em 0.75em;
+	text-decoration: none;
 	border: none !important;
 	font-weight: bold;
 }
+
 li.formTab a:visited {
+	
 }
+
 li.firstFormTab a {
+	
 }
+
 li.lastFormTab a {
+	
 }
+
 li.formTab a.selected,
 li.formTab a:hover {
-    background: White;
-    color: #329fd7 !important;
+	background: White;
+	color: #329fd7 !important;
 }
+
 li.formTab a.notify {
-    background-color: #ffce7b;
-    color: Black;
+	background-color: #ffce7b;
+	color: Black;
 }
+
 li.formTab a.required span {
-    background-image: url(/required.png);
-    background-position: center right;
-    background-repeat: no-repeat;
-    padding-right: 8px;
+	background-image: url(/required.png);
+	background-position: center right;
+	background-repeat: no-repeat;
+	padding-right: 8px;
 }
+
 li.formTab a.notify:hover {
-    background-color: #ffa500;
+	background-color: #ffa500;
 }
+
 .formPanel {
 	margin-top: -1.5em;
-    border: 1px solid #8cacbb;
-    padding-top: 1em;
+	border: 1px solid #8cacbb;
+	padding-top: 1em;
 }
+
 .formPanel.hidden {
-    display: none;
+	display: none;
 }
+
 div.formControls input.hidden {
-    display: none;
+	display: none;
 }
 
 /* @end */
@@ -1742,119 +1907,147 @@ div.formControls input.hidden {
 div.formControls {
 	margin-top: 1em;
 }
+
 input[type="text"]:focus,
 input[type="password"]:focus,
 textarea:focus {
 	background-color: #ffffe0;
-	/* outline: none; */
 }
 
 #content textarea {
-font: 100% Monaco, "Courier New", Courier, monospace;
-width: 100%;
+	font: 100% Monaco, "Courier New", Courier, monospace;
+	width: 100%;
 }
+
 #content select {
-vertical-align: top;
+	vertical-align: top;
 }
+
 #content fieldset {
-border: 1px solid #329fd7;
-border-style: solid none none none;
+	border: 1px solid #329fd7;
+	border-style: solid none none none;
 }
+
 #content legend {
-padding: 0.5em 0.5em 0.5em 0;
-font-size: 90%;
+	padding: 0.5em 0.5em 0.5em 0;
+	font-size: 90%;
 }
+
 label {
-font-weight: bold;
+	font-weight: bold;
 }
+
 #content optgroup {
-font-style: normal;
-font-weight: bold;
-color: #999;
-padding-left: 0.25em;
+	font-style: normal;
+	font-weight: bold;
+	color: #999;
+	padding-left: 0.25em;
 }
+
 #content option {
-color: black;
+	color: black;
 }
+
 #content optgroup > option {
-padding: 0 0.25em 0 1em;
+	padding: 0 0.25em 0 1em;
 }
+
 dl.enableFormTabbing dd {
-margin-left: 0;
-padding-top: 2em;
+	margin-left: 0;
+	padding-top: 2em;
 }
+
 #content input.searchButton {
+	
 }
+
 .searchSection {
-color: #76797c;
-margin-top: 0.25em;
+	color: #76797c;
+	margin-top: 0.25em;
 }
+
 .searchSection label:hover {
-color: Black;
+	color: Black;
 }
+
 .field {
-clear: both;
-margin-top: 1em;
+	clear: both;
+	margin-top: 1em;
 }
+
 .field input[type="text"] {
 	width: 100%;
 }
+
 .fieldRequired {
-background: url(/required.gif) center left no-repeat;
-padding: 0 0 0 8px;
-color: White;
+	background: url(/required.gif) center left no-repeat;
+	padding: 0 0 0 8px;
+	color: White;
 }
+
 .fieldUploadFile {
-text-align: right;
-margin-right: 0.75em;
-display: none;
+	text-align: right;
+	margin-right: 0.75em;
+	display: none;
 }
+
 .fieldTextFormat {
-text-align: right;
-margin-right: 0.75em
+	text-align: right;
+	margin-right: 0.75em
 }
+
 .formHelp {
-font-size: 90%;
-color: #76797c;
-margin: 0 0 0.2em 0;
+	font-size: 90%;
+	color: #76797c;
+	margin: 0 0 0.2em 0;
 }
+
 .formHelp:hover {
-color: Black;
-cursor: default;
+	color: Black;
+	cursor: default;
 }
+
 div.error {
-background-color: #fdc;
-border: 1px solid #d00;
-padding: 0.5em;
-margin: 0 0 1em 0;
-width: 95%;
+	background-color: #fdc;
+	border: 1px solid #d00;
+	padding: 0.5em;
+	margin: 0 0 1em 0;
+	width: 95%;
 }
+
 .error .fieldRequired {
-color: #d00;
+	color: #d00;
 }
+
 input.inputLabelActive {
-color: #76797c;
+	color: #76797c;
 }
+
 textarea#form\.description {
-height: 6em;
-width: 99%;
+	height: 6em;
+	width: 99%;
 }
+
 tr.selected {
-background-color: #ffa;
+	background-color: #ffa;
 }
 
 /* @group Login form */
 
 #login-form input {
-font-size: 150%;
-width: inherit;
+	font-size: 150%;
+	width: inherit;
 }
 
 body.template-join_form #content input {
-font-size: 150%;
-width: inherit;
+	font-size: 150%;
+	width: inherit;
 }
 
+#login_form label {
+	display: inline-block;
+	width: 7em;
+}
 
 /* @end */
 
@@ -1862,23 +2055,26 @@ width: inherit;
 
 /* @group Table of Contents */
 
- /*Table of Contents styling - essentially a portlet with smaller fonts and aligned right + limited in width*/ 
+/*Table of Contents styling - essentially a portlet with smaller fonts and aligned right + limited in width*/
 
 dl.toc {
 	float: right;
-    width: 35%;
+	width: 35%;
 	font-size: 11px !important;
-    margin: 0 0 0.5em 1.5em;
+	margin: 0 0 0.5em 1.5em;
 	border-left: 1px solid #666;
 }
+
 dl.toc dt {
 	margin-left: 3em;
 	font-weight: normal;
 	text-transform: uppercase;
 }
+
 dl.toc dd {
 	margin-bottom: 0 !important;
 }
+
 dl.toc dd ol {
 	margin-left: 1.5em !important;
 }
@@ -1888,6 +2084,8 @@ dl.toc dd ol {
 /* @group Footer */
 
 #footer-wrapper {
+
+
 /* Sticky footer */
     height: 16em;
 	background: #329fd7;
@@ -1899,6 +2097,8 @@ dl.toc dd ol {
 }
 
 #push {
+
+
 /* Sticky footer */
 	height: 16em;
 }
@@ -1915,8 +2115,8 @@ dl.toc dd ol {
 	font-size: 0.7em;
 }
 
-#footer p a { 
-    color: White;
+#footer p a {
+	color: White;
 }
 
 #footer p a:hover {
@@ -1934,15 +2134,10 @@ dl.toc dd ol {
 	margin: 0 1em 0 0.5em;
 }
 
-#sitemap  {
+#sitemap {
 	width: 100%;
 	clear: both;
 	padding-top: 1em;
-/* IE:
-	clear: both;
-	margin-bottom: 3em;
-	float:left;
-*/
 }
 
 #sitemap dl {
@@ -1951,16 +2146,21 @@ dl.toc dd ol {
 	display: inline-block;
 	vertical-align: top;
 	width: 20%;
-/* IE:   width: 16.3%;*/
-/* IE:   float: left;*/
 
+
+/* IE:   width: 16.3%;*/
+
+
+/* IE:   float: left;*/
 }
+
 #sitemap dl a {
 	font-size: 0.7em;
 	color: White;
 	display: block;
 	padding: 0.25em 6px;
 }
+
 #sitemap dl a:hover {
 	color: #329fd7;
 	background-color: White;
@@ -1969,43 +2169,46 @@ dl.toc dd ol {
 #sitemap dl dt a {
 	font-size: 0.75em;
 }
+
 /* @end */
 
 /* @group Visual editor */
 
 .kupu-save-message {
-color: white;
-font-weight: bold;
-background-color: red;
-padding: 0.3em;
-position: fixed;
-top: 0;
-right: 0;
-z-index: 999;
+	color: white;
+	font-weight: bold;
+	background-color: red;
+	padding: 0.3em;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 999;
 }
 
 #toolbar {
-    background-color: White;
-    width: auto;
-    border: none;
+	background-color: White;
+	width: auto;
+	border: none;
 }
+
 #toolbar button {
 	border-color: White;
 }
+
 #kupu-editor-iframe-text {
 	border: 1px solid Black;
 }
+
 #kupu-colorchooser {
 	display: none;
 }
-
 
 /* @end */
 
 /* @group Trac */
 
 #prefs {
-	float: right;	
+	float: right;
 	width: 25em;
 	border: 1px solid #eee;
 	background-color: #f6f6f6;
@@ -2023,6 +2226,7 @@ z-index: 999;
 	width: auto;
 	margin: 0 0.5em;
 }
+
 #prefs label {
 	font-weight: normal;
 }
@@ -2045,13 +2249,15 @@ z-index: 999;
 #ticket .date {
 	float: right;
 }
+
 #ticket .date p {
 	color: #666;
 	font-size: 11px;
 	margin: 0;
 }
+
 #ticket table.properties {
-	border-top: 1px solid #eee;	
+	border-top: 1px solid #eee;
 	width: 60%;
 }
 
@@ -2081,55 +2287,88 @@ td.summary a {
 }
 
 table.progress {
- border: 1px solid black;
- border-collapse: collapse;
- border-spacing: 0;
- float: left;
- empty-cells: show;
- width: 55% !important;
+	border: 1px solid black;
+	border-collapse: collapse;
+	border-spacing: 0;
+	float: left;
+	empty-cells: show;
+	width: 55% !important;
 }
+
 table.progress a, table.progress :link, table.progress :visited,
 table.progress :link:hover, table.progress :visited:hover {
- border: none !important;
- display: block;
- width: 100%;
- height: 1.2em;
- text-decoration: none
+	border: none !important;
+	display: block;
+	width: 100%;
+	height: 1.2em;
+	text-decoration: none;
 }
-table.progress td { background: #fff; padding: 0 }
-table.progress td.closed { background: #75ad0a }
-table.progress td :hover { background: none }
-p.percent { font-size: 10px; line-height: 2.4em; margin: 0.9em 0 0 }
-#content ul.milestones li { list-style:none; }
-#content ul.milestones .info dt { display: inline; margin: 0 }
-#content ul.milestones .info dd { display: inline; margin: 0 .5em; }
-#content ul.milestones p.date { font-size: 11px; color: #666; } 
+
+table.progress td {
+	background: #fff;
+	padding: 0;
+}
+
+table.progress td.closed {
+	background: #75ad0a;
+}
+
+table.progress td :hover {
+	background: none;
+}
+
+p.percent {
+	font-size: 10px;
+	line-height: 2.4em;
+	margin: .9em 0 0;
+}
+
+#content ul.milestones li {
+	list-style: none;
+}
+
+#content ul.milestones .info dt {
+	display: inline;
+	margin: 0;
+}
+
+#content ul.milestones .info dd {
+	display: inline;
+	margin: 0 .5em;
+}
+
+#content ul.milestones p.date {
+	font-size: 11px;
+	color: #666;
+}
 
 #content div.diff li.entry {
 	border: 1px solid #eee;
 	background-color: #f6f6f6;
 }
+
 #content div.diff ul.entries {
 	margin: 0;
 }
+
 /* @end */
 
 /* @group Invisibles */
 
 .hiddenStructure {
-    display: none;
-    background: transparent;
-    background-image: none; /* safari bug */
+	display: none;
+	background: transparent;
+	background-image: none;
+	/* safari bug */
     border: none;
-    height: 1px;
-    overflow: hidden;
-    padding: 0;
-    margin: -1px 0 0 -1px;
-    width: 1px;
+	height: 1px;
+	overflow: hidden;
+	padding: 0;
+	margin: -1px 0 0 -1px;
+	width: 1px;
 }
 
 .visualClear {
 	clear: both;
 }
-
 /* @end */
