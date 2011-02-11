@@ -3,6 +3,13 @@
            xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
            xmlns:zcml="http://namespaces.zope.org/zcml">
 
+    <include package="Products.AddRemoveWidget" />
+    <include package="Products.DataGridField" />
+    <include package="Products.FoundationMember" />
+    <include package="Products.PloneHelpCenter" />
+    <include package="Products.PloneSoftwareCenter" />
+    <include package="Products.Poi" />
+
     <genericsetup:registerProfile
         name="default"
         title="Plone.org site"

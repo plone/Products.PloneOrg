@@ -3,6 +3,9 @@ import os.path
 
 version = '1.2'
 
+test_require = ['plone.app.testing']
+
+
 setup(name='Products.PloneOrg',
       version=version,
       description="Plone.org site policy package.",
@@ -47,5 +50,6 @@ setup(name='Products.PloneOrg',
         'zope.interface',
         'zope.structuredtext',
       ],
+      test_require=test_require,
+      extras_require={'test': test_require},
       )
-
