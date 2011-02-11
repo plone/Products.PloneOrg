@@ -28,47 +28,47 @@ command=/usr/local/bin/memmon -a 1024MB
 events=TICK_60
 
 [program:plone.org-nginx]
-command = ${buildout:directory}/../parts/nginx/sbin/nginx
+command = ${buildout:directory}/parts/nginx/sbin/nginx
 autostart = true
 redirect_stderr = true
-stdout_logfile = ${buildout:directory}/../var/log/nginx-stdout.log
+stdout_logfile = ${buildout:directory}/var/log/nginx-stdout.log
 
 [program:plone.org-zeo]
-command=${buildout:directory}/../bin/zeo fg
+command=${buildout:directory}/bin/zeo fg
 autostart=true
 
 [program:plone.org-client-1]
-command=${buildout:directory}/../bin/instance1 console
+command=${buildout:directory}/bin/instance1 console
 autostart=true
 
 [program:plone.org-client-2]
-command=${buildout:directory}/../bin/instance2 console
+command=${buildout:directory}/bin/instance2 console
 autostart=true
 
 [program:plone.org-client-3]
-command=${buildout:directory}/../bin/instance3 console
+command=${buildout:directory}/bin/instance3 console
 autostart=true
 
 [program:plone.org-client-4]
-command=${buildout:directory}/../bin/instance4 console
+command=${buildout:directory}/bin/instance4 console
 autostart=true
 
 [program:plone.org-client-5]
-command=${buildout:directory}/../bin/instance5 console
+command=${buildout:directory}/bin/instance5 console
 autostart=true
 
 [program:plone.org-client-6]
-command=${buildout:directory}/../bin/instance6 console
+command=${buildout:directory}/bin/instance6 console
 autostart=true
 
 [program:plone.org-client-7]
-command=${buildout:directory}/../bin/instance7 console
+command=${buildout:directory}/bin/instance7 console
 autostart=true
 
 [program:plone.org-client-8]
-command=${buildout:directory}/../bin/instance8 console
+command=${buildout:directory}/bin/instance8 console
 autostart=true
 
 [program:haproxy]
-command=${buildout:directory}/../bin/haproxy -f ${buildout:directory}/../etc/haproxy.conf -db
+command=${buildout:directory}/bin/haproxy -f ${buildout:directory}/etc/haproxy.conf -db
 autostart=false

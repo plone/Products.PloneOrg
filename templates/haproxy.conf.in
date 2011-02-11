@@ -1,6 +1,6 @@
 
 global
-  log ${hosts:localhost} local6
+  log 127.0.0.1 local6
   maxconn 32000
   ulimit-n 64000
   user ${env:USER}
@@ -32,11 +32,11 @@ defaults
   stats realm Haproxy\ statistics
 
 frontend plone
-  bind ${hosts:localhost}:${ports:haproxy}
+  bind 127.0.0.1:9090
   default_backend instances
   # capture cookie __ac len 10
   # option httplog
-  # log ${hosts:localhost} local6
+  # log 127.0.0.1 local6
 
 # Load balancing over the zope instances
 backend instances
