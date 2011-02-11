@@ -25,6 +25,7 @@
         description="Perform the non-GenericSetup parts of site configuration. "
         handler=".setuphandlers.setupVarious">
         <depends name="toolset"/>
+        <depends name="propertiestool"/>
     </genericsetup:importStep>
 
     <include package="collective.recaptcha" />

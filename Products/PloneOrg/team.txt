@@ -1,0 +1,35 @@
+.. -*-doctest-*-
+
+==================
+Plone Team Listing
+==================
+
+Start with a portal.
+
+    >>> from Products.PloneOrg import testing
+    >>> portal = testing.PLONEORG_FUNCTIONAL_TESTING['portal']
+
+Open a browser as an anonymous user.
+
+    >>> from Products.Five import testbrowser
+    >>> browser = testbrowser.Browser()
+    >>> browser.handleErrors = False
+    >>> browser.open(portal.absolute_url())
+
+Open the team listing page.
+
+    >>> browser.open(portal.absolute_url() + '/team')
+
+The Plone founders are listed.
+
+    >>> browser.getLink('limi')
+    <Link text='limi' url='http://nohost/plone/author/limi'>
+    >>> browser.getLink('runyaga')
+    <Link text='runyaga' url='http://nohost/plone/author/runyaga'>
+
+There are links to view the members of other groups such as the
+release managers.
+
+    >>> browser.getLink('ReleaseManagers').click()
+    >>> browser.getLink('esteele')
+    <Link text='esteele' url='http://nohost/plone/author/esteele'>

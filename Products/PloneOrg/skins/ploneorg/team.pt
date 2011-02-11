@@ -16,10 +16,13 @@
 
 <body>
 
-<div metal:fill-slot="portlets_one_slot"
+<div id="portal-column-one"
+     class="cell width-1:4 position-0"
+     metal:fill-slot="column_one_slot"
      tal:define="view context/@@group_listing;
                  groups view/groups;"
-     tal:condition="groups">
+     tal:condition="groups"
+     tal:attributes="class python:isRTL and 'cell width-1:4 position-3:4' or 'cell width-1:4 position-0'">
     <dl class="portlet" id="portlet-navigation-tree">
         <dt class="portletHeader">
             <span class="portletTopLeft"></span>

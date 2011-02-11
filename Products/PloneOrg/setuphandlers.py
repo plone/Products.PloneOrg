@@ -18,3 +18,8 @@ def setupVarious(context):
     for plugin in ('mutable_properties',):
         if plugin in enumerators:
             plugins.deactivatePlugin(IUserEnumerationPlugin, plugin)
+
+    gtool = getToolByName(site, 'portal_groups', None)
+    props = getToolByName(site, 'portal_properties', None)
+    for group in props.site_properties.getProperty('allowedPublicGroups'):
+        gtool.addGroup(group)
