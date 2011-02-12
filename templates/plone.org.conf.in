@@ -53,6 +53,7 @@
         location / {
             rewrite ^/login_form https://plone.org/login_form;
             rewrite ^/logged_out https://plone.org/logged_out;
+	    rewrite ^/(.+)/require_login(.*) https://plone.org/$1/require_login$2;
             rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
