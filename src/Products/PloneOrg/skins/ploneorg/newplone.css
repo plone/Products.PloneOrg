@@ -1,6 +1,8 @@
 /* @override 
 	http://dev.plone.org/plone.css
 	http://plone.org/plone.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey2857.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey2635.css
 */
 
 /* @group CSS Reset */
@@ -366,15 +368,21 @@ div.splash {
 	background-color: #205c90;
 	color: White;
 	margin-bottom: 1em;
-	padding: 1em 1.5em 2em;
+	padding: 0.5em 1.5em 1em;
 	border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
 	-moz-border-radius: 0.5em;
 }
 
+
 #content div.splash h1 {
+	font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+	font-size: 1.75em;
+	font-weight: 300;
 	color: White;
 	letter-spacing: 0;
+	font-weight: normal;
+	margin-bottom: .5em;
 }
 
 #content div.splash h2,
@@ -387,10 +395,12 @@ div.splash {
 #content div.splash a {
 	color: White;
 	border: none;
-	background: transparent 0 -114px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
-	padding-left: 16px;
-	font-size: 1.375em;
 	font-weight: bold;
+}
+
+#content div.splash a.pointer {
+	background: transparent 0 -115px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
+	padding-left: 16px;
 }
 
 div.pullout {
@@ -399,12 +409,13 @@ div.pullout {
 	margin-left: -1em;
 }
 
+div.pullout ul {
+	margin: 0 !important;
+
+}
 div.pullout li {
 	display: block;
-}
-
-div.pullout li a:before {
-	content: "→ ";
+	list-style: none;
 }
 
 /*TODO: #sidebar & .sidebar need to be consolidated*/
@@ -493,6 +504,15 @@ img.book-cover {
 	height: 11em;
 }
 
+#splash-download-package {
+	background: transparent 0 -495px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
+	height: 130px;
+	margin-left: 2em;
+	position: relative;
+	top: -60px;
+	left:  -30px;
+}
+
 #splash-downloads h1,
 #splash-downloads p {
 	text-align: right;
@@ -502,22 +522,27 @@ img.book-cover {
 #splash-download-plone {
 	background: transparent 0 -30px url(//plone.org/images/sprite-ploneorg.png) no-repeat !important;
 	height: 58px;
-	width: 300px;
+	width: 310px;
 	margin: 10px 0 10px 260px;
 	display: block;
 	float: right;
 	font-size: 1em !important;
 	padding-top: 1em;
+	padding-left: 1em;
 }
 
-#splash-download-package {
+/*#splash-download-package {
 	background: transparent 0 -495px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
 	height: 130px;
 	margin-left: 2em;
-}
+}*/
 
 #splash-documentation {
-	min-height: 99px;
+	padding-left: 14em;
+	height: 15em;
+}
+#sidebar-documentation {
+	height: 15em;
 }
 
 /* @end */
