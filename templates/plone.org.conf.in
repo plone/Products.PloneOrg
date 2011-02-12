@@ -208,3 +208,28 @@
                     rewrite ^/(.*)$ http://plone.org/$1 last;
             }
     }
+
+    # rewrites to map plone.net requests to new locations in plone.org
+    server {
+            listen ${listen};
+            server_name     plone.net;
+            location / {
+                rewrite ^/providers(.*) http://plone.org/support/providers$1 permanent;
+                rewrite ^/case-studies(.*) http://plone.org/support/case-studies$1 permanent;
+                rewrite ^/buzz(.*) http://plone.org/news/buzz$1 permanent;
+                rewrite ^/sites(.*) http://plone.org/support/sites$1 permanent;
+                rewrite ^/hosting-providers(.*) http://plone.org/support/hosting-providers$1 permanent;
+                # following rule must be last
+                rewrite ^ http://plone.org/support/providers permanent;
+            }
+    }
+
+    # rewrite www.plone.net to plone.net
+    server {
+            listen ${listen};
+            server_name     www.plone.net;
+            location / {
+                    rewrite ^/(.*)$ http://plone.net/$1 last;
+            }
+    }
+
