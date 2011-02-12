@@ -510,6 +510,7 @@ img.book-cover {
 	position: relative;
 	top: -60px;
 	left:  -30px;
+	width: 140px;
 }
 
 #splash-downloads h1,
