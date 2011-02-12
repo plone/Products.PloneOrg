@@ -12,23 +12,26 @@ Plone.org centric products such as PloneSoftwareCenter.
 
 Production
 ----------
-The default buildout setup is for setting up a development environment.
-To deploy to a production environment, uncomment the line that says 
-'conf/production.cfg' and comment out 'conf/develop.cfg'. Then 
+
+The default buildout setup is for setting up a production environment,
+including Plone and nginx running under supervisor. (This won't be
+functional without extra work, as other parts of the plone.org stack
+such as the load balancer are not currently in the buildout.)
+Run buildout as normal::
+
+    $ python2.6 bootstrap.py
+    $ bin/buildout
+    $ sudo bin/supervisord
+
+Development
+-----------
+
+To build plone.org for development, uncomment the line in buildout.cfg that
+says 'conf/production.cfg' and comment out 'conf/develop.cfg'. Then
 procede as normal::
 
     $ python2.6 bootstrap.py
     $ bin/buildout
-    $ bin/supervisord
-
-Develop
--------
-The default config for this buildout is development mode. Run buildout as
-normal::
-
-    $ python2.6 bootstrap.py
-    $ bin/buildout
-    $ bin/instance zeoserver
     $ bin/instance fg
 
 Database
@@ -38,3 +41,4 @@ shell script. It assumes rsync is in your path::
 
     $ ./conf/get_data
 
+(This requires shell access to plone.org.)

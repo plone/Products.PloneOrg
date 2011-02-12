@@ -11,6 +11,8 @@ A list of contributors since the package's inception:
  * dukebody 
  * eleddy 
  * esteele 
+ * feeeeesh
+ * hennaheto
  * jensens 
  * jonstahl 
  * kleist 
@@ -20,6 +22,7 @@ A list of contributors since the package's inception:
  * maurits 
  * miohtama 
  * newbery 
+ * rpatterson
  * smcmahon 
  * tarek 
  * vincentfretin 
