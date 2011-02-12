@@ -33,11 +33,6 @@ normal::
     $ python2.6 bootstrap.py
     $ bin/buildout
     $ bin/instance fg
-    
-Please note that do to circumstances around testing the PloneOrg module, there 
-are 2 directories with svn info. The source for Products.PloneOrg is in the 
-'src' directory and the rest of the checked out packages are in 'sources'. If 
-you can't find a checkout, double check BOTH directories.
 
 This will get you an unthemed copy of the site. If you want to work on the
 theme, you can build Plone + nginx by modifying buildout.cfg to use 
@@ -50,6 +45,11 @@ conf/develop_theme.cfg, and then run::
 
 Then you can access the themed site at http://localhost:5021/, and the
 unthemed site at http://localhost:8080/plone.org
+
+NOTE: Due to circumstances around testing the PloneOrg module, there 
+are 2 directories with svn info. The source for Products.PloneOrg is in the 
+'src' directory and the rest of the checked out packages are in 'sources'. If 
+you can't find a checkout, double check BOTH directories.
 
 Database
 ~~~~~~~~
