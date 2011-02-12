@@ -14,6 +14,7 @@
                  b_start python:0;
                  standalone python:1;
                  contentTypes python:[];
+                 here_url context/@@plone_context_state/object_url;
                  b_start request/b_start | b_start;
                  batch python:Batch(revList, b_size, int(b_start), orphan=1);">
 
@@ -25,9 +26,8 @@
             tal:attributes="action here_url"
             tal:condition="python: revList">
 
-        <metal:listing use-macro="here/folder_contents/macros/folder_listing"/>
+        <metal:listing use-macro="here/folder_listing/macros/listing"/>
 
-        <metal:buttons use-macro="here/folder_contents/macros/folder_buttons"/>
     </form>
 </div>
 </body>
