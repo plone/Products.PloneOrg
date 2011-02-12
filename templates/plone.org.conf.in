@@ -33,25 +33,25 @@
         location = /plone.css {  }
         location = /ie.css {  }
         location ~ /emptypage$ {
-            rewrite ^/(.*)$ /${virtual-host}/$1 break;
+            rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
         }
         location /_xdv_disabled/ {
-            rewrite ^/_xdv_disabled/(.*)$ /${virtual-host}/$1 break;
+            rewrite ^/_xdv_disabled/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
         }
         location ~ /(plugins/plone|refbrowser_popup|image_view_fullscreen) {
-            rewrite ^/(.*)$ /${virtual-host}/$1 break;
+            rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
         }
         location / {
-            rewrite ^/(.*)$ /${virtual-host}/$1 break;
+            rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
@@ -60,7 +60,7 @@
             xslt_types text/html;
         }
         location = / {
-            rewrite ^/(.*)$ /${virtual-host}/$1 break;
+            rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
@@ -69,7 +69,7 @@
             xslt_types text/html;
         }
         location ~ ^/(products(/psc_view_ploneorg)?|documentation/ndocs|support|frontpage-plone4)/?$ {
-            rewrite ^/(.*)$ /${virtual-host}/$1 break;
+            rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
             proxy_set_header X-XDV "true";
@@ -107,7 +107,7 @@
         gzip_types       text/xml text/plain application/xml;
 
         location / {
-            proxy_pass http://10.57.0.107:5011/${manage-virtual-host}/;
+            proxy_pass http://10.57.0.107:5011${manage-virtual-host}/;
         }
         location ^~ /images/ {
             autoindex on;
@@ -115,7 +115,7 @@
         location ^~ /plone.css {  }
         location ^~ /ie.css {  }
         location ~ /emptypage$ {
-            rewrite ^/(.*)$ /${virtual-host}/$1 break;
+            rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
         }
     }

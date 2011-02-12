@@ -26,13 +26,25 @@ Run buildout as normal::
 Development
 -----------
 
-To build plone.org for development, uncomment the line in buildout.cfg that
-says 'conf/production.cfg' and comment out 'conf/develop.cfg'. Then
-procede as normal::
+To build plone.org for development, comment out the line in buildout.cfg that
+says 'conf/production.cfg' and uncomment 'conf/develop.cfg'. Then proceed as
+normal::
 
     $ python2.6 bootstrap.py
     $ bin/buildout
     $ bin/instance fg
+
+This will get you an unthemed copy of the site. If you want to work on the
+theme, you can build Plone + nginx by modifying buildout.cfg to use 
+conf/develop_theme.cfg, and then run::
+
+    $ python2.6 bootstrap.py
+    $ bin/buildout
+    $ bin/instance fg
+    $ parts/nginx/sbin/nginx -c ../../etc/nginx.conf
+
+Then you can access the themed site at http://localhost:5021/, and the
+unthemed site at http://localhost:8080/plone.org
 
 Database
 ~~~~~~~~
