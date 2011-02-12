@@ -16,6 +16,7 @@ $("#splash-frontpage").scrollable({
 
     // basic settings
     vertical: true,
+    keyboard: false,
 
 // main navigator (thumbnail images)
 }).navigator("#main_navi");
