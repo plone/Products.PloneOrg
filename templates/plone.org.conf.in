@@ -173,6 +173,13 @@
                     rewrite ^/(.*)$ http://plone.org/countries/mx/$1 last;
             }
     }
+    server {
+            listen 5021;
+            server_name     plone.com.ar www.plone.com.ar plone.cl www.plone.cl;
+            location / {
+                    rewrite ^/(.*)$ http://plone.org/countries/conosur/$1 last;
+            }
+    }
 
     # BBB media.plone.org
     server {
