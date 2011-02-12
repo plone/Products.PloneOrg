@@ -6,6 +6,7 @@ Changelog
 
 - Fix the team template portlet rendering.
   [rossp]
+- Rework buildouts, developer docs [davisagli, eleddy]
 
 1.2 - Dec 8, 2009
 ------------------

@@ -1,0 +1,10 @@
+#! /bin/bash
+
+# Gets the latest Data.fs and CatalogData.fs from plone.org 
+
+echo "Please enter the password for ssh access to plone.org: "
+
+rsync -avP -e ssh --verbose plone.org:/usr/home/ploneorg/CatalogData.fs var/filestorage/CatalogData.fs
+rsync -avP -e ssh --verbose plone.org:/usr/home/ploneorg/Data.fs var/filestorage/Data.fs
+
+echo "All done!"
