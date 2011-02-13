@@ -19,6 +19,8 @@
 	<!-- Copy the main navigation -->
 	<copy content='//*[@id="portal-globalnav"]/li'		theme='//*[@id="main-nav"]' />
 
+	<append content='//*[@id="sub-nav"]'		theme='//*[@id="nav"]' />
+
 	<!-- Use the personal tools menu for the user info -->
 	<replace content='//*[@id="portal-personaltools"]' theme='//*[@id="user"]/a'/>
 
@@ -30,7 +32,7 @@
 
 	<!-- Copy over the contents of the page body -->
 	<before content='//*[@id="viewlet-above-content"]' theme='//*[@id="region-content"]' />
-	<replace content='//*[@id="content"]'	theme='//*[@id="region-content"]' />
+	<replace content='//*[@id="content"]/div'	theme='//*[@id="region-content"]' />
 	<after content='//*[@id="viewlet-below-content"]' theme='//*[@id="region-content"]' />
 
 	<!-- Bring the portlet columns over  to the sidebar -->
