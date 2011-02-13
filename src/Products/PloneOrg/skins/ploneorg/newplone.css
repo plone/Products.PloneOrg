@@ -560,6 +560,7 @@ div.pane {
 	border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
 	-moz-border-radius: 0.5em;
+	margin-bottom: 1em;
 }
 
 div.pane h2 {
