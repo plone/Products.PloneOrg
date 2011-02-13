@@ -433,6 +433,10 @@ div.sidebar {
 	margin-left: 0;
 }
 
+#content div.sidebar h2 {
+	margin: 0;
+}
+
 #content div.sidebar h3 {
 	margin: 0;
 	font-size: 1em;
