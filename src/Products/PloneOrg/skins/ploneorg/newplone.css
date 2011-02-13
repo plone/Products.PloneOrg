@@ -567,6 +567,7 @@ div.pane h2 {
 	font-size: 1.1em;
 	padding-bottom: 0.5em;
 	padding-left: 0.5em;
+	margin: 0 !important;
 }
 
 a.versions {
