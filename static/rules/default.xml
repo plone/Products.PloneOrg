@@ -32,7 +32,7 @@
 
 	<!-- Copy over the contents of the page body -->
 	<before content='//*[@id="viewlet-above-content"]' theme='//*[@id="region-content"]' />
-	<replace content='//*[@id="content"]/div'	theme='//*[@id="region-content"]' />
+	<append content='//*[@id="content"]/div'	theme='//*[@id="content"]' />
 	<after content='//*[@id="viewlet-below-content"]' theme='//*[@id="region-content"]' />
 
 	<!-- Bring the portlet columns over  to the sidebar -->
