@@ -3,6 +3,7 @@
 	http://plone.org/plone.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey2857.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey2635.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey3706.css
 */
 
 /* @group CSS Reset */
@@ -472,13 +473,13 @@ div.sidebar ol li {
 div.sidebar ol li a {
 	font-weight: bold;
 	display: block;
+	border: none !important;
 }
 
 img.book-cover {
 	float: left;
 	display: block;
 	padding: 2px;
-	border: 1px solid #ddd;
 	margin: 5px 15px 10px 0;
 }
 
