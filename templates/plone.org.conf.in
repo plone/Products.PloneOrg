@@ -71,7 +71,7 @@
             xslt_html_parser on;
             xslt_types text/html;
         }
-        location ~ ^/(products(/psc_view_ploneorg)?|documentation/ndocs|support|frontpage-plone4)/?$ {
+        location ~ ^/(products(/psc_view_ploneorg)?|documentation/ndocs|documentation/ndocs1|support|frontpage-plone4)/?$ {
             rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
@@ -191,15 +191,6 @@
             error_log ${buildout:directory}/var/log/dist.plone.org-error.log;
     }
 
-#    # plone.net
-#    server {
-#            listen          5021;
-#            server_name     www.plone.net;
-#            location / {
-#                    rewrite ^/(.*)$ http://plone.net/$1 last;
-#            }
-#    }
-
     # rewrite www.plone.org to plone.org for SEO
     server {
             listen ${listen};
@@ -220,7 +211,7 @@
                 rewrite ^/sites(.*) http://plone.org/support/sites$1 permanent;
                 rewrite ^/hosting-providers(.*) http://plone.org/support/hosting-providers$1 permanent;
                 # following rule must be last
-                rewrite ^ http://plone.org/support/providers permanent;
+                rewrite ^ http://plone.org/support/network permanent;
             }
     }
 
