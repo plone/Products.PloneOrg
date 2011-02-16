@@ -4,6 +4,7 @@
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey2857.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey2635.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey3706.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey8529.css
 */
 
 /* @group CSS Reset */
@@ -602,20 +603,22 @@ div.pagesearch {
 
 #categories h3 {
 	border-top: 1px solid #ccc;
+	margin-top: 0;
 }
 
 #categories h3 a {
 	display: block;
-	padding: 0.5em 0 0.5em 0;
+	padding: 0.5em 0 0 0;
 	border: none !important;
 }
 
 #categories h3.selected a {
-	
-
-/*padding-left: 1.25em;*/
 	color: black;
 	cursor: default;
+}
+
+#categories h4 {
+	font-size: 16px;
 }
 
 #categories ul {
@@ -626,7 +629,7 @@ div.pagesearch {
 	list-style: none;
 }
 
-div.collapsible h3 a:before {
+/*div.collapsible h3 a:before {
 	content: "▶ ";
 }
 
@@ -636,18 +639,22 @@ div.collapsible h3.selected a:before {
 
 div.collapsible p {
 	font-size: 11px;
-}
+}*/
 
 ul.topic {
 	font-size: 12px;
+	margin-left: 0 !important;
 }
 
 ul.topic li {
 	display: inline-block !important;
 	vertical-align: top;
-	width: 29.5%;
-	margin: 0 0 1em 1.5em;
-	text-align: justify;
+	width: 45.5%;
+	margin: 0 1em 1em 0;
+}
+
+ul.topic li.footer {
+	width: 100%;
 }
 
 /* @end */
