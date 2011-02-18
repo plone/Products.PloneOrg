@@ -1,2 +1,0 @@
-[default]
-title = And commit changes to the Products.PloneOrg package instead. Objects in this folder will be ro utinely moved to the Products.PloneOrg package, as needed, and removed from here.
