@@ -309,7 +309,7 @@ html, body {
 }
 
 ul.navigation li a,ul.navigation li a:visited {
-	padding: .4em .6em;
+	padding: .5em .6em;
 	color: Black;
 	font-weight: bold;
 	border-right: 1px solid #dcdcdc;
@@ -324,7 +324,6 @@ ul.navigation li a:hover {
 ul.navigation li.selected a,
 ul.navigation li.active a {
 	color: #75ad0a;
-	padding: 6px 8px 5px;
 	border-bottom: 2px solid white;
 }
 
@@ -649,7 +648,7 @@ ul.topic {
 ul.topic li {
 	display: inline-block !important;
 	vertical-align: top;
-	width: 45.5%;
+	width: 47.5%;
 	margin: 0 1em 1em 0;
 }
 
