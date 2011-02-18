@@ -53,7 +53,7 @@
 <body>
 
 
-<metal:content-core fill-slot="content-core">
+<metal:main fill-slot="content">
 
 
 <div class="grid-row">
@@ -92,7 +92,6 @@
 
 
 
-    <metal:content-core define-macro="content-core">
     <div class="pane">
     <h2>Additional Support</h2>
     <div id="categories">
@@ -119,8 +118,7 @@
 </li>
 </ul>
     </div></div>
-    </metal:content-core>
-</metal:content-core>
+</metal:main>
 
 
 
