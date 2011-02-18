@@ -5,6 +5,7 @@
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey2635.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey3706.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey8529.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey7531.css
 */
 
 /* @group CSS Reset */
@@ -290,6 +291,9 @@ html, body {
 
 #sub-nav li a {
 	border-right: none;
+}
+#sub-nav li a.selected {
+	color: #75ad0a;
 }
 
 #portal-personaltools {
