@@ -698,9 +698,9 @@ div.collapsible p {
 	-moz-border-radius: 0.5em 0 0 0;
 }
 #categories ul.horizontal li:last-child h2 a {
-	border-radius: 0.5em 0 0 0;
+	border-radius: 0 0.5em 0 0;
 	-webkit-border-radius: 0 0.5em 0 0;
-	-moz-border-radius: 0.5em 0 0 0;
+	-moz-border-radius: 0 0.5em 0 0;
 }
 #categories ul.horizontal li p {
 	padding: 1em;
