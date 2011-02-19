@@ -29,10 +29,12 @@
             <div class="splash" id="splash-support">
                 <h1>Plone Support Center</h1>
                 <p>Need help? 
-                    <a href="http://stackoverflow.com/questions/tagged/plone">Plone on Stack Overflow</a> 
+                    <a href="http://stackoverflow.com/questions/tagged/plone"
+                       target="_blank">Plone on Stack Overflow</a> 
                     provides a place to get your questions answered, or to contribute 
                     to the community by helping other users.</p>
                 <a href="http://stackoverflow.com/questions/tagged/plone"
+                   target="_blank"
                    class="stackoverflow">Plone on Stack Overflow</a>
             </div>
         </div>
@@ -76,14 +78,15 @@
         </ul>
         </div>
     </div>
-    
+
     <p class="discreet" style="margin: 0 1em">Looking for the 
        behind-the-scenes information on what the Plone project is up to? You can 
        <a href="/support/forums">use Nabble to read it in a forum format</a>, 
        or <a href="/support/lists">subscribe to the mailing lists</a> directly.<br />
        Also make sure you check out the 
        <a href="http://planet.plone.org/">blogs from the Plone developers
-       &amp; community</a>, and <a href="http://twitter.com/plone">follow Plone on Twitter</a>.</p>
+       &amp; community</a>, and <a href="http://twitter.com/plone">follow Plone on Twitter</a>.
+    </p>
 
 </div>
 

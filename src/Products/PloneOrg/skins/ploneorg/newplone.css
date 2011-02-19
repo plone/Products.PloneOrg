@@ -9,6 +9,7 @@
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey0928.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey4480.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey1701.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey6025.css
 */
 
 /* @group CSS Reset */
@@ -403,6 +404,7 @@ div.splash {
 #content div.splash a.pointer {
 	background: transparent 0 -115px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
 	padding-left: 16px;
+	font-size: 115%;
 }
 
 div.pullout {
@@ -623,7 +625,7 @@ div.pagesearch {
 
 #categories {
 	background-color: white;
-	padding: 0.7em;
+	padding: 0 0.7em 0.7em 0.7em;
 	border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
 	-moz-border-radius: 0.5em;
@@ -632,6 +634,10 @@ div.pagesearch {
 #categories h3 {
 	border-top: 1px solid #ccc;
 	margin-top: 0;
+}
+
+#categories h3:first-child {
+	border-top: none;
 }
 
 #categories h3 a {
@@ -756,41 +762,6 @@ div.pane.horizontal #categories {
 
 /* @end */
 
-
-/*#categories {
-	margin-top: .5em;
-	padding: 0;
-	background: url(categories-bg.jpg) #fff repeat-x top;
-}
-
-
-#categories li {
-	vertical-align: top;
-	display: inline-block;
-	width: 22%;
-	height: 23em;
-	padding: 0 10px;
-	border-right: 1px solid #000;
-	border-color: rgb(0,0,0);
-	border-color: rgba(0,0,0,.2);
-	margin-bottom: 0px;
-}
-#categories li:last-child, #categories li.bugs {
-	border-right: 0px none;
-}
-#categories h2 {
-	color: #fff;
-	padding: 10px 0 40px;
-	float: left;
-	width: 70%;
-	display: inline-block;
-}
-
-#categories li p {
-	clear: both;
-}*/
-
-
 ul.topic {
 	font-size: 12px;
 	margin-left: 0 !important;
@@ -799,12 +770,12 @@ ul.topic {
 ul.topic li {
 	display: inline-block !important;
 	vertical-align: top;
-	width: 47.5%;
-	margin: 0 1em 1em 0;
+	width: 45%;
+	margin: 0 0 0 2em;
 }
 
 ul.topic li.footer {
-	width: 100%;
+	width: 90%;
 }
 
 
