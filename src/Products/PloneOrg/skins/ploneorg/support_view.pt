@@ -4,123 +4,90 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       xml:lang="en"
       lang="en"
-      metal:use-macro="here/main_template/macros/master"
-      i18n:domain="plonehelpcenter">
-
-<head>
-    <metal:block fill-slot="top_slot">
-        <tal:noborder condition="python:not user.has_permission('Modify portal content', context)">
-            <tal:noborderset tal:define="dummy python:request.set('disable_border', 1)" />
-        </tal:noborder>
-    </metal:block>
-
-
-
-<metal:css fill-slot="style_slot">
-    <style type="text/css">
-
-    #content {width: 910px;} 
-    #splash-support {height: 11em;}
-    #content div.splash p a {font-size:1em; background:url("http://plone.org/images/sprite-ploneorg.png") no-repeat scroll 0 -119px transparent;}
-    #content div#splash-support.splash p a{background:none; padding:0;}
-    #splash-support p {color: #75d2fb; font-size: 1.1em; margin: 0px;}
-    #splash-support h2 {margin: 0px;}
-    #content #splash-support h2 a {background: url(support-sprite.jpg) no-repeat top left; display: inline-block; width: 250px; height: 70px; float: right; padding: 0px; margin-top: -.25em; background-position: -200px 0;}
-    #categories {margin-top: .5em; padding: 0; background: url(categories-bg.jpg) #fff repeat-x top;}
-    #sidebar-chat {height: 12em; background: url(support-chat.jpg) #87B829 no-repeat bottom right;}
-    #categories ul {}
-    #categories li {vertical-align: top; display: inline-block; width: 22%; height: 23em; padding: 0 10px; border-right: 1px solid #000; border-color: rgb(0,0,0); border-color: rgba(0,0,0,.2); margin-bottom: 0px;}
-    #categories li:last-child, #categories li.bugs {border-right: 0px none;}
-    #categories h2 {color: #fff; padding: 10px 0 40px; float: left; width: 70%; display: inline-block;}
-
-    #categories li a.icon {background: url(support-sprite.jpg) no-repeat top left; display: inline-block; width: 50px; height: 50px; float: right; padding: 0px; margin-top: 8px;}
-    #categories li.usergroup a.icon {background-position: -50px 0;}
-    #categories li.training a.icon {background-position: -100px 0;}
-    #categories li.bugs a.icon {background-position: -150px 0;}
-    #content #categories a:link, #content #categories a:visited {border: 0px;}
-
-    #categories li p {clear: both;}
-
-    </style>
-
-</metal:css>
-
-
-
-
-</head>
+      metal:use-macro="here/main_template/macros/master">
 
 <body>
 
-
 <metal:main fill-slot="content">
 
+<div id="content">
 
-<div class="grid-row">
-
-	<div class="grid-cell position-two-thirds width-third">
-		<div class="splash pullout" id="sidebar-chat">
-			<h2>Plone Chatroom</h2>
-			<p>Online chat is a central part of Plone culture, and it is a good option if you have questions that need a bit of back-and-forth discussion to be resolved</p>
-			<p><a href="http://plone.org/support/chat">Find out more about online chat</a></p>
-		</div>
-	</div>
-
-    
+    <div class="grid-row">
+    	<div class="grid-cell position-two-thirds width-third">
+    		<div class="splash pullout" id="sidebar-chat">
+    			<h2>Plone Chat Room</h2>
+    			<p>Online chat is a central part of Plone culture, and it is 
+    			   a good option if you have questions that need a bit of 
+    			   back-and-forth discussion to be resolved.</p>
+    			<p><a class="pointer" 
+    			      href="http://plone.org/support/chat">Find out more about online chat</a></p>
+    			<div id="chat-bubble">&#x25e4;</div>
+    		</div>
+    	</div>
 
         <div class="grid-cell position-leftmost width-two-thirds">
             <div class="splash" id="splash-support">
-
                 <h1>Plone Support Center</h1>
-
-                
-                <p>Need help? <a href="http://stackoverflow.com/questions/tagged/plone">Plone on Stack Overflow</a> provides a place to get your questions answered, or to contribute to the Plone community by helping answer other users.</p>
-                <h2><a href="http://stackoverflow.com/questions/tagged/plone" title="Plone on Stack Overflow"></a></h2>
-
-                
-
+                <p>Need help? 
+                    <a href="http://stackoverflow.com/questions/tagged/plone">Plone on Stack Overflow</a> 
+                    provides a place to get your questions answered, or to contribute 
+                    to the community by helping other users.</p>
+                <a href="http://stackoverflow.com/questions/tagged/plone"
+                   class="stackoverflow">Plone on Stack Overflow</a>
             </div>
-
         </div>
+    </div>
 
-    
-	
-</div>
+    <div class="grid-row">
+    	<div class="grid-cell position-leftmost width-full">
 
+            <div class="pane">
+                <h2>Additional Support</h2>
+                <div id="categories">
+                <ul class="horizontal">
+                    <li class="commercial">
+                        <h2><a href="/support/providers">Commercial support</a></h2>
+                        <p>Plone is a free, open source product, and has hundreds of 
+                           companies around the world supporting it. If you are looking 
+                           for commercial support in your country, consult the 
+                           <a href="/support/providers">list of Plone service 
+                              providers</a>.</p>
+                    </li>
+                    <li class="usergroup">
+                        <h2><a href="/support/local-user-groups">Local User Groups</a></h2>
+                        <p>Want to connect with people locally who use Plone? Do you 
+                           run a local Plone user group that you want people to know 
+                           about? Check out the 
+                           <a href="local-user-groups">list of Local User groups</a>.</p>
+                    </li>
+                    <li class="training">
+                        <h2><a href="/events/training">Training</a></h2>
+                        <p>If you want to get better at Plone, quickly, there's no 
+                           better way than attending a Plone training course. People 
+                           are doing Plone training all over the world, and upcoming 
+                           training events are listed at the 
+                           <a href="/events/training">training page</a>.</p>
+                    </li>
+                    <li class="bugs">
+                        <h2><a href="http://dev.plone.org/plone">Reporting bugs</a></h2>
+                        <p>If you find a bug in Plone itself (as opposed to an add-on 
+                           product you downloaded), please 
+                           <a href="http://dev.plone.org/plone">file a Plone bug report</a>.
+                           Bug reports for individual add-on products should be filed 
+                           with the authors of that product — contact details and 
+                           bug trackers are usually provided on the respective product 
+                           download pages.</p>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
 
+</div> <!-- End #content -->
 
-
-
-
-    <div class="pane">
-    <h2>Additional Support</h2>
-    <div id="categories">
-<ul>
-<li class="commercial">
-<h2>Commercial support</h2>
-<a class="icon" href="http://google.com"> </a>
-<p>Plone is a free, open source product, and has hundreds of companies around the world supporting it. If you are looking for commercial support in your country, consult the <a class="external-link" href="http://plone.net/providers">list of Plone service providers at plone.net</a>.</p>
-</li>
-<li class="usergroup">
-<h2>Local User Groups</h2>
-<a class="icon" href="http://google.com"> </a>
-<p>Want to connect with people locally who use Plone? Do you run a local Plone user group that you want people to know about? Check out the <a class="external-link" href="local-user-groups">list of Local User groups</a>.</p>
-</li>
-<li class="training">
-<h2>Training</h2>
-<a class="icon" href="http://google.com"> </a>
-<p>If you want to get better at Plone, quickly, there's no better way than attending a Plone training course. People are doing Plone training all over the world, and upcoming training events are listed at the <a class="external-link" href="../events/training">training page</a>.</p>
-</li>
-<li class="bugs">
-<h2>Reporting bugs</h2>
-<a class="icon" href="http://google.com"> </a>
-<p>If you find a bug in Plone itself (as opposed to an add-on product you downloaded), please <a class="external-link" href="http://dev.plone.org/plone">file a Plone bug report</a>. Bug reports for individual add-on products should be filed with the authors of that product — contact details and/or bug trackers are usually provided on the relevant product download page.</p>
-</li>
-</ul>
-    </div></div>
 </metal:main>
-
-
 
 
 </body>
