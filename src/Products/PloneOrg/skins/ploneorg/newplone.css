@@ -7,6 +7,7 @@
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey8529.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey7531.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey0928.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey4480.css
 */
 
 /* @group CSS Reset */
@@ -217,17 +218,13 @@ input {
 /* @group Wrappers */
 
 html, body {
-	/
-
-* Sticky footer */
+	/* Sticky footer */
 	height: 100%;
 }
 
 #outer-wrapper {
 	background: left -859px url("//plone.org/images/sprite-ploneorg.png") repeat-x;
-	/
-
-* Sticky footer w/IE fixes*/
+	/* Sticky footer w/IE fixes*/
 	min-height: 100%;
 	height: auto !important;
 	height: 100%;
@@ -241,9 +238,7 @@ html, body {
 
 #content-wrapper {
 	width: 910px;
-	/
-
-* 937px; */
+	/* 937px; */
 	margin: 1em auto 0;
 }
 
@@ -266,9 +261,7 @@ html, body {
 /* @group Navigation/search */
 
 #nav {
-	/
-
-* Should be named header, but conflicts with the accordion.js for now */
+	/* Should be named header, but conflicts with the accordion.js for now */
 	width: 910px;
 	margin: 0 auto;
 	font-family: "Helvetica Neue", Arial, FreeSans, sans-serif;
@@ -575,14 +568,6 @@ img.book-cover {
 	font-size: 200%;
 }
 
-
-/* @end */
-
-/* @group Support (temporary) */
-
-#sidebar {
-	display: none;
-}
 
 /* @end */
 
@@ -2257,9 +2242,7 @@ dl.toc dd ol {
 /* @group Footer */
 
 #footer-wrapper {
-	/
-
-* Sticky footer */
+	/* Sticky footer */
     height: 16em;
 	background: #329fd7;
 }
@@ -2270,9 +2253,7 @@ dl.toc dd ol {
 }
 
 #push {
-	/
-
-* Sticky footer */
+	/* Sticky footer */
 	height: 16em;
 }
 
