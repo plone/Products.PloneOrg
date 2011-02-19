@@ -38,8 +38,6 @@
         </div>
     </div>
 
-    <div class="grid-row">
-    	<div class="grid-cell position-leftmost width-full">
 
             <div class="pane">
                 <h2>Additional Support</h2>
@@ -82,8 +80,6 @@
                 </div>
             </div>
             
-        </div>
-    </div>
 
 </div> <!-- End #content -->
 
