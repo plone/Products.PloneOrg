@@ -549,6 +549,10 @@ img.book-cover {
 #splash-support {
 	min-height: 13em;
 }
+#splash-support p {
+	font-size: 100%;
+}
+
 #splash-support a.stackoverflow {
 	background: url(support-sprite.png) no-repeat top left;
 	display: block;
