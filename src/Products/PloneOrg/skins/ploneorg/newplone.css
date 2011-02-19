@@ -541,6 +541,7 @@ img.book-cover {
 #splash-documentation {
 	padding-left: 14em;
 	height: 15em;
+	background: #205c90 2.5em 3.5em url(/docs-splash.png) no-repeat;
 }
 
 #sidebar-documentation {
@@ -668,16 +669,19 @@ div.collapsible p {
 	font-size: 11px;
 }*/
 
+/* @group Horizontal category listing */
+
+div.pane.horizontal #categories {
+	padding: 0 !important;
+}
+
 #categories ul.horizontal {
-	margin-bottom: 15em;
 	position: relative;
-	left: -0.9em;
-	top: -0.9em;
 }
 #categories ul.horizontal li {
-	width: 24%;
-	float: left;
+	width: 25%;
 	border-left: 1px solid #eee;
+	height: 32em;
 }
 #categories ul.horizontal li h2 {
 	padding: 0;
@@ -705,21 +709,41 @@ div.collapsible p {
 	padding: 1em;
 }
 
-/*#categories li a.icon {
-	display: inline-block;
-	width: 50px;
-	height: 50px;
-	float: right;
-	padding: 0px;
-	margin-top: 8px;
-}*/
+/* @end */
+
+
+/* @group Support section positioning + icons */
+
+#categories ul.horizontal li.commercial {
+	position: relative;
+}
+
+#categories ul.horizontal li.usergroup {
+	position: absolute;
+	top: 0;
+	left: 25%;
+}
+
+#categories ul.horizontal li.training {
+	position: absolute;
+	top: 0;
+	left: 50%;
+}
+
+#categories ul.horizontal li.bugs {
+	position: absolute;
+	top: 0;
+	left: 75%;
+}
 
 #categories ul.horizontal li.commercial a {
 	background-position: 220px -85px;
+	
 }
 
 #categories ul.horizontal li.usergroup a {
 	background-position: 220px -182px;
+	
 }
 
 #categories ul.horizontal li.training a {
@@ -729,6 +753,8 @@ div.collapsible p {
 #categories ul.horizontal li.bugs a {
 	background-position: 220px -350px;
 }
+
+/* @end */
 
 
 /*#categories {

@@ -38,7 +38,7 @@
         </div>
     </div>
 
-    <div class="pane">
+    <div class="horizontal pane">
         <h2>Additional Support</h2>
         <div id="categories">
         <ul class="horizontal">
