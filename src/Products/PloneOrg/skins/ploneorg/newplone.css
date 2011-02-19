@@ -10,6 +10,7 @@
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey4480.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey1701.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey6025.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey9536.css
 */
 
 /* @group CSS Reset */
@@ -743,21 +744,20 @@ div.pane.horizontal #categories {
 }
 
 #categories ul.horizontal li.commercial a {
-	background-position: 220px -85px;
-	
+	background-position: 165px -85px;
 }
 
 #categories ul.horizontal li.usergroup a {
-	background-position: 220px -182px;
+	background-position: 165px -182px;
 	
 }
 
 #categories ul.horizontal li.training a {
-	background-position: 220px -272px;
+	background-position: 165px -272px;
 }
 
 #categories ul.horizontal li.bugs a {
-	background-position: 220px -350px;
+	background-position: 165px -350px;
 }
 
 /* @end */
