@@ -63,8 +63,8 @@
                     <li class="training">
                         <h2><a href="/events/training">Training</a></h2>
                         <p>If you want to get better at Plone, quickly, there's no 
-                           better way than attending a Plone training course. People 
-                           are doing Plone training all over the world, and upcoming 
+                           better way than attending a training course. People 
+                           offer Plone training all over the world, and upcoming 
                            training events are listed at the 
                            <a href="/events/training">training page</a>.</p>
                     </li>
@@ -72,7 +72,7 @@
                         <h2><a href="http://dev.plone.org/plone">Reporting bugs</a></h2>
                         <p>If you find a bug in Plone itself (as opposed to an add-on 
                            product you downloaded), please 
-                           <a href="http://dev.plone.org/plone">file a Plone bug report</a>.
+                           <a href="http://dev.plone.org/plone">file a bug report</a>.
                            Bug reports for individual add-on products should be filed 
                            with the authors of that product — contact details and 
                            bug trackers are usually provided on the respective product 
