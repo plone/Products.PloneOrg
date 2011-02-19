@@ -167,6 +167,10 @@ input {
    similar approaches can be retrofitted without changing the markup,
    or if you want to apply rules like the Golden Ratio to your layouts */
 
+.width-full {
+	width: 100%;
+}
+
 .width-half {
 	width: 50%;
 }
