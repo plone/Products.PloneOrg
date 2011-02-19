@@ -562,6 +562,7 @@ img.book-cover {
 
 #sidebar-chat {
 	height: 13em;
+	margin-bottom: 1em;
 }
 
 #sidebar-chat-bubble {
