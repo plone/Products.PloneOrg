@@ -28,9 +28,9 @@
         <div class="grid-cell position-leftmost width-two-thirds">
             <div class="splash" id="splash-support">
                 <h1>Plone Support Center</h1>
-                <p>Need help? 
+                <p>Need help? The
                     <a href="http://stackoverflow.com/questions/tagged/plone"
-                       target="_blank">Plone on Stack Overflow</a> 
+                       target="_blank">Plone section on Stack Overflow</a> 
                     provides a place to get your questions answered, or to contribute 
                     to the community by helping other users.</p>
                 <a href="http://stackoverflow.com/questions/tagged/plone"
