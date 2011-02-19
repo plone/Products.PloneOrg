@@ -21,7 +21,7 @@
                    back-and-forth discussion to be resolved.</p>
                 <p><a class="pointer" 
                       href="http://plone.org/support/chat">Find out more about online chat</a></p>
-                <div id="chat-bubble">&#x25e4;</div>
+                <div id="sidebar-chat-bubble">&#x25e4;</div>
             </div>
         </div>
 
