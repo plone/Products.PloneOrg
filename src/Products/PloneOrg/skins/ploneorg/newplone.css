@@ -681,7 +681,7 @@ div.pane.horizontal #categories {
 #categories ul.horizontal li {
 	width: 25%;
 	border-left: 1px solid #eee;
-	height: 32em;
+	height: 18em;
 }
 #categories ul.horizontal li h2 {
 	padding: 0;
