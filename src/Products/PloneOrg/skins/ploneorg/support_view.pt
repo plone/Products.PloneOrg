@@ -15,7 +15,7 @@
     <div class="grid-row">
         <div class="grid-cell position-two-thirds width-third">
             <div class="splash pullout" id="sidebar-chat">
-                <h2>Plone Chat Room</h2>
+                <h1>Plone Chat Room</h1>
                 <p>Online chat is a central part of Plone culture, and it is 
                    a good option if you have questions that need a bit of 
                    back-and-forth discussion to be resolved.</p>
@@ -39,7 +39,7 @@
     </div>
 
     <div class="pane">
-        <h1>Additional Support</h1>
+        <h2>Additional Support</h2>
         <div id="categories">
         <ul class="horizontal">
             <li class="commercial">
@@ -79,7 +79,7 @@
         </div>
     </div>
 
-</div> <!-- End #content -->
+</div>
 
 </metal:main>
 

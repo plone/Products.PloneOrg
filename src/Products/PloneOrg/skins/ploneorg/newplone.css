@@ -8,6 +8,7 @@
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey7531.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey0928.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey4480.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey1701.css
 */
 
 /* @group CSS Reset */
@@ -566,14 +567,14 @@ img.book-cover {
 
 #sidebar-chat {
 	height: 13em;
-	margin-bottom: 1em;
+	margin-bottom: 2em;
 }
 
 #sidebar-chat-bubble {
 	color: #87B829;
 	left: 7em;
 	position: relative;
-	top: 1.75em;
+	top: 1em;
 	font-size: 200%;
 }
 
