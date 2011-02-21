@@ -6,7 +6,23 @@
       lang="en"
       metal:use-macro="here/main_template/macros/master">
 
+
+<metal:js fill-slot="javascript_head_slot">
+<script type="text/javascript">
+$(document).ready(function() {
+   $('.link-tile').filter(function() { return $(this).find('a[href]').length == 1 })
+     .click(function() {
+         var location = $(this).find('a[href]').attr('href');
+         window.location = location;
+     })
+     .mouseover(function() { $(this).find('a[href]').mouseover(); })
+     .css('cursor', 'pointer');
+ });
+</script>
+</metal:js>
+
 <body>
+
 
 <metal:main fill-slot="content">
 
@@ -14,7 +30,7 @@
 
     <div class="grid-row">
         <div class="grid-cell position-two-thirds width-third">
-            <div class="splash pullout" id="sidebar-chat">
+            <div class="splash pullout link-tile" id="sidebar-chat">
                 <h1>Chat Room</h1>
                 <p>Online chat is a central part of Plone culture, and it is 
                    a good option if you have questions that need a bit of 
@@ -26,16 +42,13 @@
         </div>
 
         <div class="grid-cell position-leftmost width-two-thirds">
-            <div class="splash" id="splash-support">
+            <div class="splash link-tile" id="splash-support">
                 <h1>Plone Support Center</h1>
                 <p>Need help? The
                     <a href="http://stackoverflow.com/questions/tagged/plone"
                        target="_blank">Plone section on Stack Overflow</a> 
                     provides a place to get your questions answered, or to contribute 
                     to the community by helping other users.</p>
-                <a href="http://stackoverflow.com/questions/tagged/plone"
-                   target="_blank"
-                   class="stackoverflow">Plone on Stack Overflow</a>
             </div>
         </div>
     </div>
@@ -46,7 +59,7 @@
         <ul class="horizontal">
             <li class="commercial">
                 <h2><a href="/support/providers">Commercial support</a></h2>
-                <p>Plone is a free, open source product, and has hundreds of 
+                <p class="link-tile">Plone is a free, open source product, and has hundreds of 
                    companies around the world supporting it. If you are looking 
                    for commercial support in your country, consult our 
                    <a href="/support/providers">list of Plone Service 
@@ -54,14 +67,14 @@
             </li>
             <li class="usergroup">
                 <h2><a href="/support/local-user-groups">Local User Groups</a></h2>
-                <p>Want to connect with people locally who use Plone? Do you 
+                <p class="link-tile">Want to connect with people locally who use Plone? Do you 
                    run a local Plone user group that you want people to know 
                    about? Check out the 
                    <a href="local-user-groups">list of Local User groups</a>.</p>
             </li>
             <li class="training">
                 <h2><a href="/events/training">Training</a></h2>
-                <p>If you want to get better at Plone, quickly, there's no 
+                <p class="link-tile">If you want to get better at Plone, quickly, there's no 
                    better way than attending a training course. People 
                    offer Plone training all over the world, and upcoming 
                    training events are listed at the 
@@ -69,7 +82,7 @@
             </li>
             <li class="bugs">
                 <h2><a href="http://dev.plone.org/plone">Reporting bugs</a></h2>
-                <p>If you find a bug in Plone itself (as opposed to an add-on 
+                <p class="link-tile">If you find a bug in Plone itself (as opposed to an add-on 
                    product you downloaded), please 
                    <a href="http://dev.plone.org/plone">file a bug report</a>.
                    Bug reports for individual add-on products should be filed 

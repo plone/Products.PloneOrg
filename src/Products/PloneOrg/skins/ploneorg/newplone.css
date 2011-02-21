@@ -554,20 +554,11 @@ img.book-cover {
 
 #splash-support {
 	min-height: 13em;
+	background: #205c90 url(support-sprite.png) no-repeat 20em 9em;
+
 }
 #splash-support p {
 	font-size: 100%;
-}
-
-#content #splash-support a.stackoverflow {
-	background: url(support-sprite.png) no-repeat top left;
-	display: block;
-	width: 250px;
-	height: 70px;
-	float: right;
-	padding: 0px;
-	margin-top: -.25em;
-	color: transparent !important;
 }
 
 #sidebar-chat {
