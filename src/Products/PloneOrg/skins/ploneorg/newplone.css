@@ -11,6 +11,7 @@
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey1701.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey6025.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey9536.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey7326.css
 */
 
 /* @group CSS Reset */
@@ -397,7 +398,7 @@ div.splash {
 }
 
 #content div.splash a {
-	color: White;
+	color: White !important;
 	border: none;
 	font-weight: bold;
 }
@@ -558,7 +559,7 @@ img.book-cover {
 	font-size: 100%;
 }
 
-#splash-support a.stackoverflow {
+#content #splash-support a.stackoverflow {
 	background: url(support-sprite.png) no-repeat top left;
 	display: block;
 	width: 250px;
@@ -697,7 +698,7 @@ div.pane.horizontal #categories {
 	background: #205c90;
 	display: block;
 	padding: 1em;
-	color: White;
+	color: White !important;
 	letter-spacing: 0;
 	min-height: 2.5em;
 	background: url(support-sprite.png) #205c90 no-repeat top left;
