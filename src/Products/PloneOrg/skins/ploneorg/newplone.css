@@ -12,6 +12,7 @@
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey6025.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey9536.css
 	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey7326.css
+	http://plone.org/portal_css/Sunburst%20Theme/newplone-cachekey9869.css
 */
 
 /* @group CSS Reset */
@@ -590,7 +591,6 @@ div.pane {
 	border-radius: 0.5em;
 	-webkit-border-radius: 0.5em;
 	-moz-border-radius: 0.5em;
-	margin-bottom: 1em;
 }
 
 div.pane h2 {
