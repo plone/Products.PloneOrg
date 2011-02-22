@@ -10,14 +10,15 @@
 <metal:js fill-slot="javascript_head_slot">
 <script type="text/javascript">
 $(document).ready(function() {
-   $('.link-tile').filter(function() { return $(this).find('a[href]').length == 1 })
-     .click(function() {
-         var location = $(this).find('a[href]').attr('href');
-         document.location = location;
-     })
-     .mouseover(function() { $(this).find('a[href]').mouseover(); })
-     .css('cursor', 'pointer');
- });
+  $('.link-tile').each(function() {
+    var $a = $('a:first', $(this));
+    if ($a.length) {
+      $(this)
+        .click(function() { location.href = $a.attr('href'); })
+        .css('cursor', 'pointer');
+    }
+  });
+});
 </script>
 </metal:js>
 
