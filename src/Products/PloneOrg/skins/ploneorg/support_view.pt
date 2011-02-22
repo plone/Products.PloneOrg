@@ -13,7 +13,7 @@ $(document).ready(function() {
    $('.link-tile').filter(function() { return $(this).find('a[href]').length == 1 })
      .click(function() {
          var location = $(this).find('a[href]').attr('href');
-         window.location = location;
+         document.location = location;
      })
      .mouseover(function() { $(this).find('a[href]').mouseover(); })
      .css('cursor', 'pointer');
