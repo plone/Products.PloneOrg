@@ -205,6 +205,7 @@
             listen ${listen};
             server_name     plone.net;
             location / {
+                rewrite ^/about(.*) http://plone.org/foundation/donors$1 permanent;
                 rewrite ^/providers(.*) http://plone.org/support/providers$1 permanent;
                 rewrite ^/case-studies(.*) http://plone.org/support/case-studies$1 permanent;
                 rewrite ^/buzz(.*) http://plone.org/news/buzz$1 permanent;
