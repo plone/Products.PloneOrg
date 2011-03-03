@@ -3,7 +3,7 @@
 
     server {
         listen ${listen};
-        server_name plone.org;
+        server_name ${vhost};
         root ${buildout:directory}/static; 
 
         location = /nginx-status {
@@ -51,9 +51,9 @@
             proxy_set_header X-XDV "true";
         }
         location / {
-            rewrite ^/login_form https://plone.org/login_form;
-            rewrite ^/logged_out https://plone.org/logged_out;
-	    rewrite ^/(.+)/require_login(.*) https://plone.org/$1/require_login$2;
+            rewrite ^/login_form https://${vhost}/login_form;
+            rewrite ^/logged_out https://${vhost}/logged_out;
+	    rewrite ^/(.+)/require_login(.*) https://${vhost}/$1/require_login$2;
             rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
@@ -81,7 +81,7 @@
             xslt_types text/html;
         }
         location ~ ^/products/(simple|links|\+\+simple\+\+)/?$ {
-            rewrite ^    http://dist.plone.org/packages permanent;
+            rewrite ^    http://dist.${vhost}/packages permanent;
         }
         location /dist.plone.org {
             internal;
@@ -95,7 +95,7 @@
 
     server {
         listen ${listen};
-        server_name manage.plone.org;
+        server_name manage.${vhost};
         root ${buildout:directory}/static;
 
         location = /nginx-status {
@@ -125,13 +125,13 @@
 
     server {
             listen ${listen};
-            server_name dist.plone.org;
+            server_name dist.${vhost};
             root /srv/dist.plone.org/http/root;
             location / {
                     autoindex on;
             }
-            access_log ${buildout:directory}/var/log/dist.plone.org-access.log main;
-            error_log ${buildout:directory}/var/log/dist.plone.org-error.log;
+            access_log ${buildout:directory}/var/log/dist.${vhost}-access.log main;
+            error_log ${buildout:directory}/var/log/dist.${vhost}-error.log;
     }
 
     # plone countries
@@ -139,7 +139,7 @@
 #            listen ${listen};
 #            server_name     plone.asia;
 #            location / {
-#                    rewrite ^/(.*)$ http://plone.org/$1 last;
+#                    rewrite ^/(.*)$ http://${vhost}/$1 last;
 #            }
 #    }
 #
@@ -147,7 +147,7 @@
 #            listen ${listen};
 #            server_name     plone.it www.plone.it;
 #            location / {
-#                    rewrite ^/(.*)$ http://plone.org/countries/it/$1 last;
+#                    rewrite ^/(.*)$ http://${vhost}/countries/it/$1 last;
 #            }
 #    }
 #
@@ -155,7 +155,7 @@
 #            listen ${listen};
 #            server_name     plone.hu www.plone.hu;
 #            location / {
-#                    rewrite ^/(.*)$ http://plone.org/countries/hu/$1 last;
+#                    rewrite ^/(.*)$ http://${vhost}/countries/hu/$1 last;
 #            }
 #    }
 #
@@ -163,7 +163,7 @@
 #            listen ${listen};
 #            server_name     plone.eu www.plone.eu;
 #            location / {
-#                    rewrite ^/(.*)$ http://plone.org/countries/mx/$1 last;
+#                    rewrite ^/(.*)$ http://${vhost}/countries/mx/$1 last;
 #            }
 #    }
 
@@ -171,32 +171,32 @@
             listen ${listen};
             server_name     plone.com.mx www.plone.com.mx plone.org.mx www.plone.org.mx;
             location / {
-                    rewrite ^/(.*)$ http://plone.org/countries/mx/$1 last;
+                    rewrite ^/(.*)$ http://${vhost}/countries/mx/$1 last;
             }
     }
     server {
             listen 5021;
             server_name     plone.com.ar www.plone.com.ar plone.cl www.plone.cl;
             location / {
-                    rewrite ^/(.*)$ http://plone.org/countries/conosur/$1 last;
+                    rewrite ^/(.*)$ http://${vhost}/countries/conosur/$1 last;
             }
     }
 
     # BBB media.plone.org
     server {
             listen ${listen};
-            server_name     media.plone.org;
-            rewrite ^(.*) http://dist.plone.org/media$1 permanent;
-            access_log ${buildout:directory}/var/log/dist.plone.org-access.log main;
-            error_log ${buildout:directory}/var/log/dist.plone.org-error.log;
+            server_name     media.${vhost};
+            rewrite ^(.*) http://dist.${vhost}/media$1 permanent;
+            access_log ${buildout:directory}/var/log/dist.${vhost}-access.log main;
+            error_log ${buildout:directory}/var/log/dist.${vhost}-error.log;
     }
 
     # rewrite www.plone.org to plone.org for SEO
     server {
             listen ${listen};
-            server_name     www.plone.org;
+            server_name     www.${vhost};
             location / {
-                    rewrite ^/(.*)$ http://plone.org/$1 last;
+                    rewrite ^/(.*)$ http://${vhost}/$1 last;
             }
     }
 
@@ -205,14 +205,14 @@
             listen ${listen};
             server_name     plone.net;
             location / {
-                rewrite ^/about(.*) http://plone.org/foundation/donors$1 permanent;
-                rewrite ^/providers(.*) http://plone.org/support/providers$1 permanent;
-                rewrite ^/case-studies(.*) http://plone.org/support/case-studies$1 permanent;
-                rewrite ^/buzz(.*) http://plone.org/news/buzz$1 permanent;
-                rewrite ^/sites(.*) http://plone.org/support/sites$1 permanent;
-                rewrite ^/hosting-providers(.*) http://plone.org/support/hosting-providers$1 permanent;
+                rewrite ^/about(.*) http://${vhost}/foundation/donors$1 permanent;
+                rewrite ^/providers(.*) http://${vhost}/support/providers$1 permanent;
+                rewrite ^/case-studies(.*) http://${vhost}/support/case-studies$1 permanent;
+                rewrite ^/buzz(.*) http://${vhost}/news/buzz$1 permanent;
+                rewrite ^/sites(.*) http://${vhost}/support/sites$1 permanent;
+                rewrite ^/hosting-providers(.*) http://${vhost}/support/hosting-providers$1 permanent;
                 # following rule must be last
-                rewrite ^ http://plone.org/support/network permanent;
+                rewrite ^ http://${vhost}/support/network permanent;
             }
     }
 
