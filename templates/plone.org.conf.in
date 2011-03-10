@@ -175,7 +175,7 @@
             }
     }
     server {
-            listen 5021;
+            listen ${listen};
             server_name     plone.com.ar www.plone.com.ar plone.cl www.plone.cl;
             location / {
                     rewrite ^/(.*)$ http://${vhost}/countries/conosur/$1 last;
