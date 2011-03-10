@@ -1,10 +1,10 @@
 [supervisord]
 umask=002                   ; (process file creation umask;default 022)
-logfile=/tmp/supervisord.log ; (main log file;default $$CWD/supervisord.log)
+logfile=${parts.buildout.directory}/var/log/supervisord.log ; (main log file;default $$CWD/supervisord.log)
 logfile_maxbytes=50MB       ; (max main logfile bytes b4 rotation;default 50MB)
 logfile_backups=10          ; (num of main logfile rotation backups;default 10)
 loglevel=info               ; (logging level;default info; others: debug,warn)
-pidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+pidfile=${parts.buildout.directory}/var/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
 nodaemon=false              ; (start in foreground if true;default false)
 minfds=1024                 ; (min. avail startup file descriptors;default 1024)
 minprocs=200                ; (min. avail process descriptors;default 200)
@@ -13,7 +13,7 @@ enironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/us
 identifier=supervisor
 
 [unix_http_server]
-file=/tmp/supervisor.sock
+file=${parts.buildout.directory}/var/supervisor.sock
 chmod=0770
 chown=${options.user}:${options.group}
 
