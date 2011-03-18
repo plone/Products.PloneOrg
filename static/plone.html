@@ -34,18 +34,46 @@
 			/> 
 	</form>
 	
-	<div id="user">
-		<a href="login">Log in</a>
-	</div>
+	<div id="nav-bar">
 	
-	<ul id="main-nav" class="navigation">
-		<li><a href=".">Home</a></li
-		><li><a href="/products">Downloads</a></li
-		><li><a href="/documentation">Documentation</a></li
-		><li><a href="/contribute">Get Involved</a></li
-		><li><a href="/foundation">Plone&nbsp;Foundation</a></li
-		><li><a href="/support">Support</a></li>
-	</ul>
+	    <div id="user">
+    		<a id="login-link" href="/login">Log in</a>
+    		
+    		<a id="user-id" href="/@@personal-preferences"><span id="username"></span></a>
+    		<span id="logout-link"> | <a href="/logout">Logout</a></span>
+    		
+    		<div id="login-popup">
+                <span class="loginText">Login to Plone.org</span>
+
+                <form action="https://plone.org/login_form" method="post">
+                
+                    <div class="form">
+                        <label for="__ac_name">username</label>
+                        <input type="text" id="__ac_name" value="" name="__ac_name" size="15">
+                        <label for="__ac_password">password</label>
+                        <input type="password" id="__ac_password" value="" name="__ac_password" size="15"><br />
+                        <a href="/mail_password_form?userid=">Forgot password?</a>
+                    </div>
+
+                    <input type="submit" value="Let me in!" name="submit" class="context">
+                
+                </form>
+
+                <span class="createText"><a href="/@@register">Click here</a> to create an account</span>
+            </div>
+    		
+    	</div>
+	
+    	<ul id="main-nav" class="navigation">
+    		<li><a href=".">Home</a></li
+    		><li><a href="/products">Downloads</a></li
+    		><li><a href="/documentation">Documentation</a></li
+    		><li><a href="/contribute">Get Involved</a></li
+    		><li><a href="/foundation">Plone&nbsp;Foundation</a></li
+    		><li><a href="/support">Support</a></li>
+    	</ul>
+    	
+    </div>
 
 </div>
 

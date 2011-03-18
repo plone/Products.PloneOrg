@@ -16,12 +16,18 @@
 	<prepend theme="/html/body" content="/html/body/@class" />
 	<prepend theme="/html/body" content="/html/body/@id" />
 
+	<!-- Bring in the logo -->
+	<prepend theme='//*[@id="nav"]' content='//*[@id="portal-logo"]' />
+	
 	<!-- Copy the main navigation -->
 	<copy content='//*[@id="portal-globalnav"]/li'		theme='//*[@id="main-nav"]' />
 
 	<!-- Use the personal tools menu for the user info -->
-	<replace content='//*[@id="portal-personaltools"]' theme='//*[@id="user"]/a'/>
-
+	<!--<replace content='//*[@id="portal-personaltools"]'  theme='//*[@id="user"]/a'/>-->
+	<drop theme='//*[@id="login-link"]' if-content='not(//*[@id="personaltools-login"])'/>
+	<drop theme='//*[@id="logout-link"]' if-content='not(//*[@id="personaltools-logout"])'/>
+	<replace content='//*[@id="user-name"]/text()' theme='//*[@id="username"]'/>
+	
 	<!-- Copy the edit bar -->
 	<copy content='//*[@id="content-views"]'			theme='//*[@id="edit-menu"]' />
 	<copy content='//*[@id="contentActionMenus"]'		theme='//*[@id="action-menu"]' />
@@ -38,7 +44,7 @@
 	<append content='//*[@id="portal-column-one"]/div'	theme='//*[@id="sidebar"]' />
 	<append content='//*[@id="portal-column-two"]/div'	theme='//*[@id="sidebar"]' />
 
-	<!-- <copy content='/html/body/div/table/tbody/tr/td/div/div/dl/dd/ul/li' theme='//*[@id="sub-nav"]' /> -->
+	<!--<copy content='/html/body/div/table/tbody/tr/td/div/div/dl/dd/ul/li' theme='//*[@id="sub-nav"]' /> -->
 
     <!-- Drop the register link (see http://dev.plone.org/plone/ticket/11005)-->
     <drop content='//dt[@id="anon-personalbar"]/a[text()="Register"]' />
