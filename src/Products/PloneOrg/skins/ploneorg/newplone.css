@@ -233,7 +233,6 @@ html, body {
 }
 
 #outer-wrapper {
-	background: left -859px url("//plone.org/images/sprite-ploneorg.png") repeat-x;
 	/* Sticky footer w/IE fixes*/
 	min-height: 100%;
 	height: auto !important;
@@ -252,18 +251,8 @@ html, body {
 	margin: 1em auto 0;
 }
 
-#logo-wrapper {
-	width: 910px;
-	margin: 0 auto;
-}
-
-#logo {
-	margin: 0 22px 25px;
-	background: 0 -775px url(//plone.org/images/sprite-ploneorg.png);
-	width: 215px;
-	height: 56px;
-	display: block;
-	border: none !important;
+#portal-logo img {
+    margin: 24px 0 20px 13px;
 }
 
 /* @end */
@@ -278,8 +267,8 @@ html, body {
 }
 
 #main-nav {
-	font-size: 0.875em;
-	line-height: 2.3em;
+	font-size: 0.75em;
+	line-height: 3em;
 }
 
 #main-nav li:first-child a {
@@ -316,12 +305,22 @@ html, body {
 	background-color: White;
 }
 
+#nav-bar {
+    clear: both;
+    background: url(nav_bg.png) repeat-x left bottom;
+    border-top: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    border-bottom: 1px solid #a3a3a3;
+    border-left: 1px solid #dedede;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
 ul.navigation li a,ul.navigation li a:visited {
-	padding: .5em .6em;
-	color: Black;
+	padding: .8em 1em;
+	color: #646464;
 	font-weight: bold;
-	border-right: 1px solid #dcdcdc;
-	border-left: 1px solid white;
+	border-right: 1px solid #c5c5c5;
 	white-space: nowrap;
 }
 
@@ -332,40 +331,45 @@ ul.navigation li a:hover {
 ul.navigation li.selected a,
 ul.navigation li.active a {
 	color: #75ad0a;
-	border-bottom: 2px solid white;
 }
 
 #search {
 	float: right;
 	position: relative;
-	background: #329fd7 0 -706px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
-	height: 39px;
-	width: 199px;
-	text-align: center;
+	margin-top: 27px;
 }
 
 #search-site {
-	width: 80%;
-	margin-top: 9px;
+	background: transparent url(search.png) no-repeat;
+	border: none;
+	height: 26px;
+	width: 213px;
+	padding-left: 15px;
+	color: #6e6f71;
 }
 
 #user {
-	font-size: 0.875em;
-	width: 7.5em;
+	font-size: 0.75em;
+	width: auto;
 	float: right;
-	line-height: 2.3em;
+	line-height: 3em;
 	white-space: nowrap;
+	padding-right: 10px;
 }
 
 #user a {
-	color: #666;
+	color: #272727;
 	font-weight: bold;
 	padding: 2px;
 }
 
 #user a:hover {
-	background-color: #666;
-	color: White;
+	color: #75ad0a;
+}
+
+#user #user-name {
+    color: #32618b;
+    font-weight: normal;
 }
 
 /* @end */
@@ -2200,6 +2204,94 @@ body.template-join_form #content input {
 }
 
 /* @end */
+
+#user #login-link {
+    padding-right: 13px;
+    background: url('login_arrow.png') no-repeat right 8px;
+}
+
+#login-popup {
+    position: absolute;
+    padding: 15px;
+    width: 195px;
+    z-index: 3;
+    background-color: #ffffff;
+    border-color: #e6e6e6;
+    border-width: 0 1px 1px;
+    border-style: solid;
+    margin: 1px 0 0 -167px;
+    -moz-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+    line-height: 15px;
+    display: none;
+}
+
+#login-popup .loginText {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#login-popup .form {
+    background-color: #fffbe7;
+    border: 1px solid #edeee8;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0 5px 5px;
+    margin: 10px 0;
+}
+
+#login-popup .form input {
+    width: 95%;
+    padding: 3px;
+    border: 1px solid #bebec0;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#login-popup .form input[type="text"]:focus,
+#login-popup .form input[type="password"]:focus {
+    background-color: #ffffff;
+}
+
+#login-popup .form label {
+    font-size: 10px;
+    line-height: 16px;
+    font-weight: normal;
+    color: #666666;
+    display: block;
+    padding-top: 5px;
+}
+
+#login-popup .form a {
+    font-size: #000000;
+    display: block;
+    text-align: right;
+    text-decoration: underline;
+    font-size: 10px;
+    line-height: 15px;
+}
+
+#login-popup .context {
+    width: 100%;
+    color: #ffffff;
+    background: url(login_btn.png) no-repeat;
+    border: none;
+    padding: 6px 0 5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+#login-popup .createText {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+#login-popup .createText a {
+    color: #305476;
+}
 
 /* @end */
 
