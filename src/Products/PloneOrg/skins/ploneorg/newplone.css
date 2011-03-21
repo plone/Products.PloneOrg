@@ -285,6 +285,7 @@ html, body {
 	color: #000000;
 }
 
+#sub-nav li a:hover,
 #sub-nav li a.selected {
 	color: #75ad0a;
 }
@@ -312,12 +313,13 @@ html, body {
     border-right: 1px solid #dedede;
     border-bottom: 1px solid #a3a3a3;
     border-left: 1px solid #dedede;
+    font-family: Arial, sans-serif;
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
 
 ul.navigation li a,ul.navigation li a:visited {
-	padding: .8em 1em;
+	padding: .9em 1em;
 	color: #646464;
 	font-weight: bold;
 	border-right: 1px solid #c5c5c5;
@@ -2214,7 +2216,7 @@ body.template-join_form #content input {
     position: absolute;
     padding: 15px;
     width: 195px;
-    z-index: 3;
+    z-index: 9;
     background-color: #ffffff;
     border-color: #e6e6e6;
     border-width: 0 1px 1px;
