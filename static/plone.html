@@ -45,14 +45,16 @@
     		<div id="login-popup">
                 <span class="loginText">Login to Plone.org</span>
 
-                <form action="https://plone.org/login_form" method="post">
+                <form id="login-slide-form" action="https://plone.org/login_form" method="post">
                 
                     <div class="form">
+                        <input id="came-from-input" type="hidden" value="" name="came_from">
+                        <input type="hidden" name="form.submitted" value="1">
                         <label for="__ac_name">username</label>
                         <input type="text" id="__ac_name" value="" name="__ac_name" size="15">
                         <label for="__ac_password">password</label>
                         <input type="password" id="__ac_password" value="" name="__ac_password" size="15"><br />
-                        <a href="/mail_password_form?userid=">Forgot password?</a>
+                         <a href="/mail_password_form?userid=">Forgot password?</a>
                     </div>
 
                     <input type="submit" value="Let me in!" name="submit" class="context">
