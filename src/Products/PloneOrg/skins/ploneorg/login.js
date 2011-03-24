@@ -10,8 +10,12 @@ $(function(){
     $("#login-slide-form").submit(function(){
     // for testing purposes, we want the form action to point to
     // /plone.org/login_form if we are local or staging
-    if(url.indexOf('http://plone.org') != 0){
-        $(this).attr('action', '/plone.org/login_form');
+    if(url.indexOf('http://plone.org') != 0 && url.indexOf('https://plone.org') != 0){
+        if(url.indexOf('http://staging.plone.org') == 0 || url.indexOf('https://staging.plone.org') == 0){
+            $(this).attr('action', 'https://staging.plone.org/login_form');
+        } else {
+            $(this).attr('action', '/plone.org/login_form');
+        }
     }
 });
 
