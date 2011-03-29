@@ -2,6 +2,7 @@
 <metadata>
   <version>1.0</version>
   <dependencies>
+    <dependency>profile-Products.Carousel:default</dependency>
     <dependency>profile-Products.FoundationMember:default</dependency>
     <dependency>profile-Products.PloneHelpCenter:default</dependency>
     <dependency>profile-Products.PloneSoftwareCenter:default</dependency>

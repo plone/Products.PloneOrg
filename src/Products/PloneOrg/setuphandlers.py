@@ -1,5 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.PluggableAuthService.interfaces.plugins import IUserEnumerationPlugin
+from Products.Carousel.utils import unregisterViewlet
+
 
 def setupVarious(context):
     if context.readDataFile("deployment-various.txt") is None:
@@ -23,3 +25,6 @@ def setupVarious(context):
     props = getToolByName(site, 'portal_properties', None)
     for group in props.site_properties.getProperty('allowedPublicGroups'):
         gtool.addGroup(group)
+
+    # make sure the default Carousel viewlet is unregistered
+    unregisterViewlet()

@@ -581,6 +581,10 @@ img.book-cover {
 	font-size: 200%;
 }
 
+.carousel-text {
+    bottom: auto !important;
+    background: transparent !important;
+}
 
 /* @end */
 
