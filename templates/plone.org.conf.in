@@ -112,7 +112,7 @@
         gzip_types       text/xml text/plain application/xml;
 
         location / {
-            proxy_pass http://10.57.0.107:5011${manage-virtual-host}/;
+            proxy_pass http://${manage-ip-port}${manage-virtual-host}/;
         }
         location ^~ /images/ {
             autoindex on;
