@@ -43,8 +43,8 @@ conf/develop_theme.cfg, and then run::
     $ bin/instance fg
     $ parts/nginx/sbin/nginx -c ../../etc/nginx.conf
 
-Then you can access the themed site at http://localhost:5021/, and the
-unthemed site at http://localhost:8080/plone.org
+The unthemed site is at http://localhost:8080. Go there and add a Plone site
+with the id 'plone.org'.  The themed site is at http://localhost:5021/.
 
 NOTE: Due to circumstances around testing the PloneOrg module, there 
 are 2 directories with svn info. The source for Products.PloneOrg is in the 

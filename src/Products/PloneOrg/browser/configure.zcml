@@ -1,12 +1,22 @@
 <configure xmlns="http://namespaces.zope.org/zope"
            xmlns:browser="http://namespaces.zope.org/browser">
 
-<browser:page
-      for="*"
-      name="group_listing"
-      class=".group.GroupListing"
-      permission="zope.Public"
-      allowed_interface=".interfaces.IGroupListing"
-      />
+    <browser:page
+        for="*"
+        name="group_listing"
+        class=".group.GroupListing"
+        permission="zope.Public"
+        allowed_interface=".interfaces.IGroupListing"
+        />
+
+    <!-- content provider to insert the Carousel banners into the homepage -->
+    <adapter
+        name="ploneorg.carousel"
+        for="Products.CMFCore.interfaces.ISiteRoot
+             zope.publisher.interfaces.browser.IDefaultBrowserLayer
+             *"
+        factory="Products.Carousel.browser.viewlet.CarouselViewlet"
+        provides="zope.contentprovider.interfaces.IContentProvider"
+        />
 
 </configure>

@@ -6,4 +6,9 @@
     url_expr="string:http://manage.plone.org/manage_main" visible="True">
   <permission>Manage portal</permission>
  </configlet>
+ <configlet title="Edit homepage carousel" action_id="ploneorg_carousel" appId="Carousel"
+    category="Products" condition_expr=""
+    url_expr="string:${portal_url}/@@edit-carousel" visible="True">
+  <permission>Manage portal</permission>
+ </configlet>
 </object>
