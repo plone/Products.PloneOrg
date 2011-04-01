@@ -69,6 +69,10 @@ autostart=true
 command=${buildout:directory}/bin/instance8 console
 autostart=true
 
+[program:plone.org-bot-client]
+command=${buildout:directory}/bin/bot-instance console
+autostart=true
+
 [program:haproxy]
 command=${buildout:directory}/bin/haproxy -f ${buildout:directory}/etc/haproxy.conf -db
 autostart=false
