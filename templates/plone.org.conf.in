@@ -12,6 +12,8 @@
             deny all;
         }
 
+        ${robots-blocker}
+
         gzip             on;
         gzip_min_length  1000;
         gzip_proxied     any;
@@ -110,7 +112,7 @@
         gzip_types       text/xml text/plain application/xml;
 
         location / {
-            proxy_pass http://10.57.0.107:5011${manage-virtual-host}/;
+            proxy_pass http://${manage-ip-port}${manage-virtual-host}/;
         }
         location ^~ /images/ {
             autoindex on;
@@ -175,7 +177,7 @@
             }
     }
     server {
-            listen 5021;
+            listen ${listen};
             server_name     plone.com.ar www.plone.com.ar plone.cl www.plone.cl;
             location / {
                     rewrite ^/(.*)$ http://${vhost}/countries/conosur/$1 last;

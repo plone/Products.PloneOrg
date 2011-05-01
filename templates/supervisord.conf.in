@@ -1,78 +1,48 @@
 [supervisord]
 umask=002                   ; (process file creation umask;default 022)
-logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
+logfile=${parts.buildout.directory}/var/log/supervisord.log ; (main log file;default $$CWD/supervisord.log)
 logfile_maxbytes=50MB       ; (max main logfile bytes b4 rotation;default 50MB)
 logfile_backups=10          ; (num of main logfile rotation backups;default 10)
 loglevel=info               ; (logging level;default info; others: debug,warn)
-pidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+pidfile=${parts.buildout.directory}/var/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
 nodaemon=false              ; (start in foreground if true;default false)
 minfds=1024                 ; (min. avail startup file descriptors;default 1024)
 minprocs=200                ; (min. avail process descriptors;default 200)
-user=${user}
+user=${options.user}
 enironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
 identifier=supervisor
 
 [unix_http_server]
-file=/tmp/supervisor.sock
+file=${parts.buildout.directory}/var/supervisor.sock
 chmod=0770
-chown=${user}:${group}
+chown=${options.user}:${options.group}
 
 [rpcinterface:supervisor]
 supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
 
 [supervisorctl]
-serverurl=unix:///tmp/supervisor.sock ; use a unix:// URL  for a unix socket
+serverurl=unix://${parts.buildout.directory}/var/supervisor.sock ; use a unix:// URL  for a unix socket
 
 [eventlistener:memmon]
 command=/usr/local/bin/memmon -a 1024MB
 events=TICK_60
 
-[program:plone.org-nginx]
-command = ${buildout:directory}/parts/nginx/sbin/nginx
+[program:${options.domain}-nginx]
+command = ${parts.buildout.directory}/parts/nginx/sbin/nginx
 autostart = true
 redirect_stderr = true
-stdout_logfile = ${buildout:directory}/var/log/nginx-stdout.log
+stdout_logfile = ${parts.buildout.directory}/var/log/nginx-stdout.log
 
-[program:plone.org-zeo]
-command=${buildout:directory}/bin/zeo fg
+[program:${options.domain}-zeo]
+command=${parts.buildout.directory}/bin/zeo fg
 autostart=true
 
-[program:plone.org-client-1]
-command=${buildout:directory}/bin/instance1 console
+{% for instance in options.instances.split() %}
+[program:${options.domain}-client-${instance}]
+command=${parts.buildout.directory}/bin/${instance} console
 autostart=true
-
-[program:plone.org-client-2]
-command=${buildout:directory}/bin/instance2 console
-autostart=true
-
-[program:plone.org-client-3]
-command=${buildout:directory}/bin/instance3 console
-autostart=true
-
-[program:plone.org-client-4]
-command=${buildout:directory}/bin/instance4 console
-autostart=true
-
-[program:plone.org-client-5]
-command=${buildout:directory}/bin/instance5 console
-autostart=true
-
-[program:plone.org-client-6]
-command=${buildout:directory}/bin/instance6 console
-autostart=true
-
-[program:plone.org-client-7]
-command=${buildout:directory}/bin/instance7 console
-autostart=true
-
-[program:plone.org-client-8]
-command=${buildout:directory}/bin/instance8 console
-autostart=true
-
-[program:plone.org-bot-client]
-command=${buildout:directory}/bin/bot-instance console
-autostart=true
+{% end %}
 
 [program:haproxy]
-command=${buildout:directory}/bin/haproxy -f ${buildout:directory}/etc/haproxy.conf -db
+command=${parts.buildout.directory}/bin/haproxy -f ${parts.buildout.directory}/etc/haproxy.conf -db
 autostart=false
