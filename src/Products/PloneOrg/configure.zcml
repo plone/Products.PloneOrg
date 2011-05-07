@@ -50,5 +50,14 @@
        for="Products.ATContentTypes.interface.event.IATEvent"
        factory=".purger.FrontpagePurger"
        />  
+
+   <genericsetup:upgradeStep
+       title="Remove collector_issue_workflow from portal_workflow"
+       description=""
+       source="1.0"
+       destination="2.0"
+       handler=".upgrade.step_1"
+       profile="Products.PloneOrg:default"
+       />
      
 </configure>
