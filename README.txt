@@ -1,5 +1,5 @@
-PloneOrg buildout
-=================
+Introduction
+============
 
 This is the plone.org site package and corresponding buildout. It is used to
 power http://plone.org. It is also a great buildut for working on developing 
@@ -10,7 +10,7 @@ PloneServicesCenter.
 - Questions and comments to admins@lists.plone.org
 - Report bugs to admins@lists.plone.org
 
-The current supported version of Plone is: 4.0.x.
+The current supported version of Plone is: 4.1.x.
 
 
 Production
