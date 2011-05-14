@@ -2,7 +2,7 @@ Introduction
 ============
 
 This is the plone.org site package and corresponding buildout. It is used to
-power http://plone.org. It is also a great buildut for working on developing 
+power http://plone.org. It is also a great buildout for working on developing 
 Plone.org centric products such as PloneSoftwareCenter, PloneHelpCenter, and
 PloneServicesCenter.
 
