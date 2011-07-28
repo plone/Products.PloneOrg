@@ -241,9 +241,9 @@
                 rewrite ^canada http://${vhost}/support/sites/sites_listing?countries%3alist=ca permanent;
                 rewrite ^chile http://${vhost}/support/sites/sites_listing?countries%3alist=cl permanent;
                 rewrite ^china http://${vhost}/support/sites/sites_listing?countries%3alist=cn permanent;
-                rewrite ^costa rica http://${vhost}/support/sites/sites_listing?countries%3alist=cr permanent;
+                rewrite ^costarica http://${vhost}/support/sites/sites_listing?countries%3alist=cr permanent;
                 rewrite ^cuba http://${vhost}/support/sites/sites_listing?countries%3alist=cu permanent;
-                rewrite ^czech republic http://${vhost}/support/sites/sites_listing?countries%3alist=cz permanent;
+                rewrite ^czechia http://${vhost}/support/sites/sites_listing?countries%3alist=cz permanent;
                 rewrite ^denmark http://${vhost}/support/sites/sites_listing?countries%3alist=dk permanent;
                 rewrite ^egypt http://${vhost}/support/sites/sites_listing?countries%3alist=eg permanent;
                 rewrite ^elsalvador http://${vhost}/support/sites/sites_listing?countries%3alist=sv permanent;
@@ -276,9 +276,9 @@
                 rewrite ^portugal http://${vhost}/support/sites/sites_listing?countries%3alist=pt permanent;
                 rewrite ^reunion http://${vhost}/support/sites/sites_listing?countries%3alist=re permanent;
                 rewrite ^romania http://${vhost}/support/sites/sites_listing?countries%3alist=ro permanent;
-                rewrite ^russian federation http://${vhost}/support/sites/sites_listing?countries%3alist=ru permanent;
+                rewrite ^russia http://${vhost}/support/sites/sites_listing?countries%3alist=ru permanent;
                 rewrite ^slovenia http://${vhost}/support/sites/sites_listing?countries%3alist=si permanent;
-                rewrite ^south africa http://${vhost}/support/sites/sites_listing?countries%3alist=za permanent;
+                rewrite ^southafrica http://${vhost}/support/sites/sites_listing?countries%3alist=za permanent;
                 rewrite ^spain http://${vhost}/support/sites/sites_listing?countries%3alist=es permanent;
                 rewrite ^sweden http://${vhost}/support/sites/sites_listing?countries%3alist=se permanent;
                 rewrite ^switzerland http://${vhost}/support/sites/sites_listing?countries%3alist=ch permanent;
