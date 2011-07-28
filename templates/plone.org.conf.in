@@ -304,4 +304,10 @@
             }
     }
 
-
+    server {
+            listen ${listen};
+            server_name    newplone.sixfeetup.com;
+            location / {
+                      rewrite ^/(.*)$ http://plone.org/$1 last;
+            }
+     }
