@@ -368,6 +368,8 @@ $.tools.tabs.addEffect("slide", function(i, done) {
 
                         <dt><a href="/products">Add-on Products</a></dt>
                         <dd>Adapt Plone to your needs.</dd>
+
+                        <dt><a href="/products/plone/security/advisories">Security Advisories</a></dt>
                     </dl>
                 </div>  
 
