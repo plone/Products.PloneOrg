@@ -408,8 +408,11 @@ $.tools.tabs.addEffect("slide", function(i, done) {
                         <dt><a href="http://dev.plone.org/plone">Translate, Write Docs, Help Test</a></dt>
                         <dd>There are lots of things you can do to make Plone better.</dd>
 
-                        <dt><a href="http://planet.plone.org">Read Blogs, Publish Yours</a></dt>
+                        <dt><a href="http://planet.plone.org">Read Plone Blogs, Publish Yours</a></dt>
                         <dd>Stay up to date on Plone</dd>
+
+                        <dt><a href="http://plone.org/follow">Follow Plone</a></dt>
+                        <dd>Get occasional updates via email, RSS or Twitter</dd>
 
                         <dt><a href="/foundation">Support the Plone Foundation</a></dt>
                         <dd>If all else fails, give cold, hard cash.</dd>
