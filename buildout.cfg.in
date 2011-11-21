@@ -5,6 +5,9 @@ extends =
 # Plone only, unthemed
 #    conf/develop.cfg
 
+# Copy data local (with plone.org account)
+#    conf/database.cfg
+
 # Plone + nginx to apply xdv theme (runs on port 5021)
 #    conf/develop_theme.cfg
 
@@ -17,3 +20,4 @@ extends =
 
 #    conf/staging.cfg
 #    conf/deploy-snip.cfg
+
