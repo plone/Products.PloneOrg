@@ -52,7 +52,6 @@ and uses ``collective.recipe.rsync`` to copy the data.
 Production
 ----------
 
-# XXX Update post deployment. Include something about how the buildout contains only the
-# Plone software and no load balancers etc, as per cioppino previous rev.
+# XXX Update post deployment. Include something about how the buildout contains only the Plone software and no load balancers etc, as per cioppino previous rev.
 
 
