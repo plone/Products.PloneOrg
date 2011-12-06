@@ -14,6 +14,10 @@ class IPloneOrgUserDataSchema(IUserDataSchema):
     nickname = schema.TextLine(title = u'Nickname',
                                description = u'Your IRC nickname in the #plone channel',
                                required = False)
+    github_userid = schema.TextLine(
+        title = u'Github Login',
+        description = u'Used to provide commit access to Plone contributors.',
+        required = False)
 
 
 class PloneOrgUserDataSchemaProvider(object):
@@ -40,3 +44,4 @@ class PloneOrgUserDataPanelAdapter(UserDataPanelAdapter):
     organization_title = MemberProperty('organization_title')
     organization_link = MemberProperty('organization_link')
     nickname = MemberProperty('nickname')
+    github_userid = MemberProperty('github_userid')

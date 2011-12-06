@@ -1,0 +1,23 @@
+[buildout]
+# Rename to buildout.cfg and uncomment one of the profiles below
+extends =
+
+# Plone only, unthemed
+#    conf/develop.cfg
+
+# Copy data local (with plone.org account)
+#    conf/database.cfg
+
+# Plone + nginx to apply xdv theme (runs on port 5021)
+#    conf/develop_theme.cfg
+
+# Production (for use on plone.org server)
+#    conf/production.cfg
+
+# Staging (for use on plone.org server)
+# and Deployment (for use by Jenkins, admins and developers), 
+#   deploy-snip can be added to any of primary configurations 
+
+#    conf/staging.cfg
+#    conf/deploy-snip.cfg
+
