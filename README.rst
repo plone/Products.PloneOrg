@@ -5,7 +5,9 @@ This is the plone.org site add-on and buildout used to power http://plone.org.
 It is also useful for developing Plone.org-centric add-ons such as
 PloneSoftwareCenter, PloneHelpCenter, PloneServicesCenter, and Poi.
 
-The current supported Plone version is: 4.2.x.
+.. Note::
+
+    The Plone version currently supported is: 4.2.x.
 
 Installation
 ============
@@ -38,14 +40,15 @@ shell script. It assumes rsync is in your path::
 
     $ ./conf/get_data
 
+Alternatively, you may uncomment ``conf/database.cfg`` which extends ``conf/develop.cfg``
+and uses ``collective.recipe.rsync`` to copy the data.
+
 .. Note::
 
-    This requires shell access to plone.org.
-
-Alternatively, you may uncomment ``conf/database.cfg`` which extends ``conf/develop.cfg``
-and runs rsync to copy the data.
+    Both techniques require shell access to plone.org.
 
 Production
 ----------
 
-# XXX Update post deployment
+# XXX Update post deployment. Include something about how the buildout contains only the
+# Plone software and no load balancers etc, as per cioppino previous rev.
