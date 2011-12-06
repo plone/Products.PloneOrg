@@ -9,7 +9,7 @@ test_require = ['plone.app.testing']
 setup(name='Products.PloneOrg',
       version=version,
       description="Plone.org site policy package.",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
         "Framework :: Plone",
