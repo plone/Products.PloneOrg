@@ -9,6 +9,8 @@ PloneSoftwareCenter, PloneHelpCenter, PloneServicesCenter, and Poi.
 
     The Plone version currently supported is: 4.2.x.
 
+.. image:: https://github.com/plone/Products.PloneOrg/raw/master/screenshot.png
+
 Installation
 ============
 
@@ -52,3 +54,5 @@ Production
 
 # XXX Update post deployment. Include something about how the buildout contains only the
 # Plone software and no load balancers etc, as per cioppino previous rev.
+
+
