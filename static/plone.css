@@ -2372,3 +2372,12 @@ p.percent {
 	clear: both;
 }
 /* @end */
+
+/* @group Planet */
+
+/* Looks like planet.plone.org still uses this static/plone.css file even though marked as deprecated */
+
+/* Don't break blog post images */
+#planet-plone-index #content img {
+     width: auto;	
+}
