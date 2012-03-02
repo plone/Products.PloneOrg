@@ -17,7 +17,8 @@
         gzip             on;
         gzip_min_length  1000;
         gzip_proxied     any;
-        gzip_types       text/xml text/plain application/xml;
+	gzip_types	 text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
 
         client_max_body_size 10M;
 
