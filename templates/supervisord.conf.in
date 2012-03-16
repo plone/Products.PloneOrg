@@ -42,7 +42,3 @@ autostart=true
 command=${parts.buildout.directory}/bin/${instance} console
 autostart=true
 {% end %}
-
-[program:haproxy]
-command=${parts.buildout.directory}/bin/haproxy -f ${parts.buildout.directory}/etc/haproxy.conf -db
-autostart=false
