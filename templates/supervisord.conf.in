@@ -26,19 +26,23 @@ serverurl=unix://${parts.buildout.directory}/var/supervisor.sock ; use a unix://
 [eventlistener:memmon]
 command=/usr/local/bin/memmon -a 1024MB
 events=TICK_60
+user=${options.user}
 
 [program:${options.domain}-nginx]
 command = ${parts.buildout.directory}/parts/nginx/sbin/nginx
 autostart = true
 redirect_stderr = true
 stdout_logfile = ${parts.buildout.directory}/var/log/nginx-stdout.log
+user=${options.user}
 
 [program:${options.domain}-zeo]
 command=${parts.buildout.directory}/bin/zeo fg
 autostart=true
+user=${options.user}
 
 {% for instance in options.instances.split() %}
 [program:${options.domain}-client-${instance}]
 command=${parts.buildout.directory}/bin/${instance} console
 autostart=true
+user=${options.user}
 {% end %}
