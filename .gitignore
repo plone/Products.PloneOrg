@@ -1,0 +1,14 @@
+*~
+*.pyc
+*.egg-info
+.svn
+.installed.cfg
+.mr.developer.cfg
+bin
+develop-eggs
+etc
+eggs
+parts
+products
+sources
+var

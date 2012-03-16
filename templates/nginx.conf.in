@@ -1,5 +1,6 @@
 daemon off; # for supervisord
 worker_processes  8;
+user ${env:USER} ${grp:GROUP};
 
 events {
     worker_connections  1024;
