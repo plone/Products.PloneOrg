@@ -17,7 +17,7 @@
         gzip             on;
         gzip_min_length  1000;
         gzip_proxied     any;
-	gzip_types	 text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+	    gzip_types	 text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
 
 
         client_max_body_size 10M;
@@ -39,19 +39,16 @@
             rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
         }
         location /_xdv_disabled/ {
             rewrite ^/_xdv_disabled/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
         }
         location ~ /(plugins/plone|refbrowser_popup|image_view_fullscreen) {
             rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
         }
         location / {
             rewrite ^/login_form https://${vhost}/login_form;
@@ -60,19 +57,11 @@
             rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
-            xslt_stylesheet ${buildout:directory}/etc/default.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
         }
         location = / {
             rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
-            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
         }
         location ~ ^/documentation/manual/plone-community-developer-documentation$ {
             rewrite ^ http://collective-docs.readthedocs.org/en/latest/index.html redirect;
@@ -81,10 +70,6 @@
             rewrite ^/(.*)$ ${virtual-host}/$1 break;
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
-            xslt_stylesheet ${buildout:directory}/etc/wide.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
         }
         location ~ ^/products/(simple|links|\+\+simple\+\+)/?$ {
             rewrite ^    http://dist.${vhost}/packages permanent;
