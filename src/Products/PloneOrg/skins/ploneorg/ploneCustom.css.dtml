@@ -1,36 +1,49 @@
-#portal-globalnav {
-    text-align: center;
-}
-
-/* span styles for legal markup, used in Foundation section for bylaws changes */
-.addition {
- color: red;
-}
-
-.striken {
- text-decoration: line-through;
-}
-#content a[href ^="http:"]{
-background: none !important;
-padding: 0 !important;
-}
-/* end of legal markup styles */
-
-
-
-/* override the main search css */
-
-.template-phc_asearch_form #content #search{
-float:left;
+#subject {
 width:100%;
-text-align:left;
-background:transparent;
-
 }
 
-/* move the labels to the right to stop them being pushed into the selection boxes */
+/* override front page template adding specific padding*/
+ 
+    #main_navi li {
+        background-color: #eee;
+        color: black;
+        font-size: 12px;
+        height: 50px;
+        list-style-type: none;
+        padding-left: 10px;
+        padding-bottom:10px;
+        padding-right:12.5px;
+        cursor: pointer;
+        display: inline-block;
+    }
 
-.template-phc_asearch_form #content #search label  {
-padding-left:0.4em;
+#accordion .pane {
+  display:none;
+}
 
+#bounty {
+    font-size: 11px;
+    margin-top: 25px;
+}
+
+#content #bounty a {
+    border: none;
+    line-height: 1.5em;
+}
+
+#content #bounty a:hover {
+    color: #75ad0a;
+}
+
+#content #bounty p {
+    border-bottom: 1px solid #cccccc;
+    font-size: 12px;
+}
+
+#bounty .contribute {
+    float: right;
+}
+
+#bounty img {
+    margin-right: 30px;
 }
