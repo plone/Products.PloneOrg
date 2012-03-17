@@ -16,8 +16,8 @@ extends =
 
 # Staging (for use on plone.org server)
 # and Deployment (for use by Jenkins, admins and developers), 
-#   deploy-snip can be added to any of primary configurations 
+#   fabric can be added to any of primary configurations 
 
 #    conf/staging.cfg
-#    conf/deploy-snip.cfg
+#    conf/fabric.cfg
 
