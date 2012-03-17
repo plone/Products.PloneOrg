@@ -319,7 +319,7 @@
 
      # http://plone.293351.n2.nabble.com/Fail-to-install-Plone-with-plone-recipe-plone-3-1-7-td5730780.html
      server {
-            listen 5021;
+            listen ${listen};
             server_name antiloop.plone.org;
             root /srv/dist.plone.org/http/root;
             location / {
