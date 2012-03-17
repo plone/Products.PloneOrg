@@ -8,7 +8,6 @@ pidfile=${parts.buildout.directory}/var/supervisord.pid ; (supervisord pidfile;d
 nodaemon=false              ; (start in foreground if true;default false)
 minfds=1024                 ; (min. avail startup file descriptors;default 1024)
 minprocs=200                ; (min. avail process descriptors;default 200)
-user=${options.user}
 enironment=PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/sbin:/bin:/sbin:/usr/X11R6/bin
 identifier=supervisor
 
@@ -33,7 +32,7 @@ command = ${parts.buildout.directory}/parts/nginx/sbin/nginx
 autostart = true
 redirect_stderr = true
 stdout_logfile = ${parts.buildout.directory}/var/log/nginx-stdout.log
-user=${options.user}
+user=root
 
 [program:${options.domain}-zeo]
 command=${parts.buildout.directory}/bin/zeo fg
