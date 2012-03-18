@@ -59,5 +59,21 @@
        handler=".upgrade.step_1"
        profile="Products.PloneOrg:default"
        />
+
+   <genericsetup:upgradeStep
+       title="Plone.org: Reindex broken effectiveRange index"
+       source="4021"
+       destination="4022"
+       handler=".upgrade.reindex_effectiveRange"
+       profile="Products.CMFPlone:plone"
+       />
      
+   <genericsetup:upgradeStep
+       title="Plone.org: Update CSS conditions for Diazo"
+       source="4202"
+       destination="4203"
+       handler=".upgrade.update_portal_css_conditions"
+       profile="Products.CMFPlone:plone"
+       />
+
 </configure>
