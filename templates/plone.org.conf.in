@@ -40,16 +40,6 @@
             proxy_pass http://backend;
             proxy_set_header Host $host;
         }
-        location /_xdv_disabled/ {
-            rewrite ^/_xdv_disabled/(.*)$ ${virtual-host}/$1 break;
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-        }
-        location ~ /(plugins/plone|refbrowser_popup|image_view_fullscreen) {
-            rewrite ^/(.*)$ ${virtual-host}/$1 break;
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-        }
         location / {
             rewrite ^/login_form https://${vhost}/login_form;
             rewrite ^/logged_out https://${vhost}/logged_out;
@@ -58,18 +48,8 @@
             proxy_pass http://backend;
             proxy_set_header Host $host;
         }
-        location = / {
-            rewrite ^/(.*)$ ${virtual-host}/$1 break;
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-        }
         location ~ ^/documentation/manual/plone-community-developer-documentation$ {
             rewrite ^ http://collective-docs.readthedocs.org/en/latest/index.html redirect;
-        }
-        location ~ ^/(products(/psc_view_ploneorg)?|documentation|documentation/kb|support|support/support_view)/?$ {
-            rewrite ^/(.*)$ ${virtual-host}/$1 break;
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
         }
         location ~ ^/products/(simple|links|\+\+simple\+\+)/?$ {
             rewrite ^    http://dist.${vhost}/packages permanent;
