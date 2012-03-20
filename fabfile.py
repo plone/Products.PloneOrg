@@ -15,11 +15,11 @@ def ls():
 
 def update():
     with cd(env.code_root):
-        sudo('nice svn up', user=env.code_user)
+        sudo('nice git pull --rebase', user=env.code_user)
 
 def rebuild():
     with cd(env.code_root):
-        sudo('nice bin/buildout -c buildout-staging.cfg', user=env.code_user)
+        sudo('nice bin/buildout -Nv', user=env.code_user)
 
 def restart():
     with cd(env.code_root):
