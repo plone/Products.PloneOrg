@@ -43,65 +43,18 @@
         location ~ /emptypage$ {
             rewrite ^/(.*)$ /VirtualHostBase/https/plone.org:443/plone.org/VirtualHostRoot/$1 break;
             if ( $is_a_bot = 1 ) {
-		proxy_pass http://crawler;
-	    }
+		        proxy_pass http://crawler;
+	        }
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
-        }
-        location /_xdv_disabled/ {
-            rewrite ^/_xdv_disabled/(.*)$ /VirtualHostBase/https/plone.org:443/plone.org/VirtualHostRoot/$1 break;
-            if ( $is_a_bot = 1 ) {
-		proxy_pass http://crawler;
-	    }
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
-        }
-        location ~ /(plugins/plone|refbrowser_popup|image_view_fullscreen) {
-            rewrite ^/(.*)$ /VirtualHostBase/https/plone.org:443/plone.org/VirtualHostRoot/$1 break;
-            if ( $is_a_bot = 1 ) {
-		proxy_pass http://crawler;
-	    }
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
         }
         location / {
             rewrite ^/(.*)$ /VirtualHostBase/https/plone.org:443/plone.org/VirtualHostRoot/$1 break;
             if ( $is_a_bot = 1 ) {
-		proxy_pass http://crawler;
-	    }
+		        proxy_pass http://crawler;
+	        }
             proxy_pass http://backend;
             proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
-            xslt_stylesheet /srv/plone.org/etc/default.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
-        }
-        location = / {
-            rewrite ^/(.*)$ /VirtualHostBase/https/plone.org:443/plone.org/VirtualHostRoot/$1 break;
-            if ( $is_a_bot = 1 ) {
-		proxy_pass http://crawler;
-	    }
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
-            xslt_stylesheet /srv/plone.org/etc/wide.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
-        }
-        location ~ ^/(products(/psc_view_ploneorg)?|documentation|documentation/kb|support|support/support_view)/?$ {
-            rewrite ^/(.*)$ /VirtualHostBase/https/plone.org:443/plone.org/VirtualHostRoot/$1 break;
-            if ( $is_a_bot = 1 ) {
-		proxy_pass http://crawler;
-	    }
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-            proxy_set_header X-XDV "true";
-            xslt_stylesheet /srv/plone.org/etc/wide.xsl;
-            xslt_html_parser on;
-            xslt_types text/html;
         }
         location ~ ^/products/(simple|links|\+\+simple\+\+)/?$ {
             rewrite ^    http://dist.plone.org/packages permanent;
