@@ -67,30 +67,9 @@
     server {
         listen ${listen};
         server_name manage.${vhost};
-        root ${buildout:directory}/static;
-
-        location = /nginx-status {
-            stub_status on;
-            allow 127.0.0.1;
-            deny all;
-        }
-
-        gzip             on;
-        gzip_min_length  1000;
-        gzip_proxied     any;
-        gzip_types       text/xml text/plain application/xml;
 
         location / {
-            proxy_pass http://${manage-ip-port}${manage-virtual-host}/;
-        }
-        location ^~ /images/ {
-            autoindex on;
-        }
-        location ^~ /plone.css {  }
-        location ^~ /ie.css {  }
-        location ~ /emptypage$ {
-            rewrite ^/(.*)$ ${virtual-host}/$1 break;
-            proxy_pass http://backend;
+            rewrite ^/(.*)$ http://${vhost}/$1 permanent;
         }
     }
 
