@@ -35,19 +35,6 @@
         # error_page 500 /500.html;
         location = /500.html {  }
 
-        location ^~ /images/ {
-            autoindex on;
-        }
-        location = /plone.css {  }
-        location = /ie.css {  }
-        location ~ /emptypage$ {
-            rewrite ^/(.*)$ /VirtualHostBase/https/plone.org:443/plone.org/VirtualHostRoot/$1 break;
-            if ( $is_a_bot = 1 ) {
-		        proxy_pass http://crawler;
-	        }
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-        }
         location / {
             rewrite ^/(.*)$ /VirtualHostBase/https/plone.org:443/plone.org/VirtualHostRoot/$1 break;
             if ( $is_a_bot = 1 ) {

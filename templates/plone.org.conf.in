@@ -4,7 +4,7 @@
     server {
         listen ${listen};
         server_name ${vhost};
-        root ${buildout:directory}/static; 
+        root ${buildout:directory}/static;
 
         location = /nginx-status {
             stub_status on;
@@ -30,16 +30,6 @@
         # error_page 500 /500.html;
         location = /500.html {  }
 
-        location ^~ /images/ {
-            autoindex on;
-        }
-        location = /plone.css {  }
-        location = /ie.css {  }
-        location ~ /emptypage$ {
-            rewrite ^/(.*)$ ${virtual-host}/$1 break;
-            proxy_pass http://backend;
-            proxy_set_header Host $host;
-        }
         location / {
             rewrite ^/login_form https://${vhost}/login_form;
             rewrite ^/logged_out https://${vhost}/logged_out;
