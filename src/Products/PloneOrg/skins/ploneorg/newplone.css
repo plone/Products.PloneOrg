@@ -412,7 +412,7 @@ div.splash {
 }
 
 #content div.splash a.pointer {
-	background: transparent 0 -115px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: transparent 0 -115px url(//plone.org/++theme++plonetheme.ploneorg/static/images/sprite-ploneorg.png) no-repeat;
 	padding-left: 16px;
 	font-size: 115%;
 }
@@ -473,7 +473,7 @@ div.sidebar {
 	border-top: 1px solid #eee;
 	border-bottom: none;
 	font-weight: bold;
-	background: url(//plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: url(//plone.org/++theme++plonetheme.ploneorg/static/images/sprite-ploneorg.png) no-repeat;
 	background-position: 0 -441px;
 	padding-left: 16px;
 	letter-spacing: -1px;
@@ -523,7 +523,7 @@ img.book-cover {
 }
 
 #splash-download-package {
-	background: transparent 0 -495px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: transparent 0 -495px url(//plone.org/++theme++plonetheme.ploneorg/static/images/sprite-ploneorg.png) no-repeat;
 	height: 130px;
 	margin-left: 2em;
 	position: relative;
@@ -539,7 +539,7 @@ img.book-cover {
 }
 
 #splash-download-plone {
-	background: transparent 0 -30px url(//plone.org/images/sprite-ploneorg.png) no-repeat !important;
+	background: transparent 0 -30px url(//plone.org/++theme++plonetheme.ploneorg/static/images/sprite-ploneorg.png) no-repeat !important;
 	height: 58px;
 	width: 310px;
 	margin: 10px 0 10px 260px;
@@ -832,7 +832,7 @@ div.box h1 {
 	margin: -0.625em -1em !important;
 	padding: 0 1em;
 	line-height: 2em;
-	background: #eee url(//plone.org/images/sprite-ploneorg.png) repeat-x;
+	background: #eee url(//plone.org/++theme++plonetheme.ploneorg/static/images/sprite-ploneorg.png) repeat-x;
 	background-position: 0 -163px;
 	font-size: 120%;
 }
@@ -995,7 +995,7 @@ dl.portlet dt {
 	width: 123px;
 	height: 51px;
 	line-height: 1.25em;
-	background: 0 -495px url(//plone.org/images/sprite-ploneorg.png) no-repeat;
+	background: 0 -495px url(//plone.org/++theme++plonetheme.ploneorg/static/images/sprite-ploneorg.png) no-repeat;
 	color: white !important;
 	border-bottom: none !important;
 	font-weight: bold;
@@ -2338,7 +2338,7 @@ dl.toc dd ol {
 }
 
 #footer-gradient {
-	background: top left url(//plone.org/images/sprite-ploneorg.png) repeat-x;
+	background: top left url(//plone.org/++theme++plonetheme.ploneorg/static/images/sprite-ploneorg.png) repeat-x;
 	height: 7px;
 }
 
@@ -2370,7 +2370,7 @@ dl.toc dd ol {
 
 #footer-logo {
 	float: left;
-	background-image: url(//plone.org/images/sprite-ploneorg.png);
+	background-image: url(//plone.org/++theme++plonetheme.ploneorg/static/images/sprite-ploneorg.png);
 	background-position: 0 -376px;
 	width: 114px;
 	height: 44px;
@@ -2619,5 +2619,103 @@ p.percent {
 .visualClear {
 	clear: both;
 }
+
+/* @group Search results page */
+
+fieldset#search-field {
+    border: none !important;
+    text-align: center;
+}
+input.searchPage {
+    font-size:200% !important;
+}
+#rss-subscription {
+	float: left;
+	line-height: 3em;
+}
+#search-results-bar .actionMenuContent {
+    margin-top: 1em;
+    padding: 0;
+}
+#search-filter {
+    background: #ddd;
+    margin: 0;
+    padding: 0;
+}
+#content #search-filter fieldset {
+    border: none !important;
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+#content #search-filter legend {
+    background: transparent;
+    font-size: 1.1em;
+    padding: 0.5em 0.9em;
+    font-weight: bold;
+}
+#search-filter .field {
+    background: #eee;
+    padding: 1em 1.5em;
+    margin: 0;
+}
+#search-filter .field label {
+    font-weight: normal;
+}
+#search-filter .formControls {
+    text-align:center
+}
+#search-results-wrapper {
+    margin-top: 1em;
+}
+form.searchPage h1.documentFirstHeading {
+    font-weight:normal; 
+    letter-spacing:0;
+	float: left;
+	margin-right: 0.8em;
+}
+form.searchPage h1.documentFirstHeading .highlightedSearchTerm {
+    background: transparent !important;
+}
+#search-results-bar > * {
+    float: left;
+}
+#searchResultsSort{ 
+	float:right;
+}
+#search-results-bar {
+    position: relative;
+    z-index: 1;
+    float: left;
+    width: 100%;
+    border-top: 1px solid #DDD;
+    border-bottom: 1px solid #DDD;    
+    padding: 1em 0;
+}
+#search-results-bar dl.actionMenu {
+    margin-bottom: 0;
+}
+#search-results-bar dd.actionMenuContent {
+    margin-left: 0;
+    padding-left: 0;
+}
+#search-results-bar dt.actionMenuHeader a {
+    border-bottom: none;
+}
+#search-results-bar dt.actionMenuHeader a::after {
+	content: " ▼";
+}
+#search-results {
+    padding: 1em;
+}
+.searchResults {
+    margin-top: 0;
+}
+#ajax-search-res {
+    display: none;
+}
+
+/* @end */
+
 
 /* @end */
