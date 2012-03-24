@@ -857,8 +857,6 @@ queryplan = {
       'sort_on':
       (0.0, 0, False),
     },
-    ('allowedRolesAndUsers', 'path', 'review_state', 'sort_on', 'sort_order'): {
-    },
     ('allowedRolesAndUsers', 'portal_type', 'review_state', 'sort_on', 'sort_order'): {
       'allowedRolesAndUsers':
       (0.0054, 1, True),
