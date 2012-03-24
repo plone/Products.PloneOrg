@@ -29,5 +29,14 @@
         template="outofdate_warning.pt"
         permission="zope2.View"
         />
+    <browser:viewlet
+        name="phc_outofdate_warning"
+        for="Products.PloneHelpCenter.content.LeafPage.HelpCenterLeafPage"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".outofdate_warning.OutOfDateWarning"
+        template="outofdate_warning.pt"
+        permission="zope2.View"
+        />
 
 </configure>

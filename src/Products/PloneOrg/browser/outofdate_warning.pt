@@ -12,7 +12,7 @@
 </div>
 
 <div class="phc_info phc_status"	
-	 tal:condition="python:view.is_old()">
+	 tal:condition="view/is_old">
 
   <h2>Attention</h2>
   <p>This document was written for an <strong>old version</strong> of Plone, <strong tal:content="view/most_recent_version">Plone 0.1</strong>, and was last updated <span tal:replace="view/daysago">5</span> days ago.</p>
