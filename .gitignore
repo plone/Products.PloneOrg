@@ -10,6 +10,6 @@ develop-eggs
 etc
 eggs
 parts
-products
+/products
 sources
 var
