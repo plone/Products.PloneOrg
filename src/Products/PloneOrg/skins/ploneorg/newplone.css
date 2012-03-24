@@ -2717,5 +2717,62 @@ form.searchPage h1.documentFirstHeading .highlightedSearchTerm {
 
 /* @end */
 
+/* @group PHC out of date warnings */
+
+.phc_unknown h2 {
+  background-color: #AAAAAA;
+  border-bottom: 1em solid #999999;
+}
+.phc_warning h2 {
+  background-color: #FF0000;
+  border-bottom: 1em solid #EC0606;
+}
+.phc_info h2 {
+  background-color: #FFDE20;
+  border-bottom: 1em solid #FFD10F;
+  color:#000000;
+}
+.phc_current h2 {
+  background-color: #76AD17;
+  border-bottom: 1em solid #63A100;
+  color: #FFFFF;
+}
+.phc_status h2 {
+  padding-left: 10px;
+  font-size: 1em;
+  height: 1em;
+  letter-spacing: 0;
+  line-height: 2em;
+}
+.phc_status p {
+  font-size: 0.825em;
+  padding: .5em 1em;
+}
+.phc_status {
+  background-color: #F6F6F6;
+  border: 1px solid #EEEEEE;
+}
+.phc_status li {
+  display: list-item;
+  line-height: 1.5em;
+  margin-bottom: 0.25em;
+  font-size: 13px;
+  list-style-type:disc;
+  margin-left: 5em;
+}
+#phcMetadata ul {
+  list-style-type: none; 
+  margin-left: 0px;
+}
+#phcMetadata ul ul {
+  list-style-type: none; 
+  margin-top: -1.5em; 
+  margin-left: 6em;
+}
+.section-documentation #sidebar {
+  padding-top: 0;
+}
+
+/* @end */
 
 /* @end */

@@ -1,0 +1,38 @@
+<div class="phc_unknown phc_status"
+	 tal:condition="view/is_unknown">
+	<h2>Warning</h2>
+	<p>This document hasn't been checked for compatibility with
+	   current versions of Plone. Use at your own risk.</p>
+</div>
+
+<div class="phc_current phc_status"
+	 tal:condition="view/is_current">
+	<h2>Current</h2>
+	<p>This document is valid for the current version of Plone.</p>
+</div>
+
+<div class="phc_info phc_status"	
+	 tal:condition="python:view.is_old()">
+
+  <h2>Attention</h2>
+  <p>This document was written for an <strong>old version</strong> of Plone, <strong tal:content="view/most_recent_version">Plone 0.1</strong>, and was last updated <span tal:replace="view/daysago">5</span> days ago.</p>
+
+  <p>To learn how to <strong>upgrade</strong> to the current version of Plone, read the <a href="://plone.org/upgrade">upgrade manual</a>.</p>
+   
+  <p tal:condition="nothing">Additional information for Plone 0.1 can be found <a href="#">here</a></p>
+
+</div>
+
+<div class="phc_warning phc_status"
+	 tal:condition="view/is_unsupported">
+
+  <h2>Attention</h2>
+  <p>This document was written for an <strong>unsupported version</strong> of Plone, <strong tal:content="view/most_recent_version">Plone 0.1</strong>, and was last updated <span tal:replace="view/daysago">5</span> days ago.</p>
+
+  <p>For more information, see the <a tal:attributes="href string:${context/portal_url}/support/version-support-policy">version support policy</a>.</p>
+
+  <p>To learn how to <strong>upgrade</strong> to the current version of Plone, read the <a href="://plone.org/upgrade">upgrade manual</a>.</p>
+   
+  <p tal:condition="nothing">Additional information for Plone 0.1 can be found <a href="#">here</a></p>
+
+</div>

@@ -19,4 +19,15 @@
         provides="zope.contentprovider.interfaces.IContentProvider"
         />
 
+    <!-- show warning for out of date documentation -->
+    <browser:viewlet
+        name="phc_outofdate_warning"
+        for="Products.PloneHelpCenter.interfaces.IHelpCenterContent"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".outofdate_warning.OutOfDateWarning"
+        template="outofdate_warning.pt"
+        permission="zope2.View"
+        />
+
 </configure>
