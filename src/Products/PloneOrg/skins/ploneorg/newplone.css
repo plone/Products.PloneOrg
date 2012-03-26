@@ -1439,20 +1439,39 @@ div.listingBar a:hover {
 
 /* @group Status messages */
 
-dl.portalMessage {
+dl.portalMessage,
+div.attention,
+div.caution,
+div.danger,
+div.error,
+div.hint,
+div.important,
+div.note,
+div.tip,
+div.warning {
 	font-size: 12px;
 	background-color: #ffffe3;
 	border: 1px solid #996;
 	margin-bottom: 1em;
 }
 
-dl.portalMessage a {
+dl.portalMessage a,
+div.attention a,
+div.caution a,
+div.danger a,
+div.error a,
+div.hint a,
+div.important a,
+div.note a,
+div.tip a,
+div.warning a {
 	color: black !important;
 	border: none !important;
 	text-decoration: underline;
 }
 
-dl.portalMessage dt {
+dl.portalMessage dt,
+div > .admonition-title {
 	background-color: #996;
 	font-weight: bold;
 	float: left;
@@ -1462,41 +1481,54 @@ dl.portalMessage dt {
 	line-height: 1.25em;
 }
 
-dl.portalMessage dd {
+dl.portalMessage dd,
+div.attention > .last,
+div.caution > .last,
+div.danger > .last,
+div.error > .last,
+div.hint > .last,
+div.important > .last,
+div.note > .last,
+div.tip > .last,
+div.warning > .last {
 	padding: 0.5em 0.5em;
 	margin: 0;
 	line-height: 1.25em;
 }
 
-dl.warning {
+.warning {
 	border-color: #d80;
 }
 
-dl.warning dt {
+l.warning > dt,
+.warning > .admonition-title {
 	background-color: #d80;
 }
 
-dl.error {
+.error {
 	border-color: #d00;
 }
 
-dl.error dt {
+.error > dt,
+.error > .admonition-title {
 	background-color: #d00;
 }
 
-dl.warning {
+.warning {
 	border-color: #d80;
 }
 
-dl.warning dd {
+.warning > dd,
+.warning > .last {
 	background-color: #fd7;
 }
 
-dl.error {
+.error {
 	border-color: #d80;
 }
 
-dl.error dd {
+.error > dd,
+.error > .last {
 	background-color: #fd7;
 }
 
