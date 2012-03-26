@@ -1,0 +1,8 @@
+<tal:block tal:condition="python:'/plone.org/documentation/kb' in '/'.join(context.getPhysicalPath())">
+<br/>
+<div class="phc_unknown phc_status"
+	 tal:define="isAnon context/@@plone_portal_state/anonymous">
+	<h2>Contribute</h2>
+    <p>Something wrong or out of date? Anybody can edit or create a new article in the knowledge base. <span tal:condition="isAnon">Simply <a href="http://plone.org/@@register">create an account</a> on this site, log in, and click the Edit button to contribute.</span></p>
+</div>
+</tal:block>

@@ -39,4 +39,21 @@
         permission="zope2.View"
         />
 
+    <browser:viewlet
+        name="phc_kb_footer"
+        for="Products.PloneHelpCenter.interfaces.IHelpCenterContent"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        template="phc_kb_footer.pt"
+        permission="zope2.View"
+        />
+    <browser:viewlet
+        name="phc_kb_footer"
+        for="Products.PloneHelpCenter.content.LeafPage.HelpCenterLeafPage"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        template="phc_kb_footer.pt"
+        permission="zope2.View"
+        />
+
 </configure>
