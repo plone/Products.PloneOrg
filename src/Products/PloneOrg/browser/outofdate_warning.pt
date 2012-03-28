@@ -1,3 +1,4 @@
+<tal:block tal:condition="python:'/plone.org/documentation' in '/'.join(context.getPhysicalPath())">
 <div class="phc_unknown phc_status"
 	 tal:condition="view/is_unknown">
 	<h2>Warning</h2>
@@ -36,3 +37,4 @@
   <p tal:condition="nothing">Additional information for Plone 0.1 can be found <a href="#">here</a></p>
 
 </div>
+</tal:block>
