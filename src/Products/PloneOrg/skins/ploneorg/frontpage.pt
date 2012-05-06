@@ -367,7 +367,7 @@ $('#banners').cycle({
                         <dt><a href="/products/plone/features/">What’s new in Plone 4</a></dt>
                         <dd>An overview of the new features.</dd>
 
-                        <dt><a href="http://dev.plone.org/plone/roadmap">Roadmap</a></dt>
+                        <dt><a href="http://plone.org/roadmap">Roadmap</a></dt>
                         <dd>Our plans for the future.</dd>
 
                         <dt><a href="/products/plone/releases">Older releases</a></dt>
