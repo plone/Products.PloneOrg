@@ -167,7 +167,7 @@ $('#banners').cycle({
     tal:define="
         news python:context.portal_catalog.searchResults(portal_type='News Item', sort_on='Date', sort_order='reverse', review_state='published')[:4];
         events python:context.portal_catalog.searchResults(portal_type='Event', end={'query': here.ZopeTime(), 'range': 'min'}, sort_on='start', review_state='published');
-        events python:[brain for brain in events if 'Training' not in brain.Subject][:4];">
+        events python:[brain for brain in events if ('Training' not in brain.Subject or 'Plone Conference' in brain.Subject)][:4];">
 
 
 
