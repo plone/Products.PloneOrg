@@ -68,7 +68,7 @@
             server_name dist.${vhost};
             root /srv/dist.plone.org/http/root;
             location / {
-                    rewrite ^([^.]*[^/])$ http://dist.plone.org/$1/ permanent;
+                    rewrite ^/([^.]*[^/])$ http://dist.plone.org/$1/ permanent;
                     autoindex on;
             }
             access_log ${buildout:directory}/var/log/dist.${vhost}-access.log main;
