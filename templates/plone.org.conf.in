@@ -67,8 +67,8 @@
             listen ${listen};
             server_name dist.${vhost};
             root /srv/dist.plone.org/http/root;
+			port_in_redirect off;
             location / {
-                    rewrite ^([^.]*[^/])$ http://dist.${vhost}$1/ permanent;
                     autoindex on;
             }
             access_log ${buildout:directory}/var/log/dist.${vhost}-access.log main;
