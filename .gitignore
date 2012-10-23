@@ -13,3 +13,5 @@ parts
 /products
 sources
 var
+.DS_Store
+._*

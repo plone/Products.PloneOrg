@@ -1,0 +1,167 @@
+#!/usr/bin/env python
+# encoding: utf-8
+#
+# db-scrubber
+# ===========
+#
+# Scrub the plone.org database to make one that's developer-friendly.
+#
+# Note that templates/db-scrubber.in, generates bin/db-scrubber.  Are you editing the correct file?
+
+
+# Template Values
+# ---------------
+# 
+# collective.recipe.template fills in these values.  Yes, this is a "ghetto recipe".
+_blobstorage      = '''${instance:blob-storage}'''
+_forbidden        = '''${db-scrubber:forbidden}'''
+_zopeUserPassword = '''${instance:user}'''
+
+
+# Imports
+# -------
+from AccessControl.SecurityManagement import newSecurityManager, noSecurityManager
+from plone.contentrules.engine.interfaces import IRuleStorage
+from Products.CMFCore.utils import getToolByName
+from Testing import makerequest
+from zope.app.component.hooks import setSite
+from zope.component import getUtility
+import os, os.path
+import sys
+import transaction
+
+
+# Logging setup
+# -------------
+import logging
+_logger = logging.getLogger('db-scrubber')
+_logger.setLevel(logging.DEBUG)
+_handler = logging.StreamHandler()
+_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)-8s %(message)s', '%Y-%m-%d %H:%M:%S'))
+_logger.addHandler(_handler)
+
+
+# Ensure we're running via a Zope instance's "run" command
+# --------------------------------------------------------
+#
+# On the off chance this script is executed directly, the magical "app" global won't be set.  Well, that's not
+# much fun.  So, check for that and make sure that we're run by a Zope instance's "run" command.  This also
+# has the handy side-effect of making PyFlakes happy.
+app = globals().get('app', None)
+if app is None:
+    raise NameError('No ``app``; please run this script using a Zope instance\'s "run" command')
+
+
+# Classes
+# -------
+#
+# Here we define a couple of context managers that make it simple to setup & teardown various
+# contexts, such as Zope's security and Plone's link integrity rules.
+
+class ZopeSecurity(object):
+    '''A context manager that sets up Zope security'''
+    def __init__(self, app):
+        self.app = app
+    def __enter__(self):
+        _logger.info('Setting up Zope security')
+        acl_users = getattr(self.app, 'acl_users')
+        admins = [i for i in acl_users.users.listUserIds()]
+        for i in admins:
+            _logger.debug('Removing old admin user "%s"', i)
+            acl_users.users.removeUser(i)
+        colon = _zopeUserPassword.index(':')
+        user, password = _zopeUserPassword[0:colon], _zopeUserPassword[colon+1:]
+        _logger.debug('Adding new admin user "%s" with password "%s"', user, password)
+        acl_users.users.manage_addUser(user, user, password, password)
+        _logger.debug('Getting admin user "%s"', user)
+        user = acl_users.getUser(user)
+        if user:
+            user = user.__of__(acl_users)
+            newSecurityManager(None, user)
+            _logger.debug('Security setup complete')
+        else:
+            raise Exception('Admin user "%s" does not exist' % user)
+    def __exit__(self, type, value, traceback):
+        noSecurityManager()
+
+
+class DisabledLinkRules(object):
+    '''A context manager that disables link integrity checks and content rules while active'''
+    def __init__(self, portal):
+        self.portal = portal
+        self.propTool = getToolByName(portal, 'portal_properties')
+        self.origLinkIntegrityMode = self.propTool.site_properties.getProperty('enable_link_integrity_checks', True)
+        self.contentRuleStorage = getUtility(IRuleStorage)
+        self.origContentRuleMode = self.contentRuleStorage.active
+    def __enter__(self):
+        self.propTool.site_properties.manage_changeProperties(enable_link_integrity_checks=False)
+        self.contentRuleStorage.active = False
+        return self.portal
+    def __exit__(self, type, value, traceback):
+        self.propTool.site_properties.manage_changeProperties(enable_link_integrity_checks=self.origLinkIntegrityMode)
+        self.contentRuleStorage.active = self.origContentRuleMode
+        transaction.commit()
+
+
+# Functions
+# ---------
+# 
+# As a straightforward script, most of the action happens in these global functions.
+
+def failsafe():
+    '''Ensure we are NOT running in operational (aka, production) mode on plone01.sixfeetup.com.
+    The check for /srv is simplistic, but effective.'''
+    _logger.info('Checking database')
+    path = os.path.dirname(os.path.dirname(os.path.realpath(_blobstorage)))
+    if path.startswith('/srv'):
+        raise Exception('Running on the operational /srv/plone.org! WRONG! Run it on a *copy* of of /srv/plone.org.')
+
+
+def deleteLDAPPlugins(portal):
+    '''Nuke all the LDAP plugins.  This makes the Plone site "standalone".'''
+    _logger.info('Removing LDAP plugins')
+    acl_users = getattr(portal, 'acl_users')
+    ids = [o.id for o in [acl_users[i] for i in acl_users.objectIds()] if o.meta_type == 'Plone LDAP plugin']
+    _logger.debug('Deleting %d LDAP folder%s', len(ids), 's' if len(ids) != 1 else '')
+    acl_users.manage_delObjects(ids)
+
+
+def removeForbiddenFolders(portal):
+    '''Remove the folders that contain foundation-secret and other proprietary information.'''
+    _logger.info('Removing forbidden folders')
+    for path in _forbidden.split('\n'):
+        path = path.strip()
+        if not path: continue
+        containerPath, objID = path.split('/')[1:-1], path.split('/')[-1]
+        if not objID: continue
+        container = portal.unrestrictedTraverse(containerPath)
+        if objID not in container.objectIds(): continue
+        _logger.debug('Deleting "%s" from /plone.org/%s', objID, '/'.join(containerPath))
+        container.manage_delObjects(objID)
+        
+
+def pack(app):
+    '''Pack the database down to size'''
+    _logger.info('Packing the database')
+    app._p_jar.db().pack()
+
+
+def main(app):
+    '''Do eeet.'''
+    failsafe()
+    app = makerequest.makerequest(app)
+    with ZopeSecurity(app):
+        portal = getattr(app, 'plone.org')
+        setSite(portal)
+        deleteLDAPPlugins(portal)
+        with DisabledLinkRules(portal):
+            removeForbiddenFolders(portal)
+            # TODO: do we need a catalog rebuild as well?
+    pack(app)
+    transaction.commit()
+    _logger.debug('All done')
+    return True
+
+
+if __name__ == '__main__':
+    sys.exit(0 if main(app) else -1)

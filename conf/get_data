@@ -1,10 +1,28 @@
-#! /bin/bash
+#!/bin/sh -e
+#
+# get_data - Get the latest developer drop database of plone.org's content.
+#
+# Usage: conf/get_data
+#
+# This will retrieve the latest developer drop database from plone.org and
+# place it in the local buildout's var directory.
+#
+# If your username on plone.org isn't the same as on your development system,
+# update your ~/.ssh/config.
 
-# Gets the latest Data.fs and CatalogData.fs from plone.org 
+# Check usage
+if [ $# -gt 0 ]; then
+    echo "Usage: `basename $0`" 1>&2
+    exit 1
+fi
 
-echo "Please enter the password for ssh access to plone.org: "
+# Check CWD
+if [ ! -f bootstrap.py ]; then
+    echo "Please run this command as conf/get_data from your buildout directory" 1>&2
+    exit 1
+fi
 
-rsync -avP -e ssh --verbose plone.org:/usr/home/ploneorg/CatalogData.fs var/filestorage/CatalogData.fs
-rsync -avP -e ssh --verbose plone.org:/usr/home/ploneorg/Data.fs var/filestorage/Data.fs
-
-echo "All done!"
+# Do it.
+rsync -rlptvDP plone.org:/home/ploneorg/devdrop/Data.fs        var/filestorage
+rsync -rlptvDP plone.org:/home/ploneorg/devdrop/CatalogData.fs var/filestorage
+rsync -rlptvDP plone.org:/home/ploneorg/devdrop/blobstorage    var

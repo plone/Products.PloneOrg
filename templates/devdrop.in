@@ -1,0 +1,35 @@
+#!/bin/sh -e
+# 
+# devdrop - create a developer-friendly plone.org database for friendly developers
+# 
+# Note that bin/devdrop.in generates bin/devdrop.  Are you editing the correct file?
+#
+# Install bin/devdrop as /etc/periodic/weekly/998.ploneorg-devdrop or similar.
+
+PATH=/usr/local/Python-2.6.5/bin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH
+
+# Set by collective.recipe.template:
+plone_org_home='${devdrop:plone-org-home}'
+devdrop_home='${buildout:directory}'
+tar_dir=${devdrop:tar-dir}
+user='${devdrop:user}'
+group='${devdrop:group}'
+
+# Get rid of any existing database
+[ -d ${dollar}{devdrop_home}/var/filestorage ] || mkdir -p ${dollar}{devdrop_home}/var/filestorage
+find ${dollar}{devdrop_home}/var/filestorage -type f -delete
+
+# Copy current operational database
+cp ${dollar}{plone_org_home}/var/filestorage/Data.fs ${dollar}{devdrop_home}/var/filestorage
+cp ${dollar}{plone_org_home}/var/filestorage/CatalogData.fs ${dollar}{devdrop_home}/var/filestorage
+rsync -qr ${dollar}{plone_org_home}/var/blobstorage ${dollar}{devdrop_home}/var
+
+# Own it
+chown -R ${dollar}{user}:${dollar}{group} ${dollar}{devdrop_home}/var
+
+# Prune it
+sudo -Hu ${dollar}{user} ${dollar}{devdrop_home}/bin/instance run ${dollar}{devdrop_home}/bin/db-scrubber
+
+# C'est tout
+exit 0

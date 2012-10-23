@@ -18,3 +18,6 @@ extends =
 #    conf/staging.cfg
 #    conf/fabric.cfg
 
+# Developer Database Drop; makes developer-friendly copies
+# of plone.org's content.
+#    conf/devdrop.cfg
