@@ -12,7 +12,6 @@ export PATH
 # Set by collective.recipe.template:
 plone_org_home='${devdrop:plone-org-home}'
 devdrop_home='${buildout:directory}'
-tar_dir=${devdrop:tar-dir}
 user='${devdrop:user}'
 group='${devdrop:group}'
 
@@ -25,11 +24,14 @@ cp ${dollar}{plone_org_home}/var/filestorage/Data.fs ${dollar}{devdrop_home}/var
 cp ${dollar}{plone_org_home}/var/filestorage/CatalogData.fs ${dollar}{devdrop_home}/var/filestorage
 rsync -qr ${dollar}{plone_org_home}/var/blobstorage ${dollar}{devdrop_home}/var
 
-# Own it
+# Own it, and make those annoying blobs readable
 chown -R ${dollar}{user}:${dollar}{group} ${dollar}{devdrop_home}/var
+find ${dollar}{devdrop_home}/var/blobstorage -type d -print0 | xargs -0 chmod 755
+find ${dollar}{devdrop_home}/var/blobstorage -type f -print0 | xargs -0 chmod 644
 
 # Prune it
 sudo -Hu ${dollar}{user} ${dollar}{devdrop_home}/bin/instance run ${dollar}{devdrop_home}/bin/db-scrubber
+rm -f ${dollar}{devdrop_home}/var/filestorage/*.*.*
 
 # C'est tout
 exit 0
