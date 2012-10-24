@@ -146,6 +146,13 @@ def pack(app):
     app._p_jar.db().pack()
 
 
+def rebuildCatalog(portal):
+    '''Rebuild the catalog now that a bunch of stuff is gone.'''
+    _logger.info('Clearing and rebuilding the catalog')
+    catalog = getToolByName(portal, 'portal_catalog')
+    catalog.clearFindAndRebuild()
+
+
 def main(app):
     '''Do eeet.'''
     failsafe()
@@ -156,7 +163,7 @@ def main(app):
         deleteLDAPPlugins(portal)
         with DisabledLinkRules(portal):
             removeForbiddenFolders(portal)
-            # TODO: do we need a catalog rebuild as well?
+            rebuildCatalog(portal)
     pack(app)
     transaction.commit()
     _logger.debug('All done')
