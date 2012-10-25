@@ -23,6 +23,6 @@ if [ ! -f bootstrap.py ]; then
 fi
 
 # Do it.
-rsync -rlptvDP plone.org:/home/ploneorg/devdrop/Data.fs        var/filestorage
-rsync -rlptvDP plone.org:/home/ploneorg/devdrop/CatalogData.fs var/filestorage
-rsync -rlptvDP plone.org:/home/ploneorg/devdrop/blobstorage    var
+rsync -rlptvDP plone.org:/home/ploneorg/devdrop/var/filestorage/Data.fs         var/filestorage
+rsync -rlptvDP plone.org:/home/ploneorg/devdrop/var/filestorage/CatalogData.fs  var/filestorage
+rsync -rlptvDP plone.org:/home/ploneorg/devdrop/var/blobstorage                 var
