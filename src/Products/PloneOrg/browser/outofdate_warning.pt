@@ -18,7 +18,7 @@
   <h2>Attention</h2>
   <p>This document was written for an <strong>old version</strong> of Plone, <strong tal:content="view/most_recent_version">Plone 0.1</strong>, and was last updated <span tal:replace="view/daysago">5</span> days ago.</p>
 
-  <p>To learn how to <strong>upgrade</strong> to the current version of Plone, read the <a href="://plone.org/upgrade">upgrade manual</a>.</p>
+  <p>To learn how to <strong>upgrade</strong> to the current version of Plone, read the <a href="http://plone.org/upgrade">upgrade manual</a>.</p>
    
   <p tal:condition="nothing">Additional information for Plone 0.1 can be found <a href="#">here</a></p>
 
@@ -32,7 +32,7 @@
 
   <p>For more information, see the <a tal:attributes="href string:${context/portal_url}/support/version-support-policy">version support policy</a>.</p>
 
-  <p>To learn how to <strong>upgrade</strong> to the current version of Plone, read the <a href="://plone.org/upgrade">upgrade manual</a>.</p>
+  <p>To learn how to <strong>upgrade</strong> to the current version of Plone, read the <a href="http://plone.org/upgrade">upgrade manual</a>.</p>
    
   <p tal:condition="nothing">Additional information for Plone 0.1 can be found <a href="#">here</a></p>
 
