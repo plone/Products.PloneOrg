@@ -30,7 +30,7 @@ find ${dollar}{devdrop_home}/var/blobstorage -type d -print0 | xargs -0 chmod 75
 find ${dollar}{devdrop_home}/var/blobstorage -type f -print0 | xargs -0 chmod 644
 
 # Prune it
-sudo -Hu ${dollar}{user} ${dollar}{devdrop_home}/bin/instance run ${dollar}{devdrop_home}/bin/db-scrubber
+nice +15 sudo -Hu ${dollar}{user} ${dollar}{devdrop_home}/bin/instance run ${dollar}{devdrop_home}/bin/db-scrubber
 rm -f ${dollar}{devdrop_home}/var/filestorage/*.*.*
 
 # C'est tout
