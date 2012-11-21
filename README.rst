@@ -11,6 +11,10 @@ PloneSoftwareCenter, PloneHelpCenter, PloneServicesCenter, and Poi.
 
 .. image:: https://github.com/plone/Products.PloneOrg/raw/master/screenshot.png
 
+The `issue tracker`_ is at dev.plone.org; use the *Website* category.
+
+.. _issue tracker: https://dev.plone.org/query?status=assigned&status=confirmed&status=new&status=reopened&component=Website&col=id&col=summary&col=status&col=type&col=priority&col=milestone&col=component&order=priority
+
 Installation
 ============
 
