@@ -244,6 +244,16 @@
             }
     }
 
+    # rewrite plone.com to plone.org
+    server {
+            listen ${listen};
+            server_name     www.plone.com plone.com;
+            location / {
+                    rewrite ^/(.*)$ http://www.plone.org/$1 last;
+            }
+    }
+
+
     server {
             listen ${listen};
             server_name    newplone.sixfeetup.com;
