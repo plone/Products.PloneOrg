@@ -77,20 +77,29 @@ To run buildout without sync::
 Deployment
 ==============
 
-First test changes on the staging, then deploy on plone.org
+First test your changes on the staging server, then deploy on plone.org primary.
 
 Example::
 
-    ssh plone.or
+    ssh plone.org
 
     # Test on staging
+    sudo -u -u zope
     cd /srv/staging.plone.org
-    sudo -u zope git pull
-    sudo -u zope /usr/local/Python-2.6.5/bin/python2.6 bootstrap.py -v1.7.1
-    sudo -u zope bin/buildout -c conf/staging.cfg
-    sudo -u zope bin/plonectl restart
+    # See we are running before starting to mess with things
+    bin/supervisorctl status
+
+    # Pull in patched Products.PloneOrg, run buildout, restart
+    git pull
+    /usr/local/Python-2.6.5/bin/python2.6 bootstrap.py -v1.7.1  # Let's fix that zc.buildout upgrade problem
+    bin/buildout -c conf/staging.cfg
+    bin/supervisorctl stop all && sleep 3 && bin/supervisorctl start all
+
+    # Ok what the fuck should happen here. It would be nice if someone would have left a note.
 
     # See that http://staging.plone.org comes up
+    # Login with your live LDAP credentials to http://staging.plone.org/login
+    # Test your patch
 
     # Update live
     # TODO
