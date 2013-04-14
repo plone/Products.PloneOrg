@@ -74,10 +74,29 @@ To run buildout without sync::
 
     bin/buildout install instance omelette  # And other parts here you might need here too
 
-Production
-----------
+Deployment
+==============
 
-# XXX Update post deployment. Include something about how the buildout contains only the Plone software and no load balancers etc, as per cioppino previous rev.
+First test changes on the staging, then deploy on plone.org
+
+Example::
+
+    ssh plone.or
+
+    # Test on staging
+    cd /srv/staging.plone.org
+    sudo -u zope git pull
+    sudo -u zope /usr/local/Python-2.6.5/bin/python2.6 bootstrap.py -v1.7.1
+    sudo -u zope bin/buildout -c conf/staging.cfg
+    sudo -u zope bin/plonectl restart
+
+    # See that http://staging.plone.org comes up
+
+    # Update live
+    # TODO
+    cd /srv/plone.org
+    sudo -u zope git pull
+    bin/buildout
 
 Changes
 =========
