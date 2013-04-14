@@ -9,6 +9,13 @@
         allowed_interface=".interfaces.IGroupListing"
         />
 
+    <browser:page
+        for="Products.CMFCore.interfaces.ISiteRoot"
+        name="redirect_handler"
+        class=".redirect.PloneOrgRedirectHandler"
+        permission="zope.Public"
+        />
+
     <!-- content provider to insert the Carousel banners into the homepage -->
     <adapter
         name="ploneorg.carousel"
