@@ -83,6 +83,8 @@ In the case if you don't have ``staging.plone.org`` domain record add to your ``
 
     74.203.223.202 staging.plone.org
 
+**Note**: Always use http:// URLs to access staging, as https:// URLs are not currently routed correctly.
+
 Example how to update staging (the horror story)::
 
     ssh plone.org
@@ -111,6 +113,9 @@ Example how to update staging (the horror story)::
 
     # Check nginx is running
     telnet 10.57.0.107 6021
+
+    # NOTE: Make sure dist.plone.org is not controlled by staging nginx?
+    # See /usr/local/etc/varnish/default.vcl
 
     # Ok what the fuck should happen here. It would be nice if someone would have left a note.
 

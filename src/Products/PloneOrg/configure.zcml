@@ -10,6 +10,8 @@
     <include package="Products.PloneSoftwareCenter" />
     <include package="Products.Poi" />
 
+    <include package="collective.scriptedredirect" />
+
     <genericsetup:registerProfile
         name="default"
         title="Plone.org site"
@@ -31,25 +33,25 @@
     <include package="collective.recaptcha" />
     <include package="collective.contentrules.mailtogroup" />
     <include package="collective.contentrules.mailtolocalrole" />
-    
+
     <include package=".browser" />
 
     <cmf:registerDirectory
         name="ploneorg"/>
     <cmf:registerDirectory
         name="ploneorg_images"/>
-    
+
     <adapter
        zcml:condition="installed Products.CacheSetup"
        for="Products.ATContentTypes.interface.news.IATNewsItem"
        factory=".purger.FrontpagePurger"
        />
-  
+
    <adapter
        zcml:condition="installed Products.CacheSetup"
        for="Products.ATContentTypes.interface.event.IATEvent"
        factory=".purger.FrontpagePurger"
-       />  
+       />
 
    <genericsetup:upgradeStep
        title="Remove collector_issue_workflow from portal_workflow"
@@ -67,7 +69,7 @@
        handler=".upgrade.reindex_effectiveRange"
        profile="Products.CMFPlone:plone"
        />
-     
+
    <genericsetup:upgradeStep
        title="Plone.org: Update CSS conditions for Diazo"
        source="4202"
