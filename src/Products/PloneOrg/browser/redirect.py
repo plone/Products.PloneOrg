@@ -27,5 +27,13 @@ class PloneOrgRedirectHandler(object):
         if path.startswith("/plone.org/documentation/manual/developer-manual/"):
             return "http://developer.plone.org/moved_content.html"
 
+        # Dexterity manual front page
+        if path in ["/plone.org/products/dexterity/documentation", "/plone.org/products/dexterity/documentation/"]:
+            return "http://developer.plone.org"
+
+        # Dexterity manual deep links
+        if path.startswith("/plone.org/products/dexterity/documentation"):
+            return "http://developer.plone.org/moved_content.html"
+
         # No redirects
         return None
