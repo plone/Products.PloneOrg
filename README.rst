@@ -23,38 +23,77 @@ Copy ``buildout.cfg.in`` to ``buildout.cfg`` and uncomment one of the following 
 Development
 -----------
 
-To build plone.org for development, uncomment out the line in buildout.cfg that
-says ``conf/development.cfg`` then proceed as normal::
+Instructions.
 
-    $ python2.7 bootstrap.py
-    $ bin/buildout
-    $ bin/instance fg
+Clone::
 
-.. Note:: 
+    git clone git@github.com:plone/Products.PloneOrg.git
 
-    Due to circumstances around testing the PloneOrg module, there 
-    are 2 directories with svn info. The source for Products.PloneOrg is in the 
-    'src' directory and the rest of the checked out packages are in 'sources'. If 
-    you can't find a checkout, double check BOTH directories.
+Create b.out::
 
+    cp buildout.cfg.in buildout.cfg
 
-Database
-~~~~~~~~
+Edit it::
 
-To get the latest databases from plone.org, you just need to run the get_data 
-shell script. It assumes ``rsync`` is in your path::
+    [buildout]
+    # Rename to buildout.cfg and uncomment one of the profiles below
+    extends =
+    # Copy data local (with plone.org account)
+        conf/database.cfg
 
-    $ ./conf/get_data
+Set up your `SSH keys for plone.org <http://opensourcehacker.com/2012/10/24/ssh-key-and-passwordless-login-basics-for-developers/>`_.
 
-Alternatively, you may uncomment ``conf/database.cfg`` which extends ``conf/develop.cfg``
-and uses ``collective.recipe.rsync`` to copy the data (which in turn assumes
-that ``rsync`` is in your path).
+Run buildout::
 
-.. Note::
+    python bootstrap.py -v 1.6.3
+    bin/buildout
 
-    Both techniques require shell access to plone.org.
+This will create p.org configuration and rsync cleaned ``Data.fs``
+and related files from plone.org for your local computer. The data
+size is around 5 GB (2013/04), so see instructions below
+how to avoid the copying in the future buildout runs.
+
+Create an admin user for yourself::
+
+    bin/instance adduser admin2 admin
+
+Start::
+
+    bin/instance fg
+
+(First startup after fresh Data.fs copy takes time.)
+
+Visit `http://localhost:8080/plone.org <http://localhost:8080/plone.org>`_.
+
+Admin password is ``admin2`` / ``admin``.
+
+Rebuilding the copy
+------------------------
+
+To run buildout without sync::
+
+    bin/buildout install instance omelette  # And other parts here you might need here too
 
 Production
 ----------
 
 # XXX Update post deployment. Include something about how the buildout contains only the Plone software and no load balancers etc, as per cioppino previous rev.
+
+Changes
+=========
+
+Please update ``docs/HISTORY.txt`` and ``docs/CONTRIBUTORS.txt`` regarding changes in the setup.
+
+Upgrades
+=========
+
+Please update ``docs/UPGRADES.txt`` regarding upgrade notes run on *plone.org*.
+
+Maintenance guide
+===================
+
+Please update ``developer.plone.org`` maintenance guide regarding system setup and sysadmin tasks
+for *plone.org*.
+
+
+
