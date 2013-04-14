@@ -83,14 +83,15 @@ In the case if you don't have ``staging.plone.org`` domain record add to your ``
 
     74.203.223.202 staging.plone.org
 
-**Note**: Always use http:// URLs to access staging, as https:// URLs are not currently routed correctly.
+**Note**: Always use http:// URLs to access staging, as https:// URLs are not currently routed correctly and
+end up to live *plone.org*.
 
 Example how to update staging (the horror story)::
 
     ssh plone.org
 
     # Test on staging
-    sudo -u -u zope
+    sudo -i -u zope
     cd /srv/staging.plone.org
     # See we are running before starting to mess with things
     bin/supervisorctl status
@@ -117,17 +118,15 @@ Example how to update staging (the horror story)::
     # NOTE: Make sure dist.plone.org is not controlled by staging nginx?
     # See /usr/local/etc/varnish/default.vcl
 
-    # Ok what the fuck should happen here. It would be nice if someone would have left a note.
-
     # See that http://staging.plone.org comes up
     # Login with your live LDAP credentials to http://staging.plone.org/login
     # Test your patch
 
-Update live::
+Update live *plone.org*::
 
-    # TODO
+    sudo -i -u zope
     cd /srv/plone.org
-    sudo -u zope git pull
+    git pull
     bin/buildout
 
 There is also ``fabfile.py``, but I am not sure how useful it is.
