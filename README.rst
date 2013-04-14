@@ -79,6 +79,9 @@ Deployment
 
 First test your changes on the staging server, then deploy on plone.org primary.
 
+Staging
+----------
+
 In the case if you don't have ``staging.plone.org`` domain record add to your ``/etc/hosts``::
 
     74.203.223.202 staging.plone.org
@@ -86,7 +89,7 @@ In the case if you don't have ``staging.plone.org`` domain record add to your ``
 **Note**: Always use http:// URLs to access staging, as https:// URLs are not currently routed correctly and
 end up to live *plone.org*.
 
-Example how to update staging (the horror story)::
+Example how to update ``staging.plone.org`` (was a bit of the horror story)::
 
     ssh plone.org
 
@@ -122,14 +125,29 @@ Example how to update staging (the horror story)::
     # Login with your live LDAP credentials to http://staging.plone.org/login
     # Test your patch
 
+
+Live
+------
+
 Update live *plone.org*::
 
     sudo -i -u zope
     cd /srv/plone.org
     git pull
-    bin/buildout
+    bin/buildout -c conf/production.cfg
+    bin/supervisorctl stop plone.org-client-instance{1,2,3,4} && sleep 10 && bin/supervisorctl start plone.org-client-instance{1,2,3,4}
 
-There is also ``fabfile.py``, but I am not sure how useful it is.
+    # Test instance1 respoends
+    telnet 10.57.0.107 5011
+
+    # Restart the rest of the stuff
+    sleep 120 && bin/supervisorctl stop plone.org-client-instance{5,6,7,8} && sleep 10 && bin/supervisorctl start plone.org-client-instance{5,6,7,8}
+
+There is also ``fabfile.py``, but I am not sure how useful it is, as there is no instructions or indication of maintenance.
+
+More info
+
+* https://github.com/plone/ploneorg.admin/blob/master/docs/services.rst
 
 Changes
 =========
@@ -144,7 +162,7 @@ Please update ``docs/UPGRADES.txt`` regarding upgrade notes run on *plone.org*.
 Maintenance guide
 ===================
 
-Please update ``developer.plone.org`` maintenance guide regarding system setup and sysadmin tasks
+Please update `developer.plone.org <https://github.com/plone/ploneorg.admin/blob/master/docs/services.rst>`_ maintenance guide regarding system setup and sysadmin tasks
 for *plone.org*.
 
 
