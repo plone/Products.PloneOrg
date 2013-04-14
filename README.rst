@@ -79,7 +79,11 @@ Deployment
 
 First test your changes on the staging server, then deploy on plone.org primary.
 
-Example::
+In the case if you don't have ``staging.plone.org`` domain record add to your ``/etc/hosts``::
+
+    74.203.223.202 staging.plone.org
+
+Example how to update staging (the horror story)::
 
     ssh plone.org
 
@@ -93,7 +97,20 @@ Example::
     git pull
     /usr/local/Python-2.6.5/bin/python2.6 bootstrap.py -v1.7.1  # Let's fix that zc.buildout upgrade problem
     bin/buildout -c conf/staging.cfg
-    bin/supervisorctl stop all && sleep 3 && bin/supervisorctl start all
+    exit
+
+    # supervisord restart must be pulled in as a root
+    cd /srv/staging.plone.org
+    sudo bash -c "bin/supervisorctl stop all && sleep 1 && bin/supervisorctl shutdown && sleep 1 && bin/supervisord && bin/supervisorctl start all"
+
+    # Check it came up
+    sudo bin/supervisorctl status
+
+    # Check instance1 is running
+    telnet 10.57.0.107 6011
+
+    # Check nginx is running
+    telnet 10.57.0.107 6021
 
     # Ok what the fuck should happen here. It would be nice if someone would have left a note.
 
@@ -101,11 +118,14 @@ Example::
     # Login with your live LDAP credentials to http://staging.plone.org/login
     # Test your patch
 
-    # Update live
+Update live::
+
     # TODO
     cd /srv/plone.org
     sudo -u zope git pull
     bin/buildout
+
+There is also ``fabfile.py``, but I am not sure how useful it is.
 
 Changes
 =========
