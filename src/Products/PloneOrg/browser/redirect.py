@@ -9,7 +9,7 @@ class PloneOrgRedirectHandler(object):
     def __call__(self, url, host, port, path):
         """
 
-        :param path: ZODB physical path to the current HTTP request context
+        :param path: Path as written in HTTP request (not site virtual path)
 
         :return: None if no redirect needed, otherwise a string full HTTP URL to the redirect target
 
@@ -19,20 +19,24 @@ class PloneOrgRedirectHandler(object):
         if not path:
             return
 
+        # Translate to virtual path, so that this works in local dev and prod
+        if path.startswith("/plone.org"):
+            path = path.replace("/plone.org", "")
+
         # Developer manual front page
-        if path in ["/plone.org/documentation/manual/developer-manual", "/plone.org/documentation/manual/developer-manual/"]:
+        if path in ["/documentation/manual/developer-manual", "/documentation/manual/developer-manual/"]:
             return "http://developer.plone.org"
 
         # Developer manual deep links
-        if path.startswith("/plone.org/documentation/manual/developer-manual/"):
+        if path.startswith("/documentation/manual/developer-manual/"):
             return "http://developer.plone.org/moved_content.html"
 
         # Dexterity manual front page
-        if path in ["/plone.org/products/dexterity/documentation", "/plone.org/products/dexterity/documentation/"]:
+        if path in ["/products/dexterity/documentation", "/products/dexterity/documentation/"]:
             return "http://developer.plone.org"
 
         # Dexterity manual deep links
-        if path.startswith("/plone.org/products/dexterity/documentation"):
+        if path.startswith("/products/dexterity/documentation"):
             return "http://developer.plone.org/moved_content.html"
 
         # No redirects
