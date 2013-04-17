@@ -149,6 +149,14 @@ More info
 
 * https://github.com/plone/ploneorg.admin/blob/master/docs/services.rst
 
+Live logs
+=========
+
+To view::
+
+    ssh plone.org
+    cd /srv/plone.org ; tail -f var/log/instance{1..8}.log
+
 Changes
 =========
 
