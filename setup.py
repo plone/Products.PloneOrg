@@ -58,7 +58,6 @@ setup(name='Products.PloneOrg',
         'roman',
         'zope.interface',
         'zope.structuredtext',
-        'Products.PloneHotfix20121106',
         'collective.scriptedredirect'
       ],
       test_require=test_require,
