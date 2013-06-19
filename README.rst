@@ -7,7 +7,7 @@ PloneSoftwareCenter, PloneHelpCenter, PloneServicesCenter, and Poi.
 
 .. Note::
 
-    The currently supported Plone version is: 4.3.1-pending.
+    The currently supported Plone version is: 4.3.1.
 
 .. image:: https://github.com/plone/Products.PloneOrg/raw/master/screenshot.png
 
