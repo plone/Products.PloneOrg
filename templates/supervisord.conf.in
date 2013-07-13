@@ -27,12 +27,12 @@ command=/usr/local/bin/memmon -a 1024MB
 events=TICK_60
 user=${options.user}
 
-[program:${options.domain}-nginx]
-command = ${parts.buildout.directory}/parts/nginx/sbin/nginx
-autostart = true
-redirect_stderr = true
-stdout_logfile = ${parts.buildout.directory}/var/log/nginx-stdout.log
-user=root
+;[program:${options.domain}-nginx]
+;command = ${parts.buildout.directory}/parts/nginx/sbin/nginx
+;autostart = true
+;redirect_stderr = true
+;stdout_logfile = ${parts.buildout.directory}/var/log/nginx-stdout.log
+;user=root
 
 [program:${options.domain}-zeo]
 command=${parts.buildout.directory}/bin/zeo fg
