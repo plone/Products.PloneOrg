@@ -120,8 +120,10 @@ Example how to update ``staging.plone.org``::
     # Test your patch
 
 
-Live
-------
+Production
+----------
+
+.. Note:: Production NGINX band HAProxy configuration files are located here: https://github.com/plone/plone-org-nginx, https://github.com/plone/plone-org-haproxy
 
 Update live *plone.org*::
 
@@ -141,8 +143,8 @@ More info
 
 * https://github.com/plone/ploneorg.admin/blob/master/docs/services.rst
 
-Live logs
-=========
+Production logs
+===============
 
 To view::
 
