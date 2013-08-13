@@ -1,0 +1,30 @@
+include *.in
+include *.png
+include *.py
+include conf/get_data
+include src/Products/PloneOrg/skins/ploneorg/plonesoftwarecenter_view
+recursive-include conf *.cfg
+recursive-include docs *.GPL
+recursive-include docs *.txt
+recursive-include products *.txt
+recursive-include scripts *.py
+recursive-include src *.cpt
+recursive-include src *.css
+recursive-include src *.dtml
+recursive-include src *.gif
+recursive-include src *.ico
+recursive-include src *.jpg
+recursive-include src *.js
+recursive-include src *.metadata
+recursive-include src *.png
+recursive-include src *.pt
+recursive-include src *.py
+recursive-include src *.txt
+recursive-include src *.vpy
+recursive-include src *.xml
+recursive-include src *.zcml
+recursive-include static *.html
+recursive-include templates *.in
+recursive-include theme *.html
+recursive-include theme *.xml
+recursive-include theme *.xsl

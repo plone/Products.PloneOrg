@@ -3,7 +3,7 @@ import os.path
 
 version = '1.5'
 
-test_require = ['plone.app.testing']
+tests_require = ['plone.app.testing']
 
 
 setup(name='Products.PloneOrg',
@@ -13,10 +13,10 @@ setup(name='Products.PloneOrg',
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       classifiers=[
         "Framework :: Plone",
-        "Programming Language :: Python",
+        "Programming Language :: Python :: 2.7",
         "Topic :: Software Development :: Libraries :: Python Modules",
         ],
-      keywords='',
+      keywords='Plone',
       author='Plone Foundation',
       author_email='plone-developers@lists.sourceforge.net',
       url='https://github.com/plone/Products.PloneOrg',
@@ -61,6 +61,7 @@ setup(name='Products.PloneOrg',
         'zope.structuredtext',
         'collective.scriptedredirect'
       ],
-      test_require=test_require,
-      extras_require={'test': test_require},
+      tests_require=tests_require,
+      test_suite="Products.PloneOrg.tests",
+      extras_require={'test': tests_require},
       )
