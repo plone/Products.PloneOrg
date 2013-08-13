@@ -1,9 +1,7 @@
 Introduction
 ============
 
-This is the plone.org Plone add-on and buildout used to power http://plone.org.
-It may also be used to develop Plone.org-centric add-ons such as
-PloneSoftwareCenter, PloneHelpCenter, PloneServicesCenter, and Poi.
+This is the plone.org Plone add-on and buildout used to power http://plone.org. It may also be used to develop Plone.org-centric add-ons such as PloneSoftwareCenter, PloneHelpCenter, PloneServicesCenter, and Poi.
 
 .. Note::
 
@@ -11,7 +9,7 @@ PloneSoftwareCenter, PloneHelpCenter, PloneServicesCenter, and Poi.
 
 .. image:: https://github.com/plone/Products.PloneOrg/raw/master/screenshot.png
 
-The `issue tracker`_ is at dev.plone.org; use the *Website* category.
+The `issue tracker`_ is located at https://dev.plone.org; please use the *Website* category.
 
 .. _issue tracker: https://dev.plone.org/query?status=assigned&status=confirmed&status=new&status=reopened&component=Website&col=id&col=summary&col=status&col=type&col=priority&col=milestone&col=component&order=priority
 
@@ -29,7 +27,7 @@ Clone::
 
     git clone git@github.com:plone/Products.PloneOrg.git
 
-Create b.out::
+Create buildout.cfg::
 
     cp buildout.cfg.in buildout.cfg
 
@@ -43,15 +41,12 @@ Edit it::
 
 Set up your `SSH keys for plone.org <http://opensourcehacker.com/2012/10/24/ssh-key-and-passwordless-login-basics-for-developers/>`_.
 
-Run buildout::
+Run Buildout::
 
-    python bootstrap.py -v 1.6.3
+    python bootstrap.py
     bin/buildout
 
-This will create p.org configuration and rsync cleaned ``Data.fs``
-and related files from plone.org for your local computer. The data
-size is around 5 GB (2013/04), so see instructions below
-how to avoid the copying in the future buildout runs.
+This will create plone.org configuration and rsync cleaned ``Data.fs`` and related files from plone.org for your local computer. The data size is around 5 GB (2013/04), so see instructions below how to avoid the copying in the future buildout runs.
 
 Create an admin user for yourself::
 
@@ -86,10 +81,9 @@ In the case if you don't have ``staging.plone.org`` domain record add to your ``
 
     74.203.223.202 staging.plone.org
 
-**Note**: Always use http:// URLs to access staging, as https:// URLs are not currently routed correctly and
-end up to live *plone.org*.
+**Note**: Always use http:// URLs to access staging, as https:// URLs are not currently routed correctly and end up to live *plone.org*.
 
-Example how to update ``staging.plone.org`` (was a bit of the horror story)::
+Example how to update ``staging.plone.org``::
 
     ssh plone.org
 
@@ -134,16 +128,14 @@ Update live *plone.org*::
     sudo -i -u zope
     cd /srv/plone.org
     git pull
-    bin/buildout -c conf/production.cfg
+    bin/buildout
     bin/supervisorctl stop plone.org-client-instance{1,2,3,4} && sleep 10 && bin/supervisorctl start plone.org-client-instance{1,2,3,4}
 
-    # Test instance1 respoends
+    # Test instance1 responds
     telnet 10.57.0.107 5011
 
     # Restart the rest of the stuff
     sleep 120 && bin/supervisorctl stop plone.org-client-instance{5,6,7,8} && sleep 10 && bin/supervisorctl start plone.org-client-instance{5,6,7,8}
-
-There is also ``fabfile.py``, but I am not sure how useful it is, as there is no instructions or indication of maintenance.
 
 More info
 
