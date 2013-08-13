@@ -123,7 +123,7 @@ Example how to update ``staging.plone.org``::
 Production
 ----------
 
-.. Note:: Production NGINX band HAProxy configuration files are located here: https://github.com/plone/plone-org-nginx, https://github.com/plone/plone-org-haproxy
+.. Note:: Production NGINX and HAProxy configuration files are located here: https://github.com/plone/plone-org-nginx, https://github.com/plone/plone-org-haproxy
 
 Update live *plone.org*::
 
