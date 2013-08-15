@@ -177,6 +177,6 @@ To complicate matters, not only are the ports restricted to listen on a non-rout
 
 So, if you are a plone.org admin (i.e. with the proper credentials), you can do this::
 
-    $ ssh -L localhost:8080:10.57.0.107:5011 plone.org
+    $ ssh -L localhost:8080:10.57.0.107:5011 direct.plone.org
 
 Then visit http://localhost:8080/manage to login to plone.org.
