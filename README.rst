@@ -5,7 +5,7 @@ This is the plone.org Plone add-on and buildout used to power http://plone.org. 
 
 .. Note::
 
-    The currently supported Plone version is: 4.3.1.
+    The currently supported Plone version is: 4.3.2-pending.
 
 .. image:: https://github.com/plone/Products.PloneOrg/raw/master/screenshot.png
 
@@ -124,6 +124,8 @@ Production
 ----------
 
 .. Note:: Production NGINX and HAProxy configuration files are located here: https://github.com/plone/plone-org-nginx, https://github.com/plone/plone-org-haproxy
+
+.. Note:: Production Python version is /usr/local/Python-2.6.5/bin/python
 
 Update live *plone.org*::
 
