@@ -5,7 +5,7 @@ This is the plone.org Plone add-on and buildout used to power http://plone.org. 
 
 .. Note::
 
-    The currently supported Plone version is: 4.3.2-pending.
+    The currently supported Plone version is: 4.3.1. (We prefer to use the latest stable release on plone.org, to maintain the most reliable system possible. Nothing newer and/or nothing older whenever possible.)
 
 .. image:: https://github.com/plone/Products.PloneOrg/raw/master/screenshot.png
 
