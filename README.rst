@@ -125,7 +125,7 @@ Production
 
 .. Note:: Production NGINX and HAProxy configuration files are located here: https://github.com/plone/plone-org-nginx, https://github.com/plone/plone-org-haproxy
 
-.. Note:: Production Python version is /usr/local/Python-2.6.5/bin/python
+.. Warning:: Production Python version is currently: /usr/local/Python-2.6.5/bin/python. If you need to re-bootstrap, please remember to use this Python.
 
 Update live *plone.org*::
 
