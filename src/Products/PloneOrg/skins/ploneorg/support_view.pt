@@ -47,8 +47,8 @@ $(document).ready(function() {
                 <h1>Plone Support Center</h1>
                 <p>Need help? The
                     <a href="http://stackoverflow.com/questions/tagged/plone"
-                       target="_blank">Plone section on Stack Overflow</a> 
-                    provides a place to get your questions answered, or to contribute 
+                       target="_blank">Plone section on StackOverflow</a> 
+                    provides a place to get your Plone development questions answered, or to contribute 
                     to the community by helping other users.</p>
             </div>
         </div>
