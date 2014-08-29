@@ -76,9 +76,7 @@ $('#banners').cycle({
         padding-left: 0 !important;
     }
     #splash-frontpage a.arrow {
-        background: url("/images/sprite-ploneorg.png") no-repeat scroll 0 -114px !important;
         font-size: 1.375em !important; 
-        padding-left: 16px !important;
     }
 
     /* main vertical scroll */
