@@ -82,10 +82,10 @@ $(document).ready(function() {
                    <a href="/events/training">training page</a>.</p>
             </li>
             <li class="bugs">
-                <h2><a href="http://dev.plone.org/plone">Reporting bugs</a></h2>
+                <h2><a href="https://plone.org/documentation/faq/i-think-ive-found-a-bug-in-plone.-where-should-i-report-it/">Reporting bugs</a></h2>
                 <p class="link-tile">If you find a bug in Plone itself (as opposed to an add-on 
                    product you downloaded), please 
-                   <a href="http://dev.plone.org/plone">file a bug report</a>.
+                   <a href="https://plone.org/documentation/faq/i-think-ive-found-a-bug-in-plone.-where-should-i-report-it/">file a bug report</a>.
                    Bug reports for individual add-on products should be filed 
                    with the authors of that product.</p>
             </li>
