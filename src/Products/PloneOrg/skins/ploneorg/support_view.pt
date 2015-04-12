@@ -33,10 +33,10 @@ $(document).ready(function() {
         <div class="grid-cell position-two-thirds width-third">
             <div class="splash pullout link-tile" id="sidebar-chat">
                 <h1>Chat Room</h1>
-                <p>Online chat is a central part of Plone culture, and it is 
-                   a good option if you have questions that need a bit of 
+                <p>Online chat is a central part of Plone culture, and it is
+                   a good option if you have questions that need a bit of
                    back-and-forth discussion to be resolved.</p>
-                <p><a class="pointer" 
+                <p><a class="pointer"
                       href="http://plone.org/support/chat">Join the chat room</a></p>
                 <div id="sidebar-chat-bubble">&#x25e4;</div>
             </div>
@@ -47,8 +47,8 @@ $(document).ready(function() {
                 <h1>Plone Support Center</h1>
                 <p>Need help? The
                     <a href="http://stackoverflow.com/questions/ask?tags=plone"
-                       target="_blank">Plone section on Stack Overflow</a> 
-                    provides a place to get your programming questions answered, or to contribute 
+                       target="_blank">Plone section on Stack Overflow</a>
+                    provides a place to get your programming questions answered, or to contribute
                     to the community by helping other users.</p>
             </div>
         </div>
@@ -60,47 +60,44 @@ $(document).ready(function() {
         <ul class="horizontal">
             <li class="commercial">
                 <h2><a href="/support/providers">Commercial support</a></h2>
-                <p class="link-tile">Plone is a free, open source product, and has hundreds of 
-                   companies around the world supporting it. If you are looking 
-                   for commercial support in your country, consult our 
-                   <a href="/support/providers">list of Plone Service 
+                <p class="link-tile">Plone is a free, open source product, and has hundreds of
+                   companies around the world supporting it. If you are looking
+                   for commercial support in your country, consult our
+                   <a href="/support/providers">list of Plone Service
                       Providers</a>.</p>
             </li>
             <li class="usergroup">
                 <h2><a href="/support/local-user-groups">Local User Groups</a></h2>
-                <p class="link-tile">Want to connect with people locally who use Plone? Do you 
-                   run a local Plone user group that you want people to know 
-                   about? Check out the 
+                <p class="link-tile">Want to connect with people locally who use Plone? Do you
+                   run a local Plone user group that you want people to know
+                   about? Check out the
                    <a href="local-user-groups">list of Local User groups</a>.</p>
             </li>
             <li class="training">
                 <h2><a href="/events/training">Training</a></h2>
-                <p class="link-tile">If you want to get better at Plone, quickly, there's no 
-                   better way than attending a training course. People 
-                   offer Plone training all over the world, and upcoming 
-                   training events are listed at the 
+                <p class="link-tile">If you want to get better at Plone, quickly, there's no
+                   better way than attending a training course. People
+                   offer Plone training all over the world, and upcoming
+                   training events are listed at the
                    <a href="/events/training">training page</a>.</p>
             </li>
             <li class="bugs">
                 <h2><a href="https://plone.org/documentation/faq/i-think-ive-found-a-bug-in-plone.-where-should-i-report-it/">Reporting bugs</a></h2>
-                <p class="link-tile">If you find a bug in Plone itself (as opposed to an add-on 
-                   product you downloaded), please 
+                <p class="link-tile">If you find a bug in Plone itself (as opposed to an add-on
+                   product you downloaded), please
                    <a href="https://plone.org/documentation/faq/i-think-ive-found-a-bug-in-plone.-where-should-i-report-it/">file a bug report</a>.
-                   Bug reports for individual add-on products should be filed 
+                   Bug reports for individual add-on products should be filed
                    with the authors of that product.</p>
             </li>
         </ul>
         </div>
     </div>
 
-    <p class="discreet" style="margin: 1em">Since spring 2014, there is also a web-based forum at <a href="https://community.plone.org">community.plone.org</a>. Make sure to visit!
-    </p>
 
-    <p class="discreet" style="margin: 1em">Looking for the 
-       behind-the-scenes information on what the Plone project is up to? You can 
-       <a href="/support/forums">use Gmane to read it in a forum format</a>, 
-       or <a href="/support/lists">subscribe to the mailing lists</a> directly.<br />
-       Also make sure you check out the 
+
+    <p class="discreet" style="margin: 1em">Looking for the
+       behind-the-scenes information on what the Plone project is up to? <a href="https://community.plone.org">Check out our community forum community.plone.org</a><br />
+       Also make sure you check out the
        <a href="http://planet.plone.org/">blogs from the Plone developers
        &amp; community</a>, and <a href="/follow">follow Plone on Twitter, Facebook, via RSS or email</a>.
     </p>
